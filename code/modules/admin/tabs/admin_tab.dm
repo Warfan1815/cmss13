@@ -697,6 +697,20 @@
 	SSticker.mode.toggleable_flags ^= MODE_NO_ATTACK_DEAD
 	message_admins("[src] has [MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_ATTACK_DEAD) ? "prevented dead mobs from being" : "allowed dead mobs to be"] attacked.")
 
+/client/proc/toggle_sniper_spec()
+	set name = "Toggle Sniper Specialist"
+	set category = "Admin.Flags"
+
+	if(!admin_holder || !check_rights(R_MOD, FALSE))
+		return
+
+	if(!SSticker.mode)
+		to_chat(usr, SPAN_WARNING("A mode hasn't been selected yet!"))
+		return
+
+	SSticker.mode.toggleable_flags ^= MODE_NO_SNIPER_SPECIALIST
+	message_admins("[src] has [MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_SNIPER_SPECIALIST) ? "prevented sniper specialist from being selected" : "allowed sniper specialist to be"] selected.")
+
 /client/proc/toggle_strip_drag()
 	set name = "Toggle Strip/Drag Dead"
 	set category = "Admin.Flags"

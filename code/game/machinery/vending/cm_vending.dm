@@ -481,6 +481,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 							if(!istype(ID) || ID.registered_ref != WEAKREF(usr))
 								to_chat(user, SPAN_WARNING("You must be wearing your [SPAN_INFO("dog tags")] to select a specialization!"))
 								return FALSE
+							if(MODE_HAS_TOGGLEABLE_FLAG(MODE_NO_SNIPER_SPECIALIST) && p_name == "Sniper Set")
+								to_chat(user, SPAN_WARNING("Sniper specialist has been disabled."))
+								vend_fail()
+								return FALSE
 							var/specialist_assignment
 							switch(p_name)
 								if("Scout Set")
