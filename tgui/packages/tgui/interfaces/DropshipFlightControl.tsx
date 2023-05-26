@@ -24,6 +24,20 @@ interface DropshipNavigationProps extends NavigationProps {
   primary_lz?: string;
   automated_control: AutomatedControl;
   has_flyby_skill: 0 | 1;
+  choice_triggered?: 0 | 1;
+}
+
+interface FlightChoices {
+  choice_prompt: string;
+  options: string[];
+  option_chances: number[];
+  option_damage: number[];
+  option_damage_location: string[];
+  option_speed: string;
+  option_auto_type: 'safest' | 'fastest';
+  are_choices_auto?: 0 | 1;
+  countdown: number;
+  max_countdown: number;
 }
 
 const DropshipDoorControl = (_, context) => {
@@ -312,6 +326,110 @@ const AutopilotConfig = (props, context) => {
   );
 };
 
+export const InFlightPrompt = (_, context) => {
+  const { data, act } = useBackend<FlightChoices>(context);
+  return (
+    <Section
+      title="Flight Path Choices"
+      className="FlightPathPrompt"
+      buttons={
+        <>
+          {data.option_auto_type === 'fastest' && (
+            <Button icon="jet-fighter" onClick={() => act('set-auto-safest')}>
+              Auto Path: Fastest
+            </Button>
+          )}
+          {data.option_auto_type === 'safest' && (
+            <Button
+              icon="triangle_exclamation"
+              onClick={() => act('set-auto-fastest')}>
+              Auto Path: Safest
+            </Button>
+          )}
+        </>
+      }>
+      <Stack vertical>
+        <Stack.Item>
+          <span>
+            During the flight: {data.choice_prompt}
+            <br />
+            <br />
+            You have <u>{data.countdown}s</u> to choose
+            <br />
+            <br />
+          </span>
+        </Stack.Item>
+        <Stack.Item>
+          <ProgressBar maxValue={data.max_countdown} value={data.countdown}>
+            T-{data.countdown}s
+          </ProgressBar>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+};
+
+export const InFlightChoices = (_, context) => {
+  const { data, act } = useBackend<FlightChoices>(context);
+  return (
+    <Section className="InFlightChoices">
+      <Stack>
+        <Stack.Item>
+          <Button
+            icon="triangle_exclamation"
+            tooltip={
+              <span>
+                Chance To Recieve Damage: {data.option_chances[0]}%<br />
+                Damage: {data.option_damage[0]} to the{' '}
+                {data.option_damage_location[0]}
+                <br />
+                Flight Time Decrease: {data.option_speed[0]}
+              </span>
+            }
+            tooltipPosition="bottom"
+            onClick={() => act('set-option-one')}>
+            {data.options[0]}
+          </Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="triangle_exclamation"
+            tooltip={
+              <span>
+                Chance To Recieve Damage: {data.option_chances[1]}%<br />
+                Damage: {data.option_damage[1]} to the{' '}
+                {data.option_damage_location[1]}
+                <br />
+                Flight Time Decrease: {data.option_speed[1]}
+              </span>
+            }
+            tooltipPosition="bottom"
+            onClick={() => act('set-option-one')}>
+            {data.options[1]}
+          </Button>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            icon="triangle_exclamation"
+            tooltip={
+              <span>
+                Chance To Recieve Damage: {data.option_chances[2]}%<br />
+                Damage: {data.option_damage[2]} to the{' '}
+                {data.option_damage_location[2]}
+                <br />
+                Flight Time Decrease: {data.option_speed[2]}
+              </span>
+            }
+            tooltipPosition="bottom"
+            onClick={() => act('set-option-one')}>
+            {data.options[2]}
+          </Button>
+        </Stack.Item>
+      </Stack>
+    </Section>
+  );
+};
+
 const RenderScreen = (props, context) => {
   const { data } = useBackend<DropshipNavigationProps>(context);
   return (
@@ -325,6 +443,12 @@ const RenderScreen = (props, context) => {
         data.flight_configuration !== 'flyby' && (
           <DropshipDestinationSelection />
         )}
+      {data.shuttle_mode === 'called' && data.target_destination && (
+        <InFlightPrompt />
+      )}
+      {data.shuttle_mode === 'called' && data.target_destination && (
+        <InFlightChoices />
+      )}
       {data.shuttle_mode === 'igniting' && <LaunchCountdown />}
       {data.shuttle_mode === 'pre-arrival' && <TouchdownCooldown />}
       {data.shuttle_mode === 'recharging' && <ShuttleRecharge />}

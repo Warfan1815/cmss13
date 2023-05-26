@@ -330,6 +330,17 @@
 		)
 		.["destinations"] += list(dockinfo)
 
+	.["choice_prompt"] = "OH MY GOD THERE'S A FLYING DRAGON"
+	.["options"] = list("RAMMING SPEED", "Evasive Manouvres", "RUN AWAY")
+	.["option_chances"] = list(100, 50, 25)
+	.["option_damage"] = list("50-70%", "25-80%", "10-40%")
+	.["option_damage_location"] = list("wings", "engine", "engine")
+	.["option_speed"] = list("15 seconds", "0 seconds", "-5 seconds")
+	.["option_auto_type"] = "safest"
+	.["are_choices_auto"] = 1
+	.["countdown"] = 10
+	.["max_countdown"] = 50
+
 /obj/structure/machinery/computer/shuttle/dropship/flight/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
