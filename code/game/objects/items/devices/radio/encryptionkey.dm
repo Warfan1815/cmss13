@@ -331,3 +331,8 @@
 	name = "\improper Mortar Crew Radio Encryption Key"
 	icon_state = "eng_key"
 	channels = list(RADIO_CHANNEL_ENGI = TRUE, RADIO_CHANNEL_JTAC = TRUE, RADIO_CHANNEL_INTEL = TRUE, RADIO_CHANNEL_REQ = TRUE)
+
+/obj/item/device/encryptionkey/rmc
+	name = "\improper Royal Marine Commandos Radio Encryption Key"
+	icon_state = "sl_key" // PLACEHOLDER PLEASE REPLACE
+	channels = list(RADIO_CHANNEL_RMC = TRUE, "Command" = TRUE, "Engi" = TRUE, "MedSci" = TRUE, "Req" = TRUE, "JTAC" = TRUE, "Intel" = TRUE, "Almayer" = TRUE) // should they have all these radio channels?

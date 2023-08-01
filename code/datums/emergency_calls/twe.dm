@@ -1,5 +1,5 @@
 //TWE RMC. Friendly to USCM, hostile to xenos.
-/datum/emergency_call/RMC
+/datum/emergency_call/rmc
 	name = "TWE Royal Marine Commandos (Squad)"
 	mob_max = 5
 	probability = 5
@@ -9,18 +9,19 @@
 
 	max_medics = 1
 	max_heavies = 1
+	max_smartgunners = 1
 	var/max_pointmen = 1
 	var/pointmen = 0
 
 
-/datum/emergency_call/RMC/New()
+/datum/emergency_call/rmc/New()
 	//PLACEHOLDER PLEASE REPLACE
 	..()
 	arrival_message = "[MAIN_SHIP_NAME], this is USCSS Royce responding to your distress call. We are boarding. Any hostile actions will be met with lethal force."
 	objectives = "Secure the Corporate Liaison and the [MAIN_SHIP_NAME]'s Commanding Officer, and eliminate any hostile threats. Do not damage Wey-Yu property."
 
 
-/datum/emergency_call/RMC/create_member(datum/mind/M, turf/override_spawn_loc)
+/datum/emergency_call/rmc/create_member(datum/mind/M, turf/override_spawn_loc)
 	var/turf/spawn_loc = override_spawn_loc ? override_spawn_loc : get_spawn_point()
 
 	if(!istype(spawn_loc))
@@ -32,29 +33,33 @@
 	if(!leader && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_LEADER) && check_timelock(mob.client, JOB_SQUAD_LEADER, time_required_for_job))
 		leader = mob
 		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Squad Leader!"))
-		arm_equipment(mob, /datum/equipment_preset/RMC/RMC_leader, TRUE, TRUE)
-	else if(medics < max_medics && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(mob.client, JOB_SQUAD_MEDIC, time_required_for_job))
-		medics++
-		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Medic!"))
-		arm_equipment(mob, /datum/equipment_preset/RMC/RMC_medic, TRUE, TRUE)
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_leader, TRUE, TRUE)
 	else if(heavies < max_heavies && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(mob.client, JOB_SQUAD_SPECIALIST))
 		heavies++
 		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Sniper!"))
-		arm_equipment(mob, /datum/equipment_preset/RMC/RMC_sniper, TRUE, TRUE)
-	else if(pointmen < max_pointmen && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_HEAVY))
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_sniper, TRUE, TRUE)
+	else if(smartgunners < max_smartgunners && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_SMARTGUNNER) && check_timelock(mob.client, JOB_SQUAD_SMARTGUN))
+		smartgunners++
+		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Heavy Gunner!"))
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_gunner, TRUE, TRUE)
+	else if(pointmen < max_pointmen && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_HEAVY) && check_timelock(mob.client, JOB_SQUAD_SPECIALIST))
 		pointmen++
 		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Pointman!"))
-		arm_equipment(mob, /datum/equipment_preset/RMC/RMC_pointman, TRUE, TRUE)
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_pointman, TRUE, TRUE)
+	else if(medics < max_medics && HAS_FLAG(mob.client.prefs.toggles_ert, PLAY_MEDIC) && check_timelock(mob.client, JOB_SQUAD_MEDIC, time_required_for_job))
+		medics++
+		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Medic!"))
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_medic, TRUE, TRUE)
 	else
 		to_chat(mob, SPAN_ROLE_HEADER("You are a Three World Empire RMC Operator!"))
-		arm_equipment(mob, /datum/equipment_preset/RMC/RMC_standard, TRUE, TRUE)
+		arm_equipment(mob, /datum/equipment_preset/rmc/rmc_standard, TRUE, TRUE)
 
 	print_backstory(mob)
 
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), mob, SPAN_BOLD("Objectives:</b> [objectives]")), 1 SECONDS)
 
 
-/datum/emergency_call/RMC/print_backstory(mob/living/carbon/human/M)
+/datum/emergency_call/rmc/print_backstory(mob/living/carbon/human/M)
 	//PLACEHOLDER PLEASE REPLACE
 	if(ishuman_strict(M))
 		to_chat(M, SPAN_BOLD("You were born [pick(75;"in Europe", 15;"in Asia", 10;"on Mars")] to a [pick(75;"well-off", 15;"well-established", 10;"average")] family."))

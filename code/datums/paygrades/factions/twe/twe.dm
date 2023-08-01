@@ -10,7 +10,7 @@
 
 /datum/paygrade/twe/rc2
 	paygrade = "TC2"
-	name = "Santo Lance Corporal"
+	name = "Santo-Lance Corporal"
 	prefix = "St-LCpl."
 	pay_multiplier = 2.1
 

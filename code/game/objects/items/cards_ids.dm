@@ -213,6 +213,17 @@
 	access = get_all_weyland_access()
 	..()
 
+/obj/item/card/id/rmc
+	name = "\improper RMC holo-badge"
+	desc = "A Royal Marine Commandos holo-badge. on the other side the information is written in Japanese."
+	icon_state = "pmc" // PLACEHOLDER PLEASE REPLACE
+	registered_name = "Three World Empire"
+	assignment = "Royal Marine Commandos"
+
+/obj/item/card/id/rmc/New()
+	access = get_all_weyland_access()
+	..()
+
 /obj/item/card/id/pmc/ds
 	name = "\improper Corporate holo-badge"
 	desc = "It lists a callsign and a blood type. Issued to Whiteout protocol teams only."

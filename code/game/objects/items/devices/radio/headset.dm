@@ -1019,3 +1019,13 @@
 	initial_keys = list(/obj/item/device/encryptionkey/vc)
 	volume = RADIO_VOLUME_RAISED
 	multibroadcast_cooldown = HIGH_MULTIBROADCAST_COOLDOWN
+
+//3WE Headsets
+
+/obj/item/device/radio/headset/distress/contractor
+	name = "RMC Headset"
+	desc = "A special headset used by Vanguard's Arrow Incorporated mercenaries, features a non-standard brace. Channels are as follows: :g - public, :v - marine command, :n - engineering, :m - medbay, :u - requisitions, :j - JTAC, :t - intel." // PLACEHOLDER PLEASE REPLACE
+	frequency = RMC_FREQ
+	icon_state = "vai_headset" // PLACEHOLDER PLEASE REPLACE
+	initial_keys = list(/obj/item/device/encryptionkey/public, /obj/item/device/encryptionkey/rmc)
+	has_hud = TRUE
