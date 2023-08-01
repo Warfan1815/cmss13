@@ -285,12 +285,13 @@ var/global/list/job_command_roles = JOB_COMMAND_ROLES_LIST
 //-------- TWE --------//
 #define JOB_TWE_REPRESENTATIVE "TWE Representative"
 
-#define JOB_TWE_YONTO "RMC Yonto"
-#define JOB_TWE_SANTO "RMC Santo"
-#define JOB_TWE_NITO "RMC Nito"
-#define JOB_TWE_ITTO "RMC Itto"
+#define JOB_TWE_TML "RMC Team Leader"
+#define JOB_TWE_MEDIC "RMC Medic"
+#define JOB_TWE_POINTMAN "RMC Pointman"
+#define JOB_TWE_MARKSMAN "RMC Marksman"
+#define JOB_TWE_COMMANDO "RMC Commando"
 
-#define TWE_COMMANDO_JOB_LIST list(JOB_TWE_YONTO, JOB_TWE_SANTO, JOB_TWE_NITO, JOB_TWE_ITTO)
+#define TWE_COMMANDO_JOB_LIST list(JOB_TWE_TML, JOB_TWE_MEDIC, JOB_TWE_POINTMAN, JOB_TWE_MARKSMAN, JOB_TWE_COMMANDO)
 
 #define JOB_TWE_SEAMAN "TWE Seaman"
 #define JOB_TWE_LSEAMAN "TWE Leading Seaman"

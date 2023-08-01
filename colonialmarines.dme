@@ -479,6 +479,7 @@
 #include "code\datums\emergency_calls\souto.dm"
 #include "code\datums\emergency_calls\supplies.dm"
 #include "code\datums\emergency_calls\tank_crew.dm"
+#include "code\datums\emergency_calls\twe.dm"
 #include "code\datums\emergency_calls\upp.dm"
 #include "code\datums\emergency_calls\upp_commando.dm"
 #include "code\datums\emergency_calls\whiskey_outpost.dm"

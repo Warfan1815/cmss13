@@ -1689,3 +1689,64 @@
 	)
 	random_under_chance = 50
 	random_spawn_under = list(/obj/item/attachable/flashlight/grip)
+
+// RMC F903WE Assault Rifle (Space AUG)
+
+/obj/item/weapon/gun/rifle/f903we
+	name = "\improper F903WE Assault Rifle"
+	desc = "The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10x24mm caseless ammunition." // PLACEHOLDER PLEASE REPLACE
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi'
+	icon_state = "m41a" // PLACEHOLDER PLEASE REPLACE
+	item_state = "m41a" // PLACEHOLDER PLEASE REPLACE
+	fire_sound = "gun_pulse" // PLACEHOLDER PLEASE REPLACE
+	reload_sound = 'sound/weapons/handling/m41_reload.ogg' // PLACEHOLDER PLEASE REPLACE
+	unload_sound = 'sound/weapons/handling/m41_unload.ogg' // PLACEHOLDER PLEASE REPLACE
+	current_mag = /obj/item/ammo_magazine/rifle // PLACEHOLDER PLEASE REPLACE
+	attachable_allowed = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/rifle,
+		/obj/item/attachable/stock/rifle/collapsible,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/flamer/advanced,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/attached_gun/extinguisher,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/rifle/collapsible) // PLACEHOLDER PLEASE REPLACE
+	map_specific_decoration = TRUE
+
+/obj/item/weapon/gun/rifle/f903we/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13) // PLACEHOLDER PLEASE REPLACE
+
+
+/obj/item/weapon/gun/rifle/f903we/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_9) // PLACEHOLDER PLEASE REPLACE
+	set_burst_amount(BURST_AMOUNT_TIER_3) // PLACEHOLDER PLEASE REPLACE
+	set_burst_delay(FIRE_DELAY_TIER_9) // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_4 + 2*HIT_ACCURACY_MULT_TIER_1 // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7 // PLACEHOLDER PLEASE REPLACE
+	scatter = SCATTER_AMOUNT_TIER_8 // PLACEHOLDER PLEASE REPLACE
+	//fa_scatter_peak = FULL_AUTO_SCATTER_PEAK_TIER_8 //Zonenote
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_10 // PLACEHOLDER PLEASE REPLACE
+	scatter_unwielded = SCATTER_AMOUNT_TIER_2 // PLACEHOLDER PLEASE REPLACE
+	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2 // PLACEHOLDER PLEASE REPLACE
+	recoil_unwielded = RECOIL_AMOUNT_TIER_2 // PLACEHOLDER PLEASE REPLACE

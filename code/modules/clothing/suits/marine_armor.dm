@@ -1726,3 +1726,67 @@
 	icon_state = "wc_armor"
 	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
 	contained_sprite = TRUE
+
+//================//THREE WORLD EMPIRE\\=====================\\
+//=======================================================================\\
+
+/obj/item/clothing/suit/storage/marine/veteran/rmc
+	name = "\improper M4 pattern PMC armor" // PLACEHOLDER PLEASE REPLACE
+	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_armor" // PLACEHOLDER PLEASE REPLACE
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_rad = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	storage_slots = 2 // PLACEHOLDER PLEASE REPLACE
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	flags_atom = NO_SNOW_TYPE|NO_NAME_OVERRIDE
+	allowed = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/explosive/grenade,
+		/obj/item/storage/bible,
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/attachable/bayonet,
+		/obj/item/device/motiondetector,
+		/obj/item/device/walkman,
+	)
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/rmc)
+	item_state_slots = list(WEAR_JACKET = "rmc_armor")
+
+/obj/item/clothing/suit/storage/marine/veteran/rmc/light
+	name = "\improper M4 pattern light PMC armor"// PLACEHOLDER PLEASE REPLACE
+	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. Has some armor plating removed for extra mobility."// PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_sniper" // PLACEHOLDER PLEASE REPLACE
+	armor_melee = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bullet = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_rad = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT // PLACEHOLDER PLEASE REPLACE
+	item_state_slots = list(WEAR_JACKET = "pmc_sniper") // PLACEHOLDER PLEASE REPLACE
+
+	/obj/item/clothing/suit/storage/marine/veteran/rmc/leader
+	name = "\improper M4 pattern PMC leader armor" // PLACEHOLDER PLEASE REPLACE
+	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."// PLACEHOLDER PLEASE REPLACE
+	icon_state = "officer_armor" // PLACEHOLDER PLEASE REPLACE
+	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/rmc/leader)
+	item_state_slots = list(WEAR_JACKET = "officer_armor") // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/clothing/suit/storage/marine/veteran/rmc/sniper
+	name = "\improper M4 pattern PMC sniper armor" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_sniper" // PLACEHOLDER PLEASE REPLACE
+	armor_bullet = CLOTHING_ARMOR_MEDIUMHIGH // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_rad = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	flags_inv_hide = HIDELOWHAIR
+	item_state_slots = list(WEAR_JACKET = "pmc_sniper") // PLACEHOLDER PLEASE REPLACE

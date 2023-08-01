@@ -73,6 +73,7 @@ var/const/YAUT_FREQ = 1205
 var/const/DUT_FREQ = 1210
 var/const/CMB_FREQ = 1220
 var/const/VAI_FREQ = 1215
+var/const/RMC_FREQ = 1225
 
 //WY Channels (1230-1249)
 var/const/WY_FREQ = 1231
@@ -139,6 +140,7 @@ var/list/radiochannels = list(
 	RADIO_CHANNEL_VAI = VAI_FREQ,
 	RADIO_CHANNEL_CMB = CMB_FREQ,
 	RADIO_CHANNEL_DUTCH_DOZEN = DUT_FREQ,
+	RADIO_CHANNEL_RMC = RMC_FREQ,
 
 	RADIO_CHANNEL_HIGHCOM = HC_FREQ,
 	RADIO_CHANNEL_ALMAYER = PUB_FREQ,
@@ -188,7 +190,8 @@ var/list/radiochannels = list(
 )
 
 // Response Teams
-#define ERT_FREQS list(VAI_FREQ, DUT_FREQ, YAUT_FREQ, CMB_FREQ)
+#define ERT_FREQS list(VAI_FREQ, DUT_FREQ, YAUT_FREQ, CMB_FREQ, RMC_FREQ)
+
 
 // UPP Frequencies
 #define UPP_FREQS list(UPP_FREQ, UPP_CMD_FREQ, UPP_ENGI_FREQ, UPP_MED_FREQ, UPP_CCT_FREQ, UPP_KDO_FREQ)
@@ -198,6 +201,9 @@ var/list/radiochannels = list(
 
 // PMC Frequencies
 #define PMC_FREQS list(PMC_FREQ, PMC_CMD_FREQ, PMC_ENGI_FREQ, PMC_MED_FREQ, PMC_CCT_FREQ, WY_WO_FREQ, WY_FREQ)
+
+// TWE Frequencies
+#define TWE_FREQS list(RMC_FREQ)
 
 //Depts - used for colors in headset.dm, as well as deciding what the marine comms tower can listen into
 #define DEPT_FREQS list(COMM_FREQ, MED_FREQ, ENG_FREQ, SEC_FREQ, SENTRY_FREQ, ALPHA_FREQ, BRAVO_FREQ, CHARLIE_FREQ, DELTA_FREQ, ECHO_FREQ, CRYO_FREQ, REQ_FREQ, JTAC_FREQ, INTEL_FREQ, WY_FREQ)
@@ -260,6 +266,7 @@ SUBSYSTEM_DEF(radio)
 		"[SOF_FREQ]" = "hcradio",
 		"[HC_FREQ]" = "hcradio",
 		"[COLONY_FREQ]" = "deptradio",
+		"[RMC_FREQ]" = "rmcradio",
 	)
 
 /datum/controller/subsystem/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)

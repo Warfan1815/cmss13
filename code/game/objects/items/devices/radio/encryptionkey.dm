@@ -302,6 +302,15 @@
 /obj/item/device/encryptionkey/clf/command
 	name = "\improper CLF Command Radio Encryption Key"
 	channels = list(RADIO_CHANNEL_CLF_CMD = TRUE, RADIO_CHANNEL_CLF_GEN = TRUE, RADIO_CHANNEL_CLF_ENGI = TRUE, RADIO_CHANNEL_CLF_MED = TRUE, RADIO_CHANNEL_CLF_CCT = TRUE)
+
+//---------------------------------------------------
+//3WE Keys
+
+/obj/item/device/encryptionkey/rmc
+	name = "\improper TWE Radio Encryption Key"
+	icon_state = "stripped_key" // PLACEHOLDER PLEASE REPLACE
+	channels = list(RADIO_CHANNEL_RMC)
+
 //---------------------------------------------------
 /obj/item/device/encryptionkey/highcom
 	name = "\improper USCM High Command Radio Encryption Key"

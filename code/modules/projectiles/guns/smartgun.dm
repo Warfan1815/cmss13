@@ -711,6 +711,17 @@
 	requires_battery = FALSE
 	requires_harness = FALSE
 
+// RMC L1103WE MG
+
+/obj/item/weapon/gun/smartgun/rmc
+	name = "\improper L1103WE MG"
+	desc = "The actual firearm in the 4-piece M56B Smartgun System. Essentially a heavy, mobile machinegun. This one has the CLF logo carved over the manufacturing stamp.\nYou may toggle firing restrictions by using a special action.\nAlt-click it to open the feed cover and allow for reloading." // PLACEHOLDER PLEASE REPLACE
+	// PLEASE ADD ICON_STATE AND UNIQUE LOGIC
+
+/obj/item/weapon/gun/smartgun/rmc/Initialize(mapload, ...)
+	. = ..()
+	MD.iff_signal = FACTION_TWE
+
 /obj/item/smartgun_battery
 	name = "smartgun DV9 battery"
 	desc = "A standard-issue 9-volt lithium dry-cell battery, most commonly used within the USCMC to power smartguns. Per the manual, one battery is good for up to 50000 rounds and plugs directly into the smartgun's power receptacle, which is only compatible with this type of battery. Various auxiliary modes usually bring the round count far lower. While this cell is incompatible with most standard electrical system, it can be charged by common rechargers in a pinch. USCMC smartgunners often guard them jealously."

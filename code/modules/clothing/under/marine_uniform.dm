@@ -654,6 +654,35 @@
 	icon_state = "mercenary_engineer_uniform"
 	worn_state = "mercenary_engineer_uniform"
 
+//===========================//Three World Empire\\================================\\
+//=====================================================================\\
+
+/obj/item/clothing/under/twe_suit
+	name = "representative's fine suit"
+	desc = "A stiff, stylish blue suit commonly worn by gentlemen from the Three World Empire. Expertly crafted to make you look as important as possible."
+	icon_state = "twe_suit"
+	worn_state = "twe_suit"
+
+/obj/item/clothing/under/marine/veteran/rmc
+	name = "\improper PMC fatigues" // PLACEHOLDER PLEASE REPLACE
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_jumpsuit" // PLACEHOLDER PLEASE REPLACE
+	worn_state = "pmc_jumpsuit" // PLACEHOLDER PLEASE REPLACE
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	suit_restricted = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/clothing/suit/storage/marine/veteran/pmc,
+		/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
+		/obj/item/clothing/suit/armor/vest/security,
+		/obj/item/clothing/suit/storage/hazardvest,
+	)
+
+/obj/item/clothing/under/marine/veteran/rmc/leader
+	name = "\improper PMC command fatigues" // PLACEHOLDER PLEASE REPLACE
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "officer_jumpsuit" // PLACEHOLDER PLEASE REPLACE
+	worn_state = "officer_jumpsuit" // PLACEHOLDER PLEASE REPLACE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 
 ////// Civilians /////////
 
@@ -821,12 +850,6 @@
 	worn_state = "wc_uniform"
 	contained_sprite = TRUE
 	flags_atom = NO_NAME_OVERRIDE
-
-/obj/item/clothing/under/twe_suit
-	name = "representative's fine suit"
-	desc = "A stiff, stylish blue suit commonly worn by gentlemen from the Three World Empire. Expertly crafted to make you look as important as possible."
-	icon_state = "twe_suit"
-	worn_state = "twe_suit"
 
 /obj/item/clothing/under/stowaway
 	name = "dirty suit"

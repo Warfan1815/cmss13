@@ -70,8 +70,44 @@
 	icon_state = "bear_mask"
 	anti_hug = 2
 
+// Three World Empire
 
+/obj/item/clothing/mask/gas/rmc
+	name = "\improper M8 pattern armored gas mask" // PLACEHOLDER PLEASE REPLACE
+	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter." // PLACEHOLDER PLEASE REPLACE
+	item_state = "helmet" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_mask" // PLACEHOLDER PLEASE REPLACE
+	anti_hug = 3 // PLACEHOLDER PLEASE REPLACE
+	vision_impair = VISION_IMPAIR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_melee = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_bullet = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_laser = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_bio = CLOTHING_ARMOR_HIGH // PLACEHOLDER PLEASE REPLACE
+	armor_rad = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH // PLACEHOLDER PLEASE REPLACE
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR // PLACEHOLDER PLEASE REPLACE
+	flags_equip_slot = SLOT_FACE
 
+/obj/item/clothing/mask/gas/rmc/balaclava
+	name = "\improper M8 pattern armored balaclava" // PLACEHOLDER PLEASE REPLACE
+	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter." // PLACEHOLDER PLEASE REPLACE
+	item_state = "helmet" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_mask" // PLACEHOLDER PLEASE REPLACE
+	anti_hug = 3 // PLACEHOLDER PLEASE REPLACE
+	vision_impair = VISION_IMPAIR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_melee = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_bullet = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_laser = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_bio = CLOTHING_ARMOR_HIGH // PLACEHOLDER PLEASE REPLACE
+	armor_rad = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_NONE // PLACEHOLDER PLEASE REPLACE
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH // PLACEHOLDER PLEASE REPLACE
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR // PLACEHOLDER PLEASE REPLACE
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor

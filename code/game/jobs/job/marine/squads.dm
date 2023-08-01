@@ -244,6 +244,26 @@
 	locked = TRUE
 	faction = FACTION_WY_DEATHSQUAD
 //###############################
+/datum/squad/rmc
+	name = "Team Ware-Eddy"
+	squad_type = "Team"
+	faction = FACTION_TWE
+	usable = TRUE
+	omni_squad_vendor = TRUE
+
+/datum/squad/rmc
+	name = "Team Uyokutai-Alfa"
+
+/datum/squad/rmc/two
+	name = "Team Chiwo-Beer"
+
+/datum/squad/rmc/three
+	name = "Team Sayo-Cork"
+
+/datum/squad/rmc/four
+	name = "Team Yohi-Don"
+
+//###############################
 /datum/squad/clf
 	name = "Root"
 	squad_type = "Cell"

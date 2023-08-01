@@ -184,3 +184,15 @@
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
 	unacidable = TRUE
 	adopts_squad_color = FALSE
+
+/obj/item/clothing/gloves/marine/veteran/rmc
+	name = "\improper WY PMC gloves" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc" // PLACEHOLDER PLEASE REPLACE
+	item_state = "pmc" // PLACEHOLDER PLEASE REPLACE
+	desc = "Standard issue kevlon fiber gloves manufactured for and by Weyland-Yutani PMC dispatch division. They are insulated against electrical shock." // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/clothing/gloves/marine/veteran/rmc/white
+	name = "\improper WY PMC gloves" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc" // PLACEHOLDER PLEASE REPLACE
+	item_state = "pmc" // PLACEHOLDER PLEASE REPLACE
+	desc = "Standard issue kevlon fiber gloves manufactured for and by Weyland-Yutani PMC dispatch division. They are insulated against electrical shock." // PLACEHOLDER PLEASE REPLACE

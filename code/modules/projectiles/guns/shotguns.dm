@@ -1281,3 +1281,43 @@ can cause issues with ammo types getting mixed up during the burst.
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_3
 
 //-------------------------------------------------------
+// RMC L12 Shotgun
+
+/obj/item/weapon/gun/shotgun/l12
+	name = "L12 Shotgun"
+	desc = "A cobbled-together pile of scrap and alien wood. Point end towards things you want to die. Has a burst fire feature, as if it needed it." // PLACEHOLDER PLEASE REPLACE
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/colony.dmi' // PLACEHOLDER PLEASE REPLACE
+	icon_state = "cshotgun" // PLACEHOLDER PLEASE REPLACE
+	item_state = "cshotgun" // PLACEHOLDER PLEASE REPLACE
+
+	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg' // PLACEHOLDER PLEASE REPLACE
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/merc // PLACEHOLDER PLEASE REPLACE
+	attachable_allowed = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/attachable/compensator,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_INTERNAL_MAG
+
+/obj/item/weapon/gun/shotgun/merc/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(current_mag && current_mag.current_rounds > 0)
+		load_into_chamber()
+
+
+/obj/item/weapon/gun/shotgun/merc/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 17, "under_y" = 14, "stock_x" = 17, "stock_y" = 14) // PLACEHOLDER PLEASE REPLACE
+
+
+/obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_6*2) // PLACEHOLDER PLEASE REPLACE
+	set_burst_amount(BURST_AMOUNT_TIER_2) // PLACEHOLDER PLEASE REPLACE
+	set_burst_delay(FIRE_DELAY_TIER_9) // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_10 // PLACEHOLDER PLEASE REPLACE
+	scatter = SCATTER_AMOUNT_TIER_6 // PLACEHOLDER PLEASE REPLACE
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	scatter_unwielded = SCATTER_AMOUNT_TIER_2 // PLACEHOLDER PLEASE REPLACE
+	damage_mult = BASE_BULLET_DAMAGE_MULT // PLACEHOLDER PLEASE REPLACE
+	recoil = RECOIL_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	recoil_unwielded = RECOIL_AMOUNT_TIER_2 // PLACEHOLDER PLEASE REPLACE

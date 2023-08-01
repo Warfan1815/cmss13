@@ -599,3 +599,55 @@
 	if(.)
 		click_empty(user)
 	return FALSE
+
+// RMC L906 SMG
+
+/obj/item/weapon/gun/smg/l906
+	name = "\improper L906 SMG"
+	desc = "The Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers and medics. A lightweight, lower caliber alternative to the various Pulse weapons used the USCM. Fires 10x20mm rounds out of 48 round magazines." // PLACEHOLDER PLEASE REPLACE
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/uscm.dmi' // PLACEHOLDER PLEASE REPLACE
+	icon_state = "m39" // PLACEHOLDER PLEASE REPLACE
+	item_state = "m39" // PLACEHOLDER PLEASE REPLACE
+	flags_equip_slot = SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/m39 // PLACEHOLDER PLEASE REPLACE
+	attachable_allowed = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight/grip,
+		/obj/item/attachable/stock/smg,
+		/obj/item/attachable/stock/smg/collapsible,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonet/upp,
+		/obj/item/attachable/bayonet/co2,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/stock/smg/collapsible/brace,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/smg/collapsible) // PLACEHOLDER PLEASE REPLACE
+	map_specific_decoration = FALSE
+
+/obj/item/weapon/gun/smg/m39/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 24, "stock_y" = 15) // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/weapon/gun/smg/m39/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_SMG) // PLACEHOLDER PLEASE REPLACE
+	set_burst_delay(FIRE_DELAY_TIER_SMG) // PLACEHOLDER PLEASE REPLACE
+	set_burst_amount(BURST_AMOUNT_TIER_3) // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult = BASE_ACCURACY_MULT // PLACEHOLDER PLEASE REPLACE
+	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_5 // PLACEHOLDER PLEASE REPLACE
+	scatter = SCATTER_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	burst_scatter_mult = SCATTER_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	scatter_unwielded = SCATTER_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+	damage_mult = BASE_BULLET_DAMAGE_MULT // PLACEHOLDER PLEASE REPLACE
+	recoil_unwielded = RECOIL_AMOUNT_TIER_5 // PLACEHOLDER PLEASE REPLACE

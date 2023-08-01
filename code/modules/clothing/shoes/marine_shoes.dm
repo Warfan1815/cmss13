@@ -154,11 +154,13 @@
 	desc = "These synth-leather boots seem high quality when first worn, but quickly detoriate, especially in the environments the corporate security members these are issued to operate in. Still, better than nothing."
 	knife_type = /obj/item/attachable/bayonet
 
-/obj/item/clothing/shoes/marine/ress
-	name = "armored sandals"
-	icon_state = "sandals"
-	item_state = "sandals"
-	items_allowed = null
+/obj/item/clothing/shoes/marine/rmc
+	name = "armored sandals" // PLACEHOLDER PLEASE REPLACE
+	icon_state = "sandals" // PLACEHOLDER PLEASE REPLACE
+	item_state = "sandals" // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/clothing/shoes/marine/rmc/white
+	icon_state = "sandals" // PLACEHOLDER PLEASE REPLACE
 
 /obj/item/clothing/shoes/hiking
 	name = "hiking shoes"

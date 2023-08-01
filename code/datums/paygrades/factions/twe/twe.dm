@@ -5,25 +5,25 @@
 //TWE RMC
 /datum/paygrade/twe/rc1
 	paygrade = "TC1"
-	name = "Yonto"
-	prefix = "Yt."
+	name = "Heitai-Marine"
+	prefix = "Hti-Mne."
 
 /datum/paygrade/twe/rc2
 	paygrade = "TC2"
-	name = "Santo"
-	prefix = "St."
+	name = "Santo Lance Corporal"
+	prefix = "St-LCpl."
 	pay_multiplier = 2.1
 
 /datum/paygrade/twe/rc3
 	paygrade = "TC3"
-	name = "Nito"
-	prefix = "Nt."
+	name = "Nito-Corporal"
+	prefix = "Nt-Cpl."
 	pay_multiplier = 2.2
 
 /datum/paygrade/twe/rc4
 	paygrade = "TC4"
-	name = "Itto"
-	prefix = "It."
+	name = "Itto-Sergeant"
+	prefix = "Sgt."
 	pay_multiplier = 2.3
 
 

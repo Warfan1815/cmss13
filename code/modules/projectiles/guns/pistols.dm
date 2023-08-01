@@ -831,3 +831,43 @@ It is a modified Beretta 93R, and can fire three-round burst or single fire. Whe
 
 	scatter = SCATTER_AMOUNT_TIER_7
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
+
+
+// RMC L905 Pistol
+
+/obj/item/weapon/gun/pistol/l905
+	name = "\improper L905 Pistol"
+	desc = "A robust, 20th century firearm that's a combination of pistol and submachinegun. Fires .32ACP caliber rounds from a 20-round magazine." // PLACEHOLDER PLEASE REPLACE
+	icon = 'icons/obj/items/weapons/guns/guns_by_faction/upp.dmi' // PLACEHOLDER PLEASE REPLACE
+	icon_state = "skorpion" // PLACEHOLDER PLEASE REPLACE
+	item_state = "skorpion" // PLACEHOLDER PLEASE REPLACE
+
+	fire_sound = 'sound/weapons/gun_skorpion.ogg' // PLACEHOLDER PLEASE REPLACE
+	current_mag = /obj/item/ammo_magazine/pistol/skorpion // PLACEHOLDER PLEASE REPLACE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ONE_HAND_WIELDED
+	attachable_allowed = list( // PLACEHOLDER PLEASE REPLACE
+		/obj/item/attachable/reddot, //Rail
+		/obj/item/attachable/reflex,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/suppressor, //Muzzle
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/lasersight, //Underbarrel
+		/obj/item/attachable/burstfire_assembly,
+	)
+	start_semiauto = FALSE
+	start_automatic = TRUE
+
+/obj/item/weapon/gun/pistol/skorpion/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15) // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/weapon/gun/pistol/skorpion/set_gun_config_values()
+	..()
+	set_fire_delay(FIRE_DELAY_TIER_9) // PLACEHOLDER PLEASE REPLACE
+	fa_scatter_peak = 15 //shots // PLACEHOLDER PLEASE REPLACE
+	fa_max_scatter = SCATTER_AMOUNT_TIER_4 // PLACEHOLDER PLEASE REPLACE
+
+	accuracy_mult = BASE_ACCURACY_MULT // PLACEHOLDER PLEASE REPLACE
+	scatter = SCATTER_AMOUNT_TIER_6 // PLACEHOLDER PLEASE REPLACE
+	damage_mult = BASE_BULLET_DAMAGE_MULT // PLACEHOLDER PLEASE REPLACE

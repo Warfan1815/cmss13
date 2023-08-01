@@ -1176,6 +1176,52 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 			var/datum/action/A = X
 			A.update_button_icon()
 
+//===========================//Three World Empire\\================================\\
+//=====================================================================\\
+
+
+/obj/item/clothing/head/helmet/marine/veteran/rmc/beret
+	name = "\improper PMC tactical cap" // PLACEHOLDER PLEASE REPLACE
+	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_hat" // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_bio = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NO_FLAGS
+	flags_marine_helmet = NO_FLAGS
+
+/obj/item/clothing/head/helmet/marine/veteran/rmc/beret/leader
+	name = "\improper PMC beret" // PLACEHOLDER PLEASE REPLACE
+	desc = "The pinnacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "officer_hat" // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/clothing/head/helmet/marine/veteran/rmc/helmet
+	name = "\improper PMC tactical cap" // PLACEHOLDER PLEASE REPLACE
+	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "pmc_hat" // PLACEHOLDER PLEASE REPLACE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW // PLACEHOLDER PLEASE REPLACE
+	armor_bomb = CLOTHING_ARMOR_MEDIUM // PLACEHOLDER PLEASE REPLACE
+	armor_bio = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	armor_internaldamage = CLOTHING_ARMOR_LOW // PLACEHOLDER PLEASE REPLACE
+	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
+	flags_inventory = BLOCKSHARPOBJ
+	flags_inv_hide = NO_FLAGS
+	flags_marine_helmet = NO_FLAGS
+
+/obj/item/clothing/head/helmet/marine/veteran/rmc/helmet/variant
+	name = "\improper PMC beret" // PLACEHOLDER PLEASE REPLACE
+	desc = "The pinnacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "officer_hat" // PLACEHOLDER PLEASE REPLACE
+
+/obj/item/clothing/head/helmet/marine/veteran/rmc/helmet/leader
+	name = "\improper PMC beret" // PLACEHOLDER PLEASE REPLACE
+	desc = "The pinnacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts." // PLACEHOLDER PLEASE REPLACE
+	icon_state = "officer_hat" // PLACEHOLDER PLEASE REPLACE
+
+
 //=============================//MEME\\==================================\\
 //=======================================================================\\
 
