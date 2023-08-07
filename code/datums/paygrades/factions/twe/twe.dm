@@ -2,28 +2,28 @@
 	name = "TWE Paygrade"
 	pay_multiplier = 2 // less people = more to pay them
 
-//RMC Emlisted
+//RMC Enlisted
 /datum/paygrade/twe/e1
-	paygrade = "RMC E1"
-	name = "Marine"
-	prefix = "Mne"
+	paygrade = "TC1"
+	name = "Heitai-Marine"
+	prefix = "Hti-Mne."
 
 /datum/paygrade/twe/e2
-	paygrade = "RMC E2"
-	name = "Lance Corporal"
-	prefix = "LCpl"
+	paygrade = "TC2"
+	name = "Santo-Lance Corporal"
+	prefix = "St-LCpl."
 	pay_multiplier = 2.1
 
 /datum/paygrade/twe/e3
-	paygrade = "RMC E3"
-	name = "Corporal"
-	prefix = "Cpl"
+	paygrade = "TC3"
+	name = "Nito-Corporal"
+	prefix = "Nt-Cpl."
 	pay_multiplier = 2.2
 
 /datum/paygrade/twe/e4
-	paygrade = "RMC E4"
-	name = "Sergeant"
-	prefix = "Sgt"
+	paygrade = "TC4"
+	name = "Itto-Sergeant"
+	prefix = "Sgt."
 	pay_multiplier = 2.3
 
 //RMC Officer
