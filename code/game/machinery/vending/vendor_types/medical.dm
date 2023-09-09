@@ -227,7 +227,8 @@
 /obj/structure/machinery/cm_vending/sorted/medical/antag
 	name = "\improper Medical Equipment Vendor"
 	desc = "A vending machine dispensing various pieces of medical equipment."
-	req_access = list(ACCESS_ILLEGAL_PIRATE)
+	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)
+	req_access = null
 	vendor_theme = VENDOR_THEME_CLF
 
 /obj/structure/machinery/cm_vending/sorted/medical/marinemed
@@ -267,12 +268,13 @@
 /obj/structure/machinery/cm_vending/sorted/medical/marinemed/antag
 	name = "\improper Basic Medical Supplies Vendor"
 	desc = "A vending machine dispensing basic medical supplies."
-	req_access = list(ACCESS_ILLEGAL_PIRATE)
+	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)
+	req_access = null
 	vendor_theme = VENDOR_THEME_CLF
 
 /obj/structure/machinery/cm_vending/sorted/medical/blood
 	name = "\improper MM Blood Dispenser"
-	desc = "Marine Med brand Blood Pack Dispensary"
+	desc = "The Marine Med Brand Blood Pack Dispensary is the premier, top-of-the-line blood dispenser of 2105! Get yours today!" //Don't update this year, the joke is it's old.
 	icon_state = "blood"
 	wrenchable = TRUE
 	hackable = TRUE
@@ -298,7 +300,8 @@
 	return
 
 /obj/structure/machinery/cm_vending/sorted/medical/blood/antag
-	req_access = list(ACCESS_ILLEGAL_PIRATE)
+	req_one_access = list(ACCESS_ILLEGAL_PIRATE, ACCESS_UPP_GENERAL, ACCESS_CLF_GENERAL)
+	req_access = null
 	vendor_theme = VENDOR_THEME_CLF
 
 /obj/structure/machinery/cm_vending/sorted/medical/wall_med

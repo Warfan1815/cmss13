@@ -547,31 +547,32 @@
 		ram_distance -- //for max pinballing.
 	icon_state = inactive_icon
 
-/obj/item/explosive/grenade/slug/proc/impact_mob(mob/living/M)
-	var/direction = Get_Angle(src,M)
-	var/target_turf = get_angle_target_turf(src,direction,throw_max)
-	var/fling = rand(throw_min,throw_max) //WEEEEEEEEEEEEEEEEEEEE What is going to be put into throw_atom
+/obj/item/explosive/grenade/slug/proc/impact_mob(mob/living/smacked)
+	var/direction = Get_Angle(src, smacked)
+	var/target_turf = get_angle_target_turf(src,direction, throw_max)
+	var/fling = rand(throw_min, throw_max) //WEEEEEEEEEEEEEEEEEEEE What is going to be put into throw_atom
 	var/random_tile = 0 //random tile for bounce
 
-	playsound(M.loc, impact_sound, 75, 1)
-	M.apply_damage(impact_damage, BRUTE)
+	playsound(smacked.loc, impact_sound, 75, 1)
+	smacked.apply_damage(impact_damage, BRUTE)
+	smacked.attack_log += "\[[time_stamp()]\] [src], fired by [fingerprintslast], struck [key_name(smacked)]."
 
 	random_tile = get_random_turf_in_range(src,ram_distance,ram_distance) //getting random tile for bounce
 	src.throw_atom(random_tile,ram_distance,SPEED_FAST,src,TRUE,NORMAL_LAUNCH,NO_FLAGS) //time for a little trolling
 
-	if(isyautja(M)|| issynth(M))
-		M.apply_effect(slowdown_time * 0.5, SLOW)
-		M.apply_effect(dazed_time * 0.5, DAZE)
+	if(isyautja(smacked)|| issynth(smacked))
+		smacked.apply_effect(slowdown_time * 0.5, SLOW)
+		smacked.apply_effect(dazed_time * 0.5, DAZE)
 
-	if(M.mob_size >= MOB_SIZE_BIG)//big xenos not KO'ed
-		M.apply_effect(slowdown_time * 1.2, SLOW)//They are slowed more :trol:
-		M.apply_effect(dazed_time * 1.2, DAZE)
+	if(smacked.mob_size >= MOB_SIZE_BIG)//big xenos not KO'ed
+		smacked.apply_effect(slowdown_time * 1.2, SLOW)//They are slowed more :trol:
+		smacked.apply_effect(dazed_time * 1.2, DAZE)
 		return
 
-	M.apply_effect(knockout_time, WEAKEN)//but little xenos and humans are
-	M.throw_atom(target_turf,fling,SPEED_AVERAGE,M,TRUE)
-	M.apply_effect(slowdown_time, SLOW)
-	M.apply_effect(dazed_time, DAZE)
+	smacked.apply_effect(knockout_time, WEAKEN)//but little xenos and humans are
+	smacked.throw_atom(target_turf, fling, SPEED_AVERAGE, smacked, TRUE)
+	smacked.apply_effect(slowdown_time, SLOW)
+	smacked.apply_effect(dazed_time, DAZE)
 	return
 
 /obj/item/explosive/grenade/slug/baton
@@ -687,4 +688,24 @@
 	flame_level = BURN_TIME_TIER_3
 	burn_level = BURN_LEVEL_TIER_3
 	radius = 2
+	fire_type = FIRE_VARIANT_DEFAULT
+
+//Royal marine grenades
+
+/obj/item/explosive/grenade/high_explosive/rmc
+	name = "\improper R2175/A HEDP grenade"
+	desc = "High-Explosive Dual-Purpose. A small, but deceptively strong blast grenade that has recently been added to the arsenal of the RMC."
+	icon_state = "rmc_grenade"
+	item_state = "grenade_hedp"
+	explosion_power = 130
+	explosion_falloff = 30
+
+/obj/item/explosive/grenade/incendiary/rmc
+	name = "\improper R2175/B HIDP grenade"
+	desc = "The R2175/B HIDP is a small, but deceptively strong incendiary grenade designed to rapidly clear areas with fast-acting potent fire. It is set to detonate in 4 seconds."
+	icon_state = "rmc_grenade_fire"
+	item_state = "grenade_fire"
+	flame_level = BURN_TIME_TIER_1
+	burn_level = BURN_LEVEL_TIER_8
+	radius = 3
 	fire_type = FIRE_VARIANT_DEFAULT

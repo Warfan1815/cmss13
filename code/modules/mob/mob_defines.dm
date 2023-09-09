@@ -125,6 +125,7 @@
 	var/life_steps_total = 0
 	var/life_kills_total = 0
 	var/life_damage_taken_total = 0
+	var/life_revives_total = 0
 	var/festivizer_hits_total = 0
 
 	var/life_value = 1 // when killed, the killee gets this much added to its life_kills_total
@@ -269,6 +270,9 @@
 	var/mutable_appearance/active_thinking_indicator
 	/// User is thinking in character. Used to revert to thinking state after stop_typing
 	var/thinking_IC = FALSE
+
+	// contains /atom/movable/screen/alert only
+	var/list/alerts = list()
 
 /mob/vv_get_dropdown()
 	. = ..()

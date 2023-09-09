@@ -69,6 +69,8 @@
 
 	/// The flicker that plays when a bullet hits a target. Usually red. Can be nulled so it doesn't show up at all.
 	var/hit_effect_color = "#FF0000"
+	/// How much to make the bullet fall off by accuracy-wise when closer than the ideal range
+	var/accuracy_range_falloff = 10
 
 /obj/item/projectile/Initialize(mapload, datum/cause_data/cause_data)
 	. = ..()
@@ -110,7 +112,7 @@
 /obj/item/projectile/Crossed(atom/movable/AM)
 	/* Fun fact: Crossed is called for any contents involving operations.
 	 * This notably means, inserting a magazing in a gun Crossed() it with the bullets in the gun. */
-	if(!loc.z)
+	if(!loc?.z)
 		return // Not on the map. Don't scan a turf. Don't shoot the poor guy reloading his gun.
 	if(AM && !(AM in permutated))
 		if(scan_a_turf(get_turf(AM)))
@@ -501,13 +503,14 @@
 			if(ammo.sound_miss) playsound_client(L.client, ammo.sound_miss, get_turf(L), 75, TRUE)
 			L.visible_message(SPAN_AVOIDHARM("[src] misses [L]!"),
 				SPAN_AVOIDHARM("[src] narrowly misses you!"), null, 4, CHAT_TYPE_TAKING_HIT)
-			log_attack("[src] narrowly missed [key_name(L)]")
+			var/log_message = "[src] narrowly missed [key_name(L)]"
 
 			var/mob/living/carbon/shotby = firer
 			if(istype(shotby))
-				L.attack_log += "[time_stamp()]\] [src], fired by [key_name(firer)], narrowly missed [key_name(L)]"
-				shotby.attack_log += "[time_stamp()]\] [src], fired by [key_name(shotby)], narrowly missed [key_name(L)]"
-
+				L.attack_log += "\[[time_stamp()]\] [src], fired by [key_name(firer)], narrowly missed [key_name(L)]"
+				shotby.attack_log += "\[[time_stamp()]\] [src], fired by [key_name(shotby)], narrowly missed [key_name(L)]"
+				log_message = "[src], fired by [key_name(firer)], narrowly missed [key_name(L)]"
+			log_attack(log_message)
 
 		#if DEBUG_HIT_CHANCE
 		to_world(SPAN_DEBUG("([L]) Missed."))
@@ -533,7 +536,7 @@
 	var/ammo_flags = ammo.flags_ammo_behavior | projectile_override_flags
 	if(distance_travelled <= ammo.accurate_range)
 		if(distance_travelled <= ammo.accurate_range_min) // If bullet stays within max accurate range + random variance
-			effective_accuracy -= (ammo.accurate_range_min - distance_travelled) * 10 // Snipers have accuracy falloff at closer range before point blank
+			effective_accuracy -= (ammo.accurate_range_min - distance_travelled) * accuracy_range_falloff // Snipers have accuracy falloff at closer range before point blank
 	else
 		effective_accuracy -= (distance_travelled - ammo.accurate_range) * ((ammo_flags & AMMO_SNIPER) ? 1.5 : 10) // Snipers have a smaller falloff constant due to longer max range
 
@@ -1142,11 +1145,16 @@
 	// Need to do this in order to prevent the ping from being deleted
 	addtimer(CALLBACK(I, TYPE_PROC_REF(/image, flick_overlay), src, 3), 1)
 
+/// People getting shot by a large amount of bullets in a very short period of time can lag them out, with chat messages being one cause, so a 1s cooldown per hit message is introduced to assuage that
+/mob/var/shot_cooldown = 0
+
 /mob/proc/bullet_message(obj/item/projectile/P)
 	if(!P)
 		return
-	visible_message(SPAN_DANGER("[src] is hit by the [P.name] in the [parse_zone(P.def_zone)]!"), \
-		SPAN_HIGHDANGER("You are hit by the [P.name] in the [parse_zone(P.def_zone)]!"), null, 4, CHAT_TYPE_TAKING_HIT)
+	if(COOLDOWN_FINISHED(src, shot_cooldown))
+		visible_message(SPAN_DANGER("[src] is hit by the [P.name] in the [parse_zone(P.def_zone)]!"), \
+			SPAN_HIGHDANGER("You are hit by the [P.name] in the [parse_zone(P.def_zone)]!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		COOLDOWN_START(src, shot_cooldown, 1 SECONDS)
 
 	last_damage_data = P.weapon_cause_data
 	if(P.firer && ismob(P.firer))
@@ -1185,6 +1193,31 @@
 	if(dy == 0) //above or below you
 		if(dx == -1 || dx == 1)
 			return TRUE
+
+/obj/item/projectile/vulture
+	accuracy_range_falloff = 10
+	/// The odds of hitting a xeno in less than your gun's range. Doesn't apply to humans.
+	var/xeno_shortrange_chance = 10
+
+/obj/item/projectile/vulture/Initialize(mapload, datum/cause_data/cause_data)
+	. = ..()
+	RegisterSignal(src, COMSIG_GUN_VULTURE_FIRED_ONEHAND, PROC_REF(on_onehand))
+
+/obj/item/projectile/vulture/handle_mob(mob/living/hit_mob)
+	if((ammo.accurate_range_min > distance_travelled) && isxeno(hit_mob))
+		if(prob(xeno_shortrange_chance))
+			return ..()
+
+		permutated |= hit_mob
+		return
+
+	return ..()
+
+/// Handler for when the user one-hands the firing gun
+/obj/item/projectile/vulture/proc/on_onehand(datum/source)
+	SIGNAL_HANDLER
+
+	accuracy = HIT_ACCURACY_TIER_2 // flat 10% chance if you're desperate and try to fire this thing without a bipod
 
 #undef DEBUG_HIT_CHANCE
 #undef DEBUG_HUMAN_DEFENSE
