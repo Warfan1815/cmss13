@@ -374,16 +374,13 @@ export const InFlightChoices = (_, context) => {
   return (
     <Section className="InFlightChoices">
       <Stack>
-        <Stack.Item>
+        <Stack.Item grow>
           <Button
             icon="triangle_exclamation"
             tooltip={
               <span>
-                Chance To Recieve Damage: {data.option_chances[0]}%<br />
-                Damage: {data.option_damage[0]} to the{' '}
-                {data.option_damage_location[0]}
-                <br />
                 Flight Time Decrease: {data.option_speed[0]}
+                Chance to cause turbulence: {data.option_chances[0]}%
               </span>
             }
             tooltipPosition="bottom"
@@ -391,16 +388,13 @@ export const InFlightChoices = (_, context) => {
             {data.options[0]}
           </Button>
         </Stack.Item>
-        <Stack.Item>
+        <Stack.Item grow>
           <Button
             icon="triangle_exclamation"
             tooltip={
               <span>
-                Chance To Recieve Damage: {data.option_chances[1]}%<br />
-                Damage: {data.option_damage[1]} to the{' '}
-                {data.option_damage_location[1]}
-                <br />
                 Flight Time Decrease: {data.option_speed[1]}
+                Chance to cause turbulence: {data.option_chances[1]}%
               </span>
             }
             tooltipPosition="bottom"
@@ -408,16 +402,13 @@ export const InFlightChoices = (_, context) => {
             {data.options[1]}
           </Button>
         </Stack.Item>
-        <Stack.Item>
+        <Stack.Item grow>
           <Button
             icon="triangle_exclamation"
             tooltip={
               <span>
-                Chance To Recieve Damage: {data.option_chances[2]}%<br />
-                Damage: {data.option_damage[2]} to the{' '}
-                {data.option_damage_location[2]}
-                <br />
                 Flight Time Decrease: {data.option_speed[2]}
+                Chance to cause turbulence: {data.option_chances[2]}%
               </span>
             }
             tooltipPosition="bottom"
@@ -443,17 +434,17 @@ const RenderScreen = (props, context) => {
         data.flight_configuration !== 'flyby' && (
           <DropshipDestinationSelection />
         )}
-      {data.shuttle_mode === 'called' && data.target_destination && (
-        <InFlightPrompt />
-      )}
-      {data.shuttle_mode === 'called' && data.target_destination && (
-        <InFlightChoices />
-      )}
       {data.shuttle_mode === 'igniting' && <LaunchCountdown />}
       {data.shuttle_mode === 'pre-arrival' && <TouchdownCooldown />}
       {data.shuttle_mode === 'recharging' && <ShuttleRecharge />}
       {data.shuttle_mode === 'called' && data.target_destination && (
         <InFlightCountdown />
+      )}
+      {data.shuttle_mode === 'called' && data.target_destination && (
+        <InFlightChoices />
+      )}
+      {data.shuttle_mode === 'called' && data.target_destination && (
+        <InFlightPrompt />
       )}
       {data.shuttle_mode === 'called' && !data.target_destination && (
         <DropshipDestinationSelection />
