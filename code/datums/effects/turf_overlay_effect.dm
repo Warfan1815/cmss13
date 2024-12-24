@@ -89,7 +89,7 @@
 	set_up_icon(input_openturf, input_human, pixel_y_offset)
 
 /obj/effect/turf_overlay_effect/proc/set_up_icon(turf/open/input_openturf, mob/living/carbon/human/input_human, pixel_y_offset = 0)
-	if(input_human.lying)
+	if(input_human.body_position == LYING_DOWN)
 		var/matrix/matrix = matrix() //all this to make their face actually face the floor... sigh... I hate resting code
 		switch(input_human.transform.b)
 			if(1) //uh I have no idea how matricies work

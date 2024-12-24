@@ -91,6 +91,7 @@ There are several things that need to be remembered:
 
 
 /mob/living/carbon/human/update_transform(force = FALSE)
+	var/lying = body_position == LYING_DOWN
 	if(lying == lying_prev && !force)
 		return
 	lying_prev = lying
@@ -798,7 +799,7 @@ Applied by gun suicide and high impact bullet executions, removed by rejuvenate,
 				I.overlays += mutable_appearance("icon" = E.icon_path, "icon_state" = E.mob_icon_state_path, "layer"= (layer_override ? layer_override : -EFFECTS_LAYER))
 	if(!I)
 		return
-	if(lying)
+	if(body_position == LYING_DOWN)
 		switch(transform.b)
 			if(1) //uh I have no idea how matricies work
 				I.transform = I.transform.Turn(270)
