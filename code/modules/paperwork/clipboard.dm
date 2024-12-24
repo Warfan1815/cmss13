@@ -3,6 +3,10 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "clipboard"
 	item_state = "clipboard"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/paperwork_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/paperwork_righthand.dmi'
+	)
 	throwforce = 0
 	w_class = SIZE_SMALL
 	throw_speed = SPEED_VERY_FAST
@@ -50,7 +54,7 @@
 		W.forceMove(src)
 		if(istype(W, /obj/item/paper))
 			toppaper = W
-		to_chat(user, SPAN_NOTICE("You clip the [W] onto \the [src]."))
+		to_chat(user, SPAN_NOTICE("You clip [W] onto [src]."))
 		update_icon()
 
 	else if(istype(toppaper) && HAS_TRAIT(W, TRAIT_TOOL_PEN))

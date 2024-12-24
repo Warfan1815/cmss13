@@ -104,6 +104,11 @@
 	layer = ATMOS_PIPE_SUPPLY_LAYER
 	color = PIPE_COLOR_BLUE
 
+/obj/structure/pipes/standard/simple/hidden/supply/no_boom
+	name = "Reinforced Air supply pipe"
+	explodey = FALSE
+	color = PIPE_COLOR_PURPLE
+
 /obj/structure/pipes/standard/simple/hidden/yellow
 	color = PIPE_COLOR_YELLOW
 

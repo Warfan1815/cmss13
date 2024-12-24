@@ -29,6 +29,14 @@
 	if(target == world)
 		target = GLOB.clients
 
+	var/list/true_targets = list()
+	if(target == GLOB.admins)
+		for(var/admin in target)
+			var/client/admin_client = CLIENT_FROM_VAR(admin)
+			if(CLIENT_IS_STAFF(admin_client))
+				true_targets += admin_client
+		target = true_targets
+
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -101,5 +109,5 @@
 	var/jmp_message = message
 	for(var/mob/dead/observer/observer as anything in GLOB.observer_list)
 		if(target)
-			jmp_message = "[message] (<a href='?src=\ref[observer];jumptocoord=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>)"
+			jmp_message = "[message] [OBSERVER_JMP(observer, target)]"
 		to_chat(observer, FONT_SIZE_LARGE(SPAN_DEADSAY("<b>ALERT:</b> [jmp_message]")))

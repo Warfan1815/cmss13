@@ -14,17 +14,18 @@
 		to_chat(wearer, SPAN_WARNING("You've already claimed your equipment."))
 		return
 
-	if(wearer.is_mob_incapacitated() || wearer.lying || wearer.buckled)
+	if(wearer.is_mob_incapacitated() || wearer.body_position == LYING_DOWN /* replace by mobility_flags */ || wearer.buckled)
 		to_chat(wearer, SPAN_WARNING("You're not able to do that right now."))
 		return
 
-	if(!istype(get_area(wearer), /area/yautja))
+	var/area/location = get_area(wearer)
+	if(!(location.flags_area & AREA_YAUTJA_GROUNDS))
 		to_chat(wearer, SPAN_WARNING("Not here. Only on the ship."))
 		return
 
 	var/sure = alert("An array of powerful weapons are displayed to you. Pick your gear carefully. If you cancel at any point, you will not claim your equipment.","Sure?","Begin the Hunt","No, not now")
 	if(sure == "Begin the Hunt")
-		var/list/hmelee = list(YAUTJA_THRALL_GEAR_MACHETE = image(icon = 'icons/obj/items/weapons/weapons.dmi', icon_state = "machete"), YAUTJA_THRALL_GEAR_RAPIER = image(icon = 'icons/obj/items/weapons/weapons.dmi', icon_state = "ceremonial"), YAUTJA_THRALL_GEAR_CLAYMORE = image(icon = 'icons/obj/items/weapons/weapons.dmi', icon_state = "mercsword"), YAUTJA_THRALL_GEAR_FIREAXE = image(icon = 'icons/obj/items/weapons/weapons.dmi', icon_state = "fireaxe"))
+		var/list/hmelee = list(YAUTJA_THRALL_GEAR_MACHETE = image(icon = 'icons/obj/items/weapons/melee/swords.dmi', icon_state = "machete"), YAUTJA_THRALL_GEAR_RAPIER = image(icon = 'icons/obj/items/weapons/melee/knives.dmi', icon_state = "ceremonial"), YAUTJA_THRALL_GEAR_CLAYMORE = image(icon = 'icons/obj/items/weapons/melee/swords.dmi', icon_state = "mercsword"), YAUTJA_THRALL_GEAR_FIREAXE = image(icon = 'icons/obj/items/weapons/melee/axes.dmi', icon_state = "fireaxe"))
 		var/list/ymelee = list(YAUTJA_GEAR_GLAIVE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "glaive"), YAUTJA_GEAR_WHIP = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "whip"), YAUTJA_GEAR_SWORD = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "clansword"), YAUTJA_GEAR_SCYTHE = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "predscythe"), YAUTJA_GEAR_STICK = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "combistick"), YAUTJA_GEAR_SPEAR = image(icon = 'icons/obj/items/hunter/pred_gear.dmi', icon_state = "spearhunter"))
 
 		var/main_weapon
@@ -48,31 +49,31 @@
 		var/obj/item/spawned_weapon
 		switch(main_weapon)
 			if(YAUTJA_GEAR_GLAIVE)
-				spawned_weapon = new /obj/item/weapon/melee/twohanded/yautja/glaive(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/twohanded/yautja/glaive(wearer.loc)
 			if(YAUTJA_GEAR_SPEAR)
-				spawned_weapon = new /obj/item/weapon/melee/twohanded/yautja/spear(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/twohanded/yautja/spear(wearer.loc)
 			if(YAUTJA_GEAR_WHIP)
-				spawned_weapon = new /obj/item/weapon/melee/yautja/chain(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/yautja/chain(wearer.loc)
 			if(YAUTJA_GEAR_SWORD)
-				spawned_weapon = new /obj/item/weapon/melee/yautja/sword(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/yautja/sword(wearer.loc)
 			if(YAUTJA_GEAR_SCYTHE)
-				spawned_weapon = new /obj/item/weapon/melee/yautja/scythe(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/yautja/scythe(wearer.loc)
 			if(YAUTJA_GEAR_STICK)
-				spawned_weapon = new /obj/item/weapon/melee/yautja/combistick(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/yautja/chained/combistick(wearer.loc)
 			if(YAUTJA_THRALL_GEAR_MACHETE)
-				spawned_weapon = new /obj/item/weapon/melee/claymore/mercsword/machete(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/sword/machete(wearer.loc)
 			if(YAUTJA_THRALL_GEAR_RAPIER)
-				spawned_weapon = new /obj/item/weapon/melee/claymore/mercsword/ceremonial(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/sword/ceremonial(wearer.loc)
 			if(YAUTJA_THRALL_GEAR_CLAYMORE)
-				spawned_weapon = new /obj/item/weapon/melee/claymore(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/sword(wearer.loc)
 			if(YAUTJA_THRALL_GEAR_FIREAXE)
-				spawned_weapon = new /obj/item/weapon/melee/twohanded/fireaxe(wearer.loc)
+				spawned_weapon = new /obj/item/weapon/twohanded/fireaxe(wearer.loc)
 
-		if(istype(spawned_weapon, /obj/item/weapon/melee/yautja))
-			var/obj/item/weapon/melee/yautja/yautja_melee = spawned_weapon
+		if(istype(spawned_weapon, /obj/item/weapon/yautja))
+			var/obj/item/weapon/yautja/yautja_melee = spawned_weapon
 			yautja_melee.human_adapted = TRUE
-		else if(istype(spawned_weapon, /obj/item/weapon/melee/twohanded/yautja))
-			var/obj/item/weapon/melee/twohanded/yautja/yautja_melee = spawned_weapon
+		else if(istype(spawned_weapon, /obj/item/weapon/twohanded/yautja))
+			var/obj/item/weapon/twohanded/yautja/yautja_melee = spawned_weapon
 			yautja_melee.human_adapted = TRUE
 		spawned_weapon.desc += " It looks like this one has been modified for human use."
 

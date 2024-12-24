@@ -4,6 +4,12 @@
 	icon_state = "cargosoft"
 	flags_inventory = COVEREYES
 	item_state = "helmet"
+	icon = 'icons/obj/items/clothing/hats/soft_caps.dmi'
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/clothing/head/soft_caps.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/hats_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/hats_righthand.dmi',
+	)
 	var/cap_color = "cargo"
 	var/flipped = 0
 	siemens_coefficient = 0.9
@@ -88,6 +94,18 @@
 	icon_state = "ferretsoft"
 	cap_color = "ferret"
 	black_market_value = 25
+
+/obj/item/clothing/head/soft/trucker
+	name = "\improper blue trucker hat"
+	desc = "It's a blue trucker hat."
+	icon_state = "truckercap_bluesoft"
+	cap_color = "truckercap_blue"
+
+/obj/item/clothing/head/soft/trucker/red
+	name = "\improper red trucker hat"
+	desc = "It's a red trucker hat."
+	icon_state = "truckercap_redsoft"
+	cap_color = "truckercap_red"
 
 /obj/item/clothing/head/soft/sec
 	name = "security cap"

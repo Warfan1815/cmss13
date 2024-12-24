@@ -148,7 +148,7 @@
 
 	. = ..()
 
-/obj/structure/window_frame/bullet_act(obj/item/projectile/P)
+/obj/structure/window_frame/bullet_act(obj/projectile/P)
 	bullet_ping(P)
 	take_damage(P.damage)
 	return TRUE
@@ -173,6 +173,21 @@
 	icon_state = "white_window0_frame"
 	basestate = "white_window"
 	window_type = /obj/structure/window/framed/almayer/white
+
+/obj/structure/window_frame/almayer/aicore
+	icon_state = "ai_window0_frame"
+	basestate = "ai_window"
+	window_type = /obj/structure/window/framed/almayer/aicore
+
+/obj/structure/window_frame/almayer/aicore/white
+	icon_state = "w_ai_window0_frame"
+	basestate = "w_ai_window"
+	window_type = /obj/structure/window/framed/almayer/aicore/white
+
+/obj/structure/window_frame/almayer/aicore/black
+	icon_state = "alm_window0_frame"
+	basestate = "alm_window"
+	window_type = /obj/structure/window/framed/almayer/aicore/black
 
 /obj/structure/window_frame/almayer/requisitions/attackby(obj/item/W, mob/living/user)
 	if(istype(W, sheet_type))
@@ -207,20 +222,20 @@
 	reinforced = TRUE
 
 /obj/structure/window_frame/hangar
-	icon_state = "hngr_window0"
+	icon_state = "hngr_window0_frame"
 	basestate = "hngr_window"
 
 /obj/structure/window_frame/hangar/reinforced
-	icon_state = "hngr_rwindow0"
+	icon_state = "hngr_rwindow0_frame"
 	basestate = "hngr_rwindow"
 	reinforced = TRUE
 
 /obj/structure/window_frame/bunker
-	icon_state = "bnkr_window0"
+	icon_state = "bnkr_window0_frame"
 	basestate = "bnkr_window"
 
 /obj/structure/window_frame/bunker/reinforced
-	icon_state = "bnkr_rwindow0"
+	icon_state = "bnkr_rwindow0_frame"
 	basestate = "bnkr_rwindow"
 	reinforced = TRUE
 
@@ -235,6 +250,12 @@
 	icon_state = "strata_window0_frame"
 	basestate = "strata_window"
 	reinforced = TRUE
+
+/obj/structure/window_frame/strata/hull
+	icon_state = "strata_window0_frame"
+	basestate = "strata_window"
+	unslashable = TRUE
+	unacidable = TRUE
 
 //Kutjevo frames
 

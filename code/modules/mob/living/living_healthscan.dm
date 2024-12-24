@@ -76,8 +76,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 	var/total_mob_damage = target_mob.getBruteLoss() + target_mob.getFireLoss() + target_mob.getToxLoss() + target_mob.getCloneLoss()
 
-	// Fake death will make the scanner think they died of oxygen damage, thus it returns enough damage to kill minus already recieved damage.
-	return round(POSITIVE(200 - total_mob_damage))
+	// Fake death will make the scanner think they died of oxygen damage, thus it returns enough damage to kill minus already received damage.
+	return floor(POSITIVE(200 - total_mob_damage))
+
+/datum/health_scan/proc/get_holo_card_color(mob/living/target_mob)
+	if(!ishuman(target_mob))
+		return
+	var/mob/living/carbon/human/human_mob = target_mob
+	return human_mob.holo_card_color
 
 /datum/health_scan/proc/get_health_value(mob/living/target_mob)
 	if(!(target_mob.status_flags & FAKEDEATH))
@@ -90,18 +96,18 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		"patient" = target_mob.name,
 		"dead" = get_death_value(target_mob),
 		"health" = get_health_value(target_mob),
-		"total_brute" = round(target_mob.getBruteLoss()),
-		"total_burn" = round(target_mob.getFireLoss()),
-		"toxin" = round(target_mob.getToxLoss()),
+		"total_brute" = floor(target_mob.getBruteLoss()),
+		"total_burn" = floor(target_mob.getFireLoss()),
+		"toxin" = floor(target_mob.getToxLoss()),
 		"oxy" = get_oxy_value(target_mob),
-		"clone" = round(target_mob.getCloneLoss()),
+		"clone" = floor(target_mob.getCloneLoss()),
 		"blood_type" = target_mob.blood_type,
 		"blood_amount" = target_mob.blood_volume,
-
+		"holocard" = get_holo_card_color(target_mob),
 		"hugged" = (locate(/obj/item/alien_embryo) in target_mob),
 	)
 
-	var/internal_bleeding = FALSE
+	var/internal_bleeding = FALSE //do they have internal bleeding anywhere
 
 	if(!isnull(data_detail_level))
 		detail_level = data_detail_level
@@ -109,19 +115,22 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 	// chems data
 	data["has_unknown_chemicals"] = FALSE
+	data["has_chemicals"] = 0
 	var/list/chemicals_lists = list()
-	for(var/datum/reagent/reagent in target_mob.reagents.reagent_list)
-		if(!(reagent.flags & REAGENT_SCANNABLE) && detail_level == DETAIL_LEVEL_HEALTHANALYSER)
-			data["has_unknown_chemicals"] = TRUE
-			continue
-		chemicals_lists["[reagent.id]"] = list(
-			"name" = reagent.name,
-			"amount" = round(reagent.volume, 0.1),
-			"od" = reagent.overdose != 0 && reagent.volume > reagent.overdose && !(reagent.flags & REAGENT_CANNOT_OVERDOSE),
-			"dangerous" = reagent.overdose != 0 && reagent.volume > reagent.overdose && !(reagent.flags & REAGENT_CANNOT_OVERDOSE) || istype(reagent, /datum/reagent/toxin),
-			"color" = reagent.color
-		)
-	data["has_chemicals"] = length(target_mob.reagents.reagent_list)
+	if(target_mob.reagents)
+		data["has_chemicals"] = length(target_mob.reagents.reagent_list)
+		for(var/datum/reagent/reagent in target_mob.reagents.reagent_list)
+			if(!(reagent.flags & REAGENT_SCANNABLE) && detail_level == DETAIL_LEVEL_HEALTHANALYSER)
+				data["has_unknown_chemicals"] = TRUE
+				continue
+			chemicals_lists["[reagent.id]"] = list(
+				"name" = reagent.name,
+				"amount" = round(reagent.volume, 0.1),
+				"od" = reagent.overdose != 0 && reagent.volume > reagent.overdose && !(reagent.flags & REAGENT_CANNOT_OVERDOSE),
+				"dangerous" = reagent.overdose != 0 && reagent.volume > reagent.overdose && !(reagent.flags & REAGENT_CANNOT_OVERDOSE) || istype(reagent, /datum/reagent/toxin),
+				"color" = reagent.color
+			)
+
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()
@@ -150,16 +159,16 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 		//snowflake :3
 		data["lung_ruptured"] = human_target_mob.is_lung_ruptured()
+		data["heart_broken"] = human_target_mob.is_heart_broken()
 
 		//shrapnel, limbs, limb damage, limb statflags, cyber limbs
 		var/core_fracture_detected = FALSE
 		var/unknown_implants = 0
 		for(var/obj/limb/limb in human_target_mob.limbs)
-			var/internal_bleeding_check = FALSE
+			var/internal_bleeding_check = FALSE //do they have internal bleeding in this limb
 			for(var/datum/effects/bleeding/internal/ib in limb.bleeding_effects_list)
 				internal_bleeding = TRUE
-				if(detail_level >= DETAIL_LEVEL_BODYSCAN)
-					internal_bleeding_check = TRUE
+				internal_bleeding_check = TRUE
 				break
 			if(limb.hidden)
 				unknown_implants++
@@ -176,19 +185,18 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				bleeding_check = TRUE
 				break
 
-			if((!limb.brute_dam && !limb.burn_dam && !(limb.status & LIMB_DESTROYED)) && !bleeding_check && !internal_bleeding_check && !(implant && detail_level >= DETAIL_LEVEL_BODYSCAN ) && !(limb.status & LIMB_UNCALIBRATED_PROSTHETIC) && !(limb.status & LIMB_BROKEN) && !(limb.status & LIMB_SPLINTED) && !(limb.status & LIMB_SPLINTED_INDESTRUCTIBLE))
+			if((!limb.brute_dam && !limb.burn_dam && !(limb.status & LIMB_DESTROYED)) && !bleeding_check && !internal_bleeding_check && !(implant && detail_level >= DETAIL_LEVEL_BODYSCAN ) && !(limb.status & LIMB_UNCALIBRATED_PROSTHETIC) && !(limb.status & LIMB_BROKEN) && !(limb.status & LIMB_SPLINTED) && !(limb.status & LIMB_SPLINTED_INDESTRUCTIBLE) && !(limb.get_incision_depth()))
 				continue
 			var/list/core_body_parts = list("head", "chest", "groin")
 			var/list/current_list = list(
 				"name" = limb.display_name,
-				"brute" = round(limb.brute_dam),
-				"burn" = round(limb.burn_dam),
+				"brute" = floor(limb.brute_dam),
+				"burn" = floor(limb.burn_dam),
 				"bandaged" = limb.is_bandaged(),
 				"salved" = limb.is_salved(),
 				"missing" = (limb.status & LIMB_DESTROYED),
 				"limb_status" = null,
 				"bleeding" = bleeding_check,
-				"open_incision" = limb.get_incision_depth(),
 				"implant" = implant,
 				"internal_bleeding" = internal_bleeding_check
 			)
@@ -246,6 +254,24 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			if(limb_type)
 				current_list["limb_type"] = limb_type
 
+			//checking for open incisions, but since eyes and mouths incisions are "head incisions" but not "head surgeries" gotta do some snowflake
+			if(limb.name == "head")
+				if(human_target_mob.active_surgeries["head"])
+					current_list["open_incision"] = TRUE
+
+				var/zone
+				if(human_target_mob.active_surgeries["eyes"])
+					zone = "eyes"
+				if(human_target_mob.active_surgeries["mouth"])
+					if(zone)
+						zone = "eyes and mouth"
+					else
+						zone = "mouth"
+				current_list["open_zone_incision"] = capitalize(zone)
+
+			else
+				current_list["open_incision"] = limb.get_incision_depth()
+
 			limb_data_lists["[limb.name]"] = current_list
 
 		data["limb_data_lists"] = limb_data_lists
@@ -264,7 +290,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			var/current_organ = list(
 				"name" = organ.name,
 				"damage" = organ.damage,
-				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"status" = organ.organ_status == ORGAN_BROKEN ? "Broken" : "Bruised",
 				"robotic" = organ.robotic
 			)
 			damaged_organs += list(current_organ)
@@ -294,11 +320,18 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 					))
 			if(human_target_mob.stat == DEAD)
 				if((human_target_mob.health + 20) > HEALTH_THRESHOLD_DEAD)
-					advice += list(list(
-						"advice" = "Apply shock via defibrillator!",
-						"icon" = "bolt",
-						"color" = "yellow"
-						))
+					if(issynth(human_target_mob))
+						advice += list(list(
+							"advice" = "Reboot the synthetic with a reset key!",
+							"icon" = "robot",
+							"color" = "green"
+							))
+					else
+						advice += list(list(
+							"advice" = "Apply shock via defibrillator!",
+							"icon" = "bolt",
+							"color" = "yellow"
+							))
 				else
 					if(human_target_mob.getBruteLoss(organic_only = TRUE) > 30)
 						advice += list(list(
@@ -325,17 +358,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						"icon" = "pizza-slice",
 						"color" = "white"
 						))
-				if(internal_bleeding)
-					temp_advice = list(list(
-						"advice" = "Administer a single dose of quickclot.",
-						"icon" = "syringe",
-						"color" = "red"
-						))
-					if(chemicals_lists["quickclot"])
-						if(chemicals_lists["quickclot"]["amount"] < 5)
-							advice += temp_advice
-					else
-						advice += temp_advice
 				if(human_target_mob.getToxLoss() > 10)
 					temp_advice = list(list(
 						"advice" = "Administer a single dose of dylovene.",
@@ -425,7 +447,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						"icon" = "window-close",
 						"color" = "red"
 						))
-		if(advice.len)
+		if(length(advice))
 			data["advice"] = advice
 		else
 			data["advice"] = null // interstingly even if we don't set data at all, re-using UI that had this data still has it
@@ -443,14 +465,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 					"cure" = disease.cure
 				)
 				diseases += list(current_disease)
-		if(diseases.len)
+		if(length(diseases))
 			data["diseases"] = diseases
 		else
 			data["diseases"] = null // interstingly even if we don't set data at all, re-using UI that had this data still has it
 
 	data["ssd"] = null //clear the data in case we have an old input from a previous scan
 	if(target_mob.getBrainLoss() >= 100 || !target_mob.has_brain())
-		data["ssd"] = "Subject is brain-dead."
+		data["ssd"] = "Subject has taken extreme amounts of brain damage."
 	else if(target_mob.has_brain() && target_mob.stat != DEAD && ishuman(target_mob))
 		if(!target_mob.key)
 			data["ssd"] = "No soul detected." // they ghosted
@@ -458,6 +480,17 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			data["ssd"] = "SSD detected." // SSD
 
 	return data
+
+/datum/health_scan/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	if(.)
+		return
+	switch(action)
+		if("change_holo_card")
+			if(ishuman(target_mob))
+				var/mob/living/carbon/human/target_human = target_mob
+				target_human.change_holo_card(ui.user)
+				return TRUE
 
 /// legacy proc for to_chat messages on health analysers
 /mob/living/proc/health_scan(mob/living/carbon/human/user, ignore_delay = FALSE, show_limb_damage = TRUE, show_browser = TRUE, alien = FALSE, do_checks = TRUE) // ahem. FUCK WHOEVER CODED THIS SHIT AS NUMBERS AND NOT DEFINES.
@@ -549,9 +582,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			else if(org.status & LIMB_SYNTHSKIN)
 				org_name += " (Synthskin)"
 
-			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
+			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [floor(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
 			burn_info += "[burn_treated ? "" : "{B}"]"
-			var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
+			var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [floor(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
 			brute_info += "[brute_treated ? "" : "{T}"]"
 			var/fracture_info = ""
 			if(org.status & LIMB_BROKEN)
@@ -595,7 +628,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		if(!D.hidden[SCANNER])
 			dat += "\t<span class='scannerb'> *Warning: [D.form] Detected</span><span class='scanner'>\nName: [D.name].\nType: [D.spread].\nStage: [D.stage]/[D.max_stages].\nPossible Cure: [D.cure]</span>\n"
 	if (src.getBrainLoss() >= 100 || !src.has_brain())
-		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
+		dat += "\t<span class='scanner'> *Subject has taken extreme amounts of <b>brain damage</b></span>.\n"
 
 	if(src.has_brain() && src.stat != DEAD && ishuman(src))
 		if(!src.key)
@@ -608,7 +641,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 
-		if(H.embedded_items.len > 0)
+		if(length(H.embedded_items) > 0)
 			embedded_item_detected = TRUE
 
 		var/core_fracture = 0
@@ -640,7 +673,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 					reagentdata["[R.id]"] = "[R.overdose != 0 && R.volume > R.overdose && !(R.flags & REAGENT_CANNOT_OVERDOSE) ? SPAN_WARNING("<b>OD: </b>") : ""] <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
 				else
 					unknown++
-			if(reagentdata.len)
+			if(length(reagentdata))
 				dat += "\n\tBeneficial reagents:\n"
 				for(var/d in reagentdata)
 					dat += "\t\t [reagentdata[d]]\n"
@@ -655,7 +688,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		// Show blood level
 		var/blood_volume = BLOOD_VOLUME_NORMAL
 		if(!(H.species && H.species.flags & NO_BLOOD))
-			blood_volume = round(H.blood_volume)
+			blood_volume = floor(H.blood_volume)
 
 			var/blood_percent =  blood_volume / 560
 			var/blood_type = H.blood_type
@@ -667,15 +700,14 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 			else
 				dat += "\tBlood Level normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]\n"
 		// Show pulse
-		dat += "\tPulse: <span class='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? INTERFACE_RED : ""]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</span>\n"
+		var/target_pulse = H.get_pulse(GETPULSE_TOOL)
+		dat += "\tPulse: <span class='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? INTERFACE_RED : ""]'>[target_pulse] bpm.</span>\n"
 		if((H.stat == DEAD && !H.client))
 			unrevivable = 1
 		if(!unrevivable)
 			var/advice = ""
 			if(blood_volume <= 500 && !reagents_in_body["nutriment"])
 				advice += "<span class='scanner'>Administer food or recommend the patient eat.</span>\n"
-			if(internal_bleed_detected && reagents_in_body["quickclot"] < 5)
-				advice += "<span class='scanner'>Administer a single dose of quickclot.</span>\n"
 			if(H.getToxLoss() > 10 && reagents_in_body["anti_toxin"] < 5)
 				advice += "<span class='scanner'>Administer a single dose of dylovene.</span>\n"
 			if((H.getToxLoss() > 50 || (H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body["peridaxon"] < 5)

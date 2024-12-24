@@ -1,5 +1,5 @@
 /obj/item/clothing/under
-	icon = 'icons/obj/items/clothing/uniforms.dmi'
+	icon = 'icons/obj/items/clothing/uniforms/misc_ert_colony.dmi'
 	name = "under"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS|BODY_FLAG_ARMS
 	flags_cold_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS|BODY_FLAG_ARMS
@@ -16,7 +16,6 @@
 	armor_internaldamage = CLOTHING_ARMOR_NONE
 	w_class = SIZE_MEDIUM
 	blood_overlay_type = "uniform"
-	var/sensor_faction = FACTION_MARINE
 	var/has_sensor = UNIFORM_HAS_SENSORS // For the crew computer
 	var/sensor_mode = SENSOR_MODE_LOCATION
 		/*
@@ -30,12 +29,18 @@
 	var/list/suit_restricted //for uniforms that only accept to be combined with certain suits
 	var/removed_parts = 0
 	var/worn_state = null
+	var/hood_state //for uniforms with hoods.
 	drag_unequip = TRUE
 	valid_accessory_slots = list(ACCESSORY_SLOT_UTILITY, ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_DECOR, ACCESSORY_SLOT_MEDAL, ACCESSORY_SLOT_ARMOR_C)
 	restricted_accessory_slots = list(ACCESSORY_SLOT_UTILITY, ACCESSORY_SLOT_ARMBAND, ACCESSORY_SLOT_RANK, ACCESSORY_SLOT_ARMOR_C)
 	sprite_sheets = list(SPECIES_MONKEY = 'icons/mob/humans/species/monkeys/onmob/uniform_monkey_0.dmi')
 	equip_sounds = list('sound/handling/clothing_on.ogg')
 	unequip_sounds = list('sound/handling/clothing_off.ogg')
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/misc_ert_colony.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 
 /obj/item/clothing/under/Initialize()
 	. = ..()
@@ -44,7 +49,7 @@
 	else
 		worn_state = icon_state
 
-	var/check_icon = contained_sprite ? icon : default_onmob_icons[WEAR_BODY]
+	var/check_icon = contained_sprite ? icon : item_icons[WEAR_BODY]
 
 	//autodetect rollability, cuttability, and removability.
 	if(icon_exists(check_icon, "[worn_state]_d[contained_sprite ? "_un" : ""]"))
@@ -93,6 +98,7 @@
 	. = ..()
 	worn_state = icon_state
 	LAZYSET(item_state_slots, WEAR_BODY, worn_state)
+	return .
 
 /obj/item/clothing/under/update_clothing_icon()
 	if(ismob(loc))
@@ -105,7 +111,7 @@
 		if ((flags_item & NODROP) || loc != usr)
 			return
 
-		if (!usr.is_mob_incapacitated() && !(usr.buckled && usr.lying))
+		if (!usr.is_mob_incapacitated() && !(usr.buckled))
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
@@ -258,7 +264,7 @@
 	else if(LAZYISIN(item_icons, WEAR_BODY))
 		under_icon = item_icons[WEAR_BODY]
 	else
-		under_icon = default_onmob_icons[WEAR_BODY]
+		under_icon = GLOB.default_onmob_icons[WEAR_BODY]
 
 	var/check_worn_state = "[worn_state]_d[contained_sprite ? "_un" : ""]"
 	if(!(check_worn_state in icon_states(under_icon)))
@@ -291,7 +297,7 @@
 	else if(LAZYISIN(item_icons, WEAR_BODY))
 		under_icon = item_icons[WEAR_BODY]
 	else
-		under_icon = default_onmob_icons[WEAR_BODY]
+		under_icon = GLOB.default_onmob_icons[WEAR_BODY]
 
 	var/check_worn_state = "[worn_state]_dj[contained_sprite ? "_un" : ""]"
 	if(!(check_worn_state in icon_states(under_icon)))
@@ -307,6 +313,50 @@
 		return
 
 	roll_suit_jacket(TRUE, usr)
+
+/obj/item/clothing/under/verb/togglehood()
+	set name = "Toggle Hood"
+	set category = "Object"
+	set src in usr
+	if(!isliving(usr))
+		return
+	if(usr.stat)
+		return
+	toggle_uniform_hood(TRUE, usr)
+
+/obj/item/clothing/under/proc/toggle_uniform_hood(show_message = TRUE, mob/living/carbon/human/user)
+	if(!hood_state)
+		if(show_message)
+			to_chat(user, SPAN_WARNING("Your uniform doesn't have a hood!"))
+		return
+	update_rollsuit_status() //we need the _d version of the sprite anyways. In the future we might need to make a different version of the sprite to accomodate for rolling sleeves and hoods.
+	if(user.head && !istype(user.head, hood_state))
+		to_chat(user, SPAN_WARNING("You can't wear a hood while also wearing [user.head]!"))
+		return
+
+	if(!HAS_TRAIT(src, TRAIT_CLOTHING_HOOD))
+		to_chat(user, SPAN_NOTICE("You pull your hood up."))
+		user.equip_to_slot_if_possible(new hood_state(user), WEAR_HEAD) //This is a 'phantom' hood. It disappears if the jumpsuit is unequipped/if it's toggled.
+		LAZYSET(item_state_slots, WEAR_BODY, "[worn_state]_d")
+		RegisterSignal(src, COMSIG_ITEM_UNEQUIPPED, PROC_REF(toggle_uniform_hood)) //These will unequip the phantom hood and toggle the state of the suit
+		RegisterSignal(user.head, COMSIG_ITEM_UNEQUIPPED, PROC_REF(toggle_uniform_hood)) // If either is unequipped.
+		update_clothing_icon()
+		if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_HOOD_SOUND))
+			playsound(user.loc, pick('sound/handling/armorequip_1.ogg', 'sound/handling/armorequip_2.ogg'), 25, 1)
+			TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_HOOD_SOUND, 1 SECONDS)
+		ADD_TRAIT(src, TRAIT_CLOTHING_HOOD, TRAIT_SOURCE_CLOTHING)
+		return
+
+	to_chat(user, SPAN_NOTICE("You pull your hood down."))
+	UnregisterSignal(src, COMSIG_ITEM_UNEQUIPPED) //See above, these deregister the signals so that it doesn't fire twice.
+	UnregisterSignal(user.head, COMSIG_ITEM_UNEQUIPPED)
+	qdel(user.head) //This will only delete the hood, see the typecheck above.
+	LAZYSET(item_state_slots, WEAR_BODY, worn_state)
+	update_clothing_icon()
+	if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ITEM_HOOD_SOUND))
+		playsound(user.loc, pick('sound/handling/armorequip_1.ogg', 'sound/handling/armorequip_2.ogg'), 25, 1)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ITEM_HOOD_SOUND, 1 SECONDS)
+	REMOVE_TRAIT(src, TRAIT_CLOTHING_HOOD, TRAIT_SOURCE_CLOTHING)
 
 /obj/item/clothing/under/attackby(obj/item/B, mob/user)
 	if(istype(B, /obj/item/attachable/bayonet) && (user.a_intent == INTENT_HARM))

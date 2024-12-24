@@ -74,7 +74,7 @@
 
 	switch(action)
 		if("set_freq")
-			set_frequency(clamp(round(text2num(params["value"])), SIGNALLER_FREQ_MIN, SIGNALLER_FREQ_MAX))
+			set_frequency(clamp(floor(text2num(params["value"])), SIGNALLER_FREQ_MIN, SIGNALLER_FREQ_MAX))
 			. = TRUE
 
 		if("set_signal")
@@ -139,7 +139,7 @@
 /obj/item/device/assembly/signaller/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
+	radio_connection = SSradio.add_object(src, frequency, RADIO_SIGNALS)
 
 /obj/item/device/assembly/signaller/Destroy()
 	SSradio.remove_object(src, frequency)

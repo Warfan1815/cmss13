@@ -103,9 +103,6 @@
 // if ( istype(W,/obj/item/clothing/suit/powered ) )
 // to_chat(user, "This item does not fit.")
 // return
-		if ( istype(W,/obj/item/clothing/suit/cyborg_suit ) )
-			to_chat(user, "This item does not fit.")
-			return
 		if ( istype(W,/obj/item/clothing/suit/bomb_suit ) )
 			to_chat(user, "This item does not fit.")
 			return
@@ -131,7 +128,7 @@
 			to_chat(user, "This item does not fit.")
 			return
 
-		if(contents.len < 5)
+		if(length(contents) < 5)
 			if ( state in list(1, 3) )
 				if(user.drop_inv_item_to_loc(W, src))
 					state = 3

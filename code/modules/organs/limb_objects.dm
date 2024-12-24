@@ -1,6 +1,10 @@
 
 /obj/item/limb
 	icon = 'icons/mob/humans/species/r_human.dmi'
+	///Predators can flay limbs to eventually turn them into bones for their armor
+	var/flayed = FALSE
+	///What bone would be in this limb?
+	var/bone_type
 
 /obj/item/limb/New(loc, mob/living/carbon/human/H)
 	..(loc)
@@ -18,27 +22,34 @@
 
 
 	icon = base
-	var/datum/ethnicity/E = GLOB.ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
+	var/datum/skin_color/set_skin_color = GLOB.skin_color_list[H.skin_color]
+	var/datum/body_type/set_body_type = GLOB.body_type_list[H.body_type]
+	var/datum/body_size/set_body_size = GLOB.body_size_list[H.body_size]
 
-	var/e_icon
-	var/b_icon
+	var/skin_color_icon
+	var/body_type_icon
+	var/body_size_icon
 
-	if (!E)
-		e_icon = "western"
+	if(!set_skin_color)
+		skin_color_icon = "pale2"
 	else
-		e_icon = E.icon_name
+		skin_color_icon = set_skin_color.icon_name
 
-	if (!B)
-		b_icon = "mesomorphic"
+	if(!set_body_type)
+		body_type_icon = "lean"
 	else
-		b_icon = B.icon_name
+		body_type_icon = set_body_type.icon_name
+
+	if(!set_body_size)
+		body_size_icon = "avg"
+	else
+		body_size_icon = set_body_size.icon_name
 
 	if(isspeciesyautja(H))
-		e_icon = H.ethnicity
-		b_icon = H.body_type
+		skin_color_icon = H.skin_color
+		body_type_icon = H.body_type
 
-	icon_state = "[get_limb_icon_name(H.species, b_icon, H.gender, name, e_icon)]"
+	icon_state = "[get_limb_icon_name(H.species, body_size_icon, body_type_icon, H.gender, name, skin_color_icon)]"
 	setDir(SOUTH)
 	apply_transform(turn(transform, rand(70,130)))
 
@@ -47,31 +58,40 @@
 /obj/item/limb/arm/l_arm
 	name = "left arm"
 	icon_state = "l_arm"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/l_arm
 /obj/item/limb/foot/l_foot
 	name = "left foot"
 	icon_state = "l_foot"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/l_foot
 /obj/item/limb/hand/l_hand
 	name = "left hand"
 	icon_state = "l_hand"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/l_hand
 /obj/item/limb/leg/l_leg
 	name = "left leg"
 	icon_state = "l_leg"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/l_leg
 /obj/item/limb/arm/r_arm
 	name = "right arm"
 	icon_state = "r_arm"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/r_arm
 /obj/item/limb/foot/r_foot
 	name = "right foot"
 	icon_state = "r_foot"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/r_foot
 /obj/item/limb/hand/r_hand
 	name = "right hand"
 	icon_state = "r_hand"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/r_hand
 /obj/item/limb/leg/r_leg
 	name = "right leg"
 	icon_state = "r_leg"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/r_leg
 
 /obj/item/limb/head
 	name = "head"
 	icon_state = "head_m"
+	bone_type = /obj/item/clothing/accessory/limb/skeleton/head
 	unacidable = TRUE
 	var/mob/living/brain/brainmob
 	var/brain_op_stage = 0
@@ -92,7 +112,7 @@
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 		if(facial_hair_style)
 			var/icon/facial = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			if(facial_hair_style.do_colouration)
+			if(facial_hair_style.do_coloration)
 				facial.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)
 
 			overlays.Add(facial) // icon.Blend(facial, ICON_OVERLAY)
@@ -102,7 +122,7 @@
 		if(hair_style)
 			var/icon/hair = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/eyes = new/icon("icon" = 'icons/mob/humans/onmob/human_face.dmi', "icon_state" = H.species ? H.species.eyes : "eyes_s")
-			if(hair_style.do_colouration)
+			if(hair_style.do_coloration)
 				hair.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 				eyes.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
@@ -123,6 +143,7 @@
 	H.regenerate_icons()
 
 	if(braindeath_on_decap)
+		brainmob.timeofdeath = world.time
 		brainmob.set_stat(DEAD)
 		brainmob.death(cause)
 

@@ -11,7 +11,7 @@
 	unslashable = TRUE
 	var/circuit = null //The path to the circuit board type. If circuit==null, the computer can't be disassembled.
 	var/processing = FALSE //Set to true if computer needs to do /process()
-	var/exproof = 0
+	var/deconstructible = TRUE
 
 /obj/structure/machinery/computer/Initialize()
 	. = ..()
@@ -30,12 +30,13 @@
 	return 1
 
 /obj/structure/machinery/computer/emp_act(severity)
-	if(prob(20/severity)) set_broken()
-	..()
+	. = ..()
+	if(prob(20/severity))
+		set_broken()
 
 
 /obj/structure/machinery/computer/ex_act(severity)
-	if(exproof)
+	if(explo_proof)
 		return
 	switch(severity)
 		if(0 to EXPLOSION_THRESHOLD_LOW)
@@ -52,15 +53,13 @@
 		if(EXPLOSION_THRESHOLD_MEDIUM to INFINITY)
 			deconstruct(FALSE)
 			return
-		else
-	return
 
-/obj/structure/machinery/computer/bullet_act(obj/item/projectile/Proj)
-	if(exproof)
+/obj/structure/machinery/computer/bullet_act(obj/projectile/Proj)
+	if(explo_proof)
 		visible_message("[Proj] ricochets off [src]!")
 		return 0
 	else
-		if(prob(round(Proj.ammo.damage /2)))
+		if(prob(floor(Proj.ammo.damage /2)))
 			set_broken()
 		..()
 		return 1
@@ -96,7 +95,10 @@
 
 /obj/structure/machinery/computer/attackby(obj/item/I, mob/user)
 	if(HAS_TRAIT(I, TRAIT_TOOL_SCREWDRIVER) && circuit)
-		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_ENGI))
+		if(!deconstructible)
+			to_chat(user, SPAN_WARNING("You can't figure out how to deconstruct [src]..."))
+			return
+		if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
 			to_chat(user, SPAN_WARNING("You don't know how to deconstruct [src]..."))
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -123,7 +125,7 @@
 			src.attack_alien(user)
 			return
 		src.attack_hand(user)
-	return
+	return ..()
 
 /obj/structure/machinery/computer/attack_hand()
 	. = ..()

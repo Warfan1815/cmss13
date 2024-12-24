@@ -1,58 +1,107 @@
+/datum/action/xeno_action/activable/pounce/lurker/additional_effects(mob/living/living_mob)
+	var/mob/living/carbon/xenomorph/xeno = owner
+	if(!istype(xeno))
+		return
+
+	RegisterSignal(xeno, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF, PROC_REF(remove_freeze), TRUE) // Suppresses runtime ever we pounce again before slashing
+
+	var/found = FALSE
+	for(var/mob/living/carbon/human/human in get_turf(xeno))
+		if(human.stat == DEAD)
+			continue
+		found = TRUE
+		break
+
+	if(found)
+		var/datum/action/xeno_action/onclick/lurker_invisibility/lurker_invis = get_action(xeno, /datum/action/xeno_action/onclick/lurker_invisibility)
+		if(lurker_invis)
+			lurker_invis.invisibility_off() // Full cooldown
+
+/datum/action/xeno_action/activable/pounce/lurker/proc/remove_freeze(mob/living/carbon/xenomorph/xeno)
+	SIGNAL_HANDLER
+
+	var/datum/behavior_delegate/lurker_base/behaviour_del = xeno.behavior_delegate
+	if(istype(behaviour_del))
+		UnregisterSignal(xeno, COMSIG_XENO_SLASH_ADDITIONAL_EFFECTS_SELF)
+		end_pounce_freeze()
+
+/datum/action/xeno_action/onclick/lurker_invisibility/can_use_action()
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno = owner
+	return xeno.deselect_timer < world.time // We clicked the same ability in a very short time
+
 /datum/action/xeno_action/onclick/lurker_invisibility/use_ability(atom/targeted_atom)
 	var/mob/living/carbon/xenomorph/xeno = owner
 
-	if (!istype(xeno))
+	if(!istype(xeno))
+		return
+	if(!action_cooldown_check())
+		return
+	if(!check_and_use_plasma_owner())
 		return
 
-	if (!action_cooldown_check())
-		return
+	xeno.deselect_timer = world.time + 5 // Half a second to prevent double clicks
 
-	if (!check_and_use_plasma_owner())
-		return
+	if(xeno.stealth)
+		invisibility_off(0.9) // Near full refund of remaining time
+		return ..()
+
+	button.icon_state = "template_active"
+	xeno.update_icons() // callback to make the icon_state indicate invisibility is in lurker/update_icon
 
 	animate(xeno, alpha = alpha_amount, time = 0.1 SECONDS, easing = QUAD_EASING)
-	xeno.update_icons() // callback to make the icon_state indicate invisibility is in lurker/update_icon
 
 	xeno.speed_modifier -= speed_buff
 	xeno.recalculate_speed()
 
-	if (xeno.mutation_type == LURKER_NORMAL)
-		var/datum/behavior_delegate/lurker_base/behavior = xeno.behavior_delegate
-		behavior.on_invisibility()
+	var/datum/behavior_delegate/lurker_base/behavior = xeno.behavior_delegate
+	behavior.on_invisibility()
 
 	// if we go off early, this also works fine.
 	invis_timer_id = addtimer(CALLBACK(src, PROC_REF(invisibility_off)), duration, TIMER_STOPPABLE)
 
-	// Only resets when invisibility ends
-	apply_cooldown_override(1000000000)
-	..()
-	return
+	return ..()
 
-/datum/action/xeno_action/onclick/lurker_invisibility/proc/invisibility_off()
-	if(!owner || owner.alpha == initial(owner.alpha))
+/// Implementation for disabling invisibility.
+/// (refund_multiplier) indicates how much cooldown to refund based on time remaining
+/// 0 indicates full cooldown; 0.5 indicates 50% of remaining time is refunded
+/datum/action/xeno_action/onclick/lurker_invisibility/proc/invisibility_off(refund_multiplier = 0.0)
+	var/mob/living/carbon/xenomorph/xeno = owner
+
+	if(!istype(xeno))
+		return
+	if(owner.alpha == initial(owner.alpha) && !xeno.stealth)
 		return
 
-	if (invis_timer_id != TIMER_ID_NULL)
+	if(invis_timer_id != TIMER_ID_NULL)
 		deltimer(invis_timer_id)
 		invis_timer_id = TIMER_ID_NULL
 
-	var/mob/living/carbon/xenomorph/xeno = owner
-	if (istype(xeno))
-		animate(xeno, alpha = initial(xeno.alpha), time = 0.1 SECONDS, easing = QUAD_EASING)
-		to_chat(xeno, SPAN_XENOHIGHDANGER("You feel your invisibility end!"))
+	animate(xeno, alpha = initial(xeno.alpha), time = 0.1 SECONDS, easing = QUAD_EASING)
+	to_chat(xeno, SPAN_XENOHIGHDANGER("We feel our invisibility end!"))
 
-		xeno.update_icons()
+	button.icon_state = "template"
+	xeno.update_icons()
 
-		xeno.speed_modifier += speed_buff
-		xeno.recalculate_speed()
+	xeno.speed_modifier += speed_buff
+	xeno.recalculate_speed()
 
-		if (xeno.mutation_type == LURKER_NORMAL)
-			var/datum/behavior_delegate/lurker_base/behavior = xeno.behavior_delegate
-			if (istype(behavior))
-				behavior.on_invisibility_off()
+	var/datum/behavior_delegate/lurker_base/behavior = xeno.behavior_delegate
+	if(!istype(behavior))
+		CRASH("lurker_base behavior_delegate missing/invalid for [xeno]!")
+
+	var/recharge_time = behavior.invis_recharge_time
+	if(behavior.invis_start_time > 0) // Sanity
+		refund_multiplier = clamp(refund_multiplier, 0, 1)
+		var/remaining = 1 - (world.time - behavior.invis_start_time) / behavior.invis_duration
+		recharge_time = behavior.invis_recharge_time - remaining * refund_multiplier * behavior.invis_recharge_time
+	apply_cooldown_override(recharge_time)
+
+	behavior.on_invisibility_off()
 
 /datum/action/xeno_action/onclick/lurker_invisibility/ability_cooldown_over()
-	to_chat(owner, SPAN_XENOHIGHDANGER("You are ready to use your invisibility again!"))
+	to_chat(owner, SPAN_XENOHIGHDANGER("We are ready to use our invisibility again!"))
 	..()
 
 /datum/action/xeno_action/onclick/lurker_assassinate/use_ability(atom/targeted_atom)
@@ -67,21 +116,17 @@
 	if (!check_and_use_plasma_owner())
 		return
 
-	if (xeno.mutation_type != LURKER_NORMAL)
-		return
-
 	var/datum/behavior_delegate/lurker_base/behavior = xeno.behavior_delegate
 	if (istype(behavior))
 		behavior.next_slash_buffed = TRUE
 
-	to_chat(xeno, SPAN_XENOHIGHDANGER("Your next slash will deal increased damage!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("Our next slash will deal increased damage!"))
 
 	addtimer(CALLBACK(src, PROC_REF(unbuff_slash)), buff_duration)
 	xeno.next_move = world.time + 1 // Autoattack reset
 
 	apply_cooldown()
-	..()
-	return
+	return ..()
 
 /datum/action/xeno_action/onclick/lurker_assassinate/proc/unbuff_slash()
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -94,7 +139,7 @@
 			return
 		behavior.next_slash_buffed = FALSE
 
-	to_chat(xeno, SPAN_XENODANGER("You have waited too long, your slash will no longer deal increased damage!"))
+	to_chat(xeno, SPAN_XENODANGER("We have waited too long, our slash will no longer deal increased damage!"))
 
 
 // VAMPIRE LURKER
@@ -109,7 +154,6 @@
 	target.apply_armoured_damage(get_xeno_damage_slash(target, xeno.caste.melee_damage_upper), ARMOR_MELEE, BRUTE, "chest")
 	playsound(get_turf(target), 'sound/weapons/alien_claw_flesh3.ogg', 30, TRUE)
 	shake_camera(target, 2, 1)
-	apply_cooldown(0.65)
 
 /datum/action/xeno_action/activable/flurry/use_ability(atom/targeted_atom) //flurry ability
 	var/mob/living/carbon/xenomorph/xeno = owner
@@ -122,7 +166,7 @@
 		return
 
 	xeno.visible_message(SPAN_DANGER("[xeno] drags its claws in a wide area in front of it!"), \
-	SPAN_XENOWARNING("You unleash a barrage of slashes!"))
+	SPAN_XENOWARNING("We unleash a barrage of slashes!"))
 	playsound(xeno, 'sound/effects/alien_tail_swipe2.ogg', 30)
 	apply_cooldown()
 
@@ -164,7 +208,7 @@
 				continue
 
 			xeno.visible_message(SPAN_DANGER("[xeno] slashes [target]!"), \
-			SPAN_XENOWARNING("You slash [target] multiple times!"))
+			SPAN_XENOWARNING("We slash [target] multiple times!"))
 			xeno.flick_attack_overlay(target, "slash")
 			target.last_damage_data = create_cause_data(xeno.caste_type, xeno)
 			log_attack("[key_name(xeno)] attacked [key_name(target)] with Flurry")
@@ -175,133 +219,99 @@
 			xeno.animation_attack_on(target)
 
 	xeno.emote("roar")
-	..()
-	return
+	return ..()
 
-/datum/action/xeno_action/activable/tail_jab/use_ability(atom/target_atom)
+/datum/action/xeno_action/activable/tail_jab/use_ability(atom/targeted_atom)
+
 	var/mob/living/carbon/xenomorph/xeno = owner
+	var/mob/living/carbon/hit_target = targeted_atom
+	var/distance = get_dist(xeno, hit_target)
 
-	if (!action_cooldown_check())
+	if(!action_cooldown_check())
 		return
 
-	if (!xeno.check_state())
+	if(!xeno.check_state())
 		return
 
-	if(xeno.mutation_type != LURKER_VAMPIRE)
+	if(distance > 2)
 		return
 
-	xeno.emote("tail")
-
-// Get line of turfs
-	var/list/turf/target_turfs = list()
-
-	var/facing = Get_Compass_Dir(xeno, target_atom)
-	var/turf/var_turf = xeno.loc
-	var/turf/temp = xeno.loc
-	var/list/telegraph_atom_list = list()
-
-	var/detached = FALSE
-
-	for (var/x in 1 to 2)
-		temp = get_step(var_turf, facing)
-		if(facing in diagonals) // check if it goes through corners
-			var/reverse_face = reverse_dir[facing]
-			var/turf/back_left = get_step(temp, turn(reverse_face, 45))
-			var/turf/back_right = get_step(temp, turn(reverse_face, -45))
-			if((!back_left || back_left.density) && (!back_right || back_right.density))
+	var/list/turf/path = get_line(xeno, targeted_atom, include_start_atom = FALSE)
+	for(var/turf/path_turf as anything in path)
+		if(path_turf.density)
+			to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+			return
+		var/atom/barrier = path_turf.handle_barriers(A = xeno , pass_flags = (PASS_MOB_THRU_XENO|PASS_OVER_THROW_MOB|PASS_TYPE_CRAWLER))
+		if(barrier != path_turf)
+			to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+			return
+		for(var/obj/structure/current_structure in path_turf)
+			if(istype(current_structure, /obj/structure/window/framed))
+				var/obj/structure/window/framed/target_window = current_structure
+				if(target_window.unslashable)
+					return
+				playsound(get_turf(target_window),'sound/effects/glassbreak3.ogg', 30, TRUE)
+				target_window.shatter_window(TRUE)
+				xeno.visible_message(SPAN_XENOWARNING("\The [xeno] strikes the window with their tail!"), SPAN_XENOWARNING("We strike the window with our tail!"))
+				apply_cooldown(cooldown_modifier = 0.5)
+				return
+			if(current_structure.density && !current_structure.throwpass)
+				to_chat(xeno, SPAN_WARNING("There's something blocking us from striking!"))
+				return
+	// find a target in the target turf
+	if(!iscarbon(targeted_atom) || hit_target.stat == DEAD)
+		for(var/mob/living/carbon/carbonara in get_turf(targeted_atom))
+			hit_target = carbonara
+			if(!xeno.can_not_harm(hit_target) && hit_target.stat != DEAD)
 				break
-		if(!temp || temp.density || temp.opacity)
-			break
 
-		var/blocked = FALSE
-		for(var/obj/structure/S in temp)
-			if(S.opacity || (istype(S, /obj/structure/barricade) && S.density))
-				blocked = TRUE
-				break
-		if(blocked)
-			break
-
-		var_turf = temp
-
-		if (var_turf in target_turfs)
-			break
-
-		if(get_turf(target_atom) == var_turf) // If the turf we're on is the same as the target atom, we 'detach' from the target atom so the ability continues without stopping suddenly.
-			detached = TRUE
-		if(!detached)
-			facing = Get_Compass_Dir(var_turf, target_atom)
-		target_turfs += var_turf
-		telegraph_atom_list += new /obj/effect/xenomorph/xeno_telegraph/red(var_turf, 0.25 SECONDS)
-
-	if(length(target_turfs))
-		xeno.animation_attack_on(target_turfs[target_turfs.len], pixel_offset = 16)
-
-	var/mob/living/carbon/hit_target
-	for (var/turf/target_turf as anything in target_turfs)
-		if(hit_target)
-			break
-
-		for (var/mob/living/carbon/carbone in target_turf)
-			if (carbone.stat == DEAD || xeno.can_not_harm(carbone))
-				continue
-			hit_target = carbone
-			break
-
-	if(!hit_target)
-		apply_cooldown()
+	if(iscarbon(hit_target) && !xeno.can_not_harm(hit_target) && hit_target.stat != DEAD)
+		if(targeted_atom == hit_target) //reward for a direct hit
+			to_chat(xeno, SPAN_XENOHIGHDANGER("We attack [hit_target], with our tail, piercing their body!"))
+			hit_target.apply_armoured_damage(15, ARMOR_MELEE, BRUTE, "chest")
+		else
+			to_chat(xeno, SPAN_XENODANGER("We attack [hit_target], slashing them with our tail!"))
+	else
+		xeno.visible_message(SPAN_XENOWARNING("\The [xeno] swipes their tail through the air!"), SPAN_XENOWARNING("We swipe our tail through the air!"))
+		apply_cooldown(cooldown_modifier = 0.2)
+		playsound(xeno, 'sound/effects/alien_tail_swipe1.ogg', 50, TRUE)
 		return
-
-	// Variable to buff if it's a direct aimed hit.
-	var/slam_damage = get_xeno_damage_slash(hit_target, xeno.caste.melee_damage_upper)
 
 	// FX
 	var/stab_direction
-	var/stab_overlay
 
-	if(hit_target == target_atom) //bonus if they aim!
-		to_chat(xeno, SPAN_XENOHIGHDANGER("You directly slam [hit_target] with your tail, throwing it back after impaling it on your tail!"))
-		playsound(hit_target,'sound/weapons/alien_tail_attack.ogg', 50, TRUE)
+	stab_direction = turn(get_dir(xeno, targeted_atom), 180)
+	playsound(hit_target,'sound/weapons/alien_tail_attack.ogg', 50, TRUE)
 
-		slam_damage *= 1.5
+	var/direction = Get_Compass_Dir(xeno, targeted_atom) //More precise than get_dir.
 
-		stab_direction = turn(get_dir(xeno, hit_target), 180)
-		stab_overlay = "tail"
-
-		if(hit_target.mob_size < MOB_SIZE_BIG)
-			xeno_throw_human(hit_target, xeno, get_dir(xeno, hit_target), 1) // only a 'real' throw if it's a direct hit. Same distance
-
-	else
-		to_chat(xeno, SPAN_XENOHIGHDANGER("You slam [hit_target] with your tail and push it backwards!"))
-		playsound(hit_target,'sound/weapons/alien_claw_block.ogg', 50, TRUE)
-
-		stab_direction = turn(xeno.dir, pick(90, -90))
-		stab_overlay = "slam"
-
-		if(hit_target.mob_size < MOB_SIZE_BIG)
-			step_away(hit_target, xeno)
-
+	if(!step(hit_target, direction))
+		playsound(hit_target.loc, "punch", 25, 1)
+		hit_target.visible_message(SPAN_DANGER("[hit_target] slams into an obstacle!"),
+		isxeno(hit_target) ? SPAN_XENODANGER("We slam into an obstacle!") : SPAN_HIGHDANGER("You slam into an obstacle!"), null, 4, CHAT_TYPE_TAKING_HIT)
+		hit_target.apply_damage(MELEE_FORCE_TIER_2)
+		if (hit_target.mob_size < MOB_SIZE_BIG)
+			hit_target.KnockDown(0.5)
+		else
+			hit_target.Slow(0.5)
 	/// To reset the direction if they haven't moved since then in below callback.
 	var/last_dir = xeno.dir
 
 	xeno.setDir(stab_direction)
-	xeno.flick_attack_overlay(hit_target, stab_overlay)
+	xeno.flick_attack_overlay(hit_target, "tail")
+	xeno.animation_attack_on(hit_target)
 
 	var/new_dir = xeno.dir
 	addtimer(CALLBACK(src, PROC_REF(reset_direction), xeno, last_dir, new_dir), 0.5 SECONDS)
 
-	hit_target.apply_armoured_damage(slam_damage, ARMOR_MELEE, BRUTE, "chest")
-
-	if(hit_target.mob_size < MOB_SIZE_BIG)
-		hit_target.apply_effect(0.5, WEAKEN)
-	else
-		hit_target.apply_effect(0.5, SLOW)
+	hit_target.apply_armoured_damage(get_xeno_damage_slash(hit_target, xeno.caste.melee_damage_upper), ARMOR_MELEE, BRUTE, "chest")
+	hit_target.Slow(0.5)
 
 	hit_target.last_damage_data = create_cause_data(xeno.caste_type, xeno)
 	log_attack("[key_name(xeno)] attacked [key_name(hit_target)] with Tail Jab")
 
 	apply_cooldown()
-	..()
-	return
+	return ..()
 
 /datum/action/xeno_action/activable/tail_jab/proc/reset_direction(mob/living/carbon/xenomorph/xeno, last_dir, new_dir)
 	// If the xenomorph is still holding the same direction as the tail stab animation's changed it to, reset it back to the old direction so the xenomorph isn't stuck facing backwards.
@@ -319,28 +329,45 @@
 	if(xeno.can_not_harm(target_carbon))
 		return
 
-	if(!(target_carbon.knocked_out || target_carbon.stat == UNCONSCIOUS)) //called knocked out because for some reason .stat seems to have a delay .
-		to_chat(xeno, SPAN_XENOHIGHDANGER("You can only headbite an unconscious, adjacent target!"))
+	if(!(HAS_TRAIT(target_carbon, TRAIT_KNOCKEDOUT) || target_carbon.stat == UNCONSCIOUS)) //called knocked out because for some reason .stat seems to have a delay .
+		to_chat(xeno, SPAN_XENOHIGHDANGER("We can only headbite an unconscious, adjacent target!"))
 		return
 
 	if(!xeno.Adjacent(target_carbon))
-		to_chat(xeno, SPAN_XENOHIGHDANGER("You can only headbite an unconscious, adjacent target!"))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("We can only headbite an unconscious, adjacent target!"))
+		return
+
+	if(xeno.stat == UNCONSCIOUS)
+		return
+
+	if(xeno.stat == DEAD)
 		return
 
 	if(xeno.action_busy)
 		return
 
+	if(target_carbon.status_flags & XENO_HOST)
+		for(var/obj/item/alien_embryo/embryo in target_carbon)
+			if(HIVE_ALLIED_TO_HIVE(xeno.hivenumber, embryo.hivenumber))
+				to_chat(xeno, SPAN_WARNING("We should not harm this host! It has a sister inside."))
+				return
+
 	xeno.visible_message(SPAN_DANGER("[xeno] grabs [target_carbon]’s head aggressively."), \
-	SPAN_XENOWARNING("You grab [target_carbon]’s head aggressively."))
+	SPAN_XENOWARNING("We grab [target_carbon]’s head aggressively."))
 
 	if(!do_after(xeno, 0.8 SECONDS, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE, numticks = 2)) // would be 0.75 but that doesn't really work with numticks
+		return
+
+	// To make sure that the headbite does nothing if the target is moved away.
+	if(!xeno.Adjacent(target_carbon))
+		to_chat(xeno, SPAN_XENOHIGHDANGER("We missed! Our target was moved away before we could finish headbiting them!"))
 		return
 
 	if(target_carbon.stat == DEAD)
 		to_chat(xeno, SPAN_XENODANGER("They died before you could finish headbiting them! Be more careful next time!"))
 		return
 
-	to_chat(xeno, SPAN_XENOHIGHDANGER("You pierce [target_carbon]’s head with your inner jaw!"))
+	to_chat(xeno, SPAN_XENOHIGHDANGER("We pierce [target_carbon]’s head with our inner jaw!"))
 	playsound(target_carbon,'sound/weapons/alien_bite2.ogg', 50, TRUE)
 	xeno.visible_message(SPAN_DANGER("[xeno] pierces [target_carbon]’s head with its inner jaw!"))
 	xeno.flick_attack_overlay(target_carbon, "headbite")
@@ -352,4 +379,5 @@
 	xeno.flick_heal_overlay(3 SECONDS, "#00B800")
 	xeno.emote("roar")
 	log_attack("[key_name(xeno)] was executed by [key_name(target_carbon)] with a headbite!")
-	return TRUE
+	apply_cooldown()
+	return ..()

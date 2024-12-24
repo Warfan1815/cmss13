@@ -69,7 +69,7 @@
 	..()
 	if(is_grass_floor())
 		var/dir_sum = 0
-		for(var/direction in cardinal)
+		for(var/direction in GLOB.cardinals)
 			var/turf/T = get_step(src,direction)
 			if(!(T.is_grass_floor()))
 				dir_sum += direction
@@ -87,55 +87,49 @@
 	break_tile()
 
 /turf/open/floor/proc/break_tile()
-	if(!breakable_tile || hull_floor) return
-	if(broken) return
+	if(!breakable_tile || hull_floor)
+		return
+	if(broken)
+		return
+
 	broken = TRUE
 	if(is_plasteel_floor())
 		icon_state = "damaged[pick(1, 2, 3, 4, 5)]"
-		broken = 1
 	else if(is_light_floor())
 		icon_state = "light_broken"
-		broken = 1
-		SetLuminosity(0)
+		set_light(0)
 	else if(is_plating())
 		icon_state = "platingdmg[pick(1, 2, 3)]"
-		broken = 1
 	else if(is_wood_floor())
 		icon_state = "wood-broken"
-		broken = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
-		broken = 1
 	else if(is_grass_floor())
 		icon_state = "grass[pick("1", "2", "3")]"
-		broken = 1
 
 /turf/open/floor/proc/burn_tile()
-	if(!burnable_tile|| hull_floor) return
-	if(broken || burnt) return
+	if(!burnable_tile || hull_floor)
+		return
+	if(broken || burnt)
+		return
+
 	burnt = TRUE
 	if(is_plasteel_floor())
 		icon_state = "damaged[pick(1, 2, 3, 4, 5)]"
-		burnt = 1
 	else if(is_plasteel_floor())
 		icon_state = "floorscorched[pick(1, 2)]"
-		burnt = 1
 	else if(is_plating())
 		icon_state = "panelscorched"
-		burnt = 1
 	else if(is_wood_floor())
 		icon_state = "wood-broken"
-		burnt = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
-		burnt = 1
 	else if(is_grass_floor())
 		icon_state = "grass[pick("1", "2", "3")]"
-		burnt = 1
 
 //This proc auto corrects the grass tiles' siding.
 /turf/open/floor/proc/make_plating()
-	SetLuminosity(0)
+	set_light(0)
 	intact_tile = FALSE
 	broken = FALSE
 	burnt = FALSE
@@ -148,7 +142,7 @@
 	if(src.weeds)
 		return weeds.attackby(hitting_item,user)
 
-	if(istype(hitting_item, /obj/item/tool/crowbar) && (tool_flags & (REMOVE_CROWBAR|BREAK_CROWBAR)))
+	if(HAS_TRAIT(hitting_item, TRAIT_TOOL_CROWBAR) && (tool_flags & (REMOVE_CROWBAR|BREAK_CROWBAR)))
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken tiles."))
 		else

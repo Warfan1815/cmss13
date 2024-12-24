@@ -4,10 +4,10 @@
 
 /obj/item/device/flashlight/combat
 	name = "combat flashlight"
-	desc = "A Flashlight designed to be held in the hand, or attached to a rifle"
-	icon_state = "flashlight"
+	desc = "A Flashlight designed to be held in the hand, or attached to a rifle, has better bulb compared to a normal flashlight."
+	icon_state = "combat_flashlight"
 	item_state = "flashlight"
-	brightness_on = 5 //Pretty luminous, but still a flashlight that fits in a pocket
+	light_range = 5 //Pretty luminous, but still a flashlight that fits in a pocket
 
 //MARINE SNIPER TARPS
 
@@ -58,6 +58,8 @@
 	var/is_animating = FALSE
 	var/first_open = TRUE
 	exit_stun = 0
+	/// used to implement a delay before tarp can be entered again after opened (anti-exploit)
+	COOLDOWN_DECLARE(toggle_delay)
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
@@ -91,9 +93,9 @@
 	exit_stun = 1
 	can_store_dead = TRUE
 
-/obj/structure/closet/bodybag/tarp/reactive/scout/close()
+/obj/structure/closet/bodybag/tarp/reactive/scout/close(mob/user)
 	if(!skillcheck(usr, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL) && usr.skills.get_skill_level(SKILL_SPEC_WEAPONS) != SKILL_SPEC_SCOUT)
-		to_chat(usr, SPAN_WARNING("You don't seem to know how to use [src]..."))
+		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
 		return
 	. = ..()
 
@@ -106,7 +108,7 @@
 			continue
 		mobs_can_store += H
 	var/mob/living/carbon/human/mob_to_store
-	if(mobs_can_store.len)
+	if(length(mobs_can_store))
 		mob_to_store = pick(mobs_can_store)
 		mob_to_store.forceMove(src)
 		mob_to_store.unset_interaction()
@@ -137,20 +139,16 @@
 			return
 
 /obj/structure/closet/bodybag/tarp/open()
+	COOLDOWN_START(src, toggle_delay, 3 SECONDS) //3 seconds must pass before tarp can be closed
 	. = ..()
 	handle_cloaking()
 
-/obj/structure/closet/bodybag/tarp/close()
+/obj/structure/closet/bodybag/tarp/close(mob/user)
+	if(!COOLDOWN_FINISHED(src, toggle_delay))
+		to_chat(user, SPAN_WARNING("It is too soon to close [src]!"))
+		return FALSE
 	. = ..()
 	handle_cloaking()
-
-/obj/item/coin/marine
-	name = "marine specialist weapon token"
-	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	icon_state = "coin_adamantine"
-
-/obj/item/coin/marine/attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
-	return
 
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
@@ -194,6 +192,7 @@
 	name = "stale USCM protein bar"
 	desc = "The most fake-looking protein bar you have ever laid eyes on, covered in a substitution chocolate. The powder used to make these is a substitute of a substitute of whey substitute."
 	icon_state = "yummers"
+	icon = 'icons/obj/items/food/mre_food.dmi'
 	filling_color = "#ED1169"
 	w_class = SIZE_TINY
 
@@ -206,6 +205,7 @@
 /obj/item/reagent_container/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
 	//trash = /obj/item/trash/USCMtray
+	icon = 'icons/obj/items/food/trays.dmi'
 	trash = null
 	w_class = SIZE_SMALL
 

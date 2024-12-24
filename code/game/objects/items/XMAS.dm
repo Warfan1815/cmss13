@@ -4,7 +4,7 @@
 /obj/item/m_gift //Marine Gift
 	name = "Present"
 	desc = "One, standard issue USCM Present"
-	icon = 'icons/obj/items/items.dmi'
+	icon = 'icons/obj/items/gifts.dmi'
 	icon_state = "gift1"
 	item_state = "gift1"
 
@@ -66,9 +66,9 @@
 			gift_type = pick(
 			/obj/item/weapon/gun/revolver/mateba,
 			/obj/item/weapon/gun/pistol/heavy,
-			/obj/item/weapon/melee/claymore,
-			/obj/item/weapon/melee/energy/sword/green,
-			/obj/item/weapon/melee/energy/sword/red,
+			/obj/item/weapon/sword,
+			/obj/item/weapon/energy/sword/green,
+			/obj/item/weapon/energy/sword/red,
 			/obj/item/attachable/heavy_barrel,
 			/obj/item/attachable/extended_barrel,
 			/obj/item/attachable/burstfire_assembly,
@@ -96,7 +96,7 @@
 		/obj/item/poster,
 		/obj/item/toy/bikehorn,
 		/obj/item/toy/beach_ball,
-		/obj/item/weapon/melee/banhammer,
+		/obj/item/weapon/banhammer,
 		/obj/item/toy/crossbow,
 		/obj/item/toy/gun,
 		/obj/item/toy/katana,

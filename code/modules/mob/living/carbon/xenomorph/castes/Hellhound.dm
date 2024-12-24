@@ -12,6 +12,7 @@
 	evasion = XENO_EVASION_LOW
 	speed = XENO_SPEED_HELLHOUND
 	attack_delay = -2
+	behavior_delegate_type = /datum/behavior_delegate/hellhound_base
 
 	minimum_evolve_time = 0
 
@@ -29,10 +30,12 @@
 	minimap_icon = "hellhound"
 
 /mob/living/carbon/xenomorph/hellhound
+	AUTOWIKI_SKIP(TRUE)
+
 	caste_type = XENO_CASTE_HELLHOUND
 	name = XENO_CASTE_HELLHOUND
 	desc = "A disgusting beast from hell, it has four menacing spikes growing from its head."
-	icon = 'icons/mob/xenos/hellhound.dmi'
+	icon = 'icons/mob/humans/onmob/hunter/hellhound.dmi'
 	icon_state = "Hellhound Walking"
 	icon_size = 32
 	layer = MOB_LAYER
@@ -58,14 +61,18 @@
 		/datum/action/xeno_action/onclick/xenohide,
 		/datum/action/xeno_action/activable/pounce/runner,
 		/datum/action/xeno_action/onclick/toggle_long_range/runner,
+		/datum/action/xeno_action/onclick/tacmap,
 	)
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
-	mutation_type = HELLHOUND_NORMAL
 
-	icon_xeno = 'icons/mob/xenos/hellhound.dmi'
-	icon_xenonid = 'icons/mob/xenos/hellhound.dmi'
+	icon_xeno = 'icons/mob/humans/onmob/hunter/hellhound.dmi'
+	icon_xenonid = 'icons/mob/humans/onmob/hunter/hellhound.dmi'
+
+	weed_food_icon = 'icons/mob/xenos/weeds.dmi'
+	weed_food_states = list("Hellhound_1","Hellhound_2","Hellhound_3")
+	weed_food_states_flipped = list("Hellhound_1","Hellhound_2","Hellhound_3")
 
 /mob/living/carbon/xenomorph/hellhound/Initialize(mapload, mob/living/carbon/xenomorph/oldXeno, h_number)
 	. = ..(mapload, oldXeno, h_number || XENO_HIVE_YAUTJA)
@@ -123,4 +130,14 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hellhound/handle_blood_splatter(splatter_dir)
-	new /obj/effect/temp_visual/dir_setting/bloodsplatter/hellhound(loc, splatter_dir)
+	new /obj/effect/bloodsplatter/hellhound(loc, splatter_dir)
+
+/datum/behavior_delegate/hellhound_base
+	name = "Base Hellhound Behavior Delegate"
+
+/datum/behavior_delegate/hellhound_base/melee_attack_additional_effects_self()
+	..()
+
+	var/datum/action/xeno_action/onclick/xenohide/hide = get_action(bound_xeno, /datum/action/xeno_action/onclick/xenohide)
+	if(hide)
+		hide.post_attack()

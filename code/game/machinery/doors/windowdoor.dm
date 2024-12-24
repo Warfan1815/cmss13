@@ -11,12 +11,11 @@
 	flags_atom = ON_BORDER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
-	air_properties_vary_with_direction = 1
 
 /obj/structure/machinery/door/window/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(update_icon)), 1)
-	if (src.req_access && src.req_access.len)
+	if (LAZYLEN(src.req_access))
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
 
@@ -61,36 +60,43 @@
 		close()
 	return
 
-/obj/structure/machinery/door/window/open()
-	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
-	if(!src.operating) //in case of emag
-		src.operating = 1
-	flick(text("[]opening", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
-	src.icon_state = text("[]open", src.base_state)
-	sleep(10)
+/obj/structure/machinery/door/window/open(forced = FALSE)
+	if(operating) //doors can still open when emag-disabled
+		return FALSE
 
-	src.density = FALSE
+	operating = DOOR_OPERATING_OPENING
+	flick(text("[]opening", base_state), src)
+	playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
+	icon_state = text("[]open", base_state)
 
-	if(operating == 1) //emag again
-		src.operating = 0
-	return 1
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
+	return TRUE
 
-/obj/structure/machinery/door/window/close()
-	if (src.operating)
-		return 0
-	src.operating = 1
+/obj/structure/machinery/door/window/finish_open()
+	if(operating != DOOR_OPERATING_OPENING)
+		return
+
+	density = FALSE
+	operating = DOOR_OPERATING_IDLE
+
+/obj/structure/machinery/door/window/close(forced = FALSE)
+	if(operating)
+		return FALSE
+
+	operating = DOOR_OPERATING_CLOSING
 	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
-	src.icon_state = src.base_state
+	playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
+	icon_state = base_state
+	density = TRUE
 
-	src.density = TRUE
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
+	return TRUE
 
-	sleep(10)
+/obj/structure/machinery/door/window/finish_close()
+	if(operating != DOOR_OPERATING_CLOSING)
+		return
 
-	src.operating = 0
-	return 1
+	operating = DOOR_OPERATING_IDLE
 
 /obj/structure/machinery/door/window/proc/take_damage(damage)
 	src.health = max(0, src.health - damage)
@@ -103,9 +109,9 @@
 			ae = new/obj/item/circuitboard/airlock( src.loc )
 			if(!src.req_access)
 				src.check_access()
-			if(src.req_access.len)
+			if(length(src.req_access))
 				ae.conf_access = src.req_access
-			else if (src.req_one_access && src.req_one_access.len)
+			else if (LAZYLEN(src.req_one_access))
 				ae.conf_access = src.req_one_access
 				ae.one_access = 1
 		else
@@ -115,15 +121,15 @@
 		if(operating == -1)
 			ae.fried = TRUE
 			ae.update_icon()
-			operating = 0
+			operating = DOOR_OPERATING_IDLE
 		src.density = FALSE
 		qdel(src)
 		return
 
-/obj/structure/machinery/door/window/bullet_act(obj/item/projectile/Proj)
+/obj/structure/machinery/door/window/bullet_act(obj/projectile/Proj)
 	bullet_ping(Proj)
 	if(Proj.ammo.damage)
-		take_damage(round(Proj.ammo.damage / 2))
+		take_damage(floor(Proj.ammo.damage / 2))
 		if(Proj.ammo.damage_type == BRUTE)
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 	return 1
@@ -160,11 +166,11 @@
 /obj/structure/machinery/door/window/attackby(obj/item/I, mob/user)
 
 	//If it's in the process of opening/closing, ignore the click
-	if (src.operating == 1)
+	if (operating)
 		return
 
 	//If it's emagged, crowbar can pry electronics out.
-	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
+	if (operating == -1 && HAS_TRAIT(I, TRAIT_TOOL_CROWBAR))
 		playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 		user.visible_message("[user] removes the electronics from the windoor.", "You start to remove electronics from the windoor.")
 		if (do_after(user, 40, INTERRUPT_ALL, BUSY_ICON_BUILD))
@@ -187,9 +193,9 @@
 				ae = new/obj/item/circuitboard/airlock( src.loc )
 				if(!src.req_access)
 					src.check_access()
-				if(src.req_access.len)
+				if(length(src.req_access))
 					ae.conf_access = src.req_access
-				else if (src.req_one_access.len)
+				else if (length(src.req_one_access))
 					ae.conf_access = src.req_one_access
 					ae.one_access = 1
 			else
@@ -199,7 +205,7 @@
 			ae.fried = TRUE
 			ae.update_icon()
 
-			operating = 0
+			operating = DOOR_OPERATING_IDLE
 			qdel(src)
 			return
 
@@ -293,12 +299,12 @@
 
 /obj/structure/machinery/door/window/ultra/Initialize(mapload, ...)
 	. = ..()
-	GLOB.hijack_deletable_windows += src
-
-/obj/structure/machinery/door/window/ultra/Destroy()
-	GLOB.hijack_deletable_windows -= src
-	return ..()
+	if(is_mainship_level(z))
+		RegisterSignal(SSdcs, COMSIG_GLOB_HIJACK_IMPACTED, PROC_REF(impact))
 
 // No damage taken.
 /obj/structure/machinery/door/window/ultra/attackby(obj/item/I, mob/user)
 	return try_to_activate_door(user)
+
+/obj/structure/machinery/door/window/ultra/proc/impact()
+	qdel(src)

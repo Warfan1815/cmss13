@@ -5,6 +5,10 @@
 	name = "Dropper"
 	desc = "A dropper. Transfers 5 units."
 	icon = 'icons/obj/items/chemistry.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/medical_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/medical_righthand.dmi',
+	)
 	icon_state = "dropper0"
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = list(1,2,3,4,5)
@@ -32,7 +36,7 @@
 		if(ismob(target))
 
 			var/time = 20 //2/3rds the time of a syringe
-			for(var/mob/O in viewers(world_view_size, user))
+			for(var/mob/O in viewers(GLOB.world_view_size, user))
 				O.show_message(SPAN_DANGER("<B>[user] is trying to squirt something into [target]'s eyes!</B>"), SHOW_MESSAGE_VISIBLE)
 
 			if(!do_after(user, time, INTERRUPT_ALL, BUSY_ICON_FRIENDLY, target, INTERRUPT_MOVED, BUSY_ICON_MEDICAL)) return
@@ -56,7 +60,7 @@
 						safe_thing.create_reagents(100)
 					trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
-					for(var/mob/O in viewers(world_view_size, user))
+					for(var/mob/O in viewers(GLOB.world_view_size, user))
 						O.show_message(SPAN_DANGER("<B>[user] tries to squirt something into [target]'s eyes, but fails!</B>"), SHOW_MESSAGE_VISIBLE)
 					spawn(5)
 						src.reagents.reaction(safe_thing, TOUCH)
@@ -67,7 +71,7 @@
 						icon_state = "dropper[filled]"
 					return
 
-			for(var/mob/O in viewers(world_view_size, user))
+			for(var/mob/O in viewers(GLOB.world_view_size, user))
 				O.show_message(SPAN_DANGER("<B>[user] squirts something into [target]'s eyes!</B>"), SHOW_MESSAGE_VISIBLE)
 			src.reagents.reaction(target, TOUCH)
 

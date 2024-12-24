@@ -31,8 +31,8 @@
 /obj/item/bodybag/cryobag
 	name = "stasis bag"
 	desc = "A folded, reusable bag designed to prevent additional damage to an occupant."
-	icon = 'icons/obj/cryobag.dmi'
-	icon_state = "bodybag_folded"
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "cryobag_folded"
 	unfolded_path = /obj/structure/closet/bodybag/cryobag
 	matter = list("plastic" = 7500)
 	var/used = 0
@@ -122,25 +122,27 @@
 
 /obj/structure/closet/bodybag/store_mobs(stored_units) // overriding this
 	var/list/dead_mobs = list()
-	for(var/mob/living/M in loc)
-		if(M.buckled)
+	for(var/mob/living/mob in loc)
+		if(mob.buckled)
 			continue
-		if(M.stat != DEAD) // covers alive mobs
+		if(mob.stat != DEAD) // covers alive mobs
 			continue
-		if(!ishuman(M)) // all the dead other shit
-			dead_mobs += M
+		if(!ishuman(mob)) // all the dead other shit
+			dead_mobs += mob
 			continue
-		var/mob/living/carbon/human/H = M
-		if(H.check_tod() || issynth(H) || H.is_revivable() && H.get_ghost()) // revivable
+		var/mob/living/carbon/human/human = mob
+		if(issynth(human))
 			continue
-		dead_mobs += M
+		if(human.check_tod() && human.is_revivable()) // revivable
+			continue
+		dead_mobs += mob
 	var/mob/living/mob_to_store
-	if(dead_mobs.len)
+	if(length(dead_mobs))
 		mob_to_store = pick(dead_mobs)
 		mob_to_store.forceMove(src)
 		stored_units += mob_size
-	for(var/obj/item/limb/L in loc)
-		L.forceMove(src)
+	for(var/obj/item/limb/limb in loc)
+		limb.forceMove(src)
 	return stored_units
 
 /obj/structure/closet/bodybag/attack_hand(mob/living/user)
@@ -167,7 +169,7 @@
 	..()
 	if(over_object == usr && Adjacent(usr) && !roller_buckled)
 		if(!ishuman(usr)) return
-		if(contents.len) return 0
+		if(length(contents)) return 0
 		visible_message(SPAN_NOTICE("[usr] folds up [name]."))
 		var/obj/item/I = new item_path(get_turf(src), src)
 		usr.put_in_hands(I)
@@ -207,7 +209,10 @@
 	name = "stasis bag"
 	bag_name = "stasis bag"
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
-	icon = 'icons/obj/cryobag.dmi'
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "cryobag_closed"
+	icon_closed = "cryobag_closed"
+	icon_opened = "cryobag_open"
 	item_path = /obj/item/bodybag/cryobag
 	store_items = FALSE
 	/// the mob in stasis
@@ -269,7 +274,7 @@
 			continue
 		mobs_can_store += H
 	var/mob/living/carbon/human/mob_to_store
-	if(mobs_can_store.len)
+	if(length(mobs_can_store))
 		mob_to_store = pick(mobs_can_store)
 		mob_to_store.forceMove(src)
 		stored_units += mob_size
@@ -364,6 +369,6 @@
 
 /obj/item/trash/used_stasis_bag
 	name = "used stasis bag"
-	icon = 'icons/obj/cryobag.dmi'
-	icon_state = "bodybag_used"
+	icon = 'icons/obj/bodybag.dmi'
+	icon_state = "cryobag_used"
 	desc = "It's been ripped open. You will need to find a machine capable of recycling it."

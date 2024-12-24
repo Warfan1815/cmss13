@@ -14,8 +14,11 @@
 #define isSEA(A) (ishuman(A) && A.job == "Senior Enlisted Advisor")
 #define issynth(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic))
 #define iscolonysynthetic(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/colonial))
-#define isworkingjoe(A) (iscolonysynthetic(A) && A.job == JOB_WORKING_JOE)
+#define isworkingjoe(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/colonial/working_joe))
+#define ishazardjoe(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/colonial/working_joe/hazard))
+#define isuppjoe(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/colonial/working_joe/upp))
 #define isinfiltratorsynthetic(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/infiltrator))
+#define isk9synth(A) (ishuman(A) && istype(A?:species, /datum/species/synthetic/synth_k9))
 
 //Specic group checks, use instead of typechecks (but use traits instead)
 #define issamespecies(A, B) (A.species?.group == B.species?.group)
@@ -25,7 +28,7 @@
 #define isspeciessynth(A) (A.species?.group == SPECIES_SYNTHETIC)
 
 //Size checks for carbon to use instead of typechecks. (Hellhounds are deprecated)
-#define iscarbonsizexeno(A) (A.mob_size >= MOB_SIZE_XENO_SMALL)
+#define iscarbonsizexeno(A) (A.mob_size >= MOB_SIZE_XENO_VERY_SMALL)
 #define iscarbonsizehuman(A) (A.mob_size <= MOB_SIZE_HUMAN)
 
 //job/role helpers

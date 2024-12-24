@@ -14,11 +14,11 @@
 		var/datum/reagent/re = reagent_list[i]
 		var/reagentweight = re.volume
 		if(istype(re, /datum/reagent/paint))
-			reagentweight *= 20 //Paint colours a mixture twenty times as much
+			reagentweight *= 20 //Paint colors a mixture twenty times as much
 		weight[i] = max(reagentweight,1)
 
 
-	//fill the lists of colours
+	//fill the lists of colors
 	for(i=1; i<=contents; i++)
 		var/datum/reagent/re = reagent_list[i]
 		var/hue = re.color
@@ -55,7 +55,7 @@
 	var/mixedcolor = 0
 	for(i=1; i<=contents; i++)
 		mixedcolor += weight[i]*color[i]
-	mixedcolor = round(mixedcolor)
+	mixedcolor = floor(mixedcolor)
 
 	//until someone writes a formal proof for this algorithm, let's keep this in
 // if(mixedcolor<0x00 || mixedcolor>0xFF)
@@ -76,7 +76,7 @@
 		//fill the list of weights
 		var/datum/reagent/re = reagent_list[i]
 		weight[i] = max(re.volume,1) * re.burncolormod
-		//fill the lists of colours
+		//fill the lists of colors
 		var/hue = re.burncolor
 		if(length(hue) != 7)
 			return 0
@@ -92,4 +92,4 @@
 	//assemble all the pieces
 	var/finalcolor = rgb(red, green, blue)
 	return finalcolor
-	
+

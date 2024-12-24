@@ -7,7 +7,7 @@
 	priority = SURGERY_PRIORITY_HIGH
 	possible_locs = ALL_LIMBS
 	invasiveness = list(SURGERY_DEPTH_SHALLOW, SURGERY_DEPTH_DEEP)
-	required_surgery_skill = SKILL_SURGERY_TRAINED
+	required_surgery_skill = SKILL_SURGERY_NOVICE
 	pain_reduction_required = PAIN_REDUCTION_HEAVY
 	steps = list(/datum/surgery_step/fix_vein)
 
@@ -39,6 +39,7 @@
 
 /datum/surgery_step/fix_vein/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, tool_type, datum/surgery/surgery)
 	user.count_niche_stat(STATISTICS_NICHE_SURGERY_IB)
+	user.life_ib_total++
 
 	user.affected_message(target,
 		SPAN_NOTICE("You finish repairing [target]'s damaged vein."),

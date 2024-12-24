@@ -29,6 +29,10 @@
 	. = ..()
 	beaker = new /obj/item/reagent_container/glass/beaker/large(src)
 
+/obj/structure/machinery/juicer/Destroy()
+	QDEL_NULL(beaker)
+	return ..()
+
 /obj/structure/machinery/juicer/update_icon()
 	icon_state = "juicer"+num2text(!QDELETED(beaker))
 	return
@@ -141,7 +145,7 @@
 	else if (O.potency == -1)
 		return 5
 	else
-		return round(5*sqrt(O.potency))
+		return floor(5*sqrt(O.potency))
 
 /obj/structure/machinery/juicer/proc/juice()
 	power_change() //it is a portable machine

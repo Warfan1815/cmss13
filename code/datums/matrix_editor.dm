@@ -7,7 +7,7 @@
 	set name = "Matrix Editor"
 	set category = "Debug"
 
-	if(!usr.client || !usr.client.admin_holder || !(usr.client.admin_holder.rights & R_DEBUG|R_ADMIN))
+	if(!usr.client || !usr.client.admin_holder || !(usr.client.admin_holder.rights & (R_DEBUG|R_ADMIN)))
 		to_chat(usr, SPAN_DANGER("develop man only >:("))
 		return
 
@@ -49,7 +49,7 @@
 	show_browser(usr, data, "Matrix Editor", "matrixeditor\ref[src]", "size=600x450")
 
 /client/proc/matrix_editor_Topic(href, href_list)
-	if(!usr.client || !usr.client.admin_holder || !(usr.client.admin_holder.rights & R_DEBUG|R_ADMIN))
+	if(!usr.client || !usr.client.admin_holder || !(usr.client.admin_holder.rights & (R_DEBUG|R_ADMIN)))
 		to_chat(usr, SPAN_DANGER("develop man only >:("))
 		return
 
@@ -72,11 +72,11 @@
 				if(!elements_str)
 					return
 				var/list/elements = splittext(elements_str, ",")
-				if(elements.len != 6)
-					to_chat(usr, "When creating a custom matrix, explicitly provide all 6 elements! Only [elements.len] were provided.")
+				if(length(elements) != 6)
+					to_chat(usr, "When creating a custom matrix, explicitly provide all 6 elements! Only [length(elements)] were provided.")
 					return
 
-				for(var/i = 1 to elements.len)
+				for(var/i = 1 to length(elements))
 					var/num_ver = text2num(elements[i])
 					if(isnull(num_ver))
 						to_chat(usr, "Failed to convert element #[i] ([elements[i]]) to a number.")

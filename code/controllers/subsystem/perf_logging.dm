@@ -26,8 +26,8 @@ SUBSYSTEM_DEF(perf_logging)
 			if(SS?.cost > 0.1)
 				currentrun += SS
 
-	while(currentrun.len)
-		var/datum/controller/subsystem/SS = currentrun[currentrun.len]
+	while(length(currentrun))
+		var/datum/controller/subsystem/SS = currentrun[length(currentrun)]
 		currentrun.len--
 		var/datum/entity/mc_controller/C = controller_assoc[SS.type]
 		new_record(SS, C)
@@ -42,9 +42,8 @@ SUBSYSTEM_DEF(perf_logging)
 	var/datum/map_config/ground = SSmapping.configs[GROUND_MAP]
 	if(!ground) return
 	ord = 0
-	round = SSentity_manager.select(/datum/entity/mc_round)
+	round = SSentity_manager.round
 	round.map_name = ground.map_name
-	round.save()
 	var/datum/entity/mc_controller/C
 	for(var/datum/controller/subsystem/SS in Master.subsystems)
 		C = SSentity_manager.select_by_key(/datum/entity/mc_controller, "[SS.type]")

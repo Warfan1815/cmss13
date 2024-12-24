@@ -24,10 +24,10 @@
 /obj/structure/machinery/door/airlock/sandstone/runed/attackby(obj/item/W as obj, mob/user as mob)
 // ..()
 	user.set_interaction(src)
-	if (!istype(W, /obj/item/weapon/wristblades || !isyautja(user)))
+	if (!istype(W, /obj/item/weapon/bracer_attachment || !isyautja(user)))
 		return
 
-	if(istype(W, /obj/item/weapon/wristblades))
+	if(istype(W, /obj/item/weapon/bracer_attachment))
 		playsound(user.loc, 'sound/effects/bladeinsert.ogg', 25, 0)
 
 		var/list/options = list()
@@ -89,53 +89,78 @@
 	return FALSE
 
 
-/obj/structure/machinery/door/airlock/sandstone/runed/open(forced=1)
-	if(operating || welded || locked || !loc || !density)
+/obj/structure/machinery/door/airlock/sandstone/runed/open(forced = TRUE)
+	if(operating && !forced)
+		return FALSE
+	if(welded)
+		return FALSE
+	if(locked)
+		return FALSE
+	if(!density)
+		return TRUE
+	if(!loc)
 		return FALSE
 	if(!forced && !arePowerSystemsOn())
 		return FALSE
+
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
 	visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as hidden workings pull it open."))
-
-	if(!operating)
-		operating = TRUE
-	CHECK_TICK
+	operating = DOOR_OPERATING_OPENING
 	do_animate("opening")
 	icon_state = "door0"
-	src.SetOpacity(FALSE)
-	sleep(openspeed)
-	src.layer = open_layer
-	src.density = FALSE
-	update_icon()
-	SetOpacity(0)
-	if (filler)
-		filler.SetOpacity(opacity)
+	set_opacity(0)
 
-	if(operating)
-		operating = FALSE
-	return
+	addtimer(CALLBACK(src, PROC_REF(finish_open)), openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
+	return TRUE
 
-/obj/structure/machinery/door/airlock/sandstone/runed/close(forced=1)
-	if(operating || welded || locked || !loc || density)
+/obj/structure/machinery/door/airlock/sandstone/runed/finish_open()
+	if(operating != DOOR_OPERATING_OPENING)
 		return
+
+	layer = open_layer
+	density = FALSE
+	update_icon()
+	set_opacity(0)
+	if(length(filler_turfs))
+		change_filler_opacity(opacity)
+
+	operating = DOOR_OPERATING_IDLE
+
+/obj/structure/machinery/door/airlock/sandstone/runed/close(forced = TRUE)
+	if(operating && !forced)
+		return FALSE
+	if(welded)
+		return FALSE
+	if(locked)
+		return FALSE
+	if(density && !operating)
+		return TRUE
+	if(!loc)
+		return FALSE
+
 	if(safe)
 		for(var/turf/turf in locs)
 			if(locate(/mob/living) in turf)
-				spawn (60 + openspeed)
-					close()
-				return
+				addtimer(CALLBACK(src, PROC_REF(close), forced), 6 SECONDS + openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
+				return FALSE
 	playsound(loc, 'sound/effects/runedsanddoor.ogg', 25, 0)
-	visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as hidden workings force it shut."))
+	visible_message(SPAN_NOTICE("[src] makes a loud grating sound as hidden workings force it shut."))
 
-	operating = TRUE
-	CHECK_TICK
-	src.density = TRUE
-	src.SetOpacity(TRUE)
-	src.layer = closed_layer
+	operating = DOOR_OPERATING_CLOSING
+	density = TRUE
+	set_opacity(1)
+	layer = closed_layer
 	do_animate("closing")
-	sleep(openspeed)
+
+	addtimer(CALLBACK(src, PROC_REF(finish_close)), openspeed, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_NO_HASH_WAIT)
+	return TRUE
+
+/obj/structure/machinery/door/airlock/sandstone/runed/finish_close()
+	if(operating != DOOR_OPERATING_CLOSING)
+		return
+
 	update_icon()
-	operating = FALSE
+	operating = DOOR_OPERATING_IDLE
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
@@ -150,24 +175,30 @@
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(killthis)
 			killthis.ex_act(EXPLOSION_THRESHOLD_LOW)
-	return
 
-/obj/structure/machinery/door/airlock/sandstone/runed/lock(forced=0)
-	if(operating || locked) return
+/obj/structure/machinery/door/airlock/sandstone/runed/lock(forced = FALSE)
+	if(operating && !forced)
+		return FALSE
+	if(locked)
+		return FALSE
 
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25)
 	locked = TRUE
 	if(density)
-		visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as heavy stone bolts seal it shut."))
+		visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts seal it shut."))
 	else
-		visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as heavy stone bolts seal it open."))
+		visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts seal it open."))
 	update_icon()
 
-/obj/structure/machinery/door/airlock/sandstone/runed/unlock(forced=0)
-	if(operating || !locked) return
+/obj/structure/machinery/door/airlock/sandstone/runed/unlock(forced = FALSE)
+	if(operating && !forced)
+		return FALSE
+	if(!locked)
+		return FALSE
+
 	locked = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25)
-	visible_message(SPAN_NOTICE("\The [src] makes a loud grating sound as heavy stone bolts retract."))
+	visible_message(SPAN_NOTICE("[src] makes a loud grating sound as heavy stone bolts retract."))
 	update_icon()
 	return TRUE
 

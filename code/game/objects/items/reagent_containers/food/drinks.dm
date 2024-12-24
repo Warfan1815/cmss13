@@ -4,7 +4,7 @@
 /obj/item/reagent_container/food/drinks
 	name = "drink"
 	desc = "yummy"
-	icon = 'icons/obj/items/drinks.dmi'
+	icon = 'icons/obj/items/food/drinks.dmi'
 	icon_state = null
 	flags_atom = FPRINT|OPENCONTAINER
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
@@ -13,14 +13,17 @@
 
 /obj/item/reagent_container/food/drinks/on_reagent_change()
 	if (gulp_size < 5) gulp_size = 5
-	else gulp_size = max(round(reagents.total_volume / 5), 5)
+	else gulp_size = max(floor(reagents.total_volume / 5), 5)
 
 /obj/item/reagent_container/food/drinks/attack(mob/M, mob/user)
 	var/datum/reagents/R = src.reagents
-	var/fillevel = gulp_size
 
 	if(!R.total_volume || !R)
 		to_chat(user, SPAN_DANGER("The [src.name] is empty!"))
+		return FALSE
+
+	if(HAS_TRAIT(M, TRAIT_CANNOT_EAT))
+		to_chat(user, SPAN_DANGER("[user == M ? "You are" : "[M] is"] unable to drink!"))
 		return FALSE
 
 	if(M == user)
@@ -54,13 +57,6 @@
 		if(reagents.total_volume)
 			reagents.set_source_mob(user)
 			reagents.trans_to_ingest(M, gulp_size)
-
-		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-			var/mob/living/silicon/robot/bro = user
-			bro.cell.use(30)
-			var/refill = R.get_master_reagent_id()
-			spawn(1 MINUTES)
-				R.add_reagent(refill, fillevel)
 
 		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
 		return TRUE
@@ -98,27 +94,8 @@
 			to_chat(user, SPAN_DANGER("[target] is full."))
 			return
 
-
-
-		var/datum/reagent/refill
-		var/datum/reagent/refillName
-		if(isrobot(user))
-			refill = reagents.get_master_reagent_id()
-			refillName = reagents.get_master_reagent_name()
-
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, SPAN_NOTICE(" You transfer [trans] units of the solution to [target]."))
-
-		if(isrobot(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
-			var/mob/living/silicon/robot/bro = user
-			var/chargeAmount = max(30,4*trans)
-			bro.cell.use(chargeAmount)
-			to_chat(user, "Now synthesizing [trans] units of [refillName]...")
-
-
-			spawn(30 SECONDS)
-				reagents.add_reagent(refill, trans)
-				to_chat(user, "Cyborg [src] refilled.")
 
 	return ..()
 
@@ -170,6 +147,10 @@
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/items/lighting_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/items/lighting_righthand.dmi',
+	)
 	center_of_mass = "x=16;y=9"
 
 /obj/item/reagent_container/food/drinks/milk/Initialize()
@@ -196,6 +177,10 @@
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/items/lighting_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/items/lighting_righthand.dmi',
+	)
 	center_of_mass = "x=16;y=9"
 
 /obj/item/reagent_container/food/drinks/soymilk/Initialize()
@@ -279,7 +264,7 @@
 /obj/item/reagent_container/food/drinks/cup
 	name = "plastic cup"
 	desc = "A generic red cup. Beer pong, anyone?"
-	icon = 'icons/obj/items/cup.dmi'
+	icon = 'icons/obj/items/food/drinks.dmi'
 	icon_state = "solocup"
 	throwforce = 0
 	w_class = SIZE_TINY
@@ -301,7 +286,7 @@
 /obj/item/trash/crushed_cup
 	name = "crushed cup"
 	desc = "A sad crushed and destroyed cup. It's now useless trash. What a waste."
-	icon = 'icons/obj/items/cup.dmi'
+	icon = 'icons/obj/items/food/drinks.dmi'
 	icon_state = "crushed_solocup"
 	throwforce = 0
 	w_class = SIZE_TINY
@@ -325,6 +310,10 @@
 	name = "metal flask"
 	desc = "A metal flask with a decent liquid capacity."
 	icon_state = "flask"
+	item_state_slots = list(WEAR_AS_GARB = "flask")
+	item_icons = list(
+		WEAR_AS_GARB = 'icons/mob/humans/onmob/clothing/helmet_garb/misc.dmi',
+		)
 	volume = 60
 	center_of_mass = "x=17;y=8"
 

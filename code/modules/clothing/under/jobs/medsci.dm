@@ -2,10 +2,35 @@
  * Science
  */
 
+/obj/item/clothing/under/rank/rd
+	desc = "It's made of a special fiber that provides minor protection against biohazards. It has markings that denote the wearer is a Research Director."
+	name = "research director's uniform"
+	icon_state = "rdalt_s"
+	worn_state = "rdalt_s"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/research.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/research.dmi',
+	)
+	permeability_coefficient = 0.50
+	armor_melee = CLOTHING_ARMOR_NONE
+	armor_bullet = CLOTHING_ARMOR_NONE
+	armor_laser = CLOTHING_ARMOR_NONE
+	armor_energy = CLOTHING_ARMOR_NONE
+	armor_bomb = CLOTHING_ARMOR_NONE
+	armor_bio = CLOTHING_ARMOR_LOW
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_LOW
+	flags_jumpsuit = FALSE
+
 /obj/item/clothing/under/rank/rdalt
-	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard USCM facilities. While commonly associated with the staple Bishop units, reduced funding to the Colonial Marines has led to a wide range of models filling these uniforms, especially in battalions operating in the edge frontier."
-	name = "synthetic service uniform"
+	desc = "It's made of a special fiber that provides minor protection against biohazards. It has markings that denote the wearer is a Research Director."
+	name = "research director's jumpsuit"
 	icon_state = "rdalt"
+	icon = 'icons/obj/items/clothing/uniforms/synthetic_uniforms.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/synthetic_uniforms.dmi',
+	)
+	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -21,6 +46,12 @@
 	name = "scientist's jumpsuit"
 	icon_state = "science"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/research.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/research.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -36,6 +67,12 @@
 	name = "chemist's jumpsuit"
 	icon_state = "chemistry"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -54,6 +91,12 @@
 	name = "chief medical officer's jumpsuit"
 	icon_state = "cmo"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -69,6 +112,12 @@
 	name = "geneticist's jumpsuit"
 	icon_state = "genetics"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -84,6 +133,12 @@
 	name = "virologist's jumpsuit"
 	icon_state = "virology"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -99,6 +154,10 @@
 	desc = "It's a jumpsuit commonly worn by nursing staff in the medical department."
 	name = "nurse's suit"
 	icon_state = "nursesuit"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -115,6 +174,10 @@
 	desc = "A dress commonly worn by the nursing staff in the medical department."
 	name = "nurse's dress"
 	icon_state = "nurse"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -127,27 +190,17 @@
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN
 	flags_jumpsuit = FALSE
 
-/obj/item/clothing/under/rank/orderly
-	desc = "A white suit to be worn by orderly people who love orderly things."
-	name = "orderly's uniform"
-	icon_state = "orderly"
-	permeability_coefficient = 0.50
-	armor_melee = CLOTHING_ARMOR_NONE
-	armor_bullet = CLOTHING_ARMOR_NONE
-	armor_laser = CLOTHING_ARMOR_NONE
-	armor_energy = CLOTHING_ARMOR_NONE
-	armor_bomb = CLOTHING_ARMOR_NONE
-	armor_bio = CLOTHING_ARMOR_LOW
-	armor_rad = CLOTHING_ARMOR_LOW
-	armor_internaldamage = CLOTHING_ARMOR_LOW
-	flags_jumpsuit = FALSE
-	item_state_slots = list(WEAR_BODY = "orderly")
-
 /obj/item/clothing/under/rank/medical
-	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
+	desc = "They're made of a special fiber that provides minor protection against biohazards. They have a cross on the chest denoting that the wearer is trained medical personnel."
 	name = "medical doctor's uniform"
 	icon_state = "medical"
 	item_state = "w_suit"
+	icon = 'icons/obj/items/clothing/uniforms/jumpsuits.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/jumpsuits.dmi',
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/clothing/uniforms_righthand.dmi',
+	)
 	permeability_coefficient = 0.50
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
@@ -159,45 +212,79 @@
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	item_state_slots = list(WEAR_BODY = "medical")
 
-/obj/item/clothing/under/rank/medical/nurse
-	name = "medical nurse scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one features an orange armband."
-	icon_state = "scrubsnurse"
-	item_state = "scrubsnurse"
-	item_state_slots = list(WEAR_BODY = "scrubsnurse")
+/obj/item/clothing/under/rank/medical/lightblue
+	name = "medical scrubs"
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in light blue."
+	icon_state = "scrubslightblue"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
+	flags_jumpsuit = FALSE
+	item_state_slots = list(WEAR_BODY = "scrubslightblue")
 
 /obj/item/clothing/under/rank/medical/blue
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in baby blue."
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in formal blue."
 	icon_state = "scrubsblue"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	flags_jumpsuit = FALSE
 	item_state_slots = list(WEAR_BODY = "scrubsblue")
 
 /obj/item/clothing/under/rank/medical/green
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in dark green."
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in jade green."
 	icon_state = "scrubsgreen"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	flags_jumpsuit = FALSE
 	item_state_slots = list(WEAR_BODY = "scrubsgreen")
 
 /obj/item/clothing/under/rank/medical/purple
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in deep purple."
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in berry red."
 	icon_state = "scrubspurple"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	flags_jumpsuit = FALSE
 	item_state_slots = list(WEAR_BODY = "scrubspurple")
 
-/obj/item/clothing/under/rank/psych
-	desc = "A basic white jumpsuit. It has turquoise markings that denote the wearer as a psychiatrist."
-	name = "psychiatrist's jumpsuit"
-	icon_state = "psych"
-	item_state = "w_suit"
+/obj/item/clothing/under/rank/medical/olive
+	name = "medical scrubs"
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in olive green."
+	icon_state = "scrubsolive"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	flags_jumpsuit = FALSE
+	item_state_slots = list(WEAR_BODY = "scrubsolive")
 
-
-/obj/item/clothing/under/rank/psych/turtleneck
-	desc = "A turquoise turtleneck and a pair of dark blue slacks, belonging to a psychologist."
-	name = "psychologist's turtleneck"
-	icon_state = "psychturtle"
-	item_state = "b_suit"
+/obj/item/clothing/under/rank/medical/grey
+	name = "medical scrubs"
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in mundane grey."
+	icon_state = "scrubsgrey"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
 	flags_jumpsuit = FALSE
+	item_state_slots = list(WEAR_BODY = "scrubsgrey")
+
+/obj/item/clothing/under/rank/medical/orange
+	name = "medical scrubs"
+	desc = "They're made of a special fiber that provides minor protection against biohazards. These are in prisoner orange."
+	icon_state = "scrubsorange"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_department/medical.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_department/medical.dmi',
+	)
+	flags_jumpsuit = FALSE
+	item_state_slots = list(WEAR_BODY = "scrubsorange")

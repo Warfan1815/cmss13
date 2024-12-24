@@ -12,6 +12,10 @@
 
 /obj/item/tool/kitchen
 	icon = 'icons/obj/items/kitchen_tools.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/kitchen_tools_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/kitchen_tools_righthand.dmi',
+	)
 
 /*
  * Utensils
@@ -45,6 +49,10 @@
 		return ..()
 
 	if (reagents.total_volume > 0)
+		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
+		if(fullness > NUTRITION_HIGH)
+			to_chat(user, SPAN_WARNING("[user == M ? "You" : "They"] don't feel like eating more right now."))
+			return
 		reagents.set_source_mob(user)
 		reagents.trans_to_ingest(M, reagents.total_volume)
 		if(M == user)
@@ -117,12 +125,16 @@
  */
 /obj/item/tool/kitchen/knife
 	name = "kitchen knife"
-	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	icon_state = "knife"
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/weapons/melee/knives_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/weapons/melee/knives_righthand.dmi'
+	)
 	flags_atom = FPRINT|CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-	force = 10
+	force = MELEE_FORCE_TIER_4
 	w_class = SIZE_MEDIUM
 	throwforce = 6
 	throw_speed = SPEED_VERY_FAST
@@ -132,14 +144,54 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /*
+ * Plastic Pizza Cutter
+ */
+/obj/item/tool/kitchen/pizzacutter
+	name = "pizza cutter"
+	desc = "A circular blade used for cutting pizzas. This one has a cheap plastic handle."
+	icon_state = "plasticpizzacutter"
+	flags_atom = FPRINT|CONDUCT
+	sharp = IS_SHARP_ITEM_ACCURATE
+	edge = TRUE
+	force = 10
+	w_class = SIZE_MEDIUM
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	throwforce = 6
+	throw_speed = SPEED_VERY_FAST
+	throw_range = 6
+	matter = list("metal" = 12000)
+
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+/*
+ * Wood Pizza Cutter
+ */
+/obj/item/tool/kitchen/pizzacutter/wood
+	desc = "A circular blade used for cutting pizzas. This one has an authentic wooden handle."
+	icon_state = "woodpizzacutter"
+
+/*
+ * Holy Relic Pizza Cutter
+ */
+/obj/item/tool/kitchen/pizzacutter/holyrelic
+	name = "\improper PIZZA TIME"
+	desc = "Before you is a holy relic of a bygone era when the great Pizza Lords reigned supreme. You know either that or it's just a big damn pizza cutter."
+	icon_state = "holyrelicpizzacutter"
+	force = MELEE_FORCE_VERY_STRONG
+
+/*
  * Bucher's cleaver
  */
 /obj/item/tool/kitchen/knife/butcher
 	name = "butcher's cleaver"
-	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/kitchen_tools_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/kitchen_tools_righthand.dmi',
+	)
+	icon_state = "butch"
 	flags_atom = FPRINT|CONDUCT
-	force = 15
+	force = MELEE_FORCE_NORMAL
 	w_class = SIZE_SMALL
 	throwforce = 8
 	throw_speed = SPEED_VERY_FAST
@@ -200,9 +252,9 @@
  */
 /obj/item/tool/kitchen/tray
 	name = "tray"
+	desc = "A metal tray to lay food on."
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 	icon_state = "tray"
-	desc = "A metal tray to lay food on."
 	throwforce = 12
 	throwforce = 10
 	throw_speed = SPEED_FAST
@@ -214,7 +266,7 @@
 	var/cooldown = 0
 
 /obj/item/tool/kitchen/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
-	to_chat(user, SPAN_WARNING("You accidentally slam yourself with the [src]!"))
+	to_chat(user, SPAN_WARNING("You accidentally slam yourself with [src]!"))
 	user.apply_effect(1, WEAKEN)
 	user.take_limb_damage(2)
 

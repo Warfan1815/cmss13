@@ -28,7 +28,6 @@
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
-	lighting_use_dynamic = 1
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
@@ -46,7 +45,6 @@
 
 /area/ice_colony/exterior/surface
 	name = "\improper Ice Colony - Exterior Surface"
-	fake_zlevel = 1 // above ground
 	soundscape_playlist = SCAPE_PL_WIND
 
 //Equivalent of space. None of this area should be accessible. If these are valleys, make separate areas
@@ -58,7 +56,6 @@
 /area/ice_colony/exterior/surface/landing_pad
 	name = "\improper Aerodrome Landing Pad"
 	icon_state = "landing_pad"
-	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
@@ -72,7 +69,6 @@
 /area/ice_colony/exterior/surface/landing_pad_external
 	name = "\improper Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
-	is_resin_allowed = FALSE
 	minimap_color = MINIMAP_AREA_LZ
 
 //Aerodrome Container Yard
@@ -153,7 +149,6 @@
 	name = "\improper Ice Colony - Exterior Underground"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
-	fake_zlevel = 2 // underground
 	ambience_exterior = null
 //
 // Caves
@@ -189,7 +184,6 @@
 	name = "\improper Ice Colony - Built Surface"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
-	fake_zlevel = 1 // above ground
 
 /*
  * Surface - Bar
@@ -359,7 +353,6 @@
 
 /area/ice_colony/surface/hangar/hallway
 	name = "\improper Aerodrome Hangar Hallway"
-	is_resin_allowed = FALSE
 
 /area/ice_colony/surface/hangar/alpha
 	name = "\improper Aerodrome Hangar 'Alpha'"
@@ -368,7 +361,6 @@
 /area/ice_colony/surface/hangar/beta
 	name = "\improper Aerodrome Hangar 'Beta'"
 	icon_state = "hangar_beta"
-	is_resin_allowed = FALSE
 
 /area/ice_colony/surface/hangar/checkpoint
 	name = "\improper Aerodrome Hangar Security Checkpoint"
@@ -485,7 +477,6 @@
 	name = "\improper Ice Colony - Built Underground"
 	icon_state = "explored"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	fake_zlevel = 2 // underground
 	ambience_exterior = AMBIENCE_ALMAYER
 	ceiling_muffle = FALSE
 	sound_environment = SOUND_ENVIRONMENT_ROOM
@@ -634,7 +625,6 @@
 /area/ice_colony/underground/maintenance/north
 	name = "\improper Underground Northern Maintenance"
 	icon_state = "asmaint"
-	is_resin_allowed = FALSE
 
 /*
  * Underground - Medbay
@@ -695,7 +685,6 @@
 /area/ice_colony/underground/requesition
 	name = "\improper Underground Requesitions"
 	icon_state = "quart"
-	is_resin_allowed = FALSE
 
 /area/ice_colony/underground/requesition/lobby
 	name = "\improper Underground Requesitions Lobby"
@@ -708,7 +697,6 @@
 /area/ice_colony/underground/requesition/sec_storage
 	name = "\improper Underground Requesitions Secure Storage"
 	icon_state = "storage"
-	is_resin_allowed = TRUE
 
 /*
  * Underground - Research
@@ -776,7 +764,6 @@
 	name = "\improper Underground Hangar"
 	icon_state = "hangar"
 	ceiling = CEILING_NONE
-	is_resin_allowed = FALSE
 
 /*
  * Underground - Storage

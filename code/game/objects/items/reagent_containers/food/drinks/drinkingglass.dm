@@ -10,14 +10,14 @@
 	center_of_mass = "x=16;y=10"
 
 /obj/item/reagent_container/food/drinks/drinkingglass/on_reagent_change()
-	/*if(reagents.reagent_list.len > 1 )
+	/*if(length(reagents.reagent_list) > 1 )
 		icon_state = "glass_brown"
 		name = "Glass of Hooch"
 		desc = "Two or more drinks, mixed together."*/
-	/*else if(reagents.reagent_list.len == 1)
+	/*else if(length(reagents.reagent_list) == 1)
 		for(var/datum/reagent/R in reagents.reagent_list)
 			switch(R.id)*/
-	if (reagents.reagent_list.len > 0)
+	if (length(reagents.reagent_list) > 0)
 		//mrid = R.get_master_reagent_id()
 		var/datum/reagent/R = reagents.get_master_reagent()
 		switch(R.id)
@@ -682,18 +682,18 @@
 
 	return
 
-/obj/item/reagent_container/food/drinks/drinkingglass/bullet_act(obj/item/projectile/P)
+/obj/item/reagent_container/food/drinks/drinkingglass/bullet_act(obj/projectile/P)
 	. = ..()
 	smash()
 
 /obj/item/reagent_container/food/drinks/drinkingglass/proc/smash(mob/living/target, mob/living/user)
-	var/obj/item/weapon/melee/broken_glass/B
+	var/obj/item/weapon/broken_glass/B
 	if(user)
 		user.temp_drop_inv_item(src)
-		B = new /obj/item/weapon/melee/broken_glass(user.loc)
+		B = new /obj/item/weapon/broken_glass(user.loc)
 		user.put_in_active_hand(B)
 	else
-		B = new /obj/item/weapon/melee/broken_glass(src.loc)
+		B = new /obj/item/weapon/broken_glass(src.loc)
 	if(prob(33))
 		if(target)
 			new/obj/item/shard(target.loc) // Create a glass shard at the target's location!

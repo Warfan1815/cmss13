@@ -42,16 +42,21 @@
 		var/detected
 		for(var/DT in objects_to_detect)
 			if(istype(I, DT))
+				if(istype(I, /obj/item/storage/fancy/vials/random) && !length(I.contents))
+					break //We don't need to ping already looted containers
+				if(istype(I, /obj/item/reagent_container/glass/beaker/vial/random) && !I.reagents?.total_volume)
+					break //We don't need to ping already looted containers
 				detected = TRUE
 			if(I.contents)
 				for(var/obj/item/CI in I.contents)
 					if(istype(CI, DT))
+						if(istype(CI, /obj/item/storage/fancy/vials/random) && !length(CI.contents))
+							break
+						if(istype(CI, /obj/item/reagent_container/glass/beaker/vial/random) && !CI.reagents?.total_volume)
+							break
 						detected = TRUE
-						break
 			if(human_user && detected)
 				show_blip(human_user, I)
-			if(detected)
-				break
 
 		if(detected)
 			detected_sound = TRUE
@@ -65,14 +70,15 @@
 		if(M == loc) continue //device user isn't detected
 		if((isxeno(M) || isyautja(M)) && M.stat == DEAD )
 			detected = TRUE
-		else if(ishuman(M) && M.stat == DEAD && M.contents.len)
+		else if(ishuman(M) && M.stat == DEAD && length(M.contents))
 			for(var/obj/I in M.contents_twice())
 				for(var/DT in objects_to_detect)
 					if(istype(I, DT))
+						if(istype(I, /obj/item/storage/fancy/vials/random) && !length(I.contents))
+							break
+						if(istype(I, /obj/item/reagent_container/glass/beaker/vial/random) && !I.reagents?.total_volume)
+							break
 						detected = TRUE
-						break
-				if(detected)
-					break
 
 		if(human_user && detected)
 			show_blip(human_user, M)

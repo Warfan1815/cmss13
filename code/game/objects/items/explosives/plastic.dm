@@ -3,19 +3,23 @@
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/items/assemblies.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/tools_righthand.dmi',
+	)
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = SIZE_SMALL
 	allowed_sensors = list(/obj/item/device/assembly/prox_sensor, /obj/item/device/assembly/signaller, /obj/item/device/assembly/timer)
 	max_container_volume = 180
-	reaction_limits = list( "max_ex_power" = 260, "base_ex_falloff" = 90, "max_ex_shards" = 64,
-							"max_fire_rad" = 6, "max_fire_int" = 26, "max_fire_dur" = 30,
+	reaction_limits = list( "max_ex_power" = 280, "base_ex_falloff" = 120, "max_ex_shards" = 100,
+							"max_fire_rad" = 4, "max_fire_int" = 50, "max_fire_dur" = 20,
 							"min_fire_rad" = 2, "min_fire_int" = 4, "min_fire_dur" = 5
 	)
 
 	var/deploying_time = 50
-	var/penetration = 1.5 // How much damage adjacent walls receive
+	var/penetration = 2 // How much damage adjacent walls receive
 	var/timer = 10 // detonation time
 	var/min_timer = 10
 	var/atom/plant_target = null //which atom the plstique explosive is planted on
@@ -24,9 +28,12 @@
 	var/list/breachable = list(/obj/structure/window, /turf/closed, /obj/structure/machinery/door, /obj/structure/mineral_door , /obj/structure/cargo_container)
 	antigrief_protection = TRUE //Should it be checked by antigrief?
 
+	var/req_skill = SKILL_ENGINEER
+	var/req_skill_level = SKILL_ENGINEER_NOVICE
+
 /obj/item/explosive/plastic/Destroy()
 	disarm()
-	. = ..()
+	return ..()
 
 /obj/item/explosive/plastic/explosion_throw(severity, direction, scatter_multiplier)
 	if(active)
@@ -43,7 +50,7 @@
 	. = ..()
 
 /obj/item/explosive/plastic/attack_self(mob/user)
-	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
+	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_NOVICE))
 		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
 		return
 
@@ -62,17 +69,18 @@
 
 /obj/item/explosive/plastic/afterattack(atom/target, mob/user, flag)
 	setDir(get_dir(user, target))
-	if(antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(src, user))
-		to_chat(user, SPAN_WARNING("\The [name]'s safe-area accident inhibitor prevents you from planting it!"))
-		msg_admin_niche("[key_name(user)] attempted to prime \a [name] in [get_area(src)] (<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>)")
-		return
 
 	if(user.action_busy || !flag)
 		return
-	if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
+	if(!skillcheck(user, req_skill, req_skill_level))
 		to_chat(user, SPAN_WARNING("You don't seem to know how to use [src]..."))
 		return
 	if(!can_place(user, target))
+		return
+
+	if(antigrief_protection && user.faction == FACTION_MARINE && explosive_antigrief_check(src, user))
+		to_chat(user, SPAN_WARNING("[name]'s safe-area accident inhibitor prevents you from planting it!"))
+		msg_admin_niche("[key_name(user)] attempted to prime \a [name] in [get_area(src)] [ADMIN_JMP(src.loc)]")
 		return
 
 	user.visible_message(SPAN_WARNING("[user] is trying to plant [name] on [target]!"),
@@ -105,10 +113,10 @@
 		var/mob/M = target
 		to_chat(M, FONT_SIZE_HUGE(SPAN_DANGER("[user] plants [name] on you!")))
 		user.attack_log += "\[[time_stamp()]\] <font color='red'> [key_name(user)] successfully planted [name] on [key_name(target)]</font>"
-		msg_admin_niche("[key_name(user, user.client)](<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminmoreinfo;extra=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminmoreinfo;extra=\ref[target]'>?</A>) with [timer] second fuse")
+		msg_admin_niche("[key_name(user, user.client)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 		log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 	else
-		msg_admin_niche("[key_name(user, user.client)](<A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminmoreinfo;extra=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=admin_holder;[HrefToken(forceGlobal = TRUE)];adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse")
+		msg_admin_niche("[key_name(user, user.client)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] [ADMIN_JMP(target)] with [timer] second fuse")
 		log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
 	if(customizable)
@@ -155,7 +163,9 @@
 		plant_target.overlays -= overlay
 		qdel(overlay)
 		plant_target.contents -= src
-		forceMove(get_turf(plant_target))
+		var/turf/plant_turf = get_turf(plant_target)
+		if(plant_turf)
+			forceMove(plant_turf)
 	plant_target = null
 	if(customizable)
 		if(active) //deactivate
@@ -181,7 +191,7 @@
 
 	//vehicle interior stuff checks
 	if(SSinterior.in_interior(target))
-		to_chat(user, SPAN_WARNING("It's too cramped in here to deploy \the [src]."))
+		to_chat(user, SPAN_WARNING("It's too cramped in here to deploy [src]."))
 		return FALSE
 
 	if(istype(target, /obj/effect) || istype(target, /obj/structure/machinery))
@@ -192,7 +202,7 @@
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/W = target
 		if(W.hull)
-			to_chat(user, SPAN_WARNING("You are unable to stick \the [src] to the [W]!"))
+			to_chat(user, SPAN_WARNING("You are unable to stick [src] to [W]!"))
 			return FALSE
 
 	if(istype(target, /obj/structure/window))
@@ -202,6 +212,9 @@
 			return FALSE
 
 	if(ishuman(target))
+		if(SSticker.mode && MODE_HAS_MODIFIER(/datum/gamemode_modifier/no_body_c4))
+			to_chat(user, SPAN_WARNING("This feels wrong, you do not want to do it."))
+			return FALSE
 		var/mob/living/carbon/human/H = target
 		if(user.faction == H.faction)
 			to_chat(user, SPAN_WARNING("ARE YOU OUT OF YOUR MIND?!"))
@@ -209,23 +222,6 @@
 
 	if(customizable && assembly_stage < ASSEMBLY_LOCKED)
 		return FALSE
-
-	return TRUE
-
-/obj/item/explosive/plastic/breaching_charge/can_place(mob/user, atom/target)
-	if(!is_type_in_list(target, breachable))//only items on the list are allowed
-		to_chat(user, SPAN_WARNING("You cannot plant \the [name] on \the [target]!"))
-		return FALSE
-
-	if(SSinterior.in_interior(target))// vehicle checks again JUST IN CASE
-		to_chat(user, SPAN_WARNING("It's too cramped in here to deploy \the [src]."))
-		return FALSE
-
-	if(istype(target, /obj/structure/window))//no breaching charges on the briefing windows / brig / CIC e.e
-		var/obj/structure/window/W = target
-		if(W.not_damageable)
-			to_chat(user, SPAN_WARNING("[W] is much too tough for you to do anything to it with [src].")) //On purpose to mimic wall message
-			return FALSE
 
 	return TRUE
 
@@ -311,18 +307,11 @@
 	cell_explosion(target_turf, 120, 30, EXPLOSION_FALLOFF_SHAPE_LINEAR, null, cause_data)
 	qdel(src)
 
-/obj/item/explosive/plastic/breaching_charge/handle_explosion(turf/target_turf, dir, cause_data)
-	var/explosion_target = get_step(target_turf, dir)
-	create_shrapnel(explosion_target, 40, dir, angle,/datum/ammo/bullet/shrapnel/metal, cause_data)
-	sleep(1)// prevents explosion from eating shrapnel
-	cell_explosion(target_turf, 60, 60, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, dir, cause_data)
-	qdel(src)
-
 /obj/item/explosive/plastic/proc/delayed_prime(turf/target_turf)
 	prime(TRUE)
 
 /obj/item/explosive/plastic/custom
-	name = "Custom plastic explosive"
+	name = "custom plastic explosive"
 	desc = "A custom plastic explosive."
 	icon_state = "custom_plastic_explosive"
 	overlay_image = "custom_plastic_explosive_sensing"
@@ -341,3 +330,72 @@
 	min_timer = 3
 	penetration = 0.60
 	deploying_time = 10
+	var/shrapnel_volume = 40
+	var/shrapnel_type = /datum/ammo/bullet/shrapnel/metal
+	var/explosion_strength = 60
+
+/obj/item/explosive/plastic/breaching_charge/can_place(mob/user, atom/target)
+	if(!is_type_in_list(target, breachable))//only items on the list are allowed
+		to_chat(user, SPAN_WARNING("You cannot plant [name] on [target]!"))
+		return FALSE
+
+	if(SSinterior.in_interior(target))// vehicle checks again JUST IN CASE
+		to_chat(user, SPAN_WARNING("It's too cramped in here to deploy [src]."))
+		return FALSE
+
+	if(istype(target, /obj/structure/window))//no breaching charges on the briefing windows / brig / CIC e.e
+		var/obj/structure/window/window = target
+		if(window.not_damageable)
+			to_chat(user, SPAN_WARNING("[window] is much too tough for you to do anything to it with [src].")) //On purpose to mimic wall message
+			return FALSE
+
+	if(istype(target, /turf/closed/wall))
+		var/turf/closed/wall/targeted_wall = target
+		if(targeted_wall.hull)
+			to_chat(user, SPAN_WARNING("You are unable to stick [src] to [targeted_wall]!"))
+			return FALSE
+
+	return TRUE
+
+/obj/item/explosive/plastic/breaching_charge/handle_explosion(turf/target_turf, dir, cause_data)
+	var/explosion_target = get_step(target_turf, dir)
+	create_shrapnel(explosion_target, shrapnel_volume, dir, angle, shrapnel_type, cause_data)
+	addtimer(CALLBACK(src, PROC_REF(trigger_explosion), target_turf, dir, cause_data), 1)
+
+/obj/item/explosive/plastic/breaching_charge/proc/trigger_explosion(turf/target_turf, dir, cause_data)
+	cell_explosion(target_turf, explosion_strength, explosion_strength, EXPLOSION_FALLOFF_SHAPE_EXPONENTIAL, dir, cause_data)
+	qdel(src)
+
+/obj/item/explosive/plastic/breaching_charge/rubber
+	name = "X17 riot charge"
+	desc = "An explosive device used to break into areas while protecting the user from the blast. Unlike the standard breaching charge, the X17 deploys a cone spray of rubber pellets to incapacitate rather than kill."
+	icon_state = "riot-charge"
+	overlay_image = "riot-active"
+	shrapnel_volume = 20
+	shrapnel_type = /datum/ammo/bullet/shrapnel/rubber
+	req_skill = SKILL_POLICE
+	req_skill_level = SKILL_POLICE_SKILLED
+	antigrief_protection = FALSE
+
+/obj/item/explosive/plastic/breaching_charge/plasma
+	name = "plasma charge"
+	desc = "An alien explosive device. Who knows what it might do."
+	icon_state = "plasma-charge"
+	overlay_image = "plasma-active"
+	w_class = SIZE_SMALL
+	angle = 55
+	timer = 5
+	min_timer = 5
+	penetration = 0.60
+	deploying_time = 10
+	flags_item = NOBLUDGEON|ITEM_PREDATOR
+	shrapnel_volume = 10
+	shrapnel_type = /datum/ammo/bullet/shrapnel/plasma
+	explosion_strength = 90
+
+/obj/item/explosive/plastic/breaching_charge/plasma/can_place(mob/user, atom/target)
+	if(!HAS_TRAIT(user, TRAIT_YAUTJA_TECH))
+		to_chat(user, SPAN_WARNING("You don't quite understand how the device works..."))
+		return FALSE
+	. = ..()
+

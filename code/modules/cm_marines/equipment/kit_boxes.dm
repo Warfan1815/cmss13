@@ -2,13 +2,14 @@
 //******************************************Spec Kits****************************************************************/
 
 /obj/item/storage/box/spec
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "kit_case"
 	var/kit_overlay = null
 	w_class = SIZE_HUGE
 	storage_slots = 14
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	max_w_class = 0
 	foldable = null
 
 /obj/item/storage/box/spec/update_icon()
@@ -65,6 +66,26 @@
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+	new /obj/item/facepaint/sniper(src)
+	// spotter
+	new /obj/item/storage/box/kit/spotter(src)
+
+/obj/item/storage/box/spec/sniper/anti_materiel/fill_preset_inventory()
+	name = "\improper AMR equipment case"
+	desc = "A large case containing an experimental XM43E1, a set of M45 ghillie armor and helmet, an M42 scout sight, ammunition, a set of spotter gear, and additional pieces of equipment.\nDrag this sprite onto yourself to open it up! NOTE: You cannot put items back inside this case."
+	new /obj/item/clothing/suit/storage/marine/ghillie(src)
+	new /obj/item/clothing/head/helmet/marine/ghillie(src)
+	new /obj/item/clothing/glasses/night/m42_night_goggles(src)
+	new /obj/item/weapon/gun/rifle/sniper/XM43E1(src)
+	new /obj/item/ammo_magazine/sniper/anti_materiel(src)
+	new /obj/item/ammo_magazine/sniper/anti_materiel(src)
+	new /obj/item/ammo_magazine/sniper/anti_materiel(src)
+	new /obj/item/ammo_magazine/sniper/anti_materiel(src)
+	new /obj/item/ammo_magazine/sniper/anti_materiel(src)
+	new /obj/item/storage/backpack/marine/smock(src)
+	new /obj/item/weapon/gun/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
 	new /obj/item/facepaint/sniper(src)
 	// spotter
 	new /obj/item/storage/box/kit/spotter(src)
@@ -157,13 +178,23 @@
 /obj/item/spec_kit
 	name = "specialist kit"
 	desc = "A paper box. Open it and get a specialist kit."
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "spec_kit"
 	var/list/allowed_roles_list = list(JOB_SQUAD_SPECIALIST, JOB_WO_SQUAD_SPECIALIST, JOB_WO_CREWMAN)
 
+	///Used for cryo specs who already have "foxtrot" appended to their ID assignments
+	var/squad_assignment_update = TRUE
+
 //this one is delivered via ASRS as a reward for DEFCON/techwebs/whatever else we will have
-/obj/item/spec_kit/asrs
+/obj/item/spec_kit/rifleman
+	squad_assignment_update = FALSE
 	allowed_roles_list = list(JOB_SQUAD_MARINE, JOB_WO_SQUAD_MARINE)
+
+/obj/item/spec_kit/rifleman/jobless
+	allowed_roles_list = list()
+
+/obj/item/spec_kit/cryo
+	squad_assignment_update = FALSE
 
 /obj/item/spec_kit/get_examine_text(mob/user)
 	. = ..()
@@ -201,88 +232,70 @@
 
 	for(var/allowed_role in allowed_roles_list)
 		if(user.job == allowed_role)
-			if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_DEFAULT) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
+			if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_TRAINED) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
+				to_chat(user, SPAN_WARNING("You already have specialization, give this kit to someone else!"))
+				return FALSE
+			return TRUE
+
+/obj/item/spec_kit/rifleman/can_use(mob/living/carbon/human/user)
+	if(!length(allowed_roles_list))
+		return TRUE
+
+	for(var/allowed_role in allowed_roles_list)
+		if(user.job == allowed_role)//Alternate check to normal kit as this is distributed to people without SKILL_SPEC_TRAINED.
+			if(skillcheck(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_KITTED) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
 				to_chat(user, SPAN_WARNING("You already have specialization, give this kit to someone else!"))
 				return FALSE
 			return TRUE
 
 /obj/item/spec_kit/proc/select_and_spawn(mob/living/carbon/human/user)
-	var/selection = tgui_input_list(user, "Pick your specialist equipment type.", "Specialist Kit Selection", available_specialist_kit_boxes)
+	var/list/available_specialist_kits = list()
+	for(var/path in GLOB.specialist_set_datums)
+		var/datum/specialist_set/specset = GLOB.specialist_set_datums[path]
+		if(specset.get_available_kit_num() >= 1)
+			available_specialist_kits += specset.get_name()
+
+	var/selection = tgui_input_list(user, "Pick your specialist equipment type.", "Specialist Kit Selection", available_specialist_kits, 10 SECONDS)
 	if(!selection || QDELETED(src))
 		return FALSE
-	if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_DEFAULT) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
+	if(!skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_TRAINED) && !skillcheckexplicit(user, SKILL_SPEC_WEAPONS, SKILL_SPEC_ALL))
 		to_chat(user, SPAN_WARNING("You already unwrapped your [name], give this one to someone else!"))
-		return
-	if(!available_specialist_kit_boxes[selection] || available_specialist_kit_boxes[selection] <= 0)
+		return FALSE
+	if(!GLOB.specialist_set_name_dict[selection] || (GLOB.specialist_set_name_dict[selection].get_available_kit_num() <= 0))
 		to_chat(user, SPAN_WARNING("No more kits of this type may be chosen!"))
 		return FALSE
-	var/obj/item/card/id/ID = user.wear_id
-	if(!istype(ID) || ID.registered_ref != WEAKREF(user))
+	var/obj/item/card/id/card = user.get_idcard()
+	if(!card || card.registered_ref != WEAKREF(user))
 		to_chat(user, SPAN_WARNING("You must be wearing your [SPAN_INFO("ID card")] or [SPAN_INFO("dog tags")] to select a specialization!"))
-		return
-	var/turf/T = get_turf(loc)
-	var/obj/item/storage/box/spec/spec_box
-	var/specialist_assignment
-	switch(selection)
-		if("Pyro")
-			spec_box = new /obj/item/storage/box/spec/pyro(T)
-			specialist_assignment = "Pyro"
-			user.skills.set_skill(SKILL_SPEC_WEAPONS, SKILL_SPEC_PYRO)
-		if("Grenadier")
-			spec_box = new /obj/item/storage/box/spec/heavy_grenadier(T)
-			specialist_assignment = "Grenadier"
-			user.skills.set_skill(SKILL_SPEC_WEAPONS, SKILL_SPEC_GRENADIER)
-		if("Sniper")
-			spec_box = new /obj/item/storage/box/spec/sniper(T)
-			specialist_assignment = "Sniper"
-			user.skills.set_skill(SKILL_SPEC_WEAPONS, SKILL_SPEC_SNIPER)
-		if("Scout")
-			spec_box = new /obj/item/storage/box/spec/scout(T)
-			specialist_assignment = "Scout"
-			user.skills.set_skill(SKILL_SPEC_WEAPONS, SKILL_SPEC_SCOUT)
-			//this is to be able to use C4s that are coming with the kit
-			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				user.skills.set_skill(SKILL_ENGINEER, SKILL_ENGINEER_TRAINED)
-		if("Demo")
-			spec_box = new /obj/item/storage/box/spec/demolitionist(T)
-			specialist_assignment = "Demo"
-			user.skills.set_skill(SKILL_SPEC_WEAPONS, SKILL_SPEC_ROCKET)
-			//this is to be able to use C4s that are coming with the kit
-			if(!skillcheck(user, SKILL_ENGINEER, SKILL_ENGINEER_TRAINED))
-				user.skills.set_skill(SKILL_ENGINEER, SKILL_ENGINEER_TRAINED)
-	if(specialist_assignment)
-		user.put_in_hands(spec_box)
-		ID.set_assignment((user.assigned_squad ? (user.assigned_squad.name + " ") : "") + ID.assignment + " ([specialist_assignment])")
-		GLOB.data_core.manifest_modify(user.real_name, WEAKREF(user), ID.assignment)
-		return TRUE
-	return FALSE
+		return FALSE
+	return GLOB.specialist_set_name_dict[selection].redeem_set(user, TRUE)
 
 
 //******************************************PFC Kits****************************************************************/
 
 /obj/item/storage/box/kit
-	icon = 'icons/obj/items/storage.dmi'
+	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "pro_case_mini"//to-do redo these sprites, they're out of date by current standards
 	w_class = SIZE_HUGE
 	storage_slots = 12
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = TRUE
+	ground_offset_x = 5
+	ground_offset_y = 5
 	var/pro_case_overlay
 
 /obj/item/storage/box/kit/Initialize()
 	. = ..()
-	pixel_x = rand(-5, 5)
-	pixel_y = rand(-5, 5)
 	if(pro_case_overlay)
-		overlays += image('icons/obj/items/storage.dmi', "+[pro_case_overlay]")
+		overlays += image('icons/obj/items/storage/kits.dmi', "+[pro_case_overlay]")
 
 /obj/item/storage/box/kit/update_icon()
-	if(!contents.len)
+	if(!length(contents))
 		qdel(src)
 /obj/item/storage/box/kit/mou53_sapper
 	name = "\improper M-OU53 Field Test Kit"
-	pro_case_overlay = "mou53"
+	pro_case_overlay = "dots"
 
 /obj/item/storage/box/kit/mou53_sapper/fill_preset_inventory()
 	new /obj/item/weapon/gun/shotgun/double/mou53(src)
@@ -310,7 +323,7 @@
 
 /obj/item/storage/box/kit/machinegunner
 	name = "\improper M2C Heavy Gunner Kit"
-	pro_case_overlay = "hmg"
+	pro_case_overlay = "dots"
 
 /obj/item/storage/box/kit/machinegunner/fill_preset_inventory()
 	new /obj/item/storage/box/m56d/m2c(src)
@@ -324,7 +337,7 @@
 /obj/item/storage/box/kit/defensegunner
 	name = "\improper M56D Defense Gunner Kit"
 	icon_state = "pro_case_large"
-	pro_case_overlay = "m56d"
+	pro_case_overlay = "dots"
 
 /obj/item/storage/box/kit/defensegunner/fill_preset_inventory()
 	new /obj/item/storage/box/m56d_hmg(src)
@@ -360,6 +373,17 @@
 	new /obj/item/ammo_magazine/rifle/m4ra/ap(src)
 	new /obj/item/ammo_magazine/rifle/m4ra/ap(src)
 
+/obj/item/storage/box/kit/m41a_kit
+	name = "\improper M41A Rifle Kit"
+	pro_case_overlay = "pursuit"
+
+/obj/item/storage/box/kit/m41a_kit/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/m41a(src)
+	new /obj/item/attachable/angledgrip(src)
+	new /obj/item/attachable/suppressor(src)
+	new /obj/item/attachable/extended_barrel(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
 
 /obj/item/storage/box/kit/heavy_support
 	name = "\improper Forward HPR Shield Kit"
@@ -369,7 +393,6 @@
 	new /obj/item/weapon/gun/rifle/lmg(src)
 	new /obj/item/ammo_magazine/rifle/lmg(src)
 	new /obj/item/ammo_magazine/rifle/lmg/holo_target(src)
-	new /obj/item/attachable/bipod(src)
 	new /obj/item/stack/folding_barricade/three(src)
 	new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/tool/weldingtool(src)
@@ -412,7 +435,7 @@
 	new /obj/item/pamphlet/skill/medical(src)
 	new /obj/item/storage/pouch/first_responder/full(src)
 	new /obj/item/storage/pouch/autoinjector/full(src)
-	new /obj/item/clothing/glasses/hud/sensor(src)
+	new /obj/item/device/helmet_visor/medical(src)
 	new /obj/item/roller(src)
 
 
@@ -427,23 +450,22 @@
 	new /obj/item/storage/box/m94/signal(src)
 	new /obj/item/device/binoculars/range/designator(src)
 	new /obj/item/device/encryptionkey/jtac(src)
-	new /obj/item/storage/backpack/marine/satchel/rto/small(src)
-
+	new /obj/item/storage/backpack/marine/satchel/rto(src)
 
 /obj/item/storage/box/kit/mini_intel
 	name = "\improper Field Intelligence Support Kit"
-	pro_case_overlay = "intel"
+	pro_case_overlay = "jtac"
 
 /obj/item/storage/box/kit/mini_intel/fill_preset_inventory()
 	new /obj/item/stack/fulton(src)
 	new /obj/item/device/encryptionkey/intel(src)
 	new /obj/item/pamphlet/skill/intel(src)
 	new /obj/item/device/motiondetector/intel(src)
-	new /obj/item/storage/pouch/document/small(src)
+	new /obj/item/storage/pouch/document(src)
 
 /obj/item/storage/box/kit/mini_grenadier
 	name = "\improper Frontline M40 Grenadier Kit"
-	pro_case_overlay = "grenadier"
+	pro_case_overlay = "engi"
 
 /obj/item/storage/box/kit/mini_grenadier/fill_preset_inventory()
 	new /obj/item/storage/belt/grenade/full(src)
@@ -468,7 +490,7 @@
 	name = "\improper Cryo Self Defense Kit"
 	desc = "A basic self-defense kit reserved for emergencies. As you might expect, not much care was put into keeping the stock fresh, who would be insane enough to attack a USCM ship directly?"
 	icon_state = "cryo_defense_kit"
-	storage_slots = 2
+	storage_slots = 4
 
 /obj/item/storage/box/kit/cryo_self_defense/update_icon()
 	if(LAZYLEN(contents))
@@ -479,11 +501,12 @@
 /obj/item/storage/box/kit/cryo_self_defense/fill_preset_inventory()
 	new /obj/item/weapon/gun/pistol/mod88/flashlight(src)
 	new /obj/item/attachable/bayonet(src)
+	new /obj/item/tool/crowbar/red(src)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks", "chicken tender"))
 
 /obj/item/storage/box/kit/exp_trooper
 	name = "\improper Experimental Trooper Kit"
-	pro_case_overlay = "smart"
+	pro_case_overlay = "crayon"
 
 /obj/item/storage/box/kit/exp_trooper/fill_preset_inventory()
 	new /obj/item/weapon/gun/pistol/smart(src)
@@ -498,7 +521,7 @@
 
 /obj/item/storage/box/kit/honorguard
 	name = "\improper Honor Guard Kit"
-	pro_case_overlay = "honor_guard"
+	pro_case_overlay = "shield"
 
 /obj/item/storage/box/kit/honorguard/fill_preset_inventory()
 	new /obj/item/device/radio/headset/almayer/marine/mp_honor(src)
@@ -522,6 +545,34 @@
 	new /obj/item/device/binoculars/range/designator/spotter(src)
 	new /obj/item/pamphlet/skill/spotter(src)
 
+/obj/item/storage/box/kit/k9_handler/mp
+	name = "\improper Police K9 handler Kit"
+	desc = "Contains the equipment needed for a Police K9 Handler to perform their duties."
+	pro_case_overlay = "k9_handler"
+
+/obj/item/storage/box/kit/k9_handler/mp/fill_preset_inventory()
+	new /obj/item/device/k9_scanner(src)
+	new /obj/item/storage/firstaid/synth(src)
+	new /obj/item/device/helmet_visor/welding_visor(src)
+	new /obj/item/device/binoculars(src)
+	new /obj/item/pamphlet/skill/k9_handler(src)
+	new /obj/item/storage/box/evidence(src)
+	new /obj/item/restraint/handcuffs(src)
+	new /obj/item/reagent_container/spray/pepper(src)
+
+/obj/item/storage/box/kit/k9_handler/corpsman
+	name = "\improper Medical K9 handler Kit"
+	desc = "Contains the equipment needed for a Medical K9 Handler to perform their duties."
+	pro_case_overlay = "k9_handler"
+
+/obj/item/storage/box/kit/k9_handler/corpsman/fill_preset_inventory()
+	new /obj/item/device/k9_scanner(src)
+	new /obj/item/storage/firstaid/synth(src)
+	new /obj/item/device/helmet_visor/welding_visor(src)
+	new /obj/item/device/binoculars(src)
+	new /obj/item/pamphlet/skill/k9_handler(src)
+	new /obj/item/storage/pouch/autoinjector/full(src)
+
 /obj/item/storage/box/kit/engineering_supply_kit
 	name = "\improper Engineering Supply Kit"
 
@@ -529,3 +580,16 @@
 	new /obj/item/storage/pouch/construction/low_grade_full(src)
 	new /obj/item/storage/pouch/electronics/full(src)
 	new /obj/item/clothing/glasses/welding(src)
+
+
+/obj/item/storage/box/kit/UPP_leader_AR
+	name = "\improper Type 71-F Rifle Kit"
+	pro_case_overlay = "pursuit"
+
+/obj/item/storage/box/kit/UPP_leader_AR/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/type71/flamer(src)
+	new /obj/item/attachable/reflex(src)
+	new /obj/item/attachable/suppressor(src)
+	new /obj/item/attachable/extended_barrel(src)
+	new /obj/item/ammo_magazine/rifle/type71/ap(src)
+	new /obj/item/ammo_magazine/rifle/type71/ap(src)

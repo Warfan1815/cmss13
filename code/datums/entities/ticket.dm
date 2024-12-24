@@ -33,6 +33,9 @@ BSQL_PROTECT_DATUM(/datum/entity/ticket)
 	ticket_ent.sender = sender
 	ticket_ent.urgent = urgent
 	ticket_ent.time = time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")
-	ticket_ent.round_id = SSperf_logging.round?.id
+	ticket_ent.round_id = GLOB.round_id
 	ticket_ent.save()
 	ticket_ent.detach()
+
+	REDIS_PUBLISH("byond.ticket", "ticket-id" = ticket, "action" = action, "message" = message, "recipient" = recipient, "sender" = sender, "urgent" = urgent)
+

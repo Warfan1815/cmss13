@@ -1,7 +1,7 @@
 /obj/structure/dispenser
 	name = "tank storage unit"
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/tank_dispenser.dmi'
 	icon_state = "dispenser"
 	density = TRUE
 	anchored = TRUE
@@ -95,7 +95,7 @@
 		if(href_list["oxygen"])
 			if(oxygentanks > 0)
 				var/obj/item/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
+				if(length(oxytanks) == oxygentanks)
 					O = oxytanks[1]
 					oxytanks.Remove(O)
 				else
@@ -107,7 +107,7 @@
 		if(href_list["phoron"])
 			if(phorontanks > 0)
 				var/obj/item/tank/phoron/P
-				if(platanks.len == phorontanks)
+				if(length(platanks) == phorontanks)
 					P = platanks[1]
 					platanks.Remove(P)
 				else

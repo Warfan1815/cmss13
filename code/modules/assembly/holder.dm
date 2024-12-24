@@ -1,6 +1,10 @@
 /obj/item/device/assembly_holder
 	name = "Assembly"
 	icon = 'icons/obj/items/new_assemblies.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_righthand.dmi',
+	)
 	icon_state = "holder"
 	item_state = "assembly"
 	flags_atom = FPRINT|CONDUCT
@@ -151,9 +155,13 @@
 			to_chat(user, SPAN_DANGER("Assembly part missing!"))
 			return
 		if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-			switch(alert("Which side would you like to use?",,"Left","Right"))
-				if("Left") a_left.attack_self(user)
-				if("Right") a_right.attack_self(user)
+			var/response = tgui_alert(user, "Which side would you like to use?", "Side selection", list("Left","Right"))
+			if(response && (user.l_hand == src || user.r_hand == src))
+				switch(response)
+					if("Left")
+						a_left.attack_self(user)
+					if("Right")
+						a_right.attack_self(user)
 			return
 		else
 			if(!istype(a_left,/obj/item/device/assembly/igniter))

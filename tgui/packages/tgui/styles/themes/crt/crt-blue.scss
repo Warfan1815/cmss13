@@ -8,7 +8,9 @@ $dark: #000011;
   $color-fg: $light
 );
 
-@use '../crt.scss';
+@use '../crt.scss' with (
+  $scrollbar-color-multiplier: 1
+);
 
 .theme-crtblue {
   @extend %theme-crt;
@@ -31,7 +33,7 @@ $dark: #000011;
   .Button.ConfirmButton {
     animation: blueConfirmFlicker 5s infinite;
     &:hover {
-      animation:none;
+      animation: none;
     }
   }
 }

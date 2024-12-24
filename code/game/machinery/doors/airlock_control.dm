@@ -122,17 +122,6 @@
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
-
-/obj/structure/machinery/door/airlock/open(surpress_send)
-	. = ..()
-	if(!surpress_send) send_status()
-
-
-/obj/structure/machinery/door/airlock/close(surpress_send)
-	. = ..()
-	if(!surpress_send) send_status()
-
-
 /obj/structure/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	if(new_frequency)
@@ -218,7 +207,7 @@
 /obj/structure/machinery/airlock_sensor/Destroy()
 	stop_processing()
 	SSradio.remove_object(src, frequency)
-	QDEL_NULL(radio_connection)
+	radio_connection = null
 	return ..()
 
 /obj/structure/machinery/airlock_sensor/airlock_interior
@@ -284,7 +273,7 @@
 
 /obj/structure/machinery/access_button/Destroy()
 	SSradio.remove_object(src, frequency)
-	QDEL_NULL(radio_connection)
+	radio_connection = null
 	return ..()
 
 /obj/structure/machinery/access_button/airlock_interior

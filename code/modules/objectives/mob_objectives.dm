@@ -8,7 +8,8 @@
 	controller = TREE_MARINE
 	/// List of list of active corpses per tech-faction ownership
 	var/list/corpses = list()
-	var/list/scored_corpses = list()
+	var/list/scored_other_corpses = list()
+	var/list/scored_humansynth_corpses = list()
 
 /datum/cm_objective/recover_corpses/New()
 	. = ..()
@@ -33,6 +34,15 @@
 			var/mob/living/carbon/human/M = new /mob/living/carbon/human(spawnpoint)
 			M.create_hud() //Need to generate hud before we can equip anything apparently...
 			arm_equipment(M, spawner.equip_path, TRUE, FALSE)
+			for(var/obj/structure/bed/nest/found_nest in spawnpoint)
+				for(var/turf/the_turf in list(get_step(found_nest, NORTH),get_step(found_nest, EAST),get_step(found_nest, WEST)))
+					if(the_turf.density)
+						found_nest.dir = get_dir(found_nest, the_turf)
+						found_nest.pixel_x = found_nest.buckling_x["[found_nest.dir]"]
+						found_nest.pixel_y = found_nest.buckling_y["[found_nest.dir]"]
+						M.dir = get_dir(the_turf,found_nest)
+				if(!found_nest.buckled_mob)
+					found_nest.do_buckle(M,M)
 		objective_spawn_corpse.Remove(spawner)
 
 /datum/cm_objective/recover_corpses/post_round_start()
@@ -45,7 +55,7 @@
 		return
 
 	// This mob has already been scored before
-	if(LAZYISIN(scored_corpses, dead_mob))
+	if(LAZYISIN(scored_other_corpses, dead_mob) || LAZYISIN(scored_humansynth_corpses, dead_mob))
 		return
 
 	LAZYDISTINCTADD(corpses, dead_mob)
@@ -108,7 +118,11 @@
 				if(isqueen(X)) //Queen is Tier 0 for some reason...
 					value = OBJECTIVE_ABSOLUTE_VALUE
 
-	else if(ishumansynth_strict(target))
+	else if(ishumansynth_strict(target) && length(scored_humansynth_corpses) <= 48) // Limit human corpse recovery to 5 total points (.1 each)
+		return OBJECTIVE_LOW_VALUE
+
+	else if(ishumansynth_strict(target) && length(scored_humansynth_corpses) == 49)
+		marine_announcement("Maximum intel points for non-xenomorph corpses has been achieved.", "Intel Announcement", 'sound/misc/notice2.ogg')
 		return OBJECTIVE_LOW_VALUE
 
 	return value
@@ -132,7 +146,10 @@
 			award_points(corpse_val)
 
 			corpses -= target
-			scored_corpses += target
+			if(ishumansynth_strict(target))
+				scored_humansynth_corpses += target
+			else
+				scored_other_corpses += target
 
 			if (isxeno(target))
 				UnregisterSignal(target, COMSIG_XENO_REVIVED)

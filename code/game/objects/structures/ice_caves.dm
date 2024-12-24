@@ -35,11 +35,6 @@
 	icon_state = "Intersection"
 
 
-//Ice Secret Wall
-/obj/structure/ice/secret
-	icon_state = "ice_wall_0"
-	desc = "There is something inside..."
-
 //ROCK WALLS------------------------------//
 /obj/structure/ice/ice_rock
 	name = "Icy rock"

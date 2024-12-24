@@ -2,8 +2,10 @@
  * Chemistry defines
  */
 
+/// Amount of bottle icon variations in total
+#define BOTTLE_ICON_CHOICES 4
 /// Amount of random icon variations for pills in total
-#define PILL_ICON_CHOICES 21
+#define PILL_ICON_CHOICES 22
 /* Pill icon classes to generate mappings for */
 #define PILL_ICON_CLASSES list("bica", "kelo", "dex", "para", "tram", "atox", "tox", "inap", "peri", "spac", "drug", "stim", "alky", "imi", "qc", "tric", "psych", "oxy")
 
@@ -49,6 +51,7 @@
 
 // Nutrition levels
 #define NUTRITION_MAX 550
+#define NUTRITION_HIGH 540
 #define NUTRITION_NORMAL 400
 #define NUTRITION_LOW 250
 #define NUTRITION_VERYLOW 50
@@ -82,6 +85,7 @@
 #define CHEM_EFFECT_RESIST_NEURO (1<<1)
 #define CHEM_EFFECT_HYPER_THROTTLE (1<<2) //universal understand but not speech
 #define CHEM_EFFECT_ORGAN_STASIS (1<<3) //peri stabiliser
+#define CHEM_EFFECT_NO_BLEEDING (1<<4) //replacement for quickclot
 
 
 //Blood plasma
@@ -156,6 +160,8 @@
 #define PROPERTY_NEOGENETIC "neogenetic"
 #define PROPERTY_REPAIRING "repairing"
 #define PROPERTY_HEMOGENIC "hemogenic"
+#define PROPERTY_YAUTJA_HEMOGENIC "yautja-hemogenic"
+#define PROPERTY_HEMOSTATIC "hemostatic"
 #define PROPERTY_NERVESTIMULATING "nerve-stimulating"
 #define PROPERTY_MUSCLESTIMULATING "muscle-stimulating"
 #define PROPERTY_PAINKILLING "painkilling"
@@ -183,6 +189,7 @@
 #define PROPERTY_NEUROSHIELDING "neuroshielding"
 #define PROPERTY_ANTIADDICTIVE "anti-addictive"
 #define PROPERTY_ADDICTIVE "addictive"
+#define PROPERTY_ENCEPHALOPHRASIVE "encephalophrasive"
 //Legendary, only in gen_tier 3+
 #define PROPERTY_HYPERGENETIC "hypergenetic"
 #define PROPERTY_BOOSTING "boosting"
