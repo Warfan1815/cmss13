@@ -1,9 +1,9 @@
 /obj/docking_port/mobile/marine_dropship
-	width = 11
-	height = 21
+	width = 17
+	height = 24
 
-	dwidth = 5
-	dheight = 10
+	dwidth = 8
+	dheight = 13
 
 	preferred_direction = SOUTH
 	callTime = DROPSHIP_TRANSIT_DURATION
@@ -205,10 +205,10 @@
 
 /obj/docking_port/stationary/marine_dropship
 	dir = NORTH
-	width = 11
-	height = 21
-	dwidth = 5
-	dheight = 10
+	width = 17
+	height = 24
+	dwidth = 8
+	dheight = 13
 
 	var/list/landing_lights = list()
 	var/auto_open = FALSE
@@ -376,3 +376,69 @@
 	shuttle_id = DROPSHIP_DEVANA
 
 
+/// bespoke Ud6 shit
+/obj/structure/shuttle/part/underside
+	name = "UD-6 Undercarriage"
+	icon = 'icons/turf/mohawk/mohawk-underside.dmi'
+	icon_state = "ERROR"
+	opacity = FALSE
+	layer = ABOVE_XENO_LAYER
+
+/obj/structure/shuttle/part/underside/omaha
+	name = "UD-6 \"Omaha\" Undercarriage"
+
+/obj/effect/shuttle_carriage_deployer
+	icon = 'icons/turf/mohawk/mohawk-underside.dmi'
+	icon_state = "deployer"
+	invisibility = INVISIBILITY_ABSTRACT
+	name = "UD-6 carriage holder object"
+	/// The undercarriage shuttle part that this deployer holds; created on Init
+	var/obj/structure/shuttle/part/underside/underside = null
+	/// Whether or not the deployed piece should be dense;
+	var/underside_density = FALSE
+	/// The icon state of carriage piece for this deployer.
+	var/underside_icon_state = "ERROR"
+	/// A reference to the docking port this deployer is a part of, assigned at LateInit
+	var/obj/docking_port/mobile/marine_dropship/shuttle
+	/// The shuttle ID this deployer belongs to, used to assign shuttle
+	var/shuttle_id
+
+
+/obj/effect/shuttle_carriage_deployer/Initialize()
+	. = ..()
+	underside = new(src) // We want this to spawn in the deployer's contents and only get deployed as necessary.
+	return INITIALIZE_HINT_ROUNDSTART
+
+
+/obj/effect/shuttle_carriage_deployer/LateInitialize() // For some reason this is super fiddly about normal init, havent investigated yet.
+	. = ..()
+
+	underside.density = underside_density
+	underside.icon_state = underside_icon_state
+	shuttle = SSshuttle.getShuttle(shuttle_id)
+	RegisterSignal(shuttle, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(deploy_gear)) // Retract/Deploy the gear whenever the ship changes level.
+
+	deploy_gear() // Check whether the gear should be deployed or not once on init.
+
+
+/** /obj/effect/shuttle_carriage_deployer/proc/deploy_gear(source, old_z, new_z)
+ * Called on LateInitialize for the gear deployers, as well as any time the shuttle docking port they are linked to changes Z level.
+ * If there's no turf below the ship to put the gear on (for example you land it on a non-multi-z map), doesn't deploy it.
+ *
+ * args
+ * source - the shuttle docking port which performed the z transition, same as the shuttle var on the type, unused.
+ * old_z - the Z level the shuttle moved from, unused.
+ * new_z - the Z level the shuttle is moving to, unused.
+ */
+/obj/effect/shuttle_carriage_deployer/proc/deploy_gear(source, old_z, new_z)
+	var/turf/turf_below = SSmapping.get_turf_below(get_turf(src))
+	if(is_reserved_level(z) || !turf_below || turf_below.density) // If there's no opening below our landing spot, just keep the gear stowed.
+		underside.forceMove(src)
+		return
+
+	underside.forceMove(turf_below) // Else; put the gear on the level below the ship.
+
+
+/obj/effect/shuttle_carriage_deployer/omaha
+	name = "UD-6 Omaha Carriage Deployer"
+	shuttle_id = DROPSHIP_ALAMO

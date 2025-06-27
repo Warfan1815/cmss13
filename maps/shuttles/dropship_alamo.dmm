@@ -1,880 +1,2592 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aj" = (
-/obj/structure/machinery/camera/autoname/almayer/dropship_one{
-	dir = 4;
-	pixel_x = -16
-	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = -8
-	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = 8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"ax" = (
-/obj/structure/shuttle/part/dropship1/transparent/nose_center,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"be" = (
-/obj/structure/shuttle/part/dropship1/transparent/upper_right_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"bj" = (
-/obj/structure/shuttle/part/dropship1/transparent/nose_top_right,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"cr" = (
-/obj/structure/machinery/camera/autoname/almayer/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"cC" = (
-/obj/structure/shuttle/part/dropship1/nose_front_right,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"cR" = (
-/obj/item/device/radio/intercom/alamo{
-	pixel_y = 24
-	},
-/turf/open/shuttle/dropship/light_grey_top_left,
-/area/shuttle/drop1/sulaco)
-"de" = (
+"ah" = (
 /turf/closed/shuttle/dropship1{
-	icon_state = "42"
+	icon_state = "7,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"dU" = (
-/obj/structure/machinery/door_control{
-	name = "Dropship Lockdown";
-	pixel_y = -19;
-	id = "dropship_alamo";
-	throw_range = 15;
-	normaldoorcontrol = 3;
-	req_one_access_txt = "3;22"
+"ar" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,10";
+	underside_icon_state = "8,10"
 	},
-/turf/open/shuttle/dropship/light_grey_single_wide_left_to_right,
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
 /area/shuttle/drop1/sulaco)
-"eD" = (
-/obj/structure/shuttle/part/dropship1/transparent/engine_right_cap,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"hG" = (
+"as" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,4";
+	underside_icon_state = "4,4"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "75"
+	icon_state = "0,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"aX" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,14";
+	underside_icon_state = "4,14";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,12";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"bz" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,10";
+	underside_icon_state = "7,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"bB" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,15";
+	underside_icon_state = "9,15"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"cl" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,5";
+	underside_icon_state = "4,5";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"cm" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"cq" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,15";
+	underside_icon_state = "12,15";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,13";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"cs" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,7";
+	underside_icon_state = "12,7";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,5";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"cz" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,6";
+	underside_icon_state = "6,6"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"cF" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,9";
+	underside_icon_state = "11,9"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"dv" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,15";
+	underside_icon_state = "4,15";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,13";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"dA" = (
+/obj/structure/machinery/computer/shuttle/dropship/flight{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield-64x64.dmi';
+	icon_state = "left-window"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "6,21";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"dI" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,6";
+	underside_icon_state = "11,6";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"dT" = (
+/obj/structure/shuttle/part/dropship1/transparent/lower_right_wing{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield-64x64.dmi';
+	icon_state = "wingpoint-right";
+	pixel_y = -16
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,14";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ea" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "1,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ek" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "4,3";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"fb" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"fd" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,5";
+	underside_icon_state = "5,5";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"fj" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "4,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"fs" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "10,0";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"gg" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,16";
+	underside_icon_state = "4,16";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,14";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"gi" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "1,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"gj" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,17";
+	underside_icon_state = "8,17"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"gx" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,17";
+	underside_icon_state = "6,17"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"gG" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"hb" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,15";
+	underside_icon_state = "7,15"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"hv" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "15,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"hI" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "9,1";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"hV" = (
+/obj/structure/shuttle/part/dropship1/transparent/outer_left_weapons{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield.dmi';
+	icon_state = "hardpoint-left"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "4,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"hW" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,9";
+	underside_icon_state = "5,9"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"ie" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "8,1";
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
 "if" = (
-/obj/structure/shuttle/part/dropship1/left_outer_wing_connector,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"ig" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,13";
+	underside_icon_state = "6,13"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "24"
+	icon_state = "2,11";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"il" = (
+"iy" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,14";
+	underside_icon_state = "10,14"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"jh" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,3";
+	underside_icon_state = "8,3"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"js" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,5";
+	underside_icon_state = "8,5"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"jC" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,14";
+	underside_icon_state = "7,14"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"jP" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,12";
+	underside_icon_state = "7,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"jX" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,16";
+	underside_icon_state = "6,16"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"kk" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,7";
+	underside_icon_state = "6,7"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"km" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,12";
+	underside_icon_state = "10,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"kw" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,10";
+	underside_icon_state = "10,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"kO" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,14";
+	underside_icon_state = "12,14";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,12";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"kW" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,2";
+	underside_icon_state = "10,2"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"mh" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,14";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ml" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,18";
+	underside_icon_state = "6,18"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,16";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"mq" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,4";
+	underside_icon_state = "12,4"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"mA" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "12,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"mI" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,16";
+	underside_icon_state = "9,16"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"mQ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,3";
+	underside_icon_state = "5,3"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,1";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"na" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,11";
+	underside_icon_state = "7,11"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"nz" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,10";
+	underside_icon_state = "5,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"nB" = (
+/obj/structure/machinery/computer/shuttle/dropship/flight{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-controls.dmi';
+	icon_state = "flight-controls";
+	pixel_x = -17;
+	layer = 3;
+	pixel_y = -14
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"nU" = (
+/obj/docking_port/mobile/marine_dropship/alamo,
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,13";
+	underside_icon_state = "8,13"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "4,11";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"oa" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,9";
+	name = "\improper Omaha"
+	},
+/area/space)
+"oi" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "15,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"on" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,6";
+	underside_icon_state = "12,6";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,4";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"oq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "16,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ox" = (
+/obj/structure/machinery/computer/shuttle/dropship/flight{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield-64x64.dmi';
+	icon_state = "rightwindow"
+	},
+/obj/structure/machinery/computer/dropship_weapons/dropship1{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-controls.dmi';
+	icon_state = "system-monitor";
+	layer = 3;
+	pixel_x = -17;
+	pixel_y = -8
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"oH" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,10";
+	underside_icon_state = "11,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"oR" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,19";
+	underside_icon_state = "7,19"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"pg" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,2";
+	underside_icon_state = "7,2"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "3,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"pA" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "16,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"pI" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"qd" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,7";
+	underside_icon_state = "7,7"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"qk" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,6";
+	underside_icon_state = "4,6";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"qX" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"qY" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,4";
+	underside_icon_state = "10,4"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"rg" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,15";
+	underside_icon_state = "11,15";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"rn" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,9";
+	underside_icon_state = "6,9"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"ro" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,12";
+	underside_icon_state = "5,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"rq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,8";
+	name = "\improper Omaha"
+	},
+/area/space)
+"rH" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,4";
+	underside_icon_state = "6,4"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"rR" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,13";
+	underside_icon_state = "5,13"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,11";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"sc" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,8";
+	underside_icon_state = "6,8"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"se" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "6,1";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"sN" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "1,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"sT" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,9";
+	underside_icon_state = "10,9"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"te" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,16";
+	underside_icon_state = "8,16"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"tg" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,17";
+	underside_icon_state = "11,17"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "7,15";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"tk" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"tp" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,3";
+	underside_icon_state = "7,3"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"ts" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,8";
+	underside_icon_state = "11,8"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"tt" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,9";
+	underside_icon_state = "7,9"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"tG" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,4";
+	underside_icon_state = "5,4"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"tI" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,20";
+	underside_icon_state = "9,20"
+	},
+/obj/structure/machinery/computer/dropship_weapons/dropship1,
 /turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"in" = (
-/turf/open/shuttle/dropship/light_grey_left_to_right,
-/area/shuttle/drop1/sulaco)
-"iv" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "73"
-	},
-/area/shuttle/drop1/sulaco)
-"iz" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "22"
-	},
-/area/shuttle/drop1/sulaco)
-"iC" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "29"
-	},
-/area/shuttle/drop1/sulaco)
-"iI" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "67"
-	},
-/area/shuttle/drop1/sulaco)
-"jz" = (
-/obj/structure/shuttle/part/dropship1/transparent/middle_right_wing,
-/obj/structure/machinery/light/dropship/green{
-	dir = 4
-	},
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"mb" = (
-/turf/template_noop,
-/area/template_noop)
-"mW" = (
-/obj/item/device/radio/intercom/alamo{
-	pixel_x = -10
-	},
-/turf/closed/shuttle/dropship1{
-	icon_state = "52"
-	},
-/area/shuttle/drop1/sulaco)
-"nC" = (
-/obj/item/device/radio/intercom/alamo{
-	pixel_x = 10
-	},
-/turf/closed/shuttle/dropship1{
-	icon_state = "54"
-	},
-/area/shuttle/drop1/sulaco)
-"nE" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "51"
-	},
-/area/shuttle/drop1/sulaco)
-"nO" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "94"
-	},
-/area/shuttle/drop1/sulaco)
-"oo" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "76"
-	},
-/area/shuttle/drop1/sulaco)
-"oW" = (
-/obj/structure/shuttle/part/dropship1/transparent/middle_left_wing,
-/obj/structure/machinery/light/dropship/red{
-	dir = 8
-	},
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"po" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "25"
-	},
-/area/shuttle/drop1/sulaco)
-"qn" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "50"
-	},
-/area/shuttle/drop1/sulaco)
-"qu" = (
-/obj/effect/attach_point/weapon/dropship1/left_wing,
-/obj/structure/shuttle/part/dropship1/transparent/lower_left_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"qy" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "27"
-	},
-/area/shuttle/drop1/sulaco)
-"qF" = (
-/obj/structure/machinery/cm_vending/sorted/medical/wall_med{
-	pixel_x = -30
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"rl" = (
-/obj/structure/shuttle/part/dropship1/lower_right_wall,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"rr" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "23"
-	},
-/area/shuttle/drop1/sulaco)
-"rV" = (
-/obj/structure/shuttle/part/dropship1/transparent/left_outer_bottom_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"sA" = (
-/obj/structure/shuttle/part/dropship1/lower_left_wall,
-/turf/template_noop,
 /area/shuttle/drop1/sulaco)
 "tR" = (
-/obj/item/device/radio/intercom/alamo{
-	layer = 3.5;
-	pixel_x = 21;
-	pixel_y = 43
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"wk" = (
-/obj/effect/attach_point/weapon/dropship1/right_wing,
-/obj/structure/shuttle/part/dropship1/transparent/lower_right_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"ws" = (
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"wC" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"xM" = (
-/obj/structure/shuttle/part/dropship1/bottom_right_wall,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"yQ" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "89"
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "0,15";
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"yU" = (
-/obj/structure/shuttle/part/dropship1/bottom_left_wall,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"zw" = (
-/obj/structure/shuttle/part/dropship1/transparent/upper_left_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"zN" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "98"
+"uk" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,2";
+	underside_icon_state = "5,2"
 	},
-/area/shuttle/drop1/sulaco)
-"zS" = (
 /turf/closed/shuttle/dropship1{
-	icon_state = "83"
+	icon_state = "1,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"zV" = (
+"uB" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,16";
+	underside_icon_state = "12,16";
+	underside_density = 1
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "69"
+	icon_state = "8,14";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"Bn" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "38"
+"uF" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,4";
+	underside_icon_state = "8,4"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
 	},
 /area/shuttle/drop1/sulaco)
-"BB" = (
+"uZ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,2";
+	underside_icon_state = "11,2"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "63"
+	icon_state = "6,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"BM" = (
-/obj/effect/attach_point/crew_weapon/dropship1/floor{
-	attach_id = 9
+"va" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,14";
+	underside_icon_state = "6,14"
 	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
 /area/shuttle/drop1/sulaco)
-"BS" = (
+"vq" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,6";
+	underside_icon_state = "9,6"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"vy" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,8";
+	underside_icon_state = "5,8"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"vH" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "6,0";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"vY" = (
+/obj/structure/machinery/computer/shuttle/dropship/flight{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield.dmi';
+	icon_state = "mohawk-windshield-32x32"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "8,22";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"wb" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,3";
+	underside_icon_state = "11,3"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "48"
+	icon_state = "7,1";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"Ce" = (
-/turf/open/shuttle/dropship/light_grey_bottom_left,
-/area/shuttle/drop1/sulaco)
-"Cg" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "92"
+"wu" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,3";
+	underside_icon_state = "6,3"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-cargo"
 	},
 /area/shuttle/drop1/sulaco)
-"Co" = (
-/obj/structure/bed/chair/dropship/pilot{
-	dir = 1
+"wA" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,3";
+	underside_icon_state = "10,3"
 	},
-/obj/structure/machinery/camera/autoname/almayer/dropship_one{
-	pixel_x = -6;
-	pixel_y = -16
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Et" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "72"
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-cargo"
 	},
 /area/shuttle/drop1/sulaco)
-"EB" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "97"
+"wZ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,20";
+	underside_icon_state = "8,20"
 	},
-/area/shuttle/drop1/sulaco)
-"EN" = (
-/obj/structure/shuttle/part/dropship1/transparent/engine_left_exhaust,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"FA" = (
-/obj/structure/shuttle/part/dropship1/transparent/engine_left_cap,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Gw" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "39"
-	},
-/area/shuttle/drop1/sulaco)
-"GQ" = (
-/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/dropshipside/ds1{
-	dir = 1;
-	id = "starboard_door"
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Ho" = (
-/obj/structure/machinery/computer/dropship_weapons/dropship1,
-/obj/structure/transmitter/rotary{
-	name = "Alamo Telephone";
-	pixel_x = 11;
-	pixel_y = 16;
-	phone_category = "Dropship";
-	phone_id = "Alamo"
-	},
-/obj/structure/blocker/invisible_wall,
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"HP" = (
-/obj/effect/attach_point/weapon/dropship1/right_fore,
-/obj/structure/shuttle/part/dropship1/transparent/outer_right_weapons,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"HS" = (
-/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1{
-	id = "aft_door"
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Il" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "35"
-	},
-/area/shuttle/drop1/sulaco)
-"Iu" = (
-/obj/effect/attach_point/fuel/dropship1{
-	dir = 1;
-	pixel_x = -32
-	},
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "33"
-	},
-/area/shuttle/drop1/sulaco)
-"IP" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1;
-	attach_id = 6
-	},
-/obj/structure/shuttle/part/dropship1/transparent/inner_right_weapons,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Jb" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "80"
-	},
-/area/shuttle/drop1/sulaco)
-"Jm" = (
-/obj/structure/shuttle/part/dropship1/transparent/engine_right_exhaust,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"JP" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "62"
-	},
-/area/shuttle/drop1/sulaco)
-"Kt" = (
-/obj/structure/machinery/door/airlock/hatch/cockpit{
-	dir = 1
-	},
-/obj/structure/blocker/forcefield/multitile_vehicles,
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"KJ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "81"
-	},
-/area/shuttle/drop1/sulaco)
-"LP" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "14"
-	},
-/area/shuttle/drop1/sulaco)
-"Me" = (
-/obj/structure/shuttle/part/dropship1/left_inner_wing_connector,
-/obj/structure/machinery/light/dropship/blue{
-	dir = 4
-	},
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"MP" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "64"
-	},
-/area/shuttle/drop1/sulaco)
-"NQ" = (
-/obj/structure/shuttle/part/dropship1/transparent/left_inner_bottom_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Oq" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "34"
-	},
-/area/shuttle/drop1/sulaco)
-"OK" = (
-/obj/docking_port/mobile/marine_dropship/alamo,
-/turf/closed/shuttle/dropship1{
-	icon_state = "53"
-	},
-/area/shuttle/drop1/sulaco)
-"OL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "86"
-	},
-/area/shuttle/drop1/sulaco)
-"OU" = (
-/obj/item/device/radio/intercom/alamo{
-	pixel_y = 24
-	},
-/turf/open/shuttle/dropship/light_grey_left_to_right,
-/area/shuttle/drop1/sulaco)
-"Ph" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "68"
-	},
-/area/shuttle/drop1/sulaco)
-"Py" = (
-/obj/structure/blocker/invisible_wall,
 /obj/structure/machinery/computer/shuttle/dropship/flight,
 /turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
 /area/shuttle/drop1/sulaco)
-"PA" = (
-/obj/effect/attach_point/crew_weapon/dropship1/floor{
-	attach_id = 7
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Qh" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "32"
+"xp" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "5,20";
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"QT" = (
-/obj/structure/shuttle/part/dropship1/nose_front_left,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"QW" = (
-/obj/structure/shuttle/part/dropship1/transparent/right_outer_bottom_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"RI" = (
+"xT" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,18";
+	underside_icon_state = "7,18"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "31"
+	icon_state = "3,16";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"SM" = (
+"xX" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "0,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"yf" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,13";
+	underside_icon_state = "11,13"
+	},
 /turf/closed/shuttle/dropship1{
-	icon_state = "47"
+	icon_state = "7,11";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"Ta" = (
-/obj/structure/shuttle/part/dropship1/right_inner_wing_connector,
-/obj/structure/machinery/light/dropship/blue{
-	dir = 8
+"yy" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,15";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"yE" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,11";
+	name = "\improper Omaha"
+	},
+/area/space)
+"yF" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,2";
+	underside_icon_state = "8,2"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "4,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"yH" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,6";
+	underside_icon_state = "10,6"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"zb" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "7,16";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"zi" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,17";
+	underside_icon_state = "5,17"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,15";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"zs" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,10";
+	underside_icon_state = "12,10"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,5";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"zw" = (
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-external"
+	},
+/area/shuttle/drop1/sulaco)
+"zF" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "5,0";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"zX" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,3";
+	underside_icon_state = "9,3"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Af" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "8,0"
+	},
+/area/shuttle/drop1/sulaco)
+"Ap" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,8";
+	underside_icon_state = "9,8"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"Ay" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,17";
+	underside_icon_state = "7,17"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"AC" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"AG" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,7";
+	underside_icon_state = "11,7";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Ba" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Bl" = (
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"Bn" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"BA" = (
+/obj/structure/shuttle/part/dropship1/transparent/outer_right_weapons{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield.dmi';
+	icon_state = "hardpoint-right"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "12,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"BP" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,9";
+	underside_icon_state = "9,9"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"BQ" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "7,1";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"BW" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,18";
+	underside_icon_state = "8,18"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Cd" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,11";
+	underside_icon_state = "8,11"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Cq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "12,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"CH" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,4";
+	underside_icon_state = "7,4"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"CS" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "12,3";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"CU" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,8";
+	underside_icon_state = "7,8"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"Da" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Dp" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,15";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Ds" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Du" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "9,22";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Ej" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,16";
+	underside_icon_state = "7,16"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Ep" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,8";
+	underside_icon_state = "10,8"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"EJ" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "10,22";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ES" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,5";
+	underside_icon_state = "9,5"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Fz" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"FA" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,19";
+	underside_icon_state = "8,19"
+	},
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"FC" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,14";
+	underside_icon_state = "11,14";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "7,12";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"FL" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "6,22";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"FR" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,10";
+	underside_icon_state = "6,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"FU" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,12";
+	underside_icon_state = "8,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Gf" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,9";
+	underside_icon_state = "8,9"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"Gk" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,4";
+	underside_icon_state = "9,4"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Gl" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "15,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Gw" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,18";
+	underside_icon_state = "9,18"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "5,16";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"GI" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,16";
+	underside_icon_state = "5,16";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"GQ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,15";
+	underside_icon_state = "10,15"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"GY" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,19";
+	underside_icon_state = "9,19"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Hn" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "9,0"
+	},
+/area/shuttle/drop1/sulaco)
+"HP" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,10";
+	underside_icon_state = "4,10"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"HU" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,11";
+	underside_icon_state = "9,11"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Iy" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"IB" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,14";
+	underside_icon_state = "5,14";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,12";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"IK" = (
+/obj/structure/shuttle/part/dropship1/transparent/inner_left_weapons{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield.dmi';
+	icon_state = "hardpoint-left"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "5,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"IY" = (
+/obj/structure/shuttle/part/dropship1/transparent/inner_right_weapons{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield.dmi';
+	icon_state = "hardpoint-right"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "11,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Jc" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "7,22";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"JL" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "10,1";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"JY" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Kj" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,10";
+	underside_icon_state = "9,10"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Ks" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,13";
+	underside_icon_state = "7,13"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Kx" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,17";
+	underside_icon_state = "9,17"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"KC" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,13";
+	underside_icon_state = "9,13"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"KE" = (
+/turf/template_noop,
+/area/shuttle/drop1/sulaco)
+"KX" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "10,21";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Lb" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,8";
+	underside_icon_state = "4,8"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Le" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"LF" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,2";
+	underside_icon_state = "6,2"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Mf" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,1";
+	underside_icon_state = "11,1"
+	},
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "10,1";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Mi" = (
+/turf/template_noop,
+/area/space)
+"Ml" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,16";
+	underside_icon_state = "11,16";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"MC" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,13";
+	underside_icon_state = "10,13"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,11";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"MN" = (
+/obj/structure/machinery/computer/cameras/dropship/one{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-controls.dmi';
+	icon_state = "weapons-console";
+	layer = 3;
+	pixel_x = -16;
+	pixel_y = -6
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Nd" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,9";
+	underside_icon_state = "12,9"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,5";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Ne" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "1,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Ns" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,9";
+	underside_icon_state = "4,9"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"NE" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,18";
+	underside_icon_state = "10,18"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,16";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"NI" = (
+/obj/structure/shuttle/part/dropship1/transparent/lower_left_wing{
+	icon = 'icons/obj/structures/machinery/mohawk/mohawk-windshield-64x64.dmi';
+	icon_state = "wingpoint-left";
+	pixel_x = -32;
+	pixel_y = -16
 	},
 /turf/template_noop,
 /area/shuttle/drop1/sulaco)
-"Te" = (
-/obj/structure/shuttle/part/dropship1/transparent/right_inner_bottom_wing,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Tt" = (
-/turf/open/shuttle/dropship/light_grey_bottom_right,
-/area/shuttle/drop1/sulaco)
-"Tu" = (
-/obj/structure/machinery/cm_vending/sorted/medical/wall_med{
-	pixel_x = 30
+"NW" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,4";
+	underside_icon_state = "11,4"
 	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = 8
-	},
-/obj/structure/bed/chair/vehicle{
-	dir = 1;
-	pixel_x = -8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"TE" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "26"
+/turf/closed/shuttle/dropship1{
+	icon_state = "7,2";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"TK" = (
-/obj/structure/bed/chair/vehicle{
-	pixel_x = -8
+"Os" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,1";
+	underside_icon_state = "5,1"
 	},
-/obj/structure/bed/chair/vehicle{
-	pixel_x = 8
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "5,1";
+	name = "\improper Omaha"
 	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
 /area/shuttle/drop1/sulaco)
-"TM" = (
-/obj/effect/attach_point/weapon/dropship1/left_fore,
-/obj/structure/shuttle/part/dropship1/transparent/outer_left_weapons,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"UG" = (
-/obj/structure/prop/ice_colony/hula_girl{
-	pixel_x = -10;
-	pixel_y = 16
+"Oy" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,20";
+	name = "\improper Omaha"
 	},
-/obj/structure/blocker/invisible_wall,
+/area/shuttle/drop1/sulaco)
+"OI" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"OK" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,14";
+	underside_icon_state = "9,14"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Pc" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "4,7";
+	underside_icon_state = "4,7";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "0,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Qc" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Qf" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,15";
+	underside_icon_state = "8,15"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Ql" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,17";
+	underside_icon_state = "10,17"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Qq" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,7";
+	underside_icon_state = "10,7"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Qs" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,9";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"QK" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,6";
+	underside_icon_state = "7,6"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"QP" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,10";
+	name = "\improper Omaha"
+	},
+/area/space)
+"QY" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Rl" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,18";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Rn" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,7";
+	underside_icon_state = "5,7";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Rz" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,17";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"RF" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,5";
+	underside_icon_state = "7,5"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"RQ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,14";
+	underside_icon_state = "8,14"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "4,12";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Sh" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,17";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"St" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,5";
+	underside_icon_state = "10,5"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Tg" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "6,18";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Tn" = (
+/turf/closed/shuttle/dropship1{
+	icon_state = "2,18";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Tq" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Ts" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "1,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"TB" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"TF" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Uu" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,15";
+	underside_icon_state = "6,15"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"UQ" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "16,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"UW" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "14,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Vf" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "10,16";
+	underside_icon_state = "10,16"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Vw" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "7,0";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Vy" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "15,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"VK" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,5";
+	underside_icon_state = "11,5";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"VL" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "11,20";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"VO" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,7";
+	underside_icon_state = "9,7"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"Wd" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,12";
+	underside_icon_state = "6,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"Wo" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "13,17";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Wr" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "6,5";
+	underside_icon_state = "6,5"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"WA" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "11,0";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"WD" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "11,12";
+	underside_icon_state = "11,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"WH" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,12";
+	underside_icon_state = "9,12"
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor"
+	},
+/area/shuttle/drop1/sulaco)
+"WS" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,15";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Xm" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "8,6";
+	underside_icon_state = "8,6"
+	},
+/turf/open/shuttle/dropship/predship/red_glow/on,
+/area/shuttle/drop1/sulaco)
+"XK" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,8";
+	underside_icon_state = "12,8"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,5";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"Yr" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "12,5";
+	underside_icon_state = "12,5";
+	underside_density = 1
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "8,3";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"YP" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "0,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"YV" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "9,2";
+	underside_icon_state = "9,2"
+	},
+/turf/closed/shuttle/dropship1{
+	icon_state = "5,0";
+	icon = 'icons/turf/mohawk/mohawk-walls.dmi';
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"YY" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,6";
+	underside_icon_state = "5,6";
+	underside_density = 1
+	},
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
+	},
+/area/shuttle/drop1/sulaco)
+"Zu" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "2,16";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ZN" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "4,19";
+	name = "\improper Omaha"
+	},
+/area/shuttle/drop1/sulaco)
+"ZQ" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "7,20";
+	underside_icon_state = "7,20"
+	},
 /obj/structure/machinery/computer/cameras/dropship/one,
 /turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
 /area/shuttle/drop1/sulaco)
-"UN" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1;
-	attach_id = 5
-	},
-/obj/structure/shuttle/part/dropship1/transparent/inner_left_weapons,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Vm" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "78"
+"ZR" = (
+/turf/closed/shuttle/dropship2/transparent{
+	icon = 'icons/turf/mohawk/mohawk-facade.dmi';
+	icon_state = "3,14";
+	name = "\improper Omaha"
 	},
 /area/shuttle/drop1/sulaco)
-"VM" = (
-/obj/structure/shuttle/part/dropship1/transparent/nose_top_left,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"Wg" = (
-/obj/structure/shuttle/part/dropship1/right_outer_wing_connector,
-/turf/template_noop,
-/area/shuttle/drop1/sulaco)
-"WQ" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "10"
+"ZU" = (
+/obj/effect/shuttle_carriage_deployer/omaha{
+	icon_state = "5,15";
+	underside_icon_state = "5,15";
+	underside_density = 1
 	},
-/area/shuttle/drop1/sulaco)
-"Xf" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "30"
-	},
-/area/shuttle/drop1/sulaco)
-"Xx" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "96"
-	},
-/area/shuttle/drop1/sulaco)
-"XF" = (
-/obj/item/device/radio/intercom/alamo{
-	pixel_y = 24
-	},
-/turf/open/shuttle/dropship/light_grey_top_right,
-/area/shuttle/drop1/sulaco)
-"XH" = (
-/obj/effect/attach_point/fuel/dropship1{
-	dir = 1
-	},
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "28"
-	},
-/area/shuttle/drop1/sulaco)
-"XI" = (
-/obj/structure/machinery/door/airlock/multi_tile/almayer/dropshiprear/dropshipside/ds1{
-	dir = 2;
-	id = "port_door"
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"YV" = (
-/obj/effect/attach_point/crew_weapon/dropship1/floor{
-	attach_id = 8
-	},
-/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Za" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "77"
-	},
-/area/shuttle/drop1/sulaco)
-"Zo" = (
-/turf/open/shuttle/dropship/light_grey_single_wide_up_to_down,
-/area/shuttle/drop1/sulaco)
-"Zv" = (
-/turf/closed/shuttle/dropship1{
-	icon_state = "43"
+/turf/open/shuttle/dropship/medium_grey_single_wide_up_to_down{
+	icon = 'icons/turf/mohawk/mohawk-floors.dmi';
+	icon_state = "mohawk-floor-grated"
 	},
 /area/shuttle/drop1/sulaco)
 
 (1,1,1) = {"
-mb
-mb
-mb
-mb
-mb
-zw
-oW
-qu
-mb
-mb
-mb
-mb
-mb
-FA
-Oq
-XH
-iz
-EN
-mb
-mb
-mb
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+xX
+YP
+tR
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 "}
 (2,1,1) = {"
-mb
-mb
-mb
-TM
-hG
-Et
-iI
-JP
-il
-XI
-mW
-qn
-sA
-eD
-Il
-iC
-rr
-Jm
-mb
-mb
-NQ
+Mi
+Mi
+Mi
+Mi
+Mi
+gi
+Ts
+sN
+ea
+KE
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 "}
 (3,1,1) = {"
-mb
-mb
-mb
-UN
-oo
-TK
-ws
-TK
-il
-il
-TK
-ws
-SM
-de
-de
-Xf
-ig
-de
-yU
-mb
-rV
+Mi
+Mi
+Mi
+Oy
+TF
+tk
+TB
+Zu
+Fz
+NI
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 "}
 (4,1,1) = {"
-VM
-QT
-Cg
-OL
-KJ
-cR
-Zo
-Zo
-Zo
-Zo
-Zo
-Ce
-TK
-qF
-aj
-ws
-TK
-ws
-WQ
-Me
-if
+Mi
+Mi
+Mi
+Da
+QY
+cm
+Ds
+Le
+WS
+ZR
+Mi
+Mi
+yE
+QP
+oa
+rq
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 "}
 (5,1,1) = {"
-ax
-Xx
-UG
-wC
-Vm
-in
-TK
-ws
-TK
-ws
-TK
-in
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-HS
-mb
-mb
+Mi
+Mi
+Mi
+fj
+ZN
+hV
+Dp
+gg
+dv
+aX
+zw
+zw
+Bn
+HP
+Ns
+Lb
+Pc
+qk
+cl
+as
+ek
+Mi
+Mi
+Mi
 "}
 (6,1,1) = {"
-ax
-EB
-Py
-tR
-Kt
-dU
-Ph
-BB
-BB
-BB
-OK
-OU
-il
-PA
-il
-YV
-il
-BM
-il
-mb
-mb
+Mi
+Mi
+Mi
+xp
+IK
+Tn
+zi
+GI
+ZU
+IB
+rR
+ro
+Ne
+nz
+hW
+vy
+Rn
+YY
+fd
+tG
+mQ
+uk
+Os
+zF
 "}
 (7,1,1) = {"
-ax
-zN
-Ho
-Co
-Jb
-in
-TK
-ws
-TK
-ws
-TK
-in
-Zo
-Zo
-Zo
-Zo
-Zo
-Zo
-il
-mb
-mb
+Mi
+FL
+dA
+Tn
+Rz
+ml
+gx
+jX
+Uu
+va
+if
+Wd
+Ba
+FR
+rn
+sc
+kk
+cz
+Wr
+rH
+wu
+LF
+se
+vH
 "}
 (8,1,1) = {"
-bj
-cC
-nO
-yQ
-Za
-XF
-Zo
-Zo
-Zo
-Zo
-Zo
-Tt
-TK
-Tu
-TK
-ws
-TK
-ws
-LP
-Ta
-Wg
+Mi
+Jc
+MN
+ZQ
+oR
+xT
+Ay
+Ej
+hb
+jC
+Ks
+jP
+na
+bz
+tt
+CU
+qd
+QK
+RF
+CH
+tp
+pg
+BQ
+Vw
 "}
 (9,1,1) = {"
-mb
-mb
-mb
-IP
-oo
-TK
-cr
-TK
-il
-il
-TK
-ws
-BS
-Zv
-Zv
-RI
-po
-Zv
-xM
-mb
-Te
+Mi
+vY
+nB
+wZ
+FA
+BW
+gj
+te
+Qf
+RQ
+nU
+FU
+Cd
+ar
+Gf
+Bl
+Bl
+Xm
+js
+uF
+jh
+yF
+ie
+Af
 "}
 (10,1,1) = {"
-mb
-mb
-mb
-HP
-zS
-iv
-zV
-MP
-il
-GQ
-nC
-nE
-rl
-FA
-Bn
-Qh
-TE
-EN
-mb
-mb
-QW
+Mi
+Du
+ox
+tI
+GY
+Gw
+Kx
+mI
+bB
+OK
+KC
+WH
+HU
+Kj
+BP
+Ap
+VO
+vq
+ES
+Gk
+zX
+YV
+hI
+Hn
 "}
 (11,1,1) = {"
-mb
-mb
-mb
-mb
-mb
-be
-jz
-wk
-mb
-mb
-mb
-mb
-mb
-eD
-Gw
-Iu
-qy
-Jm
-mb
-mb
-mb
+Mi
+EJ
+KX
+Tg
+Sh
+NE
+Ql
+Vf
+GQ
+iy
+MC
+km
+Qs
+kw
+sT
+Ep
+Qq
+yH
+St
+qY
+wA
+kW
+JL
+fs
+"}
+(12,1,1) = {"
+Mi
+Mi
+Mi
+VL
+IY
+zb
+tg
+Ml
+rg
+FC
+yf
+WD
+ah
+oH
+cF
+ts
+AG
+dI
+VK
+NW
+wb
+uZ
+Mf
+WA
+"}
+(13,1,1) = {"
+Mi
+Mi
+Mi
+mA
+Cq
+BA
+yy
+uB
+cq
+kO
+zw
+zw
+Qc
+zs
+Nd
+XK
+cs
+on
+Yr
+mq
+CS
+Mi
+Mi
+Mi
+"}
+(14,1,1) = {"
+Mi
+Mi
+Mi
+OI
+pI
+Rl
+Wo
+gG
+Iy
+mh
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+"}
+(15,1,1) = {"
+Mi
+Mi
+Mi
+UW
+JY
+qX
+fb
+Tq
+AC
+dT
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+"}
+(16,1,1) = {"
+Mi
+Mi
+Mi
+Mi
+Mi
+Gl
+oi
+hv
+Vy
+KE
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+"}
+(17,1,1) = {"
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+UQ
+oq
+pA
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 "}
