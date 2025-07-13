@@ -702,10 +702,7 @@ Airlock Appearance Effects
 Airlock Turfs Definitions
 #############################################################################*/
 
-/turf/open/floor/hangar_airlock
-	turf_flags = TURF_HULL|~TURF_BREAKABLE|~TURF_BURNABLE
-	tool_flags = null
-	layer = 1.5
+/turf/open_space/hangar_airlock
 	var/frame_threshold = null // to tie the turf opening and the airlock animation together, the frame on which a tile can be considered 'open' or 'closed' has to be done manually.
 	var/open = FALSE // ^
 

@@ -13286,14 +13286,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/almayer/no_build/plate,
 /area/almayer/middeck/maintenance/sp)
-"aIt" = (
-/obj/structure/platform/metal/kutjevo_smooth/north,
-/obj/structure/platform/metal/kutjevo_smooth/east,
-/obj/structure/machinery/light/almayer{
-	dir = 8
-	},
-/turf/open_space,
-/area/almayer/middeck/hanger)
 "aIu" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "N";
@@ -13421,14 +13413,6 @@
 	},
 /turf/open/floor/almayer/no_build/test_floor4,
 /area/almayer/middeck/engineer)
-"aIL" = (
-/obj/structure/platform/metal/kutjevo_smooth/east,
-/obj/structure/platform/metal/kutjevo_smooth,
-/obj/structure/machinery/light/almayer{
-	dir = 8
-	},
-/turf/open_space,
-/area/almayer/middeck/hanger)
 "aIM" = (
 /obj/structure/machinery/light/red/almayer{
 	light_color = "#BB3F3F"
@@ -21160,20 +21144,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/no_build,
 /area/almayer/middeck/hanger)
-"bbI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E"
-	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "W";
-	layer = 3.3
-	},
-/obj/structure/barricade/handrail/novault{
-	dir = 1
-	},
-/turf/open/floor/almayer/no_build/plate,
-/area/almayer/middeck/hanger)
 "bbJ" = (
 /obj/effect/decal/heavy_cable/node_n_w_e,
 /turf/open/floor/plating/plating_catwalk/no_build,
@@ -25506,17 +25476,6 @@
 /obj/item/tool/screwdriver,
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/living/offices)
-"blk" = (
-/obj/structure/machinery/light/almayer,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E"
-	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "W";
-	layer = 3.3
-	},
-/turf/open/floor/almayer/no_build/plate,
-/area/almayer/middeck/hanger)
 "bll" = (
 /turf/open/floor/almayer/green/northeast,
 /area/almayer/living/offices)
@@ -39497,6 +39456,12 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/almayer/plate,
 /area/almayer/maint/hull/lower/stern)
+"cWi" = (
+/obj/structure/machinery/light/almayer{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/no_build,
+/area/almayer/middeck/hanger)
 "cWm" = (
 /obj/structure/machinery/body_scanconsole{
 	pixel_y = 3
@@ -49616,6 +49581,13 @@
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/almayer/plate,
 /area/almayer/living/pilotbunks)
+"hbA" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/machinery/light/almayer{
+	dir = 8
+	},
+/turf/open/floor/almayer/plate,
+/area/almayer/hallways/hangar)
 "hbE" = (
 /obj/structure/machinery/light/almayer{
 	dir = 8
@@ -57800,6 +57772,13 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/almayer/maint/lower/constr)
+"krL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/machinery/light/almayer{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/no_build,
+/area/almayer/middeck/hanger)
 "krN" = (
 /obj/structure/machinery/conveyor{
 	id = "req_belt"
@@ -131910,7 +131889,7 @@ bAS
 aYt
 wJI
 bym
-brW
+hbA
 brW
 bve
 bAh
@@ -162909,17 +162888,17 @@ aDe
 aDe
 aDe
 aDe
-aIL
+aFG
 aiB
-baA
+cWi
 bhv
-aIt
+aBc
 aDe
-aIL
+aFG
 bbH
-aBf
+krL
 anS
-aIt
+aBc
 aDe
 aDe
 aDe
@@ -164986,8 +164965,8 @@ aDe
 aDe
 aDe
 aFi
-bbH
-baA
+adj
+aDa
 bwT
 bwT
 bwT
@@ -165089,7 +165068,7 @@ acL
 acL
 bbU
 acL
-aiB
+baA
 baA
 bwT
 bwT
@@ -165192,8 +165171,8 @@ aBf
 aBf
 bly
 aBf
-adj
-aDa
+baA
+baA
 bwT
 bwT
 bwT
@@ -165398,8 +165377,8 @@ aHI
 aHI
 aHI
 aFt
-aBf
-baA
+adj
+aDa
 bwT
 bwT
 bwT
@@ -165501,7 +165480,7 @@ azJ
 azJ
 azJ
 aFh
-aBf
+bbH
 baA
 bwT
 bwT
@@ -165604,8 +165583,8 @@ azJ
 azJ
 azJ
 aFh
-bbI
-blk
+bbH
+baA
 bwT
 bwT
 bwT
