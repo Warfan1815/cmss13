@@ -183,6 +183,10 @@
 	base_state = "rtube"
 	desc = "A lighting fixture. Its glass covering is a bright, fluorescent red."
 
+/obj/structure/machinery/light/red/almayer
+	name = "almayer light fixture"
+	light_power = 0.7
+
 // the smaller bulb light fixture
 
 /obj/structure/machinery/light/small
