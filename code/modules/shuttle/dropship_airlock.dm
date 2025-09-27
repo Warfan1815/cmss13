@@ -308,7 +308,7 @@ Timer Delayed/Looping Procs
 	if(!(decisecond % 10))
 		if(decisecond != end_decisecond)
 			airlock.icon_state = "[transition]_[decisecond * 0.1]s"
-	for(var/turf/open/floor/hangar_airlock/T as anything in airlock_turf_lists["[decisecond]"])
+	for(var/turf/open_space/hangar_airlock/T as anything in airlock_turf_lists["[decisecond]"])
 		T.open = open
 		for(var/atom/movable/contents_atom in T.contents)
 			if(!contents_atom.anchored)
@@ -387,8 +387,8 @@ New Backend Procs
 			if(locate(/obj/effect/hangar_airlock/height_mask/static_alpha) in turf.contents)
 				continue
 			new /obj/effect/hangar_airlock/height_mask/static_alpha(turf)
-		if(istype(turf, /turf/open/floor/hangar_airlock/inner))
-			var/turf/open/floor/hangar_airlock/inner/openable_turf = turf
+		if(istype(turf, /turf/open_space/hangar_airlock/inner))
+			var/turf/open_space/hangar_airlock/inner/openable_turf = turf
 			if(!inner_airlock_turf_lists?["[openable_turf.frame_threshold]"])
 				inner_airlock_turf_lists["[openable_turf.frame_threshold]"] = list()
 			inner_airlock_turf_lists["[openable_turf.frame_threshold]"] += openable_turf
@@ -543,7 +543,7 @@ New Backend Procs
 
 /obj/docking_port/stationary/marine_dropship/airlock/outer/proc/handle_obscuring_shuttle_turfs()
 	for(var/turf/open/open_turf in block(DROPSHIP_AIRLOCK_BOUNDS))
-		if(istype(open_turf, /turf/open/floor/hangar_airlock/outer))
+		if(istype(open_turf, /turf/open_space/hangar_airlock/outer))
 			continue
 		if(open_turf.clone)
 			open_turf.clone.layer = 1.93
@@ -553,7 +553,7 @@ New Backend Procs
 	linked_inner.outer_airlock_turf_lists = list()
 	var/list/offset_to_inner_coordinates = list("x" = (linked_inner.x - src.x), "y" = (linked_inner.y - src.y), "z" = (linked_inner.z - src.z))
 	for(var/turf/turf as anything in block(DROPSHIP_AIRLOCK_BOUNDS))
-		if(!istype(turf, /turf/open/floor/hangar_airlock/outer) && !istype(turf.loc, /area/shuttle))
+		if(!istype(turf, /turf/open_space/hangar_airlock/outer) && !istype(turf.loc, /area/shuttle))
 			continue
 		linked_inner.outer_airlock_turf_lists += turf
 		if(locate(/obj/effect/projector/airlock) in turf.contents)
@@ -591,7 +591,7 @@ New Backend Procs
 			var/obj/effect/hangar_airlock/height_mask/dropship/dropship_height_mask = new /obj/effect/hangar_airlock/height_mask/dropship(dropship_turf)
 			dropship_height_masks += dropship_height_mask
 			continue
-		if(istype(dropship_turf, /turf/open/floor/hangar_airlock/inner))
+		if(istype(dropship_turf, /turf/open_space/hangar_airlock/inner))
 			var/obj/structure/shuttle/part/dropship_part = locate(/obj/structure/shuttle/part) in dropship_turf.contents
 			if(!dropship_part)
 				continue
@@ -705,23 +705,22 @@ Airlock Turfs Definitions
 /turf/open_space/hangar_airlock
 	var/frame_threshold = null // to tie the turf opening and the airlock animation together, the frame on which a tile can be considered 'open' or 'closed' has to be done manually.
 	var/open = FALSE // ^
-
-/turf/open/floor/hangar_airlock/outer
-	name = "Hangar Outer Airlock"
 	icon = 'icons/turf/floors/dev/dev_airlock.dmi'
+
+/turf/open_space/hangar_airlock/outer
+	name = "Hangar Outer Airlock"
 	icon_state = "0"
 
-/turf/open/floor/hangar_airlock/outer/Initialize(mapload, ...)
+/turf/open_space/hangar_airlock/outer/Initialize(mapload, ...)
 	. = ..()
 	icon = 'icons/turf/floors/space.dmi'
 	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
-/turf/open/floor/hangar_airlock/inner
+/turf/open_space/hangar_airlock/inner
 	name = "Hangar Inner Airlock"
-	icon = 'icons/turf/floors/dev/dev_airlock.dmi'
 	icon_state = "plate"
 
-/turf/open/floor/hangar_airlock/inner/Initialize(mapload, ...)
+/turf/open_space/hangar_airlock/inner/Initialize(mapload, ...)
 	. = ..()
 	icon = 'icons/turf/almayer.dmi'
 	icon_state = "plate"
@@ -730,22 +729,22 @@ Airlock Turfs Definitions
 Airlock Turf Interactability Procs
 #############################################################################*/
 
-/turf/open/floor/hangar_airlock/Entered(atom/movable/entered_atom)
+/turf/open_space/hangar_airlock/Entered(atom/movable/entered_atom)
 	if(open)
 		if(!isobserver(entered_atom) && !istype(entered_atom, /obj/docking_port) && !istype(entered_atom, /atom/movable/clone) && !istype(entered_atom, /obj/effect/hangar_airlock))
 			enter_depths(entered_atom)
 
-/turf/open/floor/hangar_airlock/proc/enter_depths(/atom/movable/entered_atom)
+/turf/open_space/hangar_airlock/proc/enter_depths(/atom/movable/entered_atom)
 	return
 
-/turf/open/floor/hangar_airlock/inner/enter_depths(atom/movable/entered_atom)
+/turf/open_space/hangar_airlock/inner/enter_depths(atom/movable/entered_atom)
 	if(entered_atom.throwing == 0)
 		entered_atom.visible_message(SPAN_WARNING("[entered_atom] falls into the depths!"), SPAN_WARNING("You fall into the depths!"))
 		for(var/contents_atom in src.contents)
 			if(istype(contents_atom, /atom/movable/clone))
 				var/atom/movable/clone/clone = contents_atom
 				// why not just use .loc? well, because of /atom/movable/clone facsimile 'turfs', it is potentially the case that we'd locate an area (from the mstr turf of the facsimile) when we just want the exact turf.
-				if(istype(get_turf(clone.mstr), /turf/open/floor/hangar_airlock))
+				if(istype(get_turf(clone.mstr), /turf/open_space/hangar_airlock))
 					entered_atom.forceMove(locate(clone.mstr.x, clone.mstr.y, clone.mstr.z))
 					break
 
@@ -762,7 +761,7 @@ Airlock Turf Interactability Procs
 
 		INVOKE_ASYNC(src, PROC_REF(depths_damage), entered_atom)
 
-/turf/open/floor/hangar_airlock/inner/proc/depths_damage(atom/movable/entered_atom)
+/turf/open_space/hangar_airlock/inner/proc/depths_damage(atom/movable/entered_atom)
 	if(!isliving(entered_atom))
 		return
 	var/mob/living/fallen_living = entered_atom
@@ -773,8 +772,8 @@ Airlock Turf Interactability Procs
 		return
 	qdel(entered_atom)
 
-/turf/open/floor/hangar_airlock/outer/enter_depths(atom/movable/entered_atom)
-	if(entered_atom.throwing == 0 && istype(get_turf(entered_atom), /turf/open/floor/hangar_airlock))
+/turf/open_space/hangar_airlock/outer/enter_depths(atom/movable/entered_atom)
+	if(entered_atom.throwing == 0 && istype(get_turf(entered_atom), /turf/open_space/hangar_airlock))
 		entered_atom.visible_message(SPAN_WARNING("There is an onrush of air. [entered_atom] falls into space!"), SPAN_WARNING("There is an onrush of air. You fall into space!"))
 		qdel(entered_atom)
 
@@ -790,78 +789,78 @@ Turf Definitions From Instances
 	icon_state = "hangar_2"
 	name = "Hangar Airlock Two"
 
-/turf/open/floor/hangar_airlock/inner/frame5
+/turf/open_space/hangar_airlock/inner/frame5
 	frame_threshold = 5
-	icon_state = "5" // for strongdmm
+	icon_state = "5" // for map editing
 
-/turf/open/floor/hangar_airlock/inner/frame9
+/turf/open_space/hangar_airlock/inner/frame9
 	frame_threshold = 9
 	icon_state = "9"
 
-/turf/open/floor/hangar_airlock/inner/frame11
+/turf/open_space/hangar_airlock/inner/frame11
 	frame_threshold = 11
 	icon_state = "11"
 
-/turf/open/floor/hangar_airlock/inner/frame13
+/turf/open_space/hangar_airlock/inner/frame13
 	frame_threshold = 13
 	icon_state = "13"
 
-/turf/open/floor/hangar_airlock/inner/frame17
+/turf/open_space/hangar_airlock/inner/frame17
 	frame_threshold = 17
 	icon_state = "17"
 
-/turf/open/floor/hangar_airlock/inner/frame21
+/turf/open_space/hangar_airlock/inner/frame21
 	frame_threshold = 21
 	icon_state = "21"
 
-/turf/open/floor/hangar_airlock/inner/frame25
+/turf/open_space/hangar_airlock/inner/frame25
 	frame_threshold = 25
 	icon_state = "25"
 
-/turf/open/floor/hangar_airlock/inner/frame30
+/turf/open_space/hangar_airlock/inner/frame30
 	frame_threshold = 30
 	icon_state = "30"
 
-/turf/open/floor/hangar_airlock/inner/frame33
+/turf/open_space/hangar_airlock/inner/frame33
 	frame_threshold = 33
 	icon_state = "33"
 
-/turf/open/floor/hangar_airlock/inner/frame35
+/turf/open_space/hangar_airlock/inner/frame35
 	frame_threshold = 35
 	icon_state = "35"
 
-/turf/open/floor/hangar_airlock/inner/frame40
+/turf/open_space/hangar_airlock/inner/frame40
 	frame_threshold = 40
 	icon_state = "40"
 
-/turf/open/floor/hangar_airlock/inner/frame49
+/turf/open_space/hangar_airlock/inner/frame49
 	frame_threshold = 49
 	icon_state = "49"
 
-/turf/open/floor/hangar_airlock/outer/frame4
+/turf/open_space/hangar_airlock/outer/frame4
 	frame_threshold = 4
 	icon_state = "_4"
 
-/turf/open/floor/hangar_airlock/outer/frame11
+/turf/open_space/hangar_airlock/outer/frame11
 	frame_threshold = 11
 	icon_state = "_11"
 
-/turf/open/floor/hangar_airlock/outer/frame19
+/turf/open_space/hangar_airlock/outer/frame19
 	frame_threshold = 19
 	icon_state = "_19"
 
-/turf/open/floor/hangar_airlock/outer/frame27
+/turf/open_space/hangar_airlock/outer/frame27
 	frame_threshold = 27
 	icon_state = "_27"
 
-/turf/open/floor/hangar_airlock/outer/frame35
+/turf/open_space/hangar_airlock/outer/frame35
 	frame_threshold = 35
 	icon_state = "_35"
 
-/turf/open/floor/hangar_airlock/outer/frame43
+/turf/open_space/hangar_airlock/outer/frame43
 	frame_threshold = 43
 	icon_state = "_43"
 
-/turf/open/floor/hangar_airlock/outer/frame49
+/turf/open_space/hangar_airlock/outer/frame49
 	frame_threshold = 49
 	icon_state = "_49"
