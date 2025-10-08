@@ -833,6 +833,14 @@ Turf Definitions From Instances
 	frame_threshold = 40
 	icon_state = "40"
 
+/turf/open_space/hangar_airlock/inner/frame44
+	frame_threshold = 44
+	icon_state = "44"
+
+/turf/open_space/hangar_airlock/inner/frame46
+	frame_threshold = 46
+	icon_state = "46"
+
 /turf/open_space/hangar_airlock/inner/frame49
 	frame_threshold = 49
 	icon_state = "49"
@@ -857,9 +865,13 @@ Turf Definitions From Instances
 	frame_threshold = 35
 	icon_state = "_35"
 
-/turf/open_space/hangar_airlock/outer/frame43
-	frame_threshold = 43
-	icon_state = "_43"
+/turf/open_space/hangar_airlock/outer/frame41
+	frame_threshold = 41
+	icon_state = "_41"
+
+/turf/open_space/hangar_airlock/outer/frame45
+	frame_threshold = 45
+	icon_state = "_45"
 
 /turf/open_space/hangar_airlock/outer/frame49
 	frame_threshold = 49

@@ -6446,8 +6446,7 @@
 /turf/open/floor/plating,
 /area/almayer/maint/lower/constr)
 "apL" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open_space/hangar_airlock/inner/frame49,
+/turf/open_space/hangar_airlock/inner/frame46,
 /area/almayer/hallways/hangar)
 "apM" = (
 /obj/structure/machinery/light/almayer{
@@ -33519,7 +33518,6 @@
 /turf/open/floor/almayer/no_build,
 /area/almayer/underdeck/vehicle)
 "bCV" = (
-/turf/open_space/hangar_airlock/outer/frame43,
 /area/almayer/hallways/hangar)
 "bCW" = (
 /obj/effect/decal/warning_stripes{
@@ -35009,6 +35007,12 @@
 "bHP" = (
 /turf/open/floor/almayer/plating,
 /area/almayer/shipboard/weapon_room)
+"bHV" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 4;
+	layer = 2
+	},
+/area/almayer/hallways/hangar)
 "bIe" = (
 /obj/structure/pipes/standard/manifold/hidden/supply{
 	dir = 4
@@ -36306,7 +36310,7 @@
 	dir = 4;
 	layer = 2
 	},
-/turf/open_space/hangar_airlock/outer/frame43,
+/turf/open_space/hangar_airlock/outer/frame41,
 /area/almayer/hallways/hangar)
 "bRO" = (
 /obj/structure/sign/safety/maint{
@@ -40446,6 +40450,9 @@
 	},
 /turf/open/floor/almayer/test_floor4,
 /area/almayer/maint/upper/u_m_s)
+"daQ" = (
+/turf/open_space/hangar_airlock/outer/frame41,
+/area/almayer/hallways/hangar)
 "dbc" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "E";
@@ -41328,7 +41335,7 @@
 /obj/effect/hangar_airlock/half_tile{
 	layer = 2
 	},
-/turf/open_space/hangar_airlock/outer/frame43,
+/turf/open_space/hangar_airlock/outer/frame41,
 /area/almayer/hallways/hangar)
 "dwj" = (
 /obj/structure/machinery/light{
@@ -42071,6 +42078,13 @@
 "dJJ" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/almayer/shipboard/brig/execution_storage)
+"dJK" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 8;
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame45,
+/area/almayer/hallways/hangar)
 "dJO" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "N";
@@ -42534,6 +42548,13 @@
 /obj/structure/pipes/standard/simple/hidden/supply,
 /turf/open/floor/almayer/sterile_green_side/east,
 /area/almayer/medical/medical_science)
+"dVD" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 8;
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame41,
+/area/almayer/hallways/hangar)
 "dVO" = (
 /obj/structure/surface/table/almayer,
 /obj/structure/machinery/computer/emails{
@@ -46695,6 +46716,13 @@
 "fEk" = (
 /turf/open/floor/almayer/test_floor4,
 /area/almayer/command/cichallway)
+"fEw" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 1;
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame41,
+/area/almayer/hallways/hangar)
 "fEC" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "NE-out";
@@ -58738,6 +58766,12 @@
 /obj/structure/closet/secure_closet/brig,
 /turf/open/floor/almayer/red,
 /area/almayer/shipboard/brig/processing)
+"kBh" = (
+/obj/effect/hangar_airlock/half_tile{
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame45,
+/area/almayer/hallways/hangar)
 "kBo" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "SE-out";
@@ -64059,6 +64093,11 @@
 /obj/structure/closet/secure_closet/brig/restraints,
 /turf/open/floor/almayer/red/west,
 /area/almayer/shipboard/brig/perma)
+"mNM" = (
+/obj/effect/hangar_airlock/half_tile{
+	layer = 2
+	},
+/area/almayer/hallways/hangar)
 "mNX" = (
 /turf/open/floor/almayer_hull/outerhull_dir/east,
 /area/space/almayer/lifeboat_dock)
@@ -70727,7 +70766,6 @@
 	dir = 1;
 	layer = 2
 	},
-/turf/open_space/hangar_airlock/outer/frame43,
 /area/almayer/hallways/hangar)
 "prX" = (
 /obj/structure/sign/safety/restrictedarea{
@@ -71254,7 +71292,6 @@
 	dir = 8;
 	layer = 2
 	},
-/turf/open_space/hangar_airlock/outer/frame43,
 /area/almayer/hallways/hangar)
 "pGG" = (
 /obj/structure/sign/safety/maint{
@@ -74000,6 +74037,13 @@
 	},
 /turf/open/floor/almayer/orange/northeast,
 /area/almayer/engineering/upper_engineering)
+"qHP" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 4;
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame45,
+/area/almayer/hallways/hangar)
 "qHT" = (
 /obj/structure/sign/safety/hvac_old{
 	pixel_x = 8;
@@ -83871,6 +83915,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/almayer/plating_stripedcorner/south,
 /area/almayer/underdeck/req)
+"uEE" = (
+/turf/open_space/hangar_airlock/inner/frame44,
+/area/almayer/hallways/hangar)
 "uEM" = (
 /turf/open/floor/plating/plating_catwalk/no_build,
 /area/almayer/underdeck/req)
@@ -89653,6 +89700,13 @@
 "wLm" = (
 /turf/open/floor/almayer/plating_striped/east,
 /area/almayer/living/cryo_cells)
+"wLp" = (
+/obj/effect/hangar_airlock/half_tile{
+	dir = 1;
+	layer = 2
+	},
+/turf/open_space/hangar_airlock/outer/frame45,
+/area/almayer/hallways/hangar)
 "wLy" = (
 /obj/structure/pipes/vents/pump/no_boom{
 	name = "Secure Reinforced Air Vent";
@@ -93303,6 +93357,9 @@
 "ygB" = (
 /turf/open/floor/almayer/green/southeast,
 /area/almayer/hallways/lower/starboard_midship_hallway)
+"ygF" = (
+/turf/open_space/hangar_airlock/outer/frame45,
+/area/almayer/hallways/hangar)
 "ygP" = (
 /obj/item/fuel_cell,
 /obj/item/fuel_cell,
@@ -101887,25 +101944,25 @@ tGb
 bBt
 qQx
 nCs
-srQ
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-pyT
+kBh
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+wLp
 qQx
 qQx
 bBt
@@ -101990,26 +102047,26 @@ tGb
 bBt
 qQx
 dwc
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-prT
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+fEw
 nCs
 bBt
 jdp
@@ -103019,26 +103076,26 @@ oaV
 tGb
 bBt
 qQx
-pGz
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
-bCV
+dVD
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
+daQ
 bRH
 qQx
 bBt
@@ -103123,25 +103180,25 @@ jdp
 bBt
 qQx
 qQx
-dYr
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-uLo
-slL
+dJK
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+ygF
+qHP
 qQx
 qQx
 bBt
@@ -104461,7 +104518,7 @@ lco
 jdp
 bBt
 uzu
-dwc
+mNM
 bCV
 bCV
 bCV
@@ -105511,7 +105568,7 @@ bCV
 bCV
 bCV
 bCV
-bRH
+bHV
 uzu
 bBt
 tGb
@@ -132791,19 +132848,19 @@ xyw
 ilG
 dTI
 bBN
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
 bBN
 dTI
 ilG
@@ -132992,11 +133049,11 @@ bYW
 xcV
 bHB
 xOw
-aZV
-baS
-bEA
-baI
-bfL
+uEE
+bea
+ilG
+dTI
+bBN
 anW
 anW
 anW
@@ -133010,11 +133067,11 @@ anW
 anW
 anW
 anW
-bfL
-baI
-bEA
-baS
-aZV
+bBN
+dTI
+ilG
+bea
+uEE
 eEc
 bHB
 aYt
@@ -133816,11 +133873,11 @@ sCT
 eWs
 apM
 xOw
-aZV
-baS
-bEA
-baI
-bfL
+uEE
+bea
+ilG
+dTI
+bBN
 anW
 anW
 anW
@@ -133834,11 +133891,11 @@ anW
 anW
 anW
 anW
-bfL
-baI
-bEA
-baS
-aZV
+bBN
+dTI
+ilG
+bea
+uEE
 eEc
 bHB
 cuy
@@ -134027,19 +134084,19 @@ xyw
 ilG
 dTI
 bBN
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
 bBN
 dTI
 ilG
@@ -135174,7 +135231,7 @@ aZV
 aZV
 aZV
 bBN
-bea
+dTI
 xyw
 xyw
 bGO
@@ -135263,22 +135320,22 @@ xyw
 ilG
 dTI
 bBN
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
 bBN
 dTI
-bea
+ilG
 xyw
 xyw
 mMB
@@ -135464,29 +135521,29 @@ aqM
 aqt
 bHB
 aJa
-aZV
-baS
-bEA
-baI
-bfL
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-bfL
-baI
-bEA
-baS
+uEE
 bea
+ilG
+dTI
+bBN
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+bBN
+dTI
+ilG
+bea
+uEE
 mMB
 bHB
 aqs
@@ -136288,29 +136345,29 @@ eXq
 eXq
 mrD
 aJa
-aZV
-baS
-bEA
-baI
-bfL
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-anW
-bfL
-baI
-bEA
-baS
+uEE
 bea
+ilG
+dTI
+bBN
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+anW
+bBN
+dTI
+ilG
+bea
+uEE
 mMB
 bHB
 aYt
@@ -136499,22 +136556,22 @@ xyw
 ilG
 dTI
 bBN
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
-aZV
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
+apL
 bBN
 dTI
-bea
+ilG
 xyw
 xyw
 mMB
@@ -136604,7 +136661,7 @@ dTI
 bBN
 aZV
 aZV
-apL
+aZV
 bgj
 aZV
 aZV
@@ -136616,7 +136673,7 @@ aZV
 aZV
 aZV
 bBN
-bea
+dTI
 xyw
 xyw
 bGO
