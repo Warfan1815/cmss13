@@ -765,6 +765,26 @@
 	basestate = "wood_window"
 	window_frame = /obj/structure/window_frame/wood
 
+/obj/structure/window/framed/wood/plain
+	icon_state = "wood_plain_window0"
+	basestate = "wood_plain_window"
+	window_frame = /obj/structure/window_frame/wood/plain
+
+/obj/structure/window/framed/wood/blue
+	icon_state = "wood_blue_window0"
+	basestate = "wood_blue_window"
+	window_frame = /obj/structure/window_frame/wood/blue
+
+/obj/structure/window/framed/wood/green
+	icon_state = "wood_green_window0"
+	basestate = "wood_green_window"
+	window_frame = /obj/structure/window_frame/wood/green
+
+/obj/structure/window/framed/wood/purple
+	icon_state = "wood_purple_window0"
+	basestate = "wood_purple_window"
+	window_frame = /obj/structure/window_frame/wood/purple
+
 /obj/structure/window/framed/wood/reinforced
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrix inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."

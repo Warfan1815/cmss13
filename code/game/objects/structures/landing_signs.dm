@@ -98,3 +98,9 @@
 	name = "Tyrargo Rift - city limit sign"
 	desc = "A large sign designating the city limit of Tyrargo Rift."
 	icon_state = "tyrargo_sign_4"
+
+/obj/structure/lz_sign/isaacs_lament
+	name = "Isaacs Lament Sign"
+	desc = "A large sign splattered in blood. Barely underneath you make out Isaacs Lament: Sunny, Safe, Sprawling. Pop 873. The slogan has been barely crossed out with LIES"
+	icon = 'icons/obj/structures/props/landing_signs_128_64.dmi'
+	icon_state = "isaacs_lament"

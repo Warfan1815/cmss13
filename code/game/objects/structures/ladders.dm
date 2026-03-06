@@ -379,6 +379,16 @@
 	unacidable = TRUE
 	layer = LADDER_LAYER
 
+/obj/structure/prop/broken_ladder/ladder1
+	name = "ladder"
+	desc = "A sturdy metal ladder."
+	icon_state = "ladder1"
+
+/obj/structure/prop/broken_ladder/step
+	name = "step ladder"
+	desc = "A sturdy metal step ladder."
+	icon_state = "step_ladder"
+
 /obj/structure/ladder/multiz/LateInitialize()
 	. = ..()
 

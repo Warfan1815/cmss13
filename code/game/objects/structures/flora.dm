@@ -522,6 +522,21 @@ ICEY GRASS. IT LOOKS LIKE IT'S MADE OF ICE.
 	icon_tag = "snowbush"
 	variations = 6
 
+/obj/structure/flora/bush/isaacs
+	icon = 'icons/obj/structures/props/natural/vegetation/jungle_bushes.dmi'
+	icon_state = "bush1"
+	projectile_coverage = PROJECTILE_COVERAGE_NONE
+	cut_level = PLANT_CUT_MACHETE
+
+/obj/structure/flora/bush/isaacs/bush1
+	icon_state = "bush1"
+
+/obj/structure/flora/bush/isaacs/bush2
+	icon_state = "bush2"
+
+/obj/structure/flora/bush/isaacs/bush3
+	icon_state = "bush3"
+
 /*
 
 	AUSBUSHES

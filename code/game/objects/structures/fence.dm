@@ -379,6 +379,11 @@ GLOBAL_LIST_INIT(all_electric_fences, list())
 	desc = "A large metal mesh strewn between two poles, tangled with vines and creeping growth. Still separates areas, but nature is reclaiming it."
 	icon = 'icons/obj/structures/props/fences/overgrown_dark_fence.dmi'
 
+/obj/structure/fence/dark/mossy
+	name = "mossy fence"
+	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it. It has a layer of moss growing around it."
+	icon = 'icons/obj/structures/props/fences/mossy_fence.dmi'
+
 /obj/structure/fence/dark/warning
 	name = "fence"
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."

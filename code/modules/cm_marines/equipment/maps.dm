@@ -147,6 +147,10 @@
 	desc = "A labeled blueprint of the UA city Tyrargo Rift"
 	html_link = "images/7/79/Tyrargo_Rift.png"
 
+/obj/item/map/isaacs_lament
+	name = "\improper Isaacs Lament map"
+	desc = "A lebeled blueprint of the colony Isaacs Lament"
+
 GLOBAL_LIST_INIT_TYPED(map_type_list, /obj/item/map, setup_all_maps())
 
 /proc/setup_all_maps()

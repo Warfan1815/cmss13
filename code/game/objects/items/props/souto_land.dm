@@ -26,4 +26,35 @@
 	icon_state = "post"
 	layer = ABOVE_MOB_LAYER
 
+/*
+Isaacs Lament Props
+*/
 
+/obj/structure/prop/souto_land/streamer/curtain_metal
+	desc = "It connects streamer to streamer."
+	icon_state = "streamers_curtain_metal"
+
+/obj/structure/prop/souto_land/streamer/curtain_wood
+	desc = "It connects streamer to streamer."
+	icon_state = "streamers_curtain_wood"
+
+/obj/structure/prop/souto_land/streamer/colorable
+	icon_state = "streamers_colorable"
+
+/obj/structure/prop/souto_land/streamer/colored_alt
+	icon_state = "streamers_colored"
+
+/obj/structure/prop/souto_land/streamer/colored_alt
+	icon_state = "streamers_colored_alt"
+
+/obj/structure/prop/souto_land/pole/plain
+	icon_state = "post_plain"
+
+/obj/structure/prop/souto_land/pole/colorable
+	icon_state = "post_colorable"
+
+/obj/structure/prop/souto_land/pole/colored
+	icon_state = "post_colored"
+
+/obj/structure/prop/souto_land/pole/colored_alt
+	icon_state = "post_colored_alt"

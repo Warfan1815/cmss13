@@ -202,3 +202,42 @@
 	for(num_of_prizes; num_of_prizes > 0; num_of_prizes--)
 		empprize = pick_weight(prizes)
 		new empprize(src.loc)
+
+/*
+Isaacs Lament Variants
+*/
+/obj/structure/machinery/computer/arcade/isaacs
+	icon = 'icons/obj/structures/machinery/arcade.dmi'
+
+/obj/structure/machinery/computer/arcade/isaacs/back
+	icon_state = "arcade_back"
+
+/obj/structure/machinery/computer/arcade/isaacs/red
+	icon_state = "arcade_red"
+
+/obj/structure/machinery/computer/arcade/isaacs/red_back
+	icon_state = "arcade_red_back"
+
+/obj/structure/machinery/computer/arcade/isaacs/blue
+	icon_state = "arcade_blue"
+
+/obj/structure/machinery/computer/arcade/isaacs/blue_back
+	icon_state = "arcade_blue_back"
+
+/obj/structure/machinery/computer/arcade/isaacs/green
+	icon_state = "arcade_green"
+
+/obj/structure/machinery/computer/arcade/isaacs/green_back
+	icon_state = "arcade_green_back"
+
+/obj/structure/machinery/computer/arcade/isaacs/green_stripe
+	icon_state = "arcade_greenstripe"
+
+/obj/structure/machinery/computer/arcade/isaacs/green_stripe_back
+	icon_state = "arcade_greenstripe_back"
+
+/obj/structure/machinery/computer/arcade/isaacs/blue_stripe
+	icon_state = "arcade_bluestripe"
+
+/obj/structure/machinery/computer/arcade/isaacs/blue_stripe_back
+	icon_state = "arcade_bluestripe_back"
