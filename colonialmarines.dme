@@ -848,6 +848,7 @@
 #include "code\game\area\hijack.dm"
 #include "code\game\area\hunting_preserve.dm"
 #include "code\game\area\IceColony.dm"
+#include "code\game\area\Isaacs_Lament.dm"
 #include "code\game\area\kutjevo.dm"
 #include "code\game\area\LV522_Chances_Claim.dm"
 #include "code\game\area\LV624.dm"

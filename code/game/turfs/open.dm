@@ -678,17 +678,56 @@
 /turf/open/gm/dirtgrassborder2/north
 	dir = NORTH
 
-/turf/open/gm/dirtgrassborder2/east
-	dir = EAST
-
 /turf/open/gm/dirtgrassborder2/west
-	dir = WEST
+	dir = 4
+
+/turf/open/gm/dirtgrassborder2/east
+	dir = 8
 
 /turf/open/gm/dirtgrassborder2/wall2
 	icon_state = "wall2"
 
 /turf/open/gm/dirtgrassborder2/wall3
 	icon_state = "wall3"
+
+/turf/open/gm/dirtgrassborder3
+	name = "grass"
+	icon = 'icons/turf/floors/ground_map_dirt.dmi'
+	icon_state = "grassdirt_edge"
+	baseturfs = /turf/open/gm/dirtgrassborder3
+
+/turf/open/gm/dirtgrassborder3/north
+	dir = NORTH
+
+/turf/open/gm/dirtgrassborder3/west
+	dir = 4
+
+/turf/open/gm/dirtgrassborder3/east
+	dir = 8
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner
+	icon_state = "grassdirt_corner"
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner/north_east
+	dir = 1
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner/south_east
+	dir = 4
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner/south_west
+	dir = 8
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner2
+	icon_state = "grassdirt_corner2"
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner2/north_east
+	dir = 1
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner2/south_east
+	dir = 4
+
+/turf/open/gm/dirtgrassborder3/grassdirt_corner2/south_west
+	dir = 8
 
 /turf/open/gm/river
 	name = "river"
