@@ -253,8 +253,8 @@ export const RADIO_PREFIXES = {
     label: 'CIA',
   },
   '.s ': {
-    id: 'cia',
-    label: 'CIA',
+    id: 'army',
+    label: 'Army',
   },
   '#s ': {
     id: 'yautja',
@@ -310,15 +310,27 @@ export const RADIO_PREFIXES = {
   },
   ':y ': {
     id: 'wy',
-    label: 'W-Y',
+    label: 'W-Y Corp',
   },
   '.y ': {
     id: 'wy',
-    label: 'W-Y',
+    label: 'W-Y Corp',
   },
   '#y ': {
-    id: 'wy',
-    label: 'W-Y',
+    id: 'wysec',
+    label: 'W-Y Sec',
+  },
+  ':1 ': {
+    id: 'wypub',
+    label: 'W-Y Pub',
+  },
+  '.1 ': {
+    id: 'wypub',
+    label: 'W-Y Pub',
+  },
+  '#1 ': {
+    id: 'wypub',
+    label: 'W-Y Pub',
   },
   ':z ': {
     id: 'highcom',
@@ -380,8 +392,8 @@ export const LANGUAGE_PREFIXES = {
     label: 'Xenomporph',
   },
   '!l ': {
-    id: 'tatical',
-    label: 'Tacitical Sign',
+    id: 'tactical sign language',
+    label: 'Tactical Sign',
   },
   '!s ': {
     id: 'sainja',

@@ -2,13 +2,14 @@ GLOBAL_LIST_EMPTY(projectors)
 GLOBAL_LIST_EMPTY(deselected_projectors)
 GLOBAL_LIST_EMPTY(clones)
 GLOBAL_LIST_EMPTY(clones_t)
+GLOBAL_ALIST_EMPTY(projector_links)
 
 SUBSYSTEM_DEF(fz_transitions)
 	name = "Z-Transitions"
 	wait = 1 SECONDS
 	priority = SS_PRIORITY_FZ_TRANSITIONS
 	init_order = SS_INIT_FZ_TRANSITIONS
-	flags = SS_KEEP_TIMING
+	flags = SS_KEEP_TIMING|SS_NO_INIT
 	var/list/selective_update = null
 
 /datum/controller/subsystem/fz_transitions/stat_entry(msg)
@@ -36,7 +37,17 @@ SUBSYSTEM_DEF(fz_transitions)
 					if(!(istype(target_atom, /obj/effect/projector) || istype(target_atom, /mob/dead/observer) || istype(target_atom, /obj/structure/stairs) || istype(target_atom, /obj/structure/catwalk) || target_atom.type == /atom/movable/clone))
 						target_atom.clone.proj_x = target_projector.vector_x //Make sure projection is correct
 						target_atom.clone.proj_y = target_projector.vector_y
+						target_atom.clone.proj_z = target_projector.vector_z
 
+	for(var/atom/movable/clone/target_clone as anything in GLOB.clones)
+		if(!target_clone)
+			GLOB.clones -= target_clone
+			continue
+		if(target_clone.mstr == null || !istype(target_clone.mstr.loc, /turf))
+			target_clone.mstr.destroy_clone() //Kill clone if master has been destroyed or picked up
+			continue
+		if(target_clone != target_clone.mstr)
+			target_clone.mstr.update_clone() //NOTE: Clone updates are also forced by player movement to reduce latency
 
 	for(var/atom/movable/clone/target_clone as anything in GLOB.clones)
 		if(target_clone.mstr == null || !istype(target_clone.mstr.loc, /turf))
@@ -45,9 +56,12 @@ SUBSYSTEM_DEF(fz_transitions)
 			if(target_clone != target_clone.mstr && selective_update[target_clone.proj.firing_id])
 				target_clone.mstr.update_clone() //NOTE: Clone updates are also forced by player movement to reduce latency
 
-	for(var/atom/T as anything in GLOB.clones_t)
-		if(T.clone && T.icon_state) //Just keep the icon updated for explosions etc.
-			T.clone.icon_state = T.icon_state
+	for(var/atom/target_turf as anything in GLOB.clones_t)
+		if(!target_turf)
+			GLOB.clones_t -= target_turf
+			continue
+		if(target_turf.clone && target_turf.icon_state) //Just keep the icon updated for explosions etc.
+			target_turf.clone.icon_state = target_turf.icon_state
 
 /datum/controller/subsystem/fz_transitions/proc/toggle_selective_update(update, firing_id)
 	selective_update[firing_id] = update
@@ -62,3 +76,4 @@ SUBSYSTEM_DEF(fz_transitions)
 				GLOB.projectors -= target_projector
 				GLOB.deselected_projectors += target_projector
 	fire()
+

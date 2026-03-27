@@ -210,7 +210,7 @@ directive is properly returned.
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return
 
-/atom/proc/emp_act(severity)
+/atom/proc/emp_act(severity, datum/cause_data/cause_data)
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(emp_proof)
@@ -269,14 +269,24 @@ directive is properly returned.
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
-/atom/proc/relaymove()
+/atom/proc/relaymove(mob/living/user, direction)
 	return
+
+/**
+ * A special case of relaymove() in which the person relaying the move may be "driving" this atom
+ *
+ * This is a special case for vehicles and ridden animals where the relayed movement may be handled
+ * by the riding component attached to this atom. Returns TRUE as long as there's nothing blocking
+ * the movement, or FALSE if the signal gets a reply that specifically blocks the movement
+ */
+/atom/proc/relaydrive(mob/living/user, direction)
+	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
 
 /atom/proc/contents_explosion(severity)
 	for(var/atom/A in contents)
 		A.ex_act(severity)
 
-/atom/proc/ex_act(severity)
+/atom/proc/ex_act(severity, direction, datum/cause_data/cause_data, pierce=0, enviro=FALSE)
 	if(explo_proof)
 		return
 
@@ -422,11 +432,10 @@ Parameters are passed from New.
 /atom/clone
 	var/proj_x = 0
 	var/proj_y = 0
-	var/obj/effect/projector/proj = null
+	var/proj_z = 0
 
 /atom/proc/create_clone(obj/effect/projector/related_projector) //NOTE: Use only for turfs, otherwise use create_clone_movable
-	var/turf/target_turf = null
-	target_turf = locate(x + related_projector.vector_x, y + related_projector.vector_y, z)
+	var/turf/target_turf = locate(x + related_projector.vector_x, y + related_projector.vector_y, z + related_projector.vector_z)
 
 	if(related_projector.modify_turf)
 		target_turf.appearance = appearance
@@ -663,7 +672,7 @@ Parameters are passed from New.
 
 // returns a modifier for how much the tail stab should be cooldowned by
 // returning a 0 makes it do nothing
-/atom/proc/handle_tail_stab(mob/living/carbon/xenomorph/xeno)
+/atom/proc/handle_tail_stab(mob/living/carbon/xenomorph/xeno, blunt_stab)
 	return TAILSTAB_COOLDOWN_NONE
 
 /atom/proc/handle_flamer_fire(obj/flamer_fire/fire, damage, delta_time)
@@ -838,3 +847,6 @@ Parameters are passed from New.
 	var/refid = REF(src)
 	. += "[VV_HREF_TARGETREF(refid, VV_HK_AUTO_RENAME, "<b id='name'>[src]</b>")]"
 	. += "<br><font size='1'><a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=left'><<</a> <a href='byond://?_src_=vars;[HrefToken()];datumedit=[refid];varnameedit=dir' id='dir'>[dir2text(dir) || dir]</a> <a href='byond://?_src_=vars;[HrefToken()];rotatedatum=[refid];rotatedir=right'>>></a></font>"
+
+/atom/Exited(atom/movable/AM, direction)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)

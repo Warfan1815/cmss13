@@ -31,23 +31,46 @@ import {
 
 type search = {
   value: string;
+  show_ground: boolean;
+  show_ship: boolean;
   setValue: (value: string) => void;
+  setGroundVisibility: (value: boolean) => void;
+  setShipVisibility: (value: boolean) => void;
 };
 
-const SearchContext = createContext<search>({ value: '', setValue: () => {} });
+const SearchContext = createContext<search>({
+  value: '',
+  show_ground: true,
+  show_ship: true,
+  setValue: () => {},
+  setGroundVisibility: () => {},
+  setShipVisibility: () => {},
+});
 
 export const Orbit = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showGround, setShowGround] = useState<boolean>(true);
+  const [showShip, setShowShip] = useState<boolean>(true);
 
   return (
     <Window title="Orbit" width={500} height={700}>
       <Window.Content scrollable>
         <SearchContext.Provider
-          value={{ value: searchQuery, setValue: setSearchQuery }}
+          value={{
+            show_ground: showGround,
+            show_ship: showShip,
+            value: searchQuery,
+            setGroundVisibility: setShowGround,
+            setShipVisibility: setShowShip,
+            setValue: setSearchQuery,
+          }}
         >
           <Stack fill vertical>
             <Stack.Item>
               <ObservableSearch />
+            </Stack.Item>
+            <Stack.Item mt={0.2}>
+              <ObservableFilter />
             </Stack.Item>
             <Stack.Item mt={0.2} grow>
               <Section fill>
@@ -58,6 +81,47 @@ export const Orbit = () => {
         </SearchContext.Provider>
       </Window.Content>
     </Window>
+  );
+};
+
+const ObservableFilter = () => {
+  const { show_ground, show_ship, setGroundVisibility, setShipVisibility } =
+    useContext(SearchContext);
+  return (
+    <Section>
+      <Stack>
+        <Stack.Item grow>
+          <Icon name="filter" />
+        </Stack.Item>
+        <Stack.Divider />
+        <Stack.Item>
+          <Button.Checkbox
+            checked={!!show_ground}
+            onClick={() => setGroundVisibility(!show_ground)}
+          >
+            Ground
+          </Button.Checkbox>
+        </Stack.Item>
+        <Stack.Item>
+          <Button.Checkbox
+            checked={!!show_ship}
+            onClick={() => setShipVisibility(!show_ship)}
+          >
+            Ship
+          </Button.Checkbox>
+        </Stack.Item>
+        <Stack.Item>
+          <Button
+            onClick={() => {
+              setGroundVisibility(true);
+              setShipVisibility(true);
+            }}
+          >
+            Reset
+          </Button>
+        </Stack.Item>
+      </Stack>
+    </Section>
   );
 };
 
@@ -217,6 +281,7 @@ const marineSplitter = (members: Array<Observable>) => {
   const SOFSquad: Array<Observable> = [];
   const other: Array<Observable> = [];
   const provost: Array<Observable> = [];
+  const ArmySquad: Array<Observable> = [];
 
   members.forEach((x) => {
     if (x.mutiny_status?.includes('Mutineer')) {
@@ -247,6 +312,8 @@ const marineSplitter = (members: Array<Observable>) => {
       SOFSquad.push(x);
     } else if (x.job?.includes('Provost')) {
       provost.push(x);
+    } else if (x.job?.includes('Army')) {
+      ArmySquad.push(x);
     } else {
       other.push(x);
     }
@@ -267,6 +334,7 @@ const marineSplitter = (members: Array<Observable>) => {
     buildSquadObservable('SOF', 'red', SOFSquad),
     buildSquadObservable('Other', 'grey', other),
     buildSquadObservable('Provost', 'red', provost),
+    buildSquadObservable('Army', 'green', ArmySquad),
   ];
   return squads;
 };
@@ -299,7 +367,11 @@ const GroupedObservable = (props: {
 }) => {
   const { color, section = [], title } = props;
 
-  const { value: searchQuery } = useContext(SearchContext);
+  const {
+    value: searchQuery,
+    show_ground,
+    show_ship,
+  } = useContext(SearchContext);
 
   if (!section.length) {
     return null;
@@ -307,6 +379,8 @@ const GroupedObservable = (props: {
 
   const filteredSection = section
     .filter((observable) => isJobOrNameMatch(observable, searchQuery))
+    .filter((observable) => (observable.in_ground === 1 ? show_ground : true))
+    .filter((observable) => (observable.in_ship === 1 ? show_ship : true))
     .sort((a, b) =>
       a.full_name
         .toLocaleLowerCase()
@@ -332,7 +406,8 @@ const GroupedObservable = (props: {
             <ObservableSection
               color={x.color}
               title={x.title}
-              section={props.sorter ? x.members.sort(props.sorter) : x.members}
+              section={x.members}
+              sorter={props.sorter}
               key={x.title}
             />
           ))}
@@ -397,20 +472,20 @@ const weyyuSplitter = (members: Array<Observable>) => {
   const whiteout: Array<Observable> = [];
   const wycommando: Array<Observable> = [];
   const pmc: Array<Observable> = [];
-  const goons: Array<Observable> = [];
+  const security: Array<Observable> = [];
   const other: Array<Observable> = [];
 
   members.forEach((x) => {
     if (x.job?.includes('Whiteout')) {
       whiteout.push(x);
-    } else if (x.job?.includes('Death Squad')) {
-      whiteout.push(x);
     } else if (x.job?.includes('W-Y Commando')) {
       wycommando.push(x);
     } else if (x.job?.includes('PMC')) {
       pmc.push(x);
-    } else if (x.job?.includes('Corporate Security')) {
-      goons.push(x);
+    } else if (x.job?.includes('Security')) {
+      security.push(x);
+    } else if (x.job?.includes('Bodyguard')) {
+      security.push(x);
     } else {
       other.push(x);
     }
@@ -418,9 +493,9 @@ const weyyuSplitter = (members: Array<Observable>) => {
 
   const squads = [
     buildSquadObservable('PMCs', 'white', pmc),
-    buildSquadObservable('Goons', 'orange', goons),
+    buildSquadObservable('Security Forces', 'orange', security),
     buildSquadObservable('Corporate', 'white', other),
-    buildSquadObservable('W-Y Commando', 'white', wycommando),
+    buildSquadObservable('W-Y Commandos', 'white', wycommando),
     buildSquadObservable('Whiteout', 'red', whiteout),
   ];
   return squads;
@@ -605,10 +680,15 @@ const ObservableSection = (props: {
   readonly color?: string;
   readonly section: Array<Observable>;
   readonly title: string;
+  readonly sorter?: groupSorter;
 }) => {
-  const { color, section = [], title } = props;
+  const { color, section = [], title, sorter } = props;
 
-  const { value: searchQuery } = useContext(SearchContext);
+  const {
+    value: searchQuery,
+    show_ground,
+    show_ship,
+  } = useContext(SearchContext);
 
   if (!section.length) {
     return null;
@@ -616,11 +696,16 @@ const ObservableSection = (props: {
 
   const filteredSection = section
     .filter((observable) => isJobOrNameMatch(observable, searchQuery))
-    .sort((a, b) =>
-      a.full_name
+    .filter((observable) => (observable.in_ground === 1 ? show_ground : true))
+    .filter((observable) => (observable.in_ship === 1 ? show_ship : true))
+    .sort((a, b) => {
+      if (sorter) {
+        return sorter(a, b);
+      }
+      return a.full_name
         .toLocaleLowerCase()
-        .localeCompare(b.full_name.toLocaleLowerCase()),
-    );
+        .localeCompare(b.full_name.toLocaleLowerCase());
+    });
 
   if (!filteredSection.length) {
     return null;

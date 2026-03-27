@@ -406,6 +406,18 @@
 		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/items_by_map/urban_righthand.dmi'
 	)
 
+/obj/item/clothing/under/marine/army
+	name = "US Army uniform"
+	desc = "Standard-issue Army uniform. They have shards of light Kevlar to help protect against stabbing weapons and bullets."
+	specialty = "US Army"
+	icon_state = "army_uniform"
+	worn_state = "army_uniform"
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_faction/UA.dmi'
+	flags_atom = NO_GAMEMODE_SKIN|NO_NAME_OVERRIDE
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_faction/UA.dmi',
+	)
+
 /obj/item/clothing/under/marine/officer
 	name = "marine officer uniform"
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too. It has shards of light Kevlar to help protect against stabbing weapons and bullets."
@@ -950,7 +962,7 @@
 
 /obj/item/clothing/under/marine/veteran/marsoc
 	name = "SOF Uniform"
-	desc = "A black uniform for elite Marine personnel. Designed to be comfortable and help blend into dark enviorments."
+	desc = "A black uniform for elite Marine personnel. Designed to be comfortable and help blend into dark environments."
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_faction/UA.dmi'
 	item_icons = list(
@@ -974,6 +986,7 @@
 	worn_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	undershirt = TRUE
 	suit_restricted = list(
 		/obj/item/clothing/suit/storage/marine/veteran/pmc,
 		/obj/item/clothing/suit/storage/marine/smartgunner/veteran/pmc,
@@ -985,6 +998,10 @@
 		/obj/item/clothing/suit/storage/windbreaker,
 		/obj/item/clothing/suit/storage/snow_suit,
 	) //if you remove this, it allows you to wear the marine M3 armor over the pmc fatigues
+
+/obj/item/clothing/under/marine/veteran/pmc/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
 
 /obj/item/clothing/under/marine/veteran/pmc/leader
 	name = "\improper PMC command fatigues"
@@ -1100,10 +1117,15 @@
 	has_sensor = UNIFORM_HAS_SENSORS
 	suit_restricted = list(/obj/item/clothing/suit/storage/marine/faction/UPP, /obj/item/clothing/suit/gimmick/jason, /obj/item/clothing/suit/storage/snow_suit/soviet, /obj/item/clothing/suit/storage/snow_suit/survivor, /obj/item/clothing/suit/storage/webbing, /obj/item/clothing/suit/storage/webbing/brown, /obj/item/clothing/suit/storage/webbing/black)
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	undershirt = TRUE
 
 	item_icons = list(
 		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_faction/UPP.dmi'
 	)
+
+/obj/item/clothing/under/marine/veteran/UPP/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/norcomm)
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
 	name = "\improper UPP medic fatigues"
@@ -1137,30 +1159,35 @@
 	desc = "A set of Civilian-style Orange Overalls with a dark tan undershirt. The material is of a poor quality, however it's better than nothing. Clothing of this style is typically given out to those who work laborious jobs."
 	icon_state = "upp_uniform_civi1"
 	worn_state = "upp_uniform_civi1"
+	suit_restricted = FALSE
 
 /obj/item/clothing/under/marine/veteran/UPP/civi2
 	name = "\improper UPP Civilian-style tan overalls"
 	desc = "A set of Civilian-style Tan Overalls with a Blue undershirt. The material is of a poor quality, however it's better than nothing. Clothing of this style is typically given to those who work laborious jobs."
 	icon_state = "upp_uniform_civi2"
 	worn_state = "upp_uniform_civi2"
+	suit_restricted = FALSE
 
 /obj/item/clothing/under/marine/veteran/UPP/civi3
 	name = "\improper UPP Civilian-style shirt and pants"
 	desc = "A set of Civilian-style tan shirt and jeans. The material, while poor, is comfortable enough to be worn during all periods of the day."
 	icon_state = "upp_uniform_civi3"
 	worn_state = "upp_uniform_civi3"
+	suit_restricted = FALSE
 
 /obj/item/clothing/under/marine/veteran/UPP/civi4
 	name = "\improper UPP Civilian-style Vest and pants"
 	desc = "A set of Civilian-style Brown vest and orange pants. The material is surprisingly decent, something not often worn by the civilians of the UPP for two reasons: They typically can't afford such clothing, and if they can, it paints a target on their back."
 	icon_state = "upp_uniform_civi4"
 	worn_state = "upp_uniform_civi4"
+	suit_restricted = FALSE
 
 /obj/item/clothing/under/marine/veteran/UPP/civi5
 	name = "\improper Jùtóu Combine mining overalls"
 	desc = "A durable, olive-green jumpsuit worn beneath a sleeveless, puffy orange work vest—standard issue for Jùtóu Combine laborers. The vest's faded fabric is lined with reinforced padding, offering minimal protection against workplace hazards. A red star insignia is stamped on the back, marking its wearer as part of the Combine’s industrial workforce. Stiff, uncomfortable, and mass-produced, but better than nothing in the unforgiving conditions of deep-space labor."
 	icon_state = "miner_uniform"
 	worn_state = "miner_uniform"
+	suit_restricted = FALSE
 
 /obj/item/clothing/under/marine/veteran/UPP/army
 	name = "\improper UPP army jungle fatigues"
@@ -1196,7 +1223,7 @@
 
 /obj/item/clothing/under/marine/veteran/cmb
 	name = "\improper CMB Riot Control uniform"
-	desc = "A dark set of tactical uniform utilized by the Colonial Marshals, designed to be used by units of riot supression on the distant worlds, under colonial jurisdiction."
+	desc = "A dark set of tactical uniform utilized by the Colonial Marshals, designed to be used by units of riot suppression on the distant worlds, under colonial jurisdiction."
 	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_faction/CMB.dmi'
 	item_icons = list(
 		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_faction/CMB.dmi',
@@ -1256,6 +1283,10 @@
 
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
+
+/obj/item/clothing/under/marine/veteran/dutch/vietnam
+	name = "\improper US Army uniform"
+	desc = "Standard-issue Army uniform. Used during the Vietnam War."
 
 /obj/item/clothing/under/marine/veteran/van_bandolier
 	name = "hunting clothes"
@@ -1331,6 +1362,16 @@
 	flags_jumpsuit = FALSE
 	suit_restricted = null
 
+/obj/item/clothing/under/marine/ua_riot/police
+	name = "\improper United American police uniform"
+	desc = "A version of the Standard uniform worn by US Marines and Army personnel, this one dyed a navy blue, often worn by police officers in high intensity situations."
+	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_faction/CMB.dmi'
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_faction/CMB.dmi',
+	)
+	icon_state = "police_riot"
+	worn_state = "police_riot"
+
 /obj/item/clothing/under/pizza
 	name = "pizza delivery uniform"
 	desc = "An ill-fitting, slightly stained uniform for a pizza delivery pilot. Smells of cheese."
@@ -1360,6 +1401,13 @@
 	worn_state = "colonist"
 	has_sensor = UNIFORM_HAS_SENSORS
 
+/obj/item/clothing/under/colonist/Initialize()
+	. = ..()
+	if(istypestrict(src, /obj/item/clothing/under/colonist))
+		AddElement(/datum/element/corp_label/wy)
+	if(istypestrict(src, /obj/item/clothing/under/colonist/administrator))
+		AddElement(/datum/element/corp_label/wy)
+
 /obj/item/clothing/under/colonist/administrator
 	name = "administrator uniform"
 	desc = "An office grey polo with a Wey-Yu badge on the chest. Worn by administrators on colonies owned by the Company."
@@ -1373,6 +1421,7 @@
 	item_icons = list(
 		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/workwear.dmi',
 	)
+	flags_bodypart_hidden = BODY_FLAG_CHEST|BODY_FLAG_LEGS
 	icon_state = "workwear_grey"
 	worn_state = "workwear_grey"
 
@@ -1503,6 +1552,16 @@
 	icon_state = "liaison_charcoal"
 	worn_state = "liaison_charcoal"
 
+/obj/item/clothing/under/liaison_suit/charcoal/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
+
+/obj/item/clothing/under/liaison_suit/charcoal/skirt
+	name = "liaison's charcoal suitskirt"
+	desc = "A stiff, stylish charcoal suit commonly worn by businesswomen from the Weyland-Yutani corporation. Expertly crafted to make you look like a prick."
+	icon_state = "liaison_charcoal_skirt"
+	worn_state = "liaison_charcoal_skirt"
+
 /obj/item/clothing/under/liaison_suit/outing
 	name = "liaison's outfit"
 	desc = "A casual outfit consisting of a collared shirt and a vest. Looks like something you might wear on the weekends, or on a visit to a derelict colony."
@@ -1519,11 +1578,19 @@
 	icon_state = "liaison_formal"
 	worn_state = "liaison_formal"
 
+/obj/item/clothing/under/liaison_suit/formal/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
+
 /obj/item/clothing/under/liaison_suit/suspenders
 	name = "liaison's suspenders"
 	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
 	icon_state = "liaison_suspenders"
 	worn_state = "liaison_suspenders"
+
+/obj/item/clothing/under/liaison_suit/suspenders/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
 
 /obj/item/clothing/under/liaison_suit/blazer
 	name = "liaison's blue blazer"
@@ -1531,11 +1598,21 @@
 	icon_state = "liaison_blue_blazer"
 	worn_state = "liaison_blue_blazer"
 
+/obj/item/clothing/under/liaison_suit/blazer/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
+
 /obj/item/clothing/under/liaison_suit/field
 	name = "corporate casual"
 	desc = "A pair of dark brown slacks paired with a dark blue button-down shirt. A popular look among those in the corporate world that conduct the majority of their business from night clubs."
 	icon_state = "corporate_field"
 	worn_state = "corporate_field"
+
+/obj/item/clothing/under/liaison_suit/field/skirt
+	name = "corporate casual skirt"
+	desc = "A black pencil skirt paired with a dark blue button-down shirt. A popular look among those in the corporate world that conduct the majority of their business from night clubs."
+	icon_state = "corporate_field_skirt"
+	worn_state = "corporate_field_skirt"
 
 /obj/item/clothing/under/liaison_suit/ivy
 	name = "country club outfit"
@@ -1560,6 +1637,12 @@
 	desc = "A pair of black slacks paired with a white shirt. The most common pairing among corporate workers."
 	icon_state = "corporate_black"
 	worn_state = "corporate_black"
+
+/obj/item/clothing/under/liaison_suit/black/skirt
+	name = "black suitskirt"
+	desc = "A black pencil skirt paired with a white shirt. A common pairing among corporate workers."
+	icon_state = "corporate_black_skirt"
+	worn_state = "corporate_black_skirt"
 
 /obj/item/clothing/under/liaison_suit/brown
 	name = "brown suit pants"
@@ -1616,10 +1699,18 @@
 		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/formal_uniforms.dmi',
 	)
 
+/obj/item/clothing/under/stowaway/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
+
 /obj/item/clothing/under/rank/chef/exec
 	name = "\improper Weyland-Yutani suit"
 	desc = "A formal white undersuit."
 	flags_jumpsuit = FALSE
+
+/obj/item/clothing/under/rank/chef/exec/Initialize()
+	. = ..()
+	AddElement(/datum/element/corp_label/wy)
 
 /obj/item/clothing/under/rank/qm_suit
 	name = "quartermaster suit"
@@ -1673,6 +1764,13 @@
 	icon_state = "green_utility"
 	worn_state = "green_utility"
 	displays_id = FALSE
+
+/obj/item/clothing/under/rank/utility/upp
+	name = "\improper green utility uniform"
+	desc = "A green-on-green utility uniform, popularly issued to UPP workers on the frontier."
+	has_sensor = UNIFORM_HAS_SENSORS
+	suit_restricted = FALSE
+	armor_energy = CLOTHING_ARMOR_LOW
 
 /obj/item/clothing/under/rank/utility/yellow
 	name = "\improper yellow utility uniform"
@@ -1777,6 +1875,7 @@
 /obj/item/clothing/under/rank/synthetic/joe/Initialize()
 	. = ..()
 	camera = new /obj/structure/machinery/camera/autoname/almayer/containment/ares(src)
+	AddElement(/datum/element/corp_label/seegson)
 
 /obj/item/clothing/under/rank/synthetic/joe/Destroy()
 	QDEL_NULL(camera)
@@ -1823,7 +1922,7 @@
 
 /obj/item/clothing/under/marine/veteran/royal_marine
 	name = "royal marines commando uniform"
-	desc = "The field uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
+	desc = "The field uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment."
 	icon = 'icons/obj/items/clothing/uniforms/uniforms_by_faction/TWE.dmi'
 	item_icons = list(
 		WEAR_BODY = 'icons/mob/humans/onmob/clothing/uniforms/uniforms_by_faction/TWE.dmi',
@@ -1838,7 +1937,7 @@
 
 /obj/item/clothing/under/marine/veteran/royal_marine/lt
 	name = "royal marines commando officers uniform"
-	desc = "The officers uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
+	desc = "The officers uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment."
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
 
@@ -2000,7 +2099,7 @@
 /obj/item/clothing/under/marine/cbrn/proc/flamer_fire_callback(mob/living/burning_mob, datum/reagent/fire_reagent)
 	SIGNAL_HANDLER
 
-	if(fire_reagent.fire_penetrating)
+	if(fire_reagent?.fire_penetrating)
 		return
 
 	. = COMPONENT_NO_IGNITE|COMPONENT_NO_BURN

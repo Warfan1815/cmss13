@@ -18,11 +18,9 @@
 
 		if (XENO_ACTION_QUEUE)
 			handle_xeno_macro_actionqueue(xeno, action)
-
 		else
 			log_debug("Xeno action [action.name] is misconfigured. Code: XENO_ACTION_MACRO_1")
 			log_admin("Xeno action [action.name] is misconfigured. Tell the devs. Code: XENO_ACTION_MACRO_1")
-
 
 /proc/handle_xeno_macro_click(mob/living/carbon/xenomorph/xeno, datum/action/xeno_action/action)
 	action.button.clicked(xeno)
@@ -189,5 +187,20 @@
 		if(xeno_action.hidden)
 			continue
 		if(xeno_action.ability_primacy == XENO_TAIL_STAB)
+			handle_xeno_macro_datum(src, xeno_action)
+			break
+
+
+/mob/living/carbon/xenomorph/verb/toggle_seethrough()
+
+	set category = "Alien"
+	set name = "Become seethrough"
+	set hidden = TRUE
+	var/mob/living/carbon/xenomorph/xeno = src
+
+	for(var/datum/action/xeno_action/xeno_action in xeno.actions)
+		if(xeno_action.hidden)
+			continue
+		if(xeno_action.ability_primacy == XENO_BECOME_SEETHROUGH)
 			handle_xeno_macro_datum(src, xeno_action)
 			break

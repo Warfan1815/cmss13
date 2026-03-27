@@ -229,13 +229,13 @@
 /obj/item/clothing/mask/gas/yautja/thrall
 	name = "alien mask"
 	desc = "A simplistic metallic face mask with advanced capabilities."
-	icon_state = "thrall_mask"
-	item_state = "thrall_mask"
+	icon_state = "thrallmask_ebony"
+	item_state = "thrallmask_ebony"
 	icon = 'icons/obj/items/hunter/thrall_gear.dmi'
 	item_icons = list(
 		WEAR_FACE = 'icons/mob/humans/onmob/hunter/thrall_gear.dmi'
 	)
-	item_state_slots = list(WEAR_FACE = "thrall_mask")
+	item_state_slots = list(WEAR_FACE = "thrallmask_ebony")
 	thrall = TRUE
 
 /obj/item/clothing/mask/gas/yautja/thrall/toggle_zoom()
@@ -272,6 +272,16 @@
 /obj/item/clothing/mask/gas/yautja/damaged
 	name = "ancient alien mask"
 	desc = "A beautifully designed metallic face mask, both ornate and functional. This one seems to be old and degraded."
+
+// emissary mask
+
+/obj/item/clothing/mask/gas/yautja/hunter/emissary
+	icon_state = "pred_mask_elite_emissary"
+
+/obj/item/clothing/mask/gas/yautja/hunter/emissary/New() // guarantee this icon vs randomization
+	..()
+	icon_state = "pred_mask_elite_emissary"
+	LAZYSET(item_state_slots, WEAR_FACE, "pred_mask_elite_emissary")
 
 //flavor, not a subtype
 /obj/item/clothing/mask/yautja_flavor
@@ -315,7 +325,7 @@
 
 /obj/item/clothing/accessory/mask
 	name = "Mask Ornament"
-	desc = "An ornate addition to your mask"
+	desc = "An ornate addition to your mask."
 	icon = 'icons/obj/items/hunter/pred_mask_accessories.dmi'
 	accessory_icons = list(WEAR_FACE = 'icons/mob/humans/onmob/hunter/pred_mask_accessories.dmi')
 	icon_state = null

@@ -196,14 +196,14 @@
 		return
 	if(bound_xeno.stat == DEAD)
 		return
-	var/image/holder = bound_xeno.hud_list[PLASMA_HUD]
+	var/image/holder = bound_xeno.hud_list[SPECIAL_HUD]
 	holder.overlays.Cut()
 	var/percentage_transferred = min(round((transferred_amount / required_transferred_amount) * 100, 10), 100)
 	if(percentage_transferred)
 		holder.overlays += image('icons/mob/hud/hud.dmi', "xenoenergy[percentage_transferred]")
 
 /datum/behavior_delegate/drone_healer/handle_death(mob/M)
-	var/image/holder = bound_xeno.hud_list[PLASMA_HUD]
+	var/image/holder = bound_xeno.hud_list[SPECIAL_HUD]
 	holder.overlays.Cut()
 
 /datum/action/xeno_action/activable/healer_sacrifice
@@ -262,11 +262,15 @@
 
 	xeno.say(";MY LIFE FOR THE QUEEN!!!")
 
+	target.ExtinguishMob() //first, extinguish them from fire so they can be healed.
+
 	if(target.health < 0)
-		target.gain_health(abs(target.health)) // gets them out of crit first
+		target.gain_health(abs(target.health)) //second, get them out of crit.
 
 	target.gain_health(xeno.health * transfer_mod)
 	target.updatehealth()
+
+	target.clear_debuffs() //third, remove debuffs so they can stand up.
 
 	target.xeno_jitter(1 SECONDS)
 	target.flick_heal_overlay(3 SECONDS, "#44253d")
