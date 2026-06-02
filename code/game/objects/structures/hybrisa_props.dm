@@ -1701,6 +1701,27 @@
 	throwforce = 3
 	w_class = SIZE_MEDIUM
 
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag0
+	icon_state = "ztrashbag"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag1
+	icon_state = "ztrashbag_1"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag2
+	icon_state = "ztrashbag_2"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag3
+	icon_state = "ztrashbag_3"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag4
+	icon_state = "ztrashbag_4"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag5
+	icon_state = "ztrashbag_5"
+
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag6
+	icon_state = "ztrashbag_6"
+
 /obj/structure/prop/hybrisa/misc/slotmachine
 	name = "slot machine"
 	desc = "A slot machine."

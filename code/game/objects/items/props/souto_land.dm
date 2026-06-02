@@ -31,30 +31,39 @@ Isaacs Lament Props
 */
 
 /obj/structure/prop/souto_land/streamer/curtain_metal
+	name = "metal beam"
 	desc = "It connects streamer to streamer."
 	icon_state = "streamers_curtain_metal"
 
 /obj/structure/prop/souto_land/streamer/curtain_wood
+	name = "wood beam"
 	desc = "It connects streamer to streamer."
 	icon_state = "streamers_curtain_wood"
 
 /obj/structure/prop/souto_land/streamer/colorable
+	name = "streamers"
 	icon_state = "streamers_colorable"
 
 /obj/structure/prop/souto_land/streamer/colored_alt
+	name = "streamers"
 	icon_state = "streamers_colored"
 
 /obj/structure/prop/souto_land/streamer/colored_alt
+	name = "streamers"
 	icon_state = "streamers_colored_alt"
 
 /obj/structure/prop/souto_land/pole/plain
+	name = "plain pole"
 	icon_state = "post_plain"
 
 /obj/structure/prop/souto_land/pole/colorable
+	name = "colored pole"
 	icon_state = "post_colorable"
 
 /obj/structure/prop/souto_land/pole/colored
+	name = "colored pole"
 	icon_state = "post_colored"
 
 /obj/structure/prop/souto_land/pole/colored_alt
+	name = "colored pole"
 	icon_state = "post_colored_alt"
