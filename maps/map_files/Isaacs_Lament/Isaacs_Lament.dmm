@@ -314,7 +314,6 @@
 /area/lv873/outdoors/colony_streets/south)
 "adK" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 8;
 	layer = 3.25
 	},
 /obj/effect/decal/hybrisa/dirt,
@@ -588,6 +587,7 @@
 /area/lv873/indoors/lone_buildings/cargo_lz)
 "agY" = (
 /obj/item/trash/cigbutt,
+/obj/item/restraint/handcuffs,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "red"
@@ -1384,7 +1384,8 @@
 	phone_category = "Isaac's Lament - Corporate Net";
 	phone_id = "Operations Security";
 	pixel_x = -10;
-	pixel_y = 2
+	pixel_y = 2;
+	name = "Operations Security corporate-net telephone receiver"
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/lv873/indoors/operations/offices/northwest)
@@ -2110,7 +2111,7 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 7;
 	pixel_y = -1;
-	name = "Third Fleet Intelligence colony-net rotary telephone";
+	name = "USCMC Garrison, Third Fleet Intelligence colony-net rotary telephone";
 	phone_category = "Public Landlines";
 	phone_id = "USCMC Garrison, Third Fleet Intelligence"
 	},
@@ -2424,13 +2425,62 @@
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/colony_streets/east)
 "ayu" = (
-/obj/structure/machinery/photocopier,
-/obj/structure/machinery/light{
-	dir = 1
+/obj/structure/filingcabinet{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/effect/landmark/objective_landmark/far,
+/obj/item/newspaper{
+	name = "report on native species m-7 yr-2182";
+	pixel_x = 1
 	},
 /obj/item/newspaper{
-	name = "urgent report on imminent armed unrest m-7 yr-2182"
+	name = "flight logs m-3 yr-2182";
+	pixel_x = -12;
+	pixel_y = -5
 	},
+/obj/item/newspaper{
+	pixel_y = -5;
+	name = "suspicious persons list m-7 yr-2182";
+	pixel_x = -7
+	},
+/obj/item/newspaper{
+	name = "flight logs m-4 yr-2182";
+	pixel_x = 7;
+	pixel_y = -4
+	},
+/obj/item/newspaper{
+	pixel_y = 1;
+	name = "report on unidentified materials in disposal systems m-7 yr-2182";
+	pixel_x = -1
+	},
+/obj/item/newspaper{
+	pixel_y = -1;
+	name = "correspondence on understrength uscm garrison and increasing gang activity m6-2182";
+	pixel_x = 9
+	},
+/obj/item/newspaper{
+	pixel_y = 1;
+	name = "Isaacs Lament marshal's wanted list m-7 yr-2182";
+	pixel_x = -7
+	},
+/obj/item/newspaper{
+	pixel_y = 1;
+	name = "report on decreasing aquifer water levels m-7 yr-2182";
+	pixel_x = -3
+	},
+/obj/item/newspaper{
+	pixel_y = -1;
+	name = "report on sudden destruction of colony infrastructure m-7 yr-2182";
+	pixel_x = 7
+	},
+/obj/item/folder/black,
+/obj/item/folder/black,
+/obj/item/folder/black,
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "ayL" = (
@@ -2615,7 +2665,7 @@
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/colony_streets/south)
 "aAG" = (
-/obj/structure/machinery/disposal,
+/obj/structure/reagent_dispensers/water_cooler/stacks,
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
 "aAI" = (
@@ -3113,10 +3163,10 @@
 	},
 /area/lv873/indoors/hospital/operating_rooms)
 "aFI" = (
-/obj/structure/machinery/prop/almayer/computer/PC{
+/obj/structure/surface/table/reinforced/prison,
+/obj/structure/machinery/computer/objective{
 	dir = 4
 	},
-/obj/structure/surface/table/reinforced/prison,
 /turf/open/floor{
 	dir = 10;
 	icon_state = "red"
@@ -3423,6 +3473,10 @@
 "aIh" = (
 /obj/structure/fence/dark/mossy,
 /turf/open/gm/dirtgrassborder3/west,
+/area/lv873/outdoors/colony_streets/southeast)
+"aIm" = (
+/obj/structure/machinery/colony_floodlight,
+/turf/open/gm/dirtgrassborder3/grassdirt_corner/south_west,
 /area/lv873/outdoors/colony_streets/southeast)
 "aIq" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -3752,7 +3806,7 @@
 /obj/structure/flora/bush/ausbushes/var3/fullgrass{
 	color = "#c4f3e4"
 	},
-/turf/open/gm/dirtgrassborder3/grassdirt_corner/north_east,
+/turf/open/gm/grass/dirt,
 /area/lv873/outdoors/colony_streets/east)
 "aLs" = (
 /obj/structure/bed/chair{
@@ -3865,6 +3919,10 @@
 "aMU" = (
 /obj/structure/surface/table{
 	color = "#7e746d"
+	},
+/obj/structure/machinery/computer/cameras/wooden_tv/almayer{
+	dir = 8;
+	pixel_y = 3
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
@@ -4263,6 +4321,34 @@
 	icon_state = "wood-broken6"
 	},
 /area/lv873/indoors/southwest/slums)
+"aQO" = (
+/obj/structure/prop/tyrargo/boards/boards_2{
+	dir = 4;
+	pixel_y = -3
+	},
+/obj/structure/surface/table{
+	color = "#7e746d"
+	},
+/obj/item/ashtray/plastic{
+	icon_state = "ashtray_full_bl";
+	pixel_x = -1;
+	pixel_y = 9
+	},
+/obj/item/reagent_container/food/drinks/cup{
+	pixel_x = -7;
+	pixel_y = 5
+	},
+/obj/item/reagent_container/food/drinks/cup{
+	pixel_x = 8;
+	pixel_y = 1
+	},
+/obj/structure/sign/poster/blacklight{
+	pixel_y = 32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/lv873/indoors/southeast/slums)
 "aQS" = (
 /turf/open/gm/dirt/brown{
 	icon_state = "desert0"
@@ -5149,6 +5235,11 @@
 	},
 /turf/open/asphalt/cement/cement12,
 /area/lv873/outdoors/colony_streets/northeast)
+"bbV" = (
+/obj/item/shard,
+/obj/structure/window_frame/wood/plain,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "bcm" = (
 /obj/effect/landmark/queen_spawn,
 /turf/open/floor/almayer{
@@ -5328,10 +5419,23 @@
 	},
 /area/lv873/outdoors/colony_streets/east)
 "bdJ" = (
-/obj/item/reagent_container/food/snacks/csandwich,
-/obj/structure/surface/table{
-	color = "#7e746d"
+/obj/item/storage/box/matches{
+	pixel_x = -6;
+	pixel_y = -1
 	},
+/obj/item/ashtray/plastic{
+	pixel_y = -6;
+	pixel_x = -2
+	},
+/obj/item/reagent_container/food/drinks/cans/cola{
+	pixel_y = 14;
+	pixel_x = -7
+	},
+/obj/item/reagent_container/food/snacks/sandwich{
+	pixel_y = 14;
+	pixel_x = 5
+	},
+/obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "bdQ" = (
@@ -5367,6 +5471,17 @@
 	},
 /turf/open/gm/road,
 /area/lv873/outdoors/hospital/road_north_west)
+"bet" = (
+/obj/item/clothing/shoes/blue{
+	pixel_y = -10;
+	pixel_x = -11
+	},
+/obj/item/clothing/shoes/leather{
+	pixel_y = -8;
+	pixel_x = 2
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "bew" = (
 /obj/item/stool,
 /obj/item/clothing/head/hardhat{
@@ -5486,6 +5601,8 @@
 	icon_state = "E";
 	pixel_x = 1
 	},
+/obj/effect/landmark/objective_landmark/science,
+/obj/structure/surface/table/reinforced/almayer_B,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "darkblue2"
@@ -5498,16 +5615,18 @@
 "bfH" = (
 /obj/structure/surface/rack,
 /obj/item/reagent_container/food/condiment/sugar{
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 3
 	},
 /obj/item/reagent_container/food/condiment/peppermill{
 	pixel_y = 4
 	},
 /obj/item/reagent_container/food/condiment/saltshaker{
-	pixel_y = -4
+	pixel_y = -3;
+	pixel_x = 1
 	},
 /obj/item/reagent_container/food/condiment/enzyme{
-	pixel_x = 7;
+	pixel_x = 8;
 	pixel_y = 1
 	},
 /turf/open/floor{
@@ -5603,10 +5722,9 @@
 /area/lv873/outdoors/lone_buildings/weyyu_hostel)
 "bgU" = (
 /obj/structure/bed/bedroll,
-/obj/item/bedsheet/ce{
-	color = "#798675"
+/obj/structure/barricade/wooden{
+	layer = 3.1
 	},
-/obj/effect/landmark/survivor_spawner,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "bhf" = (
@@ -5898,6 +6016,13 @@
 	dir = 1
 	},
 /area/lv873/indoors/operations/hallway/north)
+"bkQ" = (
+/obj/structure/bed/chair,
+/turf/open/gm/dirt/brown{
+	icon_state = "desert3";
+	dir = 8
+	},
+/area/lv873/outdoors/colony_streets/east)
 "bkS" = (
 /obj/structure/machinery/microwave{
 	pixel_y = 5
@@ -5964,6 +6089,11 @@
 /obj/structure/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/cargo_lz)
+"blY" = (
+/obj/structure/surface/rack,
+/obj/effect/landmark/objective_landmark/far,
+/turf/open/floor/airless,
+/area/lv873/indoors/southeast/slums)
 "bmd" = (
 /obj/structure/machinery/light/small{
 	dir = 8
@@ -6607,6 +6737,7 @@
 /obj/structure/machinery/light,
 /obj/effect/decal/hybrisa/dirt,
 /obj/item/shard,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor{
 	dir = 10;
 	icon_state = "darkblue2"
@@ -6928,9 +7059,9 @@
 /obj/structure/transmitter/wy_net/rotary{
 	pixel_x = 5;
 	phone_category = "Isaac's Lament - Corporate Net";
-	phone_id = "Operations Research 3";
+	phone_id = "Operations Research";
 	pixel_y = -2;
-	name = "Operations Research 3 corporate-net rotary telephone"
+	name = "Operations Research corporate-net rotary telephone"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/lv873/indoors/operations/xenobiological_research)
@@ -8283,9 +8414,7 @@
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/northeast)
 "bHp" = (
-/obj/structure/surface/table{
-	color = "#7e746d"
-	},
+/obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "bHC" = (
@@ -8786,7 +8915,7 @@
 	phone_id = "USCMC Garrison, Gunnery Sergeant's Office";
 	pixel_x = 8;
 	pixel_y = 8;
-	name = "Gunnery Sergeant's Office rotary telephone"
+	name = "USCMC Garrison, Gunnery Sergeant's Office rotary telephone"
 	},
 /obj/item/explosive/grenade/high_explosive/training{
 	pixel_x = 7;
@@ -10439,6 +10568,15 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/colony_streets/west)
+"cbg" = (
+/obj/item/weapon/gun/rifle/mar40/carbine{
+	pixel_y = -5
+	},
+/obj/item/ammo_magazine/rifle/mar40{
+	pixel_y = -12
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "cbi" = (
 /obj/structure/tunnel,
 /turf/open/floor{
@@ -10753,10 +10891,10 @@
 /turf/open/floor/almayer,
 /area/lv873/indoors/uscm_garrison/garrison_bunks)
 "cek" = (
-/obj/structure/largecrate/random/barrel/blue,
 /obj/structure/barricade/wooden{
 	layer = 3.1
 	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "cen" = (
@@ -12128,8 +12266,8 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 6;
 	phone_category = "Business Landlines";
-	phone_id = "Weyland Yutani Corporate Hostel, Office";
-	name = "Wey-Yu Corporate Hostel Office rotary telephone"
+	phone_id = "Weyland-Yutani Corporate Hostel, Office";
+	name = "Weyland-Yutani Corporate Hostel, Office rotary telephone"
 	},
 /obj/item/reagent_container/food/drinks/coffeecup/wy{
 	pixel_y = -5;
@@ -12868,8 +13006,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 1";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 1";
 	pixel_x = -7;
 	pixel_y = 7
 	},
@@ -13043,6 +13181,9 @@
 /obj/effect/decal/hybrisa/road/road_stop{
 	dir = 8;
 	icon_state = "stop_decal5"
+	},
+/obj/structure/barricade/plasteel/wired{
+	dir = 8
 	},
 /turf/open/gm/road{
 	icon_state = "browndirt_road_1"
@@ -13904,7 +14045,8 @@
 	color = "#8B7B5B"
 	},
 /obj/item/reagent_container/food/snacks/kepler_crisps{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/item/reagent_container/food/snacks/kepler_crisps{
 	pixel_x = 5
@@ -14300,6 +14442,10 @@
 /obj/item/clothing/accessory/patch/wy{
 	pixel_x = -5
 	},
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -10;
+	pixel_x = -8
+	},
 /turf/open/floor{
 	dir = 5;
 	icon_state = "darkblue2"
@@ -14483,6 +14629,7 @@
 	pixel_y = -3;
 	pixel_x = 5
 	},
+/obj/effect/spawner/random/pills/midchance,
 /obj/effect/spawner/random/pills/midchance,
 /obj/effect/spawner/random/pills/midchance,
 /turf/open/floor{
@@ -14800,9 +14947,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = -8;
 	pixel_y = 8;
-	phone_category = "Colony Operations";
-	phone_id = "Operations Assistance Desk";
-	name = "Operations Assistance Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Assistance Desk";
+	name = "Operations, Assistance Desk rotary telephone"
 	},
 /turf/open/floor{
 	icon_state = "darkbluecorners2";
@@ -15009,6 +15156,18 @@
 	icon_state = "wood-broken4"
 	},
 /area/lv873/indoors/south/slums)
+"cTA" = (
+/obj/item/reagent_container/food/snacks/sliceable/bread{
+	pixel_y = 7;
+	pixel_x = -2
+	},
+/obj/item/reagent_container/food/snacks/sliceable/bread{
+	pixel_y = -6;
+	pixel_x = 2
+	},
+/obj/structure/surface/table,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "cTC" = (
 /obj/structure/machinery/door/airlock/almayer/generic/autoname/rusted_wite{
 	name = "\improper Bathroom"
@@ -15098,6 +15257,13 @@
 	icon_state = "dark2"
 	},
 /area/lv873/indoors/operations/hallway/north)
+"cUo" = (
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -10;
+	pixel_x = -8
+	},
+/turf/open/floor/dark,
+/area/lv873/indoors/operations/offices/east)
 "cUv" = (
 /obj/structure/mineral_door/wood{
 	dir = 4
@@ -15250,6 +15416,13 @@
 	pixel_y = 11;
 	pixel_x = 1
 	},
+/obj/structure/transmitter/colony_net/rotary{
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Breakroom";
+	pixel_y = 9;
+	pixel_x = -17;
+	name = "Jeppson's Memorial Hospital, Breakroom rotary telephone"
+	},
 /turf/open/floor{
 	dir = 1;
 	icon_state = "whitegreencorner"
@@ -15268,10 +15441,6 @@
 "cWC" = (
 /obj/structure/surface/table/woodentable/fancy,
 /obj/structure/machinery/faxmachine/corporate,
-/obj/structure/sign/poster/art{
-	layer = 3.1;
-	pixel_x = -32
-	},
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
 "cWI" = (
@@ -15462,8 +15631,9 @@
 /obj/structure/transmitter/colony_net{
 	dir = 8;
 	pixel_x = 15;
-	phone_category = "Weyland-Yutani Welcome Center";
-	phone_id = "Offices"
+	phone_category = "Business Landlines";
+	phone_id = "Weyland-Yutani Welcome Center, Offices";
+	name = "Weyland-Yutani Welcome Center, Offices telephone receiver"
 	},
 /turf/open/floor/hybrisa/carpet/carpetbeige,
 /area/lv873/indoors/welcome_center/offices)
@@ -15943,8 +16113,6 @@
 /obj/structure/machinery/light{
 	dir = 4
 	},
-/obj/effect/spawner/gibspawner/xeno,
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/structure/flora/pottedplant{
 	icon_state = "pottedplant_25"
 	},
@@ -16179,12 +16347,12 @@
 /area/lv873/outdoors/landing_zones_disembark)
 "dgB" = (
 /obj/structure/surface/table/reinforced/black,
-/obj/structure/machinery/prop/almayer/computer/PC{
-	dir = 4
-	},
 /obj/item/weapon/pole/fancy_cane/this_is_a_knife/machete{
 	pixel_y = 11;
 	pixel_x = -18
+	},
+/obj/structure/machinery/computer/view_objectives{
+	dir = 4
 	},
 /turf/open/floor/almayer/plating,
 /area/lv873/indoors/uscm_garrison/io_office)
@@ -16769,15 +16937,22 @@
 	},
 /area/lv873/outdoors/lone_buildings/cargo_lz)
 "dlK" = (
-/obj/structure/transmitter/colony_net{
-	pixel_y = -20;
-	phone_category = "Private Landlines";
-	phone_id = "Bungalow, Administrator's House Phone";
-	name = "Administrator's Home Office telephone receiver";
-	dir = 1
+/obj/structure/machinery/big_computers/computerwhite/computer2{
+	color = "#6d2a2a";
+	layer = 2.91;
+	name = "phone box"
 	},
-/turf/open/floor/hybrisa/carpet/carpetreddeco,
-/area/lv873/indoors/bungalow_manager)
+/obj/structure/transmitter/colony_net{
+	phone_category = "Public Landlines";
+	phone_id = "Phone Box, Welcome Center Reception 1";
+	pixel_y = 3;
+	name = "Phone Box, Welcome Center Reception 2 telephone receiver"
+	},
+/turf/open/floor{
+	icon_state = "orange";
+	dir = 8
+	},
+/area/lv873/indoors/welcome_center/lobby)
 "dlM" = (
 /obj/structure/platform_decoration/metal/kutjevo_smooth{
 	dir = 4
@@ -16854,7 +17029,9 @@
 "dmC" = (
 /obj/structure/window_frame/wood/plain,
 /obj/item/shard,
-/turf/open/floor/plating,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
 /area/lv873/indoors/south/slums)
 "dmF" = (
 /turf/open/gm/road{
@@ -17478,6 +17655,12 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/lv873/indoors/welcome_center/lobby)
+"dtJ" = (
+/obj/structure/machinery/sensortower{
+	layer = 4.13
+	},
+/turf/open/asphalt/cement,
+/area/lv873/indoors/southeast/slums)
 "dtN" = (
 /obj/structure/cargo_container/hybrisa/containersextended/tanleft,
 /turf/open/gm/dirtgrassborder3/north,
@@ -18190,13 +18373,6 @@
 /area/lv873/outdoors/lone_buildings/weyyu_hostel)
 "dAO" = (
 /obj/structure/surface/table,
-/obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Jeppson's Memorial Hospital";
-	phone_id = "Break Room";
-	pixel_x = 15;
-	pixel_y = 10;
-	name = "Break Room rotary telephone"
-	},
 /obj/structure/machinery/computer/cameras/wooden_tv{
 	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
 	layer = 3.2;
@@ -18768,6 +18944,13 @@
 /obj/item/tool/pen/clicky{
 	pixel_x = 10
 	},
+/obj/structure/transmitter/wy_net/rotary{
+	pixel_x = 6;
+	pixel_y = 10;
+	phone_category = "Isaac's Lament - Corporate Net";
+	phone_id = "Colony Administration";
+	name = "Colony Administration corporate-net rotary telephone"
+	},
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "dHa" = (
@@ -18873,7 +19056,7 @@
 	pixel_y = 32;
 	phone_category = "Private Landlines";
 	phone_id = "Bungalow, Administrator's Home Office";
-	name = "Administrator's Home Office telephone receiver"
+	name = "Bungalow, Administrator's Home Office telephone receiver"
 	},
 /turf/open/floor/hybrisa/wood/redwood,
 /area/lv873/indoors/bungalow_manager)
@@ -19087,6 +19270,10 @@
 "dKP" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "SW-out"
+	},
+/obj/item/reagent_container/food/condiment/peppermill{
+	pixel_y = 7;
+	pixel_x = -1
 	},
 /turf/open/floor{
 	icon_state = "darkbluecorners2";
@@ -19831,11 +20018,10 @@
 	},
 /area/lv873/indoors/operations/reception)
 "dRS" = (
-/obj/structure/sink{
-	pixel_y = 22
-	},
-/turf/open/floor/wood,
-/area/lv873/indoors/southeast/slums)
+/obj/item/trash/cigbutt,
+/obj/item/trash/cigbutt,
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/southeast)
 "dSf" = (
 /obj/structure/surface/table/woodentable/fancy,
 /obj/item/device/flashlight/lamp/green{
@@ -20772,11 +20958,9 @@
 /turf/open/asphalt/cement/cement9,
 /area/lv873/outdoors/colony_streets/southwest)
 "ecZ" = (
-/obj/item/weapon/gun/rifle/mar40/carbine{
-	pixel_y = -5
-	},
-/obj/item/ammo_magazine/rifle/mar40{
-	pixel_x = -9
+/obj/effect/landmark/survivor_spawner,
+/obj/item/bedsheet/ce{
+	color = "#798675"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
@@ -21861,7 +22045,7 @@
 	phone_id = "Jeppson's Memorial Hospital, Bunkhouse";
 	pixel_y = 1;
 	pixel_x = -14;
-	name = "Bunkhouse rotary telephone"
+	name = "Jeppson's Memorial Hospital, Bunkhouse rotary telephone"
 	},
 /turf/open/floor,
 /area/lv873/indoors/gated_community/residence_bunkhouse)
@@ -22016,6 +22200,7 @@
 	icon_state = "trash_9";
 	pixel_y = -6
 	},
+/obj/effect/landmark/objective_landmark/far,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkblue2"
@@ -22938,6 +23123,12 @@
 /area/lv873/indoors/lone_buildings/weymart)
 "exL" = (
 /obj/item/trash/cigbutt,
+/obj/structure/barricade/handrail/hybrisa/road/plastic/black{
+	dir = 1
+	},
+/obj/structure/barricade/handrail/hybrisa/road/plastic/black{
+	dir = 4
+	},
 /turf/open/asphalt/cement/cement9,
 /area/lv873/outdoors/colony_streets/southeast)
 "exU" = (
@@ -23733,7 +23924,7 @@
 	phone_id = "Bungalow, CRO's Home Office";
 	pixel_x = -6;
 	pixel_y = -2;
-	name = "Chief Research Officer's Home Officer rotary telephone"
+	name = "Bungalow, CRO's Home Office rotary telephone"
 	},
 /turf/open/floor/hybrisa/carpet/carpetdarkerblue,
 /area/lv873/indoors/gated_community/director_of_corporate_research)
@@ -24323,6 +24514,9 @@
 	},
 /obj/structure/surface/table,
 /obj/effect/landmark/objective_landmark/close,
+/obj/item/reagent_container/food/snacks/meat/fish/squid/alt{
+	pixel_x = -3
+	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
 	},
@@ -26349,8 +26543,8 @@
 	icon_state = "blackpacket20"
 	},
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Marshal's Office";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Marshal's Office";
 	pixel_x = 4;
 	pixel_y = 8;
 	name = "colony-net rotary telephone"
@@ -26436,7 +26630,8 @@
 /area/lv873/indoors/uscm_garrison/armory)
 "fkH" = (
 /obj/structure/bed/chair/office/dark{
-	layer = 4
+	layer = 4;
+	dir = 1
 	},
 /obj/effect/decal/hybrisa/dirt,
 /obj/item/trash/cigbutt/cigarbutt,
@@ -27325,6 +27520,7 @@
 /obj/item/folder,
 /obj/item/folder/white,
 /obj/item/folder/white,
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor{
 	dir = 6;
 	icon_state = "darkblue2"
@@ -28537,11 +28733,10 @@
 "fHY" = (
 /obj/structure/filingcabinet{
 	pixel_x = -8;
-	pixel_y = 25
+	pixel_y = 1
 	},
 /obj/structure/filingcabinet/chestdrawer{
-	pixel_x = 8;
-	pixel_y = 25
+	pixel_x = 8
 	},
 /obj/effect/landmark/objective_landmark/medium,
 /obj/effect/landmark/objective_landmark/close,
@@ -29392,7 +29587,8 @@
 /obj/structure/transmitter/colony_net{
 	phone_category = "Public Landlines";
 	phone_id = "Phone Box, Welcome Center Restaurant";
-	pixel_y = 3
+	pixel_y = 3;
+	name = "Phone Box, Welcome Center Restaurant telephone receiver"
 	},
 /obj/structure/machinery/big_computers/computerwhite/computer2{
 	color = "#6d2a2a";
@@ -29613,9 +29809,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = -8;
 	pixel_y = 11;
-	phone_category = "Colony Operations";
-	phone_id = "Operations Oversight Desk";
-	name = "Operations Oversight Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Oversight Desk";
+	name = "Operations, Oversight Desk rotary telephone"
 	},
 /turf/open/floor{
 	dir = 6;
@@ -30964,7 +31160,7 @@
 "ghi" = (
 /obj/structure/machinery/door/airlock/almayer/generic/rusted{
 	dir = 1;
-	name = "\improper Apartment"
+	name = "\improper South 5 Apartment"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/south/slums)
@@ -31684,6 +31880,10 @@
 	dir = 8
 	},
 /area/lv873/outdoors/colony_streets/west)
+"gps" = (
+/obj/item/shard,
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/southeast)
 "gpt" = (
 /obj/structure/machinery/power/apc,
 /obj/structure/largecrate/random/mini/ammo{
@@ -32431,6 +32631,9 @@
 /turf/open/floor/plating,
 /area/lv873/indoors/uscm_garrison/recruitment_office)
 "gzg" = (
+/obj/structure/barricade/plasteel/wired{
+	dir = 4
+	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/uscm_garrison_exterior/fenced)
 "gzk" = (
@@ -32730,8 +32933,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 4";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 4";
 	pixel_x = -13;
 	pixel_y = 11
 	},
@@ -33158,8 +33361,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 6";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 6";
 	pixel_x = 6;
 	pixel_y = 15
 	},
@@ -33224,6 +33427,7 @@
 	pixel_y = -4
 	},
 /obj/effect/spawner/random/pills/midchance,
+/obj/effect/spawner/random/pills/midchance,
 /turf/open/floor{
 	dir = 9;
 	icon_state = "whitegreen"
@@ -33247,16 +33451,14 @@
 	pixel_y = -2;
 	pixel_x = -18
 	},
-/obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Weyland-Yutani Welcome Center";
-	phone_id = "Front Desk"
-	},
 /obj/item/reagent_container/food/drinks/coffeecup{
-	pixel_y = 11;
-	pixel_x = 9
+	pixel_x = 11
 	},
-/obj/item/prop/tableflag{
-	pixel_x = 3
+/obj/structure/transmitter/colony_net/rotary{
+	phone_category = "Business Landlines";
+	phone_id = "Weyland-Yutani Welcome Center, Reception Desk 1";
+	pixel_y = 8;
+	name = "Weyland-Yutani Welcome Center, Reception Desk 1 rotary telephone"
 	},
 /turf/open/floor/sandstone,
 /area/lv873/indoors/welcome_center/lobby)
@@ -33856,7 +34058,7 @@
 	phone_id = "Weyland-Yutani Corporate Hostel, Front Desk";
 	dir = 4;
 	pixel_x = -14;
-	name = "Wey-Yu Corporate Hostel Front Desk telephone receiver"
+	name = "Weyland-Yutani Corporate Hostel, Front Desk telephone receiver"
 	},
 /turf/open/floor/hybrisa/carpet/carpetblue,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
@@ -35545,18 +35747,21 @@
 /turf/open/floor/hybrisa/carpet/carpetblue,
 /area/lv873/indoors/bungalow_manager)
 "hgX" = (
-/obj/item/device/flashlight/lamp/candelabra{
-	pixel_y = 17;
-	pixel_x = -5
-	},
 /obj/item/trash/candle{
-	pixel_x = -16;
+	pixel_x = -12;
 	pixel_y = 12
 	},
 /obj/structure/surface/table/woodentable/fancy,
 /obj/item/trash/candle{
+	pixel_x = 4;
+	pixel_y = 13
+	},
+/obj/structure/transmitter/colony_net/rotary{
+	pixel_y = -1;
+	phone_id = "Church, Priest's Office";
+	phone_category = "Public Landlines";
 	pixel_x = 7;
-	pixel_y = 12
+	name = "Apartment, Southwest 9 rotary telephone"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/south/slums)
@@ -35684,7 +35889,10 @@
 /turf/open/floor/wood,
 /area/lv873/indoors/east/slums)
 "hjf" = (
-/obj/structure/bed/chair/wood/normal{
+/obj/structure/sign/poster/corporate{
+	pixel_x = 32
+	},
+/obj/structure/bed/chair/comfy{
 	dir = 8
 	},
 /turf/open/floor/hybrisa/wood/blackwood,
@@ -36460,6 +36668,16 @@
 	icon_state = "desert3"
 	},
 /area/lv873/outdoors/colony_streets/northeast)
+"hrb" = (
+/obj/structure/barricade/handrail/hybrisa/road/wood/blue{
+	dir = 1;
+	pixel_y = 9
+	},
+/obj/item/trash/cigbutt,
+/obj/item/trash/cigbutt,
+/obj/item/trash/cigbutt,
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/southeast)
 "hre" = (
 /turf/open/gm/dirtgrassborder3/grassdirt_corner,
 /area/lv873/outdoors/colony_streets/south)
@@ -36814,6 +37032,10 @@
 /obj/item/newspaper{
 	name = "hostel complaints list m6-2182"
 	},
+/obj/item/folder/black,
+/obj/item/folder/black,
+/obj/item/folder/blue,
+/obj/item/folder/yellow,
 /turf/open/floor/hybrisa/carpet/carpetblue,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "huw" = (
@@ -37187,6 +37409,12 @@
 	alpha = 240;
 	pixel_x = 32
 	},
+/obj/structure/transmitter/colony_net{
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Research Breakroom";
+	pixel_y = 32;
+	name = "Jeppson's Memorial Hospital, Research Breakroom telephone receiver"
+	},
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whiteblue"
@@ -37312,7 +37540,7 @@
 	pixel_y = 32;
 	phone_category = "Public Landlines";
 	phone_id = "CMB, LZs Security Checkpoint";
-	name = "Landing Zone Phone Box telephone receiver"
+	name = "CMB, LZs Security Checkpoint"
 	},
 /turf/open/floor/hybrisa/tile/tilegreen,
 /area/lv873/indoors/lz_sec_checkpoint)
@@ -38084,6 +38312,7 @@
 /obj/structure/surface/table/woodentable,
 /obj/structure/machinery/prop/almayer/computer/PC{
 	dir = 1;
+	pixel_y = 2;
 	pixel_x = 3
 	},
 /obj/structure/machinery/door_control{
@@ -38091,14 +38320,15 @@
 	id = "uscm_armory";
 	name = "armory blast door button";
 	pixel_x = -9;
-	req_one_access_txt = "2;3;12;19"
+	req_one_access_txt = "2;3;12;19";
+	pixel_y = 3
 	},
 /obj/structure/machinery/door_control{
 	desc = "A garage door opener.";
 	id = "uscm_yard";
 	name = "supply yard button";
 	pixel_x = -9;
-	pixel_y = -5;
+	pixel_y = -2;
 	req_one_access_txt = "2;3;12;19"
 	},
 /turf/open/floor/wood/wood_broken3,
@@ -38127,10 +38357,11 @@
 	pixel_y = 3
 	},
 /obj/item/reagent_container/food/drinks/bottle/whiskey{
-	pixel_x = -7
+	pixel_x = -5
 	},
 /obj/item/reagent_container/food/drinks/bottle/whiskey{
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 1
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -38489,10 +38720,8 @@
 	pixel_x = -5
 	},
 /obj/item/reagent_container/food/drinks/drinkingglass{
-	pixel_x = 5
-	},
-/obj/structure/sign/calendar/twe{
-	pixel_x = -32
+	pixel_x = 5;
+	pixel_y = -3
 	},
 /turf/open/floor/hybrisa/carpet/carpetblackdeco,
 /area/lv873/indoors/welcome_center/offices)
@@ -38660,7 +38889,6 @@
 /obj/structure/closet/secure_closet/personal{
 	pixel_x = 8
 	},
-/obj/effect/landmark/objective_landmark/far,
 /obj/item/clothing/suit/storage/labcoat/wy{
 	pixel_x = -10;
 	pixel_y = 1
@@ -38669,6 +38897,7 @@
 	pixel_x = -10;
 	pixel_y = -4
 	},
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor/dark,
 /area/lv873/indoors/operations/lockerroom)
 "hLU" = (
@@ -38774,10 +39003,10 @@
 /turf/open/gm/dirtgrassborder3/east,
 /area/lv873/outdoors/landing_zones_disembark)
 "hNt" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/effect/spawner/gibspawner/robot,
-/obj/item/stack/sheet/metal,
-/obj/item/stack/cable_coil,
+/obj/structure/machinery/door/airlock/multi_tile/hybrisa/generic_solid{
+	dir = 1;
+	name = "\improper Weyland-Yutani Welcome Center 'Alexandria' Corporate Supervisor's Office"
+	},
 /turf/open/floor/hybrisa/wood/blackwood,
 /area/lv873/indoors/welcome_center/offices)
 "hNv" = (
@@ -40039,18 +40268,10 @@
 	},
 /area/lv873/indoors/southeast/slums)
 "iah" = (
-/obj/structure/filingcabinet{
-	pixel_x = 8;
-	pixel_y = 25
+/obj/structure/sign/poster/art{
+	layer = 3.1;
+	pixel_y = 32
 	},
-/obj/structure/filingcabinet{
-	density = 0;
-	icon_state = "chestdrawer";
-	pixel_x = -8;
-	pixel_y = 21
-	},
-/obj/effect/landmark/objective_landmark/close,
-/obj/effect/landmark/objective_landmark/close,
 /turf/open/floor/hybrisa/carpet/carpetblackdeco,
 /area/lv873/indoors/welcome_center/offices)
 "ial" = (
@@ -41274,6 +41495,10 @@
 	pixel_x = -32
 	},
 /obj/structure/filingcabinet,
+/obj/item/folder/black,
+/obj/item/folder/red,
+/obj/item/folder/white,
+/obj/item/folder/yellow,
 /turf/open/floor/hybrisa/carpet/carpetblue,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "ilc" = (
@@ -41315,12 +41540,12 @@
 /turf/open/floor/chapel,
 /area/lv873/indoors/northeast/slums)
 "ilT" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -8
+/obj/structure/toilet{
+	pixel_y = 16
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/lv873/indoors/operations/hallway/west)
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "ilV" = (
 /obj/structure/sign/safety/security{
 	pixel_x = 8;
@@ -41724,9 +41949,12 @@
 	},
 /area/lv873/outdoors/colony_streets/northeast)
 "ipw" = (
-/obj/item/reagent_container/food/drinks/coffee,
 /obj/structure/surface/table/woodentable{
 	color = "#7e746d"
+	},
+/obj/item/tool/kitchen/utensil/spoon{
+	pixel_x = 8;
+	pixel_y = 3
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/canteen)
@@ -42106,7 +42334,7 @@
 "iuw" = (
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
 /obj/item/trash/cigbutt/bcigbutt,
-/turf/open/gm/dirtgrassborder3,
+/turf/open/gm/dirtgrassborder3/grassdirt_corner,
 /area/lv873/outdoors/colony_streets/east)
 "iuE" = (
 /obj/structure/bed/hybrisa/hospital/hospitaldivider{
@@ -42231,9 +42459,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 8;
 	pixel_y = 9;
-	phone_category = "Colony Operations";
-	phone_id = "Colonist Affairs Desk";
-	name = "Colonist Affairs Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Colonist Affairs Desk";
+	name = "Operations, Colonist Affairs Desk rotary telephone"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -42436,10 +42664,6 @@
 	layer = 3.3
 	},
 /obj/structure/window/framed/colony/reinforced,
-/obj/item/reagent_container/food/condiment/peppermill{
-	pixel_y = 20;
-	pixel_x = -1
-	},
 /turf/open/floor/plating,
 /area/lv873/indoors/operations/offices/southwest)
 "ixQ" = (
@@ -42835,6 +43059,22 @@
 	pixel_y = 10
 	},
 /obj/structure/surface/table,
+/obj/item/reagent_container/food/condiment/peppermill{
+	pixel_y = 21;
+	pixel_x = -8
+	},
+/obj/item/reagent_container/food/condiment/peppermill{
+	pixel_y = 22;
+	pixel_x = -3
+	},
+/obj/item/reagent_container/food/condiment/saltshaker{
+	pixel_y = 20;
+	pixel_x = 2
+	},
+/obj/item/reagent_container/food/condiment/saltshaker{
+	pixel_y = 22;
+	pixel_x = 7
+	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
 	},
@@ -43623,9 +43863,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 8;
 	pixel_y = 7;
-	phone_category = "Colony Operations";
-	phone_id = "Power Utilities Desk";
-	name = "Power Utilities Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Power Utilities Desk";
+	name = "Operations, Power Utilities Desk rotary telephone"
 	},
 /obj/effect/landmark/objective_landmark/far,
 /turf/open/floor{
@@ -43704,10 +43944,10 @@
 	},
 /obj/structure/transmitter/colony_net/rotary{
 	phone_category = "Businesses";
-	phone_id = "Wey-Yu Travel Agency Main Office";
+	phone_id = "Weyland-Yutani Travel Agency, Main Office";
 	pixel_x = -6;
 	pixel_y = 15;
-	name = "Wey-Yu Travel Agency Main Office rotary telephone"
+	name = "Weyland-Yutani Travel Agency, Main Office rotary telephone"
 	},
 /turf/open/floor/hybrisa/carpet/carpetgreendeco,
 /area/lv873/indoors/lone_buildings/travel_agency)
@@ -45429,16 +45669,19 @@
 "jfh" = (
 /obj/structure/surface/rack,
 /obj/item/reagent_container/food/snacks/meat/synthmeat{
-	pixel_y = -2
+	pixel_y = -6;
+	pixel_x = -2
 	},
 /obj/item/reagent_container/food/snacks/meat/synthmeat{
-	pixel_y = 1
+	pixel_y = -3
 	},
 /obj/item/reagent_container/food/snacks/meat/synthmeat{
-	pixel_y = 4
+	pixel_y = 1;
+	pixel_x = -3
 	},
 /obj/item/reagent_container/food/snacks/meat/synthmeat{
-	pixel_y = 7
+	pixel_y = 5;
+	pixel_x = 3
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -46098,6 +46341,17 @@
 	color = "#e3ffff"
 	},
 /area/lv873/indoors/lone_buildings/trapped_house)
+"jlT" = (
+/obj/structure/flora/grass/tallgrass/jungle/corner{
+	dir = 10
+	},
+/obj/structure/flora/bush/isaacs/bush1{
+	pixel_x = -16;
+	pixel_y = -4;
+	color = "#e7eecd"
+	},
+/turf/open/gm/grass/dirt,
+/area/lv873/outdoors/gated_community_exterior)
 "jma" = (
 /obj/item/cell/high/empty{
 	pixel_y = 9;
@@ -46790,6 +47044,18 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
+"jsu" = (
+/obj/structure/prop/tyrargo/boards{
+	dir = 4;
+	layer = 2.9
+	},
+/obj/structure/sign/poster/propaganda{
+	pixel_x = 32
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/lv873/indoors/southeast/slums)
 "jsA" = (
 /obj/structure/flora/jungle/vines{
 	icon_state = "light_3";
@@ -46980,6 +47246,7 @@
 "jvl" = (
 /obj/structure/toilet,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/objective_landmark/far,
 /turf/open/floor/hybrisa/tile/tilewhite{
 	color = "#bee9ff"
 	},
@@ -47935,6 +48202,15 @@
 /area/lv873/outdoors/colony_streets/east)
 "jEm" = (
 /obj/structure/machinery/microwave,
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag6{
+	pixel_x = -1;
+	pixel_y = 15;
+	layer = 3.06
+	},
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag1{
+	layer = 3.04;
+	pixel_x = -18
+	},
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/northeast)
 "jEt" = (
@@ -48812,6 +49088,7 @@
 	pixel_x = -7
 	},
 /obj/effect/spawner/random/pills/midchance,
+/obj/effect/spawner/random/pills/midchance,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "whitegreen"
@@ -48993,13 +49270,6 @@
 /obj/structure/surface/table/woodentable/fancy,
 /obj/structure/machinery/prop/almayer/computer/PC{
 	pixel_y = 4
-	},
-/obj/structure/transmitter/wy_net/rotary{
-	pixel_x = -26;
-	pixel_y = 10;
-	phone_category = "Isaac's Lament - Corporate Net";
-	phone_id = "Colony Administration";
-	name = "Colony Administration corporate-net rotary telephone"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
@@ -49271,6 +49541,9 @@
 /area/lv873/outdoors/colony_streets/southwest)
 "jRh" = (
 /obj/item/trash/cigbutt/cigarbutt,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/east)
 "jRm" = (
@@ -49315,14 +49588,16 @@
 	},
 /area/lv873/indoors/marshals/mainhall)
 "jRF" = (
-/obj/effect/decal/hybrisa/tiretrack{
-	dir = 8
+/obj/structure/transmitter/colony_net{
+	phone_category = "Business Landlines";
+	phone_id = "Weyland-Yutani Welcome Center, 'On the House' Restaurant";
+	pixel_y = 3;
+	dir = 8;
+	pixel_x = 15;
+	name = "Weyland-Yutani Welcome Center, 'On the House' Restaurant telephone receiver"
 	},
-/turf/open/gm/road{
-	icon_state = "browndirt_road_1";
-	dir = 1
-	},
-/area/lv873/outdoors/landing_zones_disembark)
+/turf/open/floor/hybrisa/tile/tilelightbeige,
+/area/lv873/indoors/welcome_center/canteen)
 "jRG" = (
 /obj/structure/largecrate/random/mini/ammo{
 	pixel_y = 16;
@@ -49336,11 +49611,11 @@
 /area/lv873/indoors/corpo_armory)
 "jRW" = (
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Jeppson's Memorial Hospital";
-	phone_id = "Hospital Front Desk 2";
-	pixel_y = 10;
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Desk 2";
+	pixel_y = 9;
 	pixel_x = -5;
-	name = "Hospital Front Desk 2 rotary telephone"
+	name = "Jeppson's Memorial Hospital, Front Desk 2 rotary telephone"
 	},
 /obj/structure/sign/poster/corporate{
 	layer = 2.9;
@@ -49348,11 +49623,11 @@
 	},
 /obj/structure/surface/table,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Jeppson's Memorial Hospital";
-	phone_id = "Hospital Front Desk 1";
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Front Desk 1";
 	pixel_y = -1;
 	pixel_x = -4;
-	name = "Hospital Front Desk 1 rotary telephone"
+	name = "Jeppson's Memorial Hospital, Front Desk 1 rotary telephone"
 	},
 /turf/open/floor{
 	dir = 9;
@@ -49571,6 +49846,15 @@
 /obj/item/trash/cigbutt,
 /turf/open/gm/road,
 /area/lv873/outdoors/colony_streets/south)
+"jUA" = (
+/obj/structure/stairs{
+	dir = 1
+	},
+/obj/structure/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/airless,
+/area/lv873/indoors/southeast/slums)
 "jUR" = (
 /obj/item/storage/firstaid/adv/empty{
 	pixel_x = -8;
@@ -50030,6 +50314,7 @@
 /obj/item/device/flashlight/lamp/green{
 	pixel_y = 11
 	},
+/obj/effect/landmark/objective_landmark/close,
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
 "kbe" = (
@@ -50121,23 +50406,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/lv873/indoors/southwest/slums)
-"kbJ" = (
-/obj/structure/machinery/big_computers/computerwhite/computer2{
-	color = "#6d2a2a";
-	layer = 2.91;
-	name = "phone box"
-	},
-/obj/structure/transmitter/colony_net{
-	phone_category = "Public Landlines";
-	phone_id = "Phone Box, Welcome Center Reception 1";
-	pixel_y = 3;
-	name = "Welcome Center Reception 1 telephone receiver"
-	},
-/turf/open/floor{
-	icon_state = "orange";
-	dir = 4
-	},
-/area/lv873/indoors/welcome_center/lobby)
 "kbN" = (
 /obj/structure/barricade/sandbags/wired{
 	dir = 1;
@@ -50333,10 +50601,19 @@
 /turf/open/gm/coast/dirt/west,
 /area/lv873/outdoors/flooded_streets/west)
 "kdm" = (
-/obj/structure/reagent_dispensers/beerkeg,
-/obj/structure/surface/table{
-	color = "#7e746d"
+/obj/item/reagent_container/food/snacks/baguette{
+	pixel_y = 13;
+	layer = 3.03
 	},
+/obj/item/reagent_container/food/snacks/baguette{
+	pixel_y = 7;
+	layer = 3.03;
+	pixel_x = 3
+	},
+/obj/item/reagent_container/food/snacks/sliceable/cheesewheel{
+	layer = 3.03
+	},
+/obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "kdt" = (
@@ -50969,7 +51246,6 @@
 /area/lv873/oob)
 "kkm" = (
 /obj/structure/filingcabinet,
-/obj/effect/landmark/objective_landmark/close,
 /obj/effect/landmark/objective_landmark/far,
 /obj/item/folder/red,
 /obj/item/folder/black,
@@ -51136,6 +51412,18 @@
 /area/lv873/indoors/lone_buildings/polemuseum)
 "kmm" = (
 /obj/structure/prop/tyrargo/boards/boards_1,
+/obj/item/storage/box/matches{
+	pixel_x = -1;
+	pixel_y = 19
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -7;
+	pixel_y = 12
+	},
+/obj/item/storage/box/matches{
+	pixel_x = -5;
+	pixel_y = 22
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken4"
 	},
@@ -51315,6 +51603,9 @@
 /obj/structure/stairs{
 	dir = 1
 	},
+/obj/structure/machinery/light/small{
+	dir = 4
+	},
 /turf/open/floor/airless,
 /area/lv873/indoors/southeast/slums)
 "knY" = (
@@ -51427,15 +51718,16 @@
 	pixel_x = 12;
 	layer = 2.99
 	},
-/obj/item/ashtray/plastic{
-	pixel_x = -6
-	},
-/obj/item/trash/cigbutt/cigarbutt{
-	pixel_y = 10;
-	pixel_x = -1
-	},
 /obj/item/device/taperecorder/empty{
 	pixel_x = -17
+	},
+/obj/item/ashtray/plastic{
+	icon_state = "ashtray_full_bl";
+	pixel_x = -6;
+	pixel_y = 7
+	},
+/obj/item/prop/tableflag{
+	pixel_x = -5
 	},
 /turf/open/floor/sandstone,
 /area/lv873/indoors/welcome_center/lobby)
@@ -51516,16 +51808,20 @@
 	pixel_x = -14
 	},
 /obj/item/ashtray/plastic{
-	pixel_x = 3
-	},
-/obj/item/trash/cigbutt{
-	pixel_y = 7;
-	pixel_x = 4
+	pixel_x = 3;
+	pixel_y = -4
 	},
 /obj/effect/decal/hybrisa/trash{
 	icon_state = "trash_2";
 	pixel_x = -8;
 	pixel_y = 12
+	},
+/obj/structure/transmitter/colony_net/rotary{
+	phone_category = "Business Landlines";
+	phone_id = "Weyland-Yutani Welcome Center, Reception Desk 2";
+	pixel_y = 7;
+	pixel_x = 3;
+	name = "Weyland-Yutani Welcome Center, Reception Desk 2 rotary telephone"
 	},
 /turf/open/floor{
 	icon_state = "vault";
@@ -51544,8 +51840,8 @@
 /obj/structure/transmitter/colony_net{
 	dir = 8;
 	pixel_x = 15;
-	phone_category = "CMB Office";
-	phone_id = "Press Office"
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Press Office"
 	},
 /turf/open/floor{
 	dir = 8;
@@ -51635,6 +51931,7 @@
 	pixel_x = -4
 	},
 /obj/structure/surface/table/reinforced,
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor/plating,
 /area/lv873/indoors/lone_buildings/polemuseum)
 "krm" = (
@@ -52142,6 +52439,15 @@
 	},
 /turf/open/gm/dirtgrassborder3/grassdirt_corner2/south_east,
 /area/lv873/oob)
+"kxm" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/gm/dirt/brown{
+	icon_state = "desert3";
+	dir = 8
+	},
+/area/lv873/outdoors/colony_streets/east)
 "kxq" = (
 /obj/structure/surface/table,
 /obj/item/paper_bin{
@@ -52157,8 +52463,8 @@
 	pixel_x = -6
 	},
 /obj/item/tool/stamp/denied{
-	pixel_y = -2;
-	pixel_x = -6
+	pixel_y = -1;
+	pixel_x = -7
 	},
 /turf/open/floor{
 	dir = 4;
@@ -52301,7 +52607,7 @@
 	},
 /area/lv873/outdoors/cmb/exterior)
 "kyK" = (
-/obj/structure/closet/l3closet/scientist,
+/obj/structure/closet/secure_closet/chemical,
 /turf/open/floor{
 	icon_state = "whiteblue"
 	},
@@ -53206,14 +53512,11 @@
 /turf/open/asphalt/cement,
 /area/lv873/indoors/bungalow_manager)
 "kJk" = (
-/obj/item/trash/cigbutt,
-/obj/structure/prop/hybrisa/misc/stoneplanterseats{
-	pixel_x = -23
+/obj/structure/sign/calendar/twe{
+	pixel_y = -32
 	},
-/turf/open/floor{
-	icon_state = "neutralfull"
-	},
-/area/lv873/indoors/welcome_center/lobby)
+/turf/open/floor/hybrisa/carpet/carpetblackdeco,
+/area/lv873/indoors/welcome_center/offices)
 "kJX" = (
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
 /obj/effect/spawner/random/claymore/lowchance{
@@ -53507,15 +53810,15 @@
 "kMq" = (
 /obj/structure/surface/rack,
 /obj/item/reagent_container/food/drinks/bottle/wine{
-	pixel_x = -8;
-	pixel_y = 4
+	pixel_x = -7;
+	pixel_y = 3
 	},
 /obj/item/reagent_container/food/drinks/bottle/wine{
-	pixel_y = 2
+	pixel_y = 5
 	},
 /obj/item/reagent_container/food/drinks/bottle/wine{
-	pixel_x = 8;
-	pixel_y = 4
+	pixel_x = 7;
+	pixel_y = 3
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -54932,8 +55235,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 2";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 2";
 	pixel_x = -20;
 	pixel_y = 7
 	},
@@ -55088,8 +55391,17 @@
 /turf/open/gm/dirtgrassborder3/grassdirt_corner/south_east,
 /area/lv873/oob)
 "lbN" = (
-/obj/item/reagent_container/food/snacks/meat/synthmeat,
 /obj/structure/surface/table,
+/obj/item/reagent_container/food/snacks/meat/synthmeat{
+	pixel_y = 9
+	},
+/obj/item/reagent_container/food/snacks/meat/synthmeat{
+	pixel_x = -6
+	},
+/obj/item/reagent_container/food/condiment/hotsauce/tabasco{
+	pixel_x = 8;
+	pixel_y = 6
+	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
 	},
@@ -55589,15 +55901,6 @@
 /area/lv873/indoors/ss_athens)
 "lgK" = (
 /obj/structure/surface/table/reinforced/almayer_B,
-/obj/structure/machinery/computer/cameras/wooden_tv{
-	desc = "An old TV hooked up to a video cassette recorder, you can even use it to time shift WOW.";
-	dir = 4;
-	layer = 3.2;
-	name = "Television set";
-	network = null;
-	pixel_y = 6
-	},
-/obj/effect/landmark/objective_landmark/medium,
 /turf/open/gm/river/soro,
 /area/lv873/indoors/flooded/weymart)
 "lgM" = (
@@ -56101,12 +56404,16 @@
 /obj/item/tool/pen{
 	pixel_x = 5
 	},
+/obj/item/reagent_container/food/drinks/coffeecup{
+	pixel_y = 14;
+	pixel_x = -2
+	},
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = -6;
 	pixel_y = 1;
-	phone_category = "Colony Operations";
-	name = "Statistics and Investigations Office 2 rotary telephone";
-	phone_id = "Statistics and Investigations Office 2"
+	phone_category = "Public Landlines";
+	name = "Operations, Statistics and Investigations Desk 2 rotary telephone";
+	phone_id = "Operations, Statistics and Investigations Desk 2"
 	},
 /turf/open/floor{
 	dir = 10;
@@ -56523,7 +56830,7 @@
 	layer = 3.3
 	},
 /obj/structure/machinery/light,
-/obj/effect/landmark/objective_landmark/far,
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor{
 	dir = 10;
 	icon_state = "darkblue2"
@@ -57021,6 +57328,16 @@
 /obj/item/shard,
 /turf/open/floor/hybrisa/metal/grated,
 /area/lv873/indoors/lone_buildings/liq_r_mart)
+"luy" = (
+/obj/structure/transmitter/colony_net{
+	pixel_y = -20;
+	phone_category = "Private Landlines";
+	phone_id = "Bungalow, Administrator's House Phone";
+	name = "Bungalow, Administrator's Home Office telephone receiver";
+	dir = 1
+	},
+/turf/open/floor/hybrisa/carpet/carpetreddeco,
+/area/lv873/indoors/bungalow_manager)
 "luC" = (
 /obj/item/trash/cigbutt,
 /obj/item/trash/cigbutt,
@@ -57035,6 +57352,9 @@
 /obj/item/tool/soap{
 	pixel_x = 9;
 	pixel_y = 21
+	},
+/obj/structure/machinery/light/small{
+	dir = 8
 	},
 /turf/open/floor/hybrisa/tile/tilegrey,
 /area/lv873/indoors/southeast/slums)
@@ -57238,12 +57558,16 @@
 /turf/open/floor/wood,
 /area/lv873/indoors/southwest/slums)
 "lwP" = (
-/obj/structure/reagent_dispensers/water_cooler/walk_past{
-	pixel_x = 10;
-	pixel_y = 12
+/obj/structure/surface/rack,
+/obj/item/clothing/gloves/marine/insulated{
+	pixel_y = -3
 	},
-/turf/open/floor/hybrisa/wood/blackwood,
-/area/lv873/indoors/welcome_center/offices)
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/turf/open/asphalt/cement,
+/area/lv873/indoors/flooded/telecomms)
 "lwT" = (
 /obj/structure/barricade/wooden{
 	dir = 1;
@@ -57750,8 +58074,58 @@
 /turf/open/floor/freezerfloor,
 /area/lv873/indoors/marshals/barracks)
 "lAm" = (
-/obj/item/reagent_container/food/snacks/meat/fish/squid/alt,
 /obj/structure/surface/table,
+/obj/item/trash/plate{
+	pixel_x = -6
+	},
+/obj/item/trash/plate{
+	pixel_x = -7;
+	pixel_y = 2
+	},
+/obj/item/trash/plate{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/trash/plate{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/trash/plate{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/trash/plate{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/trash/plate{
+	pixel_x = -7;
+	pixel_y = 12
+	},
+/obj/item/tool/kitchen/utensil/knife{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/item/tool/kitchen/utensil/knife{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 11;
+	pixel_y = 9
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/obj/item/tool/kitchen/utensil/spoon{
+	pixel_x = 10;
+	pixel_y = 4
+	},
+/obj/item/tool/kitchen/utensil/spoon{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
 	},
@@ -57819,6 +58193,13 @@
 "lAQ" = (
 /obj/structure/surface/rack{
 	color = "#8B7B5B"
+	},
+/obj/item/reagent_container/food/snacks/chips{
+	pixel_x = 2
+	},
+/obj/item/reagent_container/food/snacks/chips{
+	pixel_x = -3;
+	pixel_y = -4
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
@@ -58048,7 +58429,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge/full,
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/darkchocolate,
 /obj/item/reagent_container/food/snacks/mre_food/upp/dessert/darkchocolate,
-/obj/item/reagent_container/food/drinks/cans/classcola,
 /obj/item/reagent_container/food/drinks/cans/classcola,
 /obj/item/reagent_container/food/drinks/cans/classcola,
 /obj/item/reagent_container/food/drinks/cans/classcola,
@@ -61096,7 +61476,6 @@
 /area/lv873/indoors/lone_buildings/chinese)
 "mmq" = (
 /obj/structure/prop/hybrisa/misc/fire/firebarrel{
-	pixel_y = 6;
 	pixel_x = 6
 	},
 /obj/effect/decal/hybrisa/dirt,
@@ -62147,10 +62526,18 @@
 	},
 /area/lv873/indoors/lone_buildings/gas_n_gear)
 "mwn" = (
-/obj/item/reagent_container/food/snacks/sandwich,
-/obj/structure/surface/table{
-	color = "#7e746d"
+/obj/item/reagent_container/food/snacks/sandwich{
+	pixel_x = 3;
+	pixel_y = 13
 	},
+/obj/item/ashtray/plastic{
+	pixel_y = 17;
+	pixel_x = -3
+	},
+/obj/item/reagent_container/food/drinks/cans/classcola{
+	pixel_x = -3
+	},
+/obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "mwu" = (
@@ -62401,7 +62788,7 @@
 	phone_id = "Apartment, West 5";
 	pixel_y = 15;
 	pixel_x = -3;
-	name = "West 5 Apartment rotary telephone"
+	name = "Apartment, West 5 rotary telephone"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/recruiter_house)
@@ -62489,6 +62876,23 @@
 	},
 /turf/open/asphalt/cement,
 /area/lv873/indoors/south/slums)
+"mzd" = (
+/obj/structure/machinery/big_computers/computerwhite/computer2{
+	color = "#6d2a2a";
+	layer = 2.91;
+	name = "phone box"
+	},
+/obj/structure/transmitter/colony_net{
+	phone_category = "Public Landlines";
+	phone_id = "Phone Box, Welcome Center Reception 1";
+	pixel_y = 3;
+	name = "Phone Box, Welcome Center Reception 1 telephone receiver"
+	},
+/turf/open/floor{
+	icon_state = "orange";
+	dir = 4
+	},
+/area/lv873/indoors/welcome_center/lobby)
 "mze" = (
 /obj/structure/window{
 	dir = 4
@@ -62501,8 +62905,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 5";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 5";
 	pixel_x = 5;
 	pixel_y = 12
 	},
@@ -62527,9 +62931,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_y = 8;
 	pixel_x = -7;
-	phone_category = "Colony Operations";
-	phone_id = "Administrator's Office";
-	name = "Administrator's Office rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Administrator's Office";
+	name = "Operations, Administrator's Office colony-net rotary telephone"
 	},
 /turf/open/floor/hybrisa/carpet/carpetreddeco,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
@@ -63169,13 +63573,14 @@
 /area/lv873/indoors/hospital/outpatients_and_icu)
 "mEN" = (
 /obj/structure/surface/table/woodentable,
-/obj/structure/machinery/prop/almayer/computer/PC{
-	dir = 1;
-	pixel_x = 2
-	},
 /obj/item/clothing/glasses/science{
 	pixel_y = 8;
 	pixel_x = -13
+	},
+/obj/structure/machinery/computer/objective{
+	dir = 1;
+	pixel_y = -4;
+	pixel_x = 4
 	},
 /turf/open/floor/bar,
 /area/lv873/indoors/hospital/research/offices)
@@ -63240,21 +63645,6 @@
 	pixel_y = 8
 	},
 /obj/item/newspaper{
-	name = "flight logs m-3 yr-2182";
-	pixel_x = -12;
-	pixel_y = -5
-	},
-/obj/item/newspaper{
-	pixel_y = -5;
-	name = "suspicious persons list m-7 yr-2182";
-	pixel_x = -7
-	},
-/obj/item/newspaper{
-	name = "flight logs m-4 yr-2182";
-	pixel_x = 7;
-	pixel_y = -4
-	},
-/obj/item/newspaper{
 	pixel_y = 1;
 	name = "report on sudden destruction of colony infrastructure m-7 yr-2182";
 	pixel_x = -13
@@ -63263,12 +63653,6 @@
 	pixel_y = 1;
 	name = "report on unidentified materials in disposal systems m-7 yr-2182";
 	pixel_x = -1
-	},
-/obj/effect/landmark/objective_landmark/far,
-/obj/item/newspaper{
-	pixel_y = -1;
-	name = "correspondence on understrength uscm garrison and increasing gang activity m6-2182";
-	pixel_x = 9
 	},
 /obj/item/newspaper{
 	pixel_y = 1;
@@ -63290,11 +63674,9 @@
 	name = "report on gang-sabotaged telecommunications m-7 yr-2182";
 	pixel_x = -7
 	},
-/obj/item/newspaper{
-	pixel_y = -1;
-	name = "report on sudden destruction of colony infrastructure m-7 yr-2182";
-	pixel_x = 7
-	},
+/obj/item/folder/black,
+/obj/item/folder/black,
+/obj/item/folder/black,
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "mFd" = (
@@ -63360,10 +63742,6 @@
 /obj/item/storage/fancy/cigar/tarbacks{
 	pixel_x = -6;
 	pixel_y = 11
-	},
-/obj/structure/sign/poster/art{
-	layer = 3.1;
-	pixel_x = -32
 	},
 /turf/open/floor/hybrisa/carpet/carpetblackdeco,
 /area/lv873/indoors/welcome_center/offices)
@@ -63936,8 +64314,11 @@
 	},
 /area/lv873/indoors/operations/hallway/west)
 "mLa" = (
-/obj/structure/prop/hybrisa/misc/redmeter{
-	pixel_y = 32
+/obj/structure/transmitter/colony_net{
+	phone_id = "CMB, Prison";
+	phone_category = "Public Landlines";
+	name = "Apartment, South 5 telephone receiver";
+	pixel_y = 30
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -65045,6 +65426,14 @@
 	pixel_y = -1;
 	pixel_x = 1
 	},
+/obj/item/trash/barcardine{
+	pixel_y = -9;
+	pixel_x = -6
+	},
+/obj/item/trash/burger{
+	pixel_y = 5;
+	pixel_x = 3
+	},
 /turf/open/floor{
 	icon_state = "darkbluecorners2"
 	},
@@ -65086,7 +65475,8 @@
 "mXL" = (
 /obj/structure/surface/table/reinforced/almayer_B,
 /obj/item/ashtray/plastic{
-	pixel_y = 12
+	pixel_y = -5;
+	pixel_x = 5
 	},
 /obj/effect/landmark/objective_landmark/far{
 	pixel_x = -7;
@@ -65095,12 +65485,12 @@
 /obj/effect/landmark/objective_landmark/science{
 	pixel_x = -6
 	},
-/obj/structure/transmitter/wy_net/rotary{
+/obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 8;
-	phone_category = "Isaac's Lament - Corporate Net";
-	phone_id = "Operations Research 2";
-	pixel_y = 1;
-	name = "Operations Research 2 corporate-net rotary telephone"
+	pixel_y = 8;
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Research";
+	name = "Operations, Research rotary telephone"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/lv873/indoors/operations/xenobiological_research)
@@ -66147,6 +66537,15 @@
 	},
 /turf/open/gm/river/soro,
 /area/lv873/indoors/flooded/waste_silos)
+"nhz" = (
+/obj/structure/flora/bush/ausbushes/var3/sparsegrass,
+/obj/structure/barricade/sandbags/wired{
+	icon_state = "sandbag_0";
+	color = "#a98c7c";
+	dir = 4
+	},
+/turf/open/gm/dirtgrassborder3/north,
+/area/lv873/outdoors/uscm_garrison_exterior/fenced)
 "nhE" = (
 /turf/closed/wall/wood/green,
 /area/lv873/indoors/south/slums)
@@ -68181,6 +68580,10 @@
 	pixel_x = 3;
 	pixel_y = -6
 	},
+/obj/item/folder,
+/obj/item/folder,
+/obj/item/folder/black,
+/obj/item/folder/red,
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/offices)
 "nDq" = (
@@ -69140,6 +69543,10 @@
 /obj/structure/sign/safety/conference_room{
 	pixel_y = -32
 	},
+/obj/structure/barricade/sandbags/wired{
+	icon_state = "sandbag_0";
+	color = "#a98c7c"
+	},
 /turf/open/gm/road{
 	icon_state = "browndirt_road_1"
 	},
@@ -69295,7 +69702,7 @@
 /area/lv873/indoors/southeast/slums)
 "nRD" = (
 /obj/structure/sign/poster/ad{
-	pixel_x = -17;
+	pixel_x = -14;
 	pixel_y = 29
 	},
 /obj/structure/sign/poster/clf{
@@ -69554,7 +69961,7 @@
 	phone_id = "USCMC Garrison, Bunks 2";
 	dir = 8;
 	pixel_x = 15;
-	name = "Bunks 2 telephone receiver"
+	name = "USCMC Garrison, Bunks 2 telephone receiver"
 	},
 /turf/open/floor/almayer/green/east,
 /area/lv873/indoors/uscm_garrison/garrison_bunks)
@@ -70234,9 +70641,9 @@
 /obj/structure/transmitter/colony_net{
 	dir = 1;
 	pixel_y = -21;
-	phone_category = "Jeppson's Memorial Hospital";
-	phone_id = "Corporate Supervisor's Office";
-	name = "Corporate Supervisor's Office telephone receiver"
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Corporate Supervisor's Office";
+	name = "Jeppson's Memorial Hospital, Corporate Supervisor's Office telephone receiver"
 	},
 /obj/structure/surface/table/woodentable/fancy,
 /obj/item/ashtray/plastic{
@@ -70593,7 +71000,7 @@
 /turf/open/gm/road,
 /area/lv873/oob)
 "oci" = (
-/obj/structure/machinery/disease2/diseaseanalyser,
+/obj/structure/machinery/chem_storage,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -70618,6 +71025,29 @@
 /obj/item/stack/sheet/metal,
 /turf/open/gm/river/soro,
 /area/lv873/indoors/flooded/waste_station)
+"ocy" = (
+/obj/structure/surface/table,
+/obj/item/storage/fancy/cigar{
+	pixel_x = 2;
+	pixel_y = 11
+	},
+/obj/item/storage/fancy/cigar{
+	pixel_y = 17;
+	icon_state = "cigarcase0";
+	storage_slots = 0;
+	pixel_x = 1
+	},
+/obj/item/ashtray/plastic{
+	icon_state = "ashtray_small_bl_full";
+	pixel_x = -6;
+	pixel_y = -3
+	},
+/obj/item/reagent_container/food/condiment/chocolate_syrup{
+	pixel_y = 8;
+	pixel_x = 3
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "ocC" = (
 /obj/effect/decal/strata_decals/grime/grime4,
 /obj/effect/decal/strata_decals/grime/grime3{
@@ -71099,14 +71529,23 @@
 	pixel_x = 6;
 	pixel_y = 15
 	},
-/obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Weyland-Yutani Welcome Center";
-	phone_id = "Manager's Office";
-	pixel_x = -5
-	},
 /obj/item/tool/stamp/weyyu{
 	pixel_x = 4;
 	pixel_y = -4
+	},
+/obj/structure/transmitter/wy_net/rotary{
+	pixel_x = -12;
+	pixel_y = 10;
+	phone_category = "Isaac's Lament - Corporate Net";
+	phone_id = "Corporate Supervisor's Office";
+	name = "Colony Administration corporate-net rotary telephone"
+	},
+/obj/structure/transmitter/colony_net/rotary{
+	phone_category = "Business Landlines";
+	phone_id = "Weyland-Yutani Welcome Center, Manager's Office";
+	pixel_x = -9;
+	pixel_y = 1;
+	name = "Weyland-Yutani Welcome Center, Manager's Office rotary telephone"
 	},
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
@@ -72458,6 +72897,25 @@
 	},
 /turf/open/gm/road,
 /area/lv873/outdoors/colony_streets/southwest)
+"oud" = (
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag5{
+	layer = 3.04;
+	pixel_x = -2;
+	pixel_y = 14
+	},
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag1{
+	layer = 3.05;
+	pixel_y = 3;
+	pixel_x = -10;
+	dir = 4
+	},
+/obj/item/hybrisa/misc/trash_bag_full_prop{
+	pixel_y = 13;
+	layer = 4.11;
+	pixel_x = 18
+	},
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/northeast)
 "oui" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "W";
@@ -72670,6 +73128,20 @@
 	},
 /turf/open/gm/river/soro,
 /area/lv873/outdoors/flooded_streets/waste_treatment)
+"ovL" = (
+/obj/item/hybrisa/misc/trash_bag_full_prop{
+	pixel_y = 4;
+	layer = 4.11;
+	pixel_x = -26
+	},
+/obj/item/hybrisa/misc/trash_bag_full_prop{
+	pixel_y = 10;
+	layer = 4.11;
+	pixel_x = -3;
+	dir = 6
+	},
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/northeast)
 "ovP" = (
 /obj/structure/surface/table{
 	color = "#7e746d"
@@ -72852,6 +73324,20 @@
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/lv873/indoors/lone_buildings/engineer_alcoholic_house)
+"oxl" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -8
+	},
+/obj/item/reagent_container/syringe/drugs{
+	pixel_y = 1;
+	pixel_x = 3
+	},
+/obj/item/reagent_container/syringe/drugs{
+	pixel_y = -2
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "oxn" = (
 /obj/item/reagent_container/glass/bottle/spaceacillin{
 	pixel_y = 15;
@@ -72956,6 +73442,10 @@
 /obj/structure/flora/pottedplant{
 	icon_state = "pottedplant_21";
 	layer = 3.1
+	},
+/obj/structure/prop/hybrisa/misc/machinery/screens/wood_clock{
+	pixel_x = -32;
+	pixel_y = 10
 	},
 /turf/open/floor/hybrisa/carpet/carpetblackdeco,
 /area/lv873/indoors/welcome_center/offices)
@@ -73260,11 +73750,9 @@
 	pixel_x = 9;
 	pixel_y = -1
 	},
-/obj/structure/transmitter/wy_net/rotary{
-	pixel_x = -5;
-	phone_category = "Isaac's Lament - Corporate Net";
-	phone_id = "Operations Research 1";
-	name = "Operations Research 1 corporate-net rotary telephone"
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -1;
+	pixel_x = -4
 	},
 /turf/open/floor{
 	icon_state = "dark2"
@@ -74135,17 +74623,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/asphalt/cement/cement4,
 /area/lv873/landing_zone_2)
-"oKl" = (
-/obj/structure/transmitter/colony_net{
-	phone_category = "Business Landlines";
-	phone_id = "Weyland Yutani Welcome Center, 'On the House' Restaurant";
-	pixel_y = 3;
-	dir = 8;
-	pixel_x = 15;
-	name = "'On the House' Restaurant telephone receiver"
-	},
-/turf/open/floor/hybrisa/tile/tilelightbeige,
-/area/lv873/indoors/welcome_center/canteen)
 "oKw" = (
 /obj/item/trash/cigbutt,
 /turf/open/gm/road{
@@ -74458,7 +74935,8 @@
 "oNL" = (
 /obj/structure/surface/rack,
 /obj/item/reagent_container/food/condiment/hotsauce/cholula{
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/reagent_container/food/condiment/hotsauce/sriracha{
 	pixel_x = 8
@@ -74999,6 +75477,14 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/flooded_streets/waste_treatment)
+"oSD" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/effect/landmark/objective_landmark/far,
+/obj/structure/machinery/light/small,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "oSO" = (
 /obj/effect/decal/hybrisa/dirt,
 /obj/effect/decal/hybrisa/dirt,
@@ -75196,6 +75682,14 @@
 "oUX" = (
 /turf/open/gm/road,
 /area/lv873/outdoors/colony_streets/northeast)
+"oVc" = (
+/obj/item/shard,
+/obj/structure/machinery/photocopier,
+/obj/item/newspaper{
+	name = "urgent report on imminent armed unrest m-7 yr-2182"
+	},
+/turf/open/floor/hybrisa/carpet/carpetreddeco,
+/area/lv873/indoors/lone_buildings/weyyu_hostel)
 "oVj" = (
 /obj/structure/flora/bush/isaacs/bush3{
 	pixel_x = -16;
@@ -75246,6 +75740,10 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/bungalow_manager_exterior)
+"oWi" = (
+/obj/item/shard,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "oWG" = (
 /obj/structure/flora/bush/ausbushes/var3/fullgrass{
 	color = "#c4f3e4"
@@ -75609,7 +76107,7 @@
 /area/lv873/oob)
 "oZf" = (
 /obj/structure/extinguisher_cabinet/alt{
-	pixel_y = 26
+	pixel_y = 28
 	},
 /obj/structure/flora/pottedplant{
 	icon_state = "pottedplant_18";
@@ -76510,6 +77008,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/hybrisa/tile/tilegreen,
 /area/lv873/indoors/southeast/slums)
 "pgU" = (
@@ -77752,8 +78251,8 @@
 	},
 /obj/structure/surface/table/reinforced/prison,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Cubicle 3";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Cubicle 3";
 	pixel_x = -17;
 	pixel_y = 11
 	},
@@ -79374,10 +79873,17 @@
 /obj/structure/machinery/microwave{
 	pixel_y = 15
 	},
-/obj/item/reagent_container/food/snacks/csandwich,
-/obj/structure/surface/table{
-	color = "#7e746d"
+/obj/item/reagent_container/food/snacks/csandwich{
+	pixel_y = 24;
+	pixel_x = -5
 	},
+/obj/item/ashtray/plastic{
+	icon_state = "ashtray_full_bl";
+	pixel_y = -15;
+	pixel_x = -2
+	},
+/obj/effect/landmark/objective_landmark/far,
+/obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "pJE" = (
@@ -79520,9 +80026,9 @@
 	},
 /area/lv873/oob)
 "pKZ" = (
-/obj/item/clothing/head/helmet/marine/veteran/ua_riot{
-	pixel_x = 10;
-	pixel_y = 1
+/obj/item/clothing/head/helmet/riot{
+	pixel_y = 9;
+	pixel_x = -3
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
@@ -79891,6 +80397,9 @@
 	color = "#a28e74";
 	pixel_y = -32
 	},
+/obj/item/folder/white,
+/obj/item/folder/white,
+/obj/item/folder/black,
 /turf/open/floor/hybrisa/carpet/carpetblue,
 /area/lv873/indoors/lone_buildings/weyyu_hostel)
 "pPh" = (
@@ -80957,6 +81466,15 @@
 /obj/item/trash/crushed_cup,
 /turf/open/gm/river/soro,
 /area/lv873/outdoors/flooded_streets/waste_treatment)
+"qaF" = (
+/obj/structure/prop/hybrisa/misc/stoneplanterseats{
+	dir = 1;
+	pixel_x = -9
+	},
+/turf/open/floor{
+	icon_state = "neutralfull"
+	},
+/area/lv873/indoors/welcome_center/lobby)
 "qaI" = (
 /obj/structure/machinery/light{
 	dir = 1
@@ -81220,6 +81738,12 @@
 	dir = 1
 	},
 /area/lv873/indoors/northeast/slums)
+"qdR" = (
+/obj/structure/sign/poster/ad{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "qdT" = (
 /obj/structure/machinery/microwave{
 	pixel_y = 14
@@ -82066,13 +82590,13 @@
 	},
 /obj/item/ashtray/plastic{
 	icon_state = "ashtray_full_bl";
-	pixel_x = -7;
-	pixel_y = -4
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "CMB Office";
-	phone_id = "Barracks";
-	pixel_x = -8;
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Barracks";
+	pixel_x = -7;
 	pixel_y = 4
 	},
 /turf/open/floor{
@@ -82517,6 +83041,13 @@
 	dir = 8
 	},
 /area/lv873/indoors/marshals/barracks)
+"qrx" = (
+/obj/item/restraint/handcuffs,
+/turf/open/floor{
+	dir = 4;
+	icon_state = "red"
+	},
+/area/lv873/indoors/marshals/reception)
 "qrA" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/gm/road,
@@ -82705,10 +83236,6 @@
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 7
-	},
-/obj/item/reagent_container/food/drinks/coffeecup/wy{
-	pixel_x = -8;
-	pixel_y = 12
 	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
@@ -83479,8 +84006,9 @@
 	},
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_y = 16;
-	phone_id = "Statistics and Investigations Office 1";
-	phone_category = "Colony Operations"
+	phone_id = "Operations, Statistics and Investigations Desk 1";
+	phone_category = "Public Landlines";
+	name = "Operations, Statistics and Investigations Desk 1 rotary telephone"
 	},
 /obj/item/tool/lighter/random{
 	pixel_x = -10;
@@ -83538,6 +84066,16 @@
 	icon_state = "whiteblue"
 	},
 /area/lv873/indoors/hospital/research/floor)
+"qAx" = (
+/obj/structure/sink{
+	pixel_y = 22
+	},
+/obj/item/tool/soap{
+	pixel_y = 19;
+	pixel_x = 8
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "qAz" = (
 /obj/structure/barricade/wooden{
 	color = "#d1ff9f"
@@ -83643,6 +84181,19 @@
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/gm/road,
 /area/lv873/indoors/lone_buildings/gas_n_gear)
+"qCo" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/item/ashtray/plastic{
+	pixel_x = -17;
+	pixel_y = -8
+	},
+/obj/item/restraint/handcuffs,
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/lv873/indoors/marshals/mainhall)
 "qCu" = (
 /obj/effect/decal/hybrisa/dirt,
 /turf/open/floor/interior/wood/alt,
@@ -83944,6 +84495,9 @@
 	},
 /obj/item/reagent_container/food/drinks/cans/waterbottle,
 /obj/item/device/flashlight/lamp/on,
+/obj/structure/barricade/wooden{
+	layer = 3.1
+	},
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "qFw" = (
@@ -84109,6 +84663,16 @@
 	},
 /obj/effect/decal/hybrisa/dirt,
 /obj/item/trash/cigbutt,
+/obj/item/toy/trading_card{
+	pixel_y = 10;
+	pixel_x = -8;
+	layer = 3.09
+	},
+/obj/item/toy/trading_card{
+	pixel_y = 7;
+	pixel_x = -3;
+	layer = 3.09
+	},
 /turf/open/floor{
 	icon_state = "darkbluecorners2";
 	dir = 4
@@ -84216,23 +84780,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/asphalt/cement/cement12,
 /area/lv873/outdoors/colony_streets/south)
-"qJf" = (
-/obj/structure/machinery/big_computers/computerwhite/computer2{
-	color = "#6d2a2a";
-	layer = 2.91;
-	name = "phone box"
-	},
-/obj/structure/transmitter/colony_net{
-	phone_category = "Public Landlines";
-	phone_id = "Phone Box, Welcome Center Reception 1";
-	pixel_y = 3;
-	name = "Welcome Center Reception 2 telephone receiver"
-	},
-/turf/open/floor{
-	icon_state = "orange";
-	dir = 8
-	},
-/area/lv873/indoors/welcome_center/lobby)
 "qJv" = (
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
 /turf/open/gm/dirtgrassborder3,
@@ -84674,8 +85221,8 @@
 /area/lv873/outdoors/bungalow_manager_exterior)
 "qNa" = (
 /obj/structure/sign/poster/clf{
-	pixel_y = 31;
-	pixel_x = 10;
+	pixel_y = 29;
+	pixel_x = 3;
 	layer = 4
 	},
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
@@ -84748,6 +85295,12 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/oob)
+"qND" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/gm/dirt/brown,
+/area/lv873/outdoors/colony_streets/east)
 "qNM" = (
 /obj/structure/platform{
 	dir = 4
@@ -84935,7 +85488,7 @@
 	pixel_y = -20;
 	phone_category = "Private Landlines";
 	phone_id = "Hostel, Southwest 2";
-	name = "WeyYu Hostel, Southwest 2 telephone receiver"
+	name = "Hostel, Southwest 2 telephone receiver"
 	},
 /turf/open/floor{
 	icon_state = "vault";
@@ -84985,9 +85538,10 @@
 /obj/effect/decal/hybrisa/dirt,
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_y = 7;
-	phone_id = "Water Utilities Desk";
-	phone_category = "Colony Operations";
-	pixel_x = 8
+	phone_id = "Operations, Water Utilities Desk";
+	phone_category = "Public Landlines";
+	pixel_x = 8;
+	name = "Operations, Water Utilities Desk rotary telephone"
 	},
 /turf/open/floor{
 	dir = 9;
@@ -85549,6 +86103,23 @@
 "qWO" = (
 /turf/open/floor/darkbrown2/west,
 /area/lv873/indoors/power_station)
+"qWT" = (
+/obj/structure/bed{
+	pixel_y = -2;
+	layer = 3.01
+	},
+/obj/item/bedsheet/captain{
+	layer = 4.01;
+	pixel_y = -2
+	},
+/obj/structure/bed{
+	pixel_y = 13
+	},
+/obj/item/bedsheet/captain{
+	pixel_y = 14
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "qWU" = (
 /obj/structure/bed/chair,
 /obj/item/ashtray/plastic{
@@ -86452,9 +87023,6 @@
 	},
 /area/lv873/indoors/south/slums)
 "rgt" = (
-/obj/structure/machinery/autodispenser{
-	dir = 4
-	},
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -86602,6 +87170,12 @@
 	dir = 8
 	},
 /obj/effect/alien/resin/sticky,
+/obj/item/hybrisa/misc/trash_bag_full_prop/bag3{
+	layer = 3.04;
+	pixel_y = -3;
+	pixel_x = 9;
+	dir = 6
+	},
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/northeast)
 "rit" = (
@@ -87708,7 +88282,7 @@
 	pixel_y = 30;
 	phone_category = "Private Landlines";
 	phone_id = "Bungalow, CDO & CRO's House Phone";
-	name = "CDO & CRO's House Phone telephone receiver"
+	name = "Bungalow, CDO & CRO's House Phone telephone receiver"
 	},
 /turf/open/floor/hybrisa/wood/greywood,
 /area/lv873/indoors/gated_community/director_of_corporate_research)
@@ -89030,9 +89604,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_y = 15;
 	pixel_x = 1;
-	phone_category = "South-West Quadrant";
-	phone_id = "Wey-Yu Travel Agency Reception Office";
-	name = "Wey-Yu Travel Agency Reception Office rotary telephone"
+	phone_category = "Private Landlines";
+	phone_id = "Weyland-Yutani Travel Agency, Floor Desk";
+	name = "Weyland-Yutani Travel Agency, Floor Desk rotary telephone"
 	},
 /turf/open/floor/hybrisa/carpet/carpetgreen,
 /area/lv873/indoors/lone_buildings/travel_agency)
@@ -89197,9 +89771,6 @@
 /turf/open/floor/wall_thermite,
 /area/lv873/indoors/lone_buildings/polemuseum)
 "rJz" = (
-/obj/effect/decal/hybrisa/tiretrack{
-	dir = 8
-	},
 /obj/structure/reagent_dispensers/tank/fuel/spacecraft,
 /turf/open/gm/road,
 /area/lv873/outdoors/landing_zones_disembark)
@@ -89277,7 +89848,6 @@
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/northeast)
 "rKl" = (
-/obj/effect/landmark/xeno_spawn,
 /obj/effect/decal/warning_stripes{
 	icon_state = "E";
 	pixel_x = 1
@@ -89285,6 +89855,12 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "S"
 	},
+/obj/structure/surface/table/reinforced/almayer_B,
+/obj/item/ashtray/plastic{
+	pixel_y = -5;
+	pixel_x = 9
+	},
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor{
 	dir = 6;
 	icon_state = "darkblue2"
@@ -90780,6 +91356,15 @@
 "rZu" = (
 /obj/structure/filingcabinet,
 /obj/effect/landmark/objective_landmark/close,
+/obj/item/newspaper{
+	name = "report on waste treatment storage conditions m-7 yr-2182";
+	pixel_y = 9;
+	pixel_x = -3
+	},
+/obj/item/folder/blue,
+/obj/item/folder/black,
+/obj/item/folder/black,
+/obj/item/folder,
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/offices)
 "rZw" = (
@@ -90995,17 +91580,24 @@
 "sbC" = (
 /obj/structure/filingcabinet{
 	pixel_x = 8;
-	pixel_y = 25
+	pixel_y = 2
 	},
 /obj/structure/filingcabinet{
 	pixel_x = -8;
-	pixel_y = 25
+	pixel_y = 2
 	},
 /obj/effect/landmark/objective_landmark/close,
 /obj/effect/landmark/objective_landmark/close,
 /obj/effect/decal/hybrisa/trash{
 	icon_state = "trash_8"
 	},
+/obj/item/folder/blue,
+/obj/item/folder/blue,
+/obj/item/folder/yellow,
+/obj/item/folder/yellow,
+/obj/item/folder/white,
+/obj/item/folder/blue,
+/obj/item/folder/black,
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
 "sbF" = (
@@ -91736,10 +92328,10 @@
 	},
 /area/lv873/outdoors/colony_streets/northeast)
 "sjG" = (
-/obj/item/reagent_container/food/drinks/cans/cola,
-/obj/structure/surface/table{
-	color = "#7e746d"
+/obj/item/reagent_container/food/drinks/cup{
+	pixel_y = 2
 	},
+/obj/structure/surface/table,
 /turf/open/floor/wood,
 /area/lv873/indoors/southeast/slums)
 "sjN" = (
@@ -91833,10 +92425,10 @@
 "skv" = (
 /obj/structure/surface/table/reinforced/almayer_B,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Colony Operations";
-	phone_id = "Operations Perimeter Checkpoint";
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Perimeter Checkpoint";
 	pixel_x = 10;
-	name = "Operations Perimeter Checkpoint rotary telephone"
+	name = "Operations, Perimeter Checkpoint rotary telephone"
 	},
 /obj/structure/machinery/computer/cameras{
 	dir = 1;
@@ -92228,6 +92820,12 @@
 /area/lv873/outdoors/landing_zones_disembark)
 "soO" = (
 /obj/item/trash/cigbutt,
+/obj/structure/barricade/handrail/hybrisa/road/plastic/black{
+	dir = 1
+	},
+/obj/structure/barricade/handrail/hybrisa/road/plastic/black{
+	dir = 8
+	},
 /turf/open/asphalt/cement/cement2,
 /area/lv873/outdoors/colony_streets/southeast)
 "spe" = (
@@ -92374,7 +92972,7 @@
 	icon_state = "E";
 	pixel_x = 1
 	},
-/obj/effect/landmark/xeno_spawn,
+/obj/structure/machinery/chem_master,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "darkblue2"
@@ -93070,6 +93668,10 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/flooded_streets/east)
+"sxu" = (
+/obj/structure/closet/secure_closet/freezer/fridge/full,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "sxy" = (
 /obj/structure/cargo_container/grant/right,
 /turf/open/asphalt/cement,
@@ -93936,7 +94538,7 @@
 	color = "#808c66";
 	pixel_x = 32
 	},
-/obj/effect/landmark/objective_landmark/medium,
+/obj/effect/landmark/objective_landmark/far,
 /turf/open/floor/hybrisa/tile/tilegreen,
 /area/lv873/indoors/southeast/slums)
 "sFv" = (
@@ -94222,8 +94824,8 @@
 /obj/effect/decal/hybrisa/dirt,
 /obj/structure/transmitter/colony_net{
 	dir = 4;
-	phone_category = "CMB Office";
-	phone_id = "Main Offices (Offduty Line)";
+	phone_category = "Public Landlines";
+	phone_id = "CMB, Main Offices (Offduty Line)";
 	pixel_x = -14
 	},
 /turf/open/floor{
@@ -94698,6 +95300,10 @@
 /obj/structure/sign/minefield{
 	pixel_y = -32
 	},
+/obj/structure/barricade/sandbags/wired{
+	icon_state = "sandbag_0";
+	color = "#a98c7c"
+	},
 /turf/open/gm/road{
 	icon_state = "browndirt_road_1"
 	},
@@ -94788,6 +95394,14 @@
 	pixel_y = -22;
 	req_one_access_txt = "2;3;12;19"
 	},
+/obj/structure/barricade/handrail/hybrisa/road/plastic/black{
+	dir = 1
+	},
+/obj/item/clothing/mask/cigarette/cigar,
+/obj/item/tool/lighter{
+	pixel_y = -4;
+	pixel_x = 7
+	},
 /turf/open/asphalt/cement/cement4,
 /area/lv873/outdoors/colony_streets/southeast)
 "sOz" = (
@@ -94858,15 +95472,6 @@
 	dir = 4
 	},
 /area/lv873/outdoors/colony_streets/west)
-"sPb" = (
-/obj/effect/decal/hybrisa/dirt,
-/obj/structure/prop/hybrisa/misc/stoneplanterseats{
-	pixel_x = -23
-	},
-/turf/open/floor{
-	icon_state = "neutralfull"
-	},
-/area/lv873/indoors/welcome_center/lobby)
 "sPd" = (
 /obj/structure/machinery/door/airlock/almayer/generic/rusted{
 	name = "\improper Garage Manway";
@@ -95421,6 +96026,13 @@
 "sUW" = (
 /obj/structure/prop/tyrargo/boards/boards_2{
 	dir = 4
+	},
+/obj/structure/bed/chair{
+	dir = 4;
+	icon_state = "chair_alt"
+	},
+/obj/structure/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -96462,6 +97074,33 @@
 	icon_state = "browndirt_road_3"
 	},
 /area/lv873/outdoors/uscm_garrison_exterior/fenced)
+"tgd" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/under/waiter{
+	pixel_x = 3;
+	pixel_y = 1
+	},
+/obj/item/clothing/under/shorts/black{
+	pixel_x = 6;
+	pixel_y = -3
+	},
+/obj/item/clothing/under/shorts/red{
+	pixel_y = -8;
+	pixel_x = 4
+	},
+/obj/item/clothing/under/colonist/workwear/blue{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/clothing/under/colonist/workwear/khaki{
+	pixel_x = -5
+	},
+/obj/item/clothing/under/rank/utility/red{
+	pixel_x = -7;
+	pixel_y = -7
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "tgg" = (
 /obj/item/trash/cigbutt,
 /obj/structure/bed/chair{
@@ -97114,7 +97753,7 @@
 /area/lv873/landing_zone_2)
 "toL" = (
 /obj/structure/surface/table/reinforced/almayer_B,
-/obj/effect/landmark/objective_landmark/far,
+/obj/effect/landmark/objective_landmark/science,
 /turf/open/floor/plating/plating_catwalk,
 /area/lv873/indoors/operations/xenobiological_research)
 "toP" = (
@@ -97613,6 +98252,9 @@
 "tsU" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
+/obj/structure/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -97644,15 +98286,27 @@
 /turf/open/floor/hybrisa/tile/tilegreen,
 /area/lv873/indoors/southeast/slums)
 "tto" = (
-/obj/item/tool/kitchen/knife/butcher,
 /obj/structure/surface/table,
+/obj/item/reagent_container/food/snacks/flour{
+	pixel_x = 6;
+	pixel_y = 4
+	},
+/obj/item/reagent_container/food/snacks/flour{
+	pixel_x = 5;
+	pixel_y = -4
+	},
+/obj/item/tool/kitchen/knife{
+	pixel_x = -5
+	},
+/obj/item/tool/kitchen/can_opener{
+	pixel_x = -6;
+	pixel_y = -4
+	},
 /turf/open/floor/strata{
 	icon_state = "floor3"
 	},
 /area/lv873/indoors/welcome_center/canteen)
 "ttp" = (
-/obj/effect/spawner/gibspawner/xeno,
-/obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/decal/hybrisa/trash{
 	icon_state = "trash_4";
 	pixel_y = 14
@@ -98110,7 +98764,7 @@
 /obj/structure/transmitter/rotary{
 	pixel_y = -6;
 	pixel_x = 10;
-	name = "military-net rotary telephone";
+	name = "Colony Operations military-net rotary telephone";
 	phone_category = "Isaac's Lament - Military Net";
 	phone_id = "Colony Operations"
 	},
@@ -98118,7 +98772,7 @@
 	pixel_x = 9;
 	phone_category = "Isaac's Lament - Corporate Net";
 	phone_id = "Colony Operations";
-	name = "Operations Research 1 corporate-net rotary telephone";
+	name = "Colony Operations corporate-net rotary telephone";
 	pixel_y = 8
 	},
 /turf/open/floor/dark,
@@ -98969,11 +99623,12 @@
 "tGs" = (
 /obj/structure/surface/table/woodentable,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Memorial Hospital";
-	phone_id = "Research Director's Office";
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Research Director's Office";
 	layer = 4;
 	pixel_x = -12;
-	pixel_y = -2
+	pixel_y = -2;
+	name = "Jeppson's Memorial Hospital, Research Director's Office rotary telephone"
 	},
 /obj/effect/landmark/objective_landmark/close,
 /obj/item/ashtray/plastic{
@@ -98994,6 +99649,7 @@
 	pixel_y = 14;
 	pixel_x = -4
 	},
+/obj/effect/landmark/objective_landmark/far,
 /turf/open/floor/hybrisa/carpet/carpet_colorable{
 	color = "#5a5a5a"
 	},
@@ -99322,8 +99978,9 @@
 	},
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 9;
-	phone_category = "Colony Operations";
-	phone_id = "Reception Desk"
+	phone_category = "Public Landlines";
+	phone_id = "Reception Desk";
+	name = "Operations, Reception Desk rotary telephone"
 	},
 /turf/open/floor/dark,
 /area/lv873/indoors/operations/reception)
@@ -99838,6 +100495,7 @@
 /obj/structure/prop/hybrisa/misc/redmeter{
 	pixel_y = 32
 	},
+/obj/item/restraint/handcuffs,
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -99915,6 +100573,11 @@
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/open/asphalt/cement/cement15,
 /area/lv873/indoors/southwest/slums)
+"tQl" = (
+/obj/structure/surface/rack,
+/obj/effect/landmark/objective_landmark/science,
+/turf/open/floor/airless,
+/area/lv873/indoors/southeast/slums)
 "tQH" = (
 /obj/structure/bed,
 /obj/effect/landmark/survivor_spawner,
@@ -100432,6 +101095,11 @@
 	color = "#80a599"
 	},
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
+/obj/structure/barricade/sandbags/wired{
+	icon_state = "sandbag_0";
+	color = "#a98c7c";
+	dir = 4
+	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/uscm_garrison_exterior/fenced)
 "tUH" = (
@@ -101211,6 +101879,10 @@
 	},
 /obj/structure/surface/table/woodentable{
 	color = "#7e746d"
+	},
+/obj/item/reagent_container/food/drinks/coffee{
+	pixel_x = -13;
+	pixel_y = 2
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/canteen)
@@ -102974,9 +103646,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 9;
 	pixel_y = 1;
-	phone_category = "Colony Operations";
-	phone_id = "Operations Security Desk";
-	name = "Operations Security Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Security Desk";
+	name = "Operations, Security Desk rotary telephone"
 	},
 /turf/open/floor{
 	dir = 9;
@@ -103431,6 +104103,11 @@
 /area/lv873/indoors/operations/maintenance/north)
 "uAb" = (
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
+/obj/structure/barricade/sandbags/wired{
+	icon_state = "sandbag_0";
+	color = "#a98c7c";
+	dir = 4
+	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/uscm_garrison_exterior/fenced)
 "uAd" = (
@@ -104010,7 +104687,7 @@
 	pixel_y = 3;
 	phone_category = "Public Landlines";
 	phone_id = "Phone Box, Landing Zones";
-	name = "Landing Zone Phone Box telephone receiver"
+	name = "Phone Box, Landing Zones telephone receiver"
 	},
 /obj/structure/machinery/big_computers/computerwhite/computer2{
 	color = "#6d2a2a";
@@ -105501,13 +106178,13 @@
 /turf/open/floor/hybrisa/tile/supermartfloor2,
 /area/lv873/indoors/lone_buildings/engineer_alcoholic_house)
 "uXu" = (
-/obj/structure/machinery/sensortower{
-	layer = 4.13;
-	pixel_x = 4;
-	pixel_y = -12
+/obj/effect/decal/hybrisa/dirt,
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -10;
+	pixel_x = -8
 	},
-/turf/open/asphalt/cement,
-/area/lv873/indoors/southeast/slums)
+/turf/open/floor/dark,
+/area/lv873/indoors/operations/hallway/south)
 "uXz" = (
 /obj/structure/curtain/open/colorable{
 	color = "#5a5a5a";
@@ -105517,6 +106194,10 @@
 	pixel_y = 32
 	},
 /obj/structure/bed/chair,
+/obj/item/reagent_container/food/drinks/cans/classcola{
+	pixel_x = 12;
+	pixel_y = 13
+	},
 /turf/open/floor/hybrisa/wood/greywood,
 /area/lv873/indoors/southeast/slums)
 "uXE" = (
@@ -105578,6 +106259,13 @@
 /turf/open/gm/grass/dirt,
 /area/lv873/indoors/northeast/slums)
 "uXU" = (
+/obj/structure/transmitter/colony_net{
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Pharmacy";
+	name = "Jeppson's Memorial Hospital, Pharmacy telephone receiver";
+	dir = 8;
+	pixel_x = 14
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whitegreen"
@@ -105714,6 +106402,9 @@
 /obj/effect/decal/hybrisa/road/road_stop{
 	dir = 8;
 	icon_state = "stop_decal5"
+	},
+/obj/structure/barricade/plasteel/wired{
+	dir = 8
 	},
 /turf/open/gm/road{
 	icon_state = "browndirt_road_corner";
@@ -105935,6 +106626,7 @@
 /obj/structure/machinery/light,
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/item/shard,
+/obj/effect/landmark/xeno_spawn,
 /turf/open/floor{
 	icon_state = "darkblue2"
 	},
@@ -105999,10 +106691,10 @@
 	current_mag = null;
 	pixel_y = -12;
 	name = "\improper Tire-marked MP5 submachinegun";
-	damage_mult = 0.8;
 	color = "#808080";
 	burst_scatter_mult = 8;
-	fa_max_scatter = 13
+	fa_max_scatter = 13;
+	damage_mult = 0.8
 	},
 /obj/effect/decal/hybrisa/tiretrack{
 	dir = 8
@@ -106407,8 +107099,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/lv873/indoors/lone_buildings/engineer_trucker_bunkhouse)
 "vgb" = (
-/obj/structure/mineral_door/wood/open{
-	dir = 8
+/obj/structure/mineral_door/wood{
+	layer = 2.9;
+	dir = 4
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
@@ -106509,6 +107202,15 @@
 /obj/item/trash/cigbutt,
 /turf/open/gm/road,
 /area/lv873/outdoors/hospital/break_garden)
+"vgT" = (
+/obj/effect/decal/hybrisa/dirt,
+/obj/structure/prop/hybrisa/misc/stoneplanterseats{
+	pixel_x = -23
+	},
+/turf/open/floor{
+	icon_state = "neutralfull"
+	},
+/area/lv873/indoors/welcome_center/lobby)
 "vgU" = (
 /obj/structure/flora/bush/ausbushes/var3/sparsegrass,
 /turf/open/gm/grass/dirt,
@@ -106688,7 +107390,7 @@
 	phone_id = "USCMC Garrison, Bunks 1";
 	dir = 8;
 	pixel_x = 15;
-	name = "Bunks 1 telephone receiver"
+	name = "USCMC Garrison, Bunks 1 telephone receiver"
 	},
 /turf/open/floor/almayer/green/east,
 /area/lv873/indoors/uscm_garrison/garrison_bunks)
@@ -106913,9 +107615,9 @@
 /obj/structure/transmitter/colony_net/rotary{
 	pixel_x = 8;
 	pixel_y = -2;
-	phone_category = "Colony Operations";
-	phone_id = "Pneumatic Utilities Desk";
-	name = "Pneumatic Utilities Desk rotary telephone"
+	phone_category = "Public Landlines";
+	phone_id = "Operations, Pneumatic Utilities Desk";
+	name = "Operations, Pneumatic Utilities Desk rotary telephone"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -107043,6 +107745,9 @@
 /obj/structure/surface/table/woodentable/poor,
 /obj/structure/sign/calendar/twe{
 	pixel_y = 32
+	},
+/obj/structure/machinery/door/airlock/almayer/generic/rusted{
+	name = "\improper Southwest 8 Apartment"
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/lone_buildings/chinese)
@@ -107610,6 +108315,12 @@
 /obj/effect/landmark/objective_landmark/medium,
 /turf/open/floor/hybrisa/carpet/carpetgreen,
 /area/lv873/indoors/lone_buildings/travel_agency)
+"vqk" = (
+/obj/structure/mineral_door/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "vql" = (
 /obj/structure/machinery/light/small{
 	dir = 4
@@ -107632,6 +108343,12 @@
 	icon_state = "vault"
 	},
 /area/lv873/indoors/southwest/slums)
+"vqq" = (
+/obj/structure/mineral_door/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "vqx" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/hybrisa/dirt,
@@ -107904,6 +108621,20 @@
 "vty" = (
 /turf/closed/wall/wood,
 /area/lv873/indoors/power_station)
+"vtC" = (
+/obj/effect/decal/warning_stripes{
+	icon_state = "N";
+	pixel_y = 1
+	},
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -10;
+	pixel_x = -8
+	},
+/turf/open/floor{
+	dir = 1;
+	icon_state = "darkblue2"
+	},
+/area/lv873/indoors/operations/hallway/south)
 "vtL" = (
 /obj/structure/platform/stone/mineral{
 	color = "#3f3f3f"
@@ -110143,6 +110874,10 @@
 	color = "#7e746d"
 	},
 /obj/effect/landmark/objective_landmark/close,
+/obj/item/reagent_container/food/drinks/coffeecup{
+	pixel_y = 11;
+	pixel_x = 9
+	},
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/canteen)
 "vQk" = (
@@ -111345,7 +112080,7 @@
 	phone_id = "Bungalow, CDO's Home Office";
 	pixel_x = 10;
 	pixel_y = -3;
-	name = "Chief Development Officer's Home Office rotary telephone"
+	name = "Bungalow, CDO's Home Office rotary telephone"
 	},
 /turf/open/floor/hybrisa/wood/greywood,
 /area/lv873/indoors/gated_community/director_of_corporate_research)
@@ -111548,14 +112283,14 @@
 	},
 /area/lv873/indoors/southwest/slums)
 "wdF" = (
-/obj/effect/decal/hybrisa/tiretrack{
-	dir = 8
+/obj/item/trash/cigbutt,
+/obj/structure/prop/hybrisa/misc/stoneplanterseats{
+	pixel_x = -23
 	},
-/turf/open/gm/road{
-	icon_state = "browndirt_road_corner";
-	dir = 4
+/turf/open/floor{
+	icon_state = "neutralfull"
 	},
-/area/lv873/outdoors/landing_zones_disembark)
+/area/lv873/indoors/welcome_center/lobby)
 "wdH" = (
 /obj/structure/cargo_container/hybrisa/containersextended/blueleft,
 /turf/open/asphalt/cement,
@@ -111572,6 +112307,14 @@
 	},
 /turf/open/gm/grass/dirt,
 /area/lv873/outdoors/flooded_streets/east)
+"wen" = (
+/obj/structure/surface/table,
+/obj/item/device/flashlight/lamp/candelabra{
+	pixel_y = 17;
+	pixel_x = -5
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "wet" = (
 /obj/structure/flora/jungle/vines/light_1{
 	color = "#bbd1ca";
@@ -113632,6 +114375,13 @@
 "wBl" = (
 /turf/open/gm/road,
 /area/lv873/outdoors/uscm_garrison_exterior/fenced)
+"wBx" = (
+/obj/item/reagent_container/food/drinks/coffeecup/wy{
+	pixel_y = -10;
+	pixel_x = -8
+	},
+/turf/open/floor/dark,
+/area/lv873/indoors/operations/hallway/north)
 "wBA" = (
 /obj/structure/surface/rack,
 /obj/item/stack/cable_coil/orange{
@@ -114363,7 +115113,7 @@
 	phone_id = "USCMC Garrison, Lieutenant's Office";
 	pixel_y = 9;
 	layer = 3.01;
-	name = "Lieutenant's Office colony-net rotary telephone"
+	name = "USCMC Garrison, Lieutenant's Office colony-net rotary telephone"
 	},
 /obj/structure/transmitter/rotary{
 	pixel_x = -1;
@@ -114660,6 +115410,14 @@
 /obj/structure/prop/tyrargo/boards/boards_2{
 	dir = 4;
 	pixel_y = -4
+	},
+/obj/item/toy/beach_ball/holoball{
+	pixel_x = -9;
+	pixel_y = -9
+	},
+/obj/item/clothing/shoes/black{
+	pixel_y = -8;
+	pixel_x = 8
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
@@ -115064,6 +115822,7 @@
 /obj/structure/machinery/light_construct{
 	dir = 8
 	},
+/obj/effect/landmark/objective_landmark/medium,
 /turf/open/gm/river/soro,
 /area/lv873/indoors/flooded/weymart)
 "wPI" = (
@@ -115089,6 +115848,10 @@
 	},
 /obj/structure/surface/table/woodentable{
 	color = "#7e746d"
+	},
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -11;
+	pixel_y = 3
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/canteen)
@@ -115231,11 +115994,11 @@
 /obj/structure/surface/table/reinforced/almayer_B,
 /obj/item/shard,
 /obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Jeppson's Memorial Hospital";
-	phone_id = "Research Front Desk";
+	phone_category = "Public Landlines";
+	phone_id = "Jeppson's Memorial Hospital, Research Front Desk";
 	pixel_y = 9;
 	pixel_x = -7;
-	name = "Research Front Desk rotary telephone"
+	name = "Jeppson's Memorial Hospital, Research Front Desk rotary telephone"
 	},
 /obj/item/device/flashlight/lamp/green{
 	pixel_x = 6;
@@ -116563,6 +117326,10 @@
 /area/lv873/outdoors/flooded_streets/west)
 "xew" = (
 /obj/structure/prop/hybrisa/misc/firebarreloff,
+/obj/structure/prop/hybrisa/misc/fire/fire2{
+	pixel_x = -32;
+	pixel_y = 12
+	},
 /turf/open/gm/dirt/brown,
 /area/lv873/outdoors/colony_streets/east)
 "xeG" = (
@@ -117871,15 +118638,6 @@
 	icon_state = "neutralfull"
 	},
 /area/lv873/indoors/welcome_center/offices)
-"xqi" = (
-/obj/structure/prop/hybrisa/misc/stoneplanterseats{
-	dir = 1;
-	pixel_x = -9
-	},
-/turf/open/floor{
-	icon_state = "neutralfull"
-	},
-/area/lv873/indoors/welcome_center/lobby)
 "xqn" = (
 /obj/structure/largecrate{
 	pixel_x = 10
@@ -118135,21 +118893,17 @@
 /area/lv873/indoors/lone_buildings/internet_cafe)
 "xsy" = (
 /obj/structure/surface/table/woodentable/fancy,
-/obj/structure/transmitter/colony_net/rotary{
-	phone_category = "Weyland-Yutani Welcome Center";
-	phone_id = "Manager's Office";
-	pixel_x = -5;
-	pixel_y = 15
-	},
 /obj/item/book/manual/paperwork{
 	pixel_x = -5
 	},
 /obj/item/book/manual/paperwork{
 	pixel_x = 6
 	},
-/obj/structure/prop/hybrisa/misc/machinery/screens/wood_clock{
-	pixel_x = -32;
-	pixel_y = 10
+/obj/structure/transmitter/wy_net/rotary{
+	pixel_y = 16;
+	pixel_x = -5;
+	phone_category = "Isaac's Lament - Corporate Net";
+	phone_id = "Manager's Office"
 	},
 /turf/open/floor/hybrisa/carpet/carpetblack,
 /area/lv873/indoors/welcome_center/offices)
@@ -118204,6 +118958,11 @@
 	},
 /turf/open/gm/dirtgrassborder3/grassdirt_corner,
 /area/lv873/outdoors/colony_streets/south)
+"xtq" = (
+/obj/item/shard,
+/obj/item/stool,
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "xtL" = (
 /obj/effect/decal/hybrisa/warning/redandwhite_W,
 /obj/effect/decal/hybrisa/warning/redandwhite_N{
@@ -118503,6 +119262,7 @@
 /obj/item/folder/black,
 /obj/item/folder/black,
 /obj/item/folder/red,
+/obj/effect/landmark/objective_landmark/far,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "darkblue2"
@@ -120843,6 +121603,9 @@
 /obj/item/ammo_casing/cartridge,
 /obj/item/ammo_casing/cartridge,
 /obj/item/ammo_casing/cartridge,
+/obj/structure/machinery/door/airlock/almayer/generic/rusted{
+	name = "\improper Southwest 8 Apartment"
+	},
 /turf/open/gm/dirt/brown{
 	icon_state = "desert3"
 	},
@@ -120880,6 +121643,17 @@
 /obj/structure/prop/tyrargo/boards{
 	dir = 4;
 	layer = 2.9
+	},
+/obj/item/tool/mop{
+	pixel_x = 12;
+	pixel_y = 19
+	},
+/obj/item/tool/wet_sign{
+	pixel_x = 10
+	},
+/obj/item/reagent_container/glass/bucket/mopbucket{
+	pixel_x = 8;
+	pixel_y = -5
 	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -121324,13 +122098,20 @@
 	},
 /area/lv873/indoors/lone_buildings/farm_shack)
 "xYh" = (
-/obj/item/reagent_container/food/snacks/packaged_burrito,
 /obj/structure/surface/table/woodentable{
 	color = "#7e746d"
 	},
-/obj/item/reagent_container/food/drinks/coffeecup{
-	pixel_y = 11;
-	pixel_x = 9
+/obj/item/tool/kitchen/utensil/fork{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/obj/item/tool/kitchen/utensil/knife{
+	pixel_x = 13;
+	pixel_y = 4
+	},
+/obj/item/reagent_container/food/snacks/meatsteak{
+	pixel_x = 1;
+	pixel_y = 3
 	},
 /turf/open/floor/wood,
 /area/lv873/indoors/welcome_center/canteen)
@@ -121533,6 +122314,13 @@
 	},
 /turf/open/gm/dirtgrassborder3/grassdirt_corner/south_east,
 /area/lv873/outdoors/colony_streets/east)
+"xZN" = (
+/obj/item/restraint/handcuffs,
+/turf/open/floor{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/lv873/indoors/marshals/mainhall)
 "xZR" = (
 /obj/structure/machinery/door/airlock/almayer/security/colony{
 	name = "\improper Colonial Marshals Bureau Barracks"
@@ -122413,6 +123201,12 @@
 	dir = 1
 	},
 /area/lv873/oob)
+"yjl" = (
+/obj/structure/sign/poster/clf{
+	pixel_x = 32
+	},
+/turf/open/floor/wood,
+/area/lv873/indoors/southeast/slums)
 "yjp" = (
 /obj/item/weapon/broken_bottle,
 /obj/effect/decal/hybrisa/trash{
@@ -126901,7 +127695,7 @@ asZ
 jyM
 mri
 wpy
-ilT
+dXX
 jBJ
 qZw
 oSz
@@ -127318,7 +128112,7 @@ rOe
 fsF
 flf
 uiE
-wPj
+oVc
 wPj
 gTj
 ixA
@@ -127811,7 +128605,7 @@ exf
 ehb
 deN
 ttL
-qsu
+uXu
 kQI
 tOS
 qLF
@@ -128021,7 +128815,7 @@ qWe
 jTN
 jTN
 bSy
-bSy
+wBx
 bSy
 bSy
 exd
@@ -129357,7 +130151,7 @@ kvT
 kvT
 lXp
 hTm
-kvT
+cUo
 hbY
 npH
 pqN
@@ -130721,7 +131515,7 @@ bfs
 rKl
 nkS
 bTx
-ocl
+vtC
 xVP
 kQI
 hWI
@@ -135907,7 +136701,7 @@ kDy
 tBU
 txI
 txI
-txI
+lwP
 fEb
 lxT
 fyC
@@ -137089,7 +137883,7 @@ xGn
 xGn
 xGn
 dgE
-nKv
+nhz
 tUC
 kBr
 gzg
@@ -141334,7 +142128,7 @@ iOI
 svO
 iQo
 hGr
-dlK
+luy
 qvl
 hPJ
 piR
@@ -142931,7 +143725,7 @@ vcC
 lGB
 vLw
 vLw
-grq
+jlT
 cRd
 cRd
 auM
@@ -142996,7 +143790,7 @@ jtu
 dCi
 qhf
 trE
-qhf
+qrx
 lSL
 tte
 xDa
@@ -143155,7 +143949,7 @@ jFw
 ahy
 xoD
 vLw
-mtC
+vLw
 grq
 cRd
 cRd
@@ -143377,9 +144171,9 @@ oIJ
 jFw
 lkO
 lkO
+lkO
 ahy
-bht
-lHq
+mFe
 sNp
 grq
 cRd
@@ -143601,9 +144395,9 @@ seQ
 lkO
 lkO
 lkO
+lkO
 iPB
-bht
-sNp
+mFe
 nHp
 sFv
 grq
@@ -143823,10 +144617,10 @@ dro
 jEV
 seQ
 seQ
-seQ
-seQ
-seQ
-seQ
+nLC
+nLC
+nLC
+nLC
 seQ
 seQ
 mtC
@@ -144275,7 +145069,7 @@ pjK
 wvs
 wvs
 pjK
-wvs
+kJk
 seQ
 fHY
 dJV
@@ -144567,7 +145361,7 @@ vau
 gDj
 djD
 erb
-hmF
+qCo
 hnx
 ekq
 rQB
@@ -145620,7 +146414,7 @@ dIy
 def
 hjf
 hjf
-lwP
+dIy
 uRc
 vzr
 qUz
@@ -145839,7 +146633,7 @@ seQ
 seQ
 seQ
 seQ
-hNt
+dIy
 hNt
 seQ
 seQ
@@ -146511,7 +147305,7 @@ nga
 enf
 rlY
 ucb
-xqi
+qaF
 ucb
 epE
 fDF
@@ -147400,7 +148194,7 @@ bYG
 qky
 euH
 bYG
-qJf
+dlK
 iFy
 mfK
 mHd
@@ -147914,7 +148708,7 @@ xnp
 jRE
 pci
 jfa
-wfn
+xZN
 eqQ
 gDj
 ugd
@@ -148059,7 +148853,7 @@ ikI
 ikI
 ikI
 ikI
-wdF
+pxK
 bAb
 ikI
 ikI
@@ -148283,7 +149077,7 @@ smp
 vju
 pod
 koW
-jRF
+eXY
 cfB
 nJl
 nJl
@@ -148296,7 +149090,7 @@ bYG
 kmv
 izY
 bYG
-kbJ
+mzd
 bkK
 ucb
 xAk
@@ -149197,9 +149991,9 @@ cSv
 ucb
 wqB
 enf
-sPb
+vgT
 ucb
-kJk
+wdF
 mfK
 epE
 gxh
@@ -151444,7 +152238,7 @@ sjR
 sjR
 sjR
 sjR
-oKl
+jRF
 lMJ
 gfY
 oNL
@@ -152389,8 +153183,8 @@ tqv
 cZE
 cNM
 rYK
-tKS
-lmv
+nTq
+hgy
 uJi
 fbg
 mTs
@@ -152613,8 +153407,8 @@ cwf
 meg
 cNM
 rYK
-dvz
 muq
+reO
 uJi
 adA
 aTK
@@ -152836,9 +153630,9 @@ fWp
 dgj
 xAK
 eyd
-kYH
-nHV
+mhQ
 iEk
+iHV
 ybl
 ybl
 bty
@@ -153060,9 +153854,9 @@ beI
 kYH
 xAK
 eyd
-plD
 ufz
-iHV
+aZj
+aZj
 ybl
 sQf
 bZs
@@ -153284,9 +154078,9 @@ wMi
 plD
 xAK
 eyd
-nHV
-iEk
-qfz
+ufz
+iHV
+aZj
 ybl
 dSJ
 bKj
@@ -153951,8 +154745,8 @@ fqU
 tki
 dMk
 uFd
-fWp
-kYH
+aCD
+mdS
 kYH
 xAK
 eyd
@@ -154176,8 +154970,8 @@ hYB
 aZj
 aZj
 aLn
-fWp
-kYH
+lER
+mdS
 xAK
 eyd
 nWy
@@ -154400,8 +155194,8 @@ aZj
 aZj
 aZj
 aZj
-beI
-plD
+aZj
+wMi
 xAK
 eyd
 kYH
@@ -154625,7 +155419,7 @@ aZj
 aZj
 aZj
 iuw
-plD
+ulR
 xAK
 eyd
 kYH
@@ -154853,7 +155647,7 @@ kYH
 xAK
 eyd
 kYH
-nWy
+kxm
 kYH
 oUh
 bRl
@@ -155076,7 +155870,7 @@ kYH
 kYH
 xAK
 eyd
-nWy
+bkQ
 xew
 jRh
 fjn
@@ -155301,7 +156095,7 @@ vyq
 kBY
 eyd
 nWy
-kYH
+qND
 kYH
 hvq
 jpp
@@ -158250,7 +159044,7 @@ cQn
 bkC
 vGt
 uJi
-gdK
+wen
 rOY
 rOY
 ybl
@@ -158902,7 +159696,7 @@ psG
 jpp
 bXs
 cek
-rOY
+cbg
 qFn
 eOk
 xQs
@@ -158921,15 +159715,15 @@ gVZ
 xHK
 gVZ
 hPd
-hnj
-kkq
+aIm
+gBY
+uJi
+rOY
+rOY
+erz
 ybl
-rOY
-rOY
-rOY
-ybl
-dRS
-ubL
+ilT
+oxl
 ybl
 ybl
 ybl
@@ -159152,11 +159946,11 @@ rOY
 rOY
 rOY
 ybl
-cUv
 pAA
+vqk
 pAA
 pJD
-bHp
+cTA
 kdm
 pAA
 pAA
@@ -159371,19 +160165,19 @@ fCO
 gVZ
 fmq
 pkW
+uJi
+rOY
+qWT
+wSJ
 ybl
-ftb
-rOY
-rOY
-ybl
-rOY
+syA
 rOY
 pAA
 rOY
+mPk
 rOY
 rOY
-rOY
-bHp
+sxu
 ybl
 jkL
 etE
@@ -159600,8 +160394,8 @@ ybl
 ybl
 ybl
 ybl
-rOY
-rOY
+aQO
+oWi
 sjG
 mwn
 bdJ
@@ -159819,12 +160613,12 @@ gVZ
 fCO
 gVZ
 gVZ
-gVZ
+hrb
 qBs
 gVZ
-gVZ
-bXs
-rOY
+dRS
+bbV
+xtq
 rOY
 syA
 syA
@@ -160044,14 +160838,14 @@ fCO
 gVZ
 gVZ
 gVZ
+xHK
 gVZ
-gVZ
-gVZ
-qRO
-rOY
-rOY
-rOY
-rOY
+gps
+vqq
+yjl
+qdR
+jsu
+qdR
 rOY
 rOY
 oXd
@@ -160276,7 +161070,7 @@ ybl
 ybl
 giz
 pAA
-cUv
+ile
 pAA
 pAA
 pAA
@@ -160495,14 +161289,14 @@ psG
 sOv
 ybl
 qXG
-knU
+jUA
 weO
-weO
+tQl
 giz
 tsU
 rOY
 pAA
-dRS
+qAx
 wVm
 ybl
 oaW
@@ -160720,14 +161514,14 @@ wyw
 joM
 dYL
 vvI
-uXu
 oix
+dtJ
 giz
-rOY
+ocy
 cvd
-cOT
+bXs
 xUC
-ubL
+oSD
 ybl
 hlf
 xjg
@@ -160948,7 +161742,7 @@ oix
 oix
 giz
 pAA
-cUv
+ile
 pAA
 pAA
 pAA
@@ -161169,9 +161963,9 @@ joM
 dYL
 knU
 weO
-weO
+blY
 giz
-rOY
+tgd
 rOY
 wLr
 gRS
@@ -161397,7 +162191,7 @@ giz
 giz
 sUW
 rOY
-rOY
+bet
 xQl
 cTk
 pQh
@@ -167114,7 +167908,7 @@ jyj
 xrb
 xrb
 jat
-kjR
+oud
 kxF
 gbA
 mkm
@@ -167338,7 +168132,7 @@ jat
 aTU
 jat
 jat
-kjR
+ovL
 kjR
 bHL
 avy
