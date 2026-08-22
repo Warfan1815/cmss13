@@ -308,7 +308,7 @@ Timer Delayed/Looping Procs
 	if(!(decisecond % 10))
 		if(decisecond != end_decisecond)
 			airlock.icon_state = "[transition]_[decisecond * 0.1]s"
-	for(var/turf/open/floor/hangar_airlock/T as anything in airlock_turf_lists["[decisecond]"])
+	for(var/turf/open/floor/hangar_airlock/T in airlock_turf_lists["[decisecond]"]) // due to dropship turf swapping shenaningans this cannot be as anything
 		T.open = open
 		for(var/atom/movable/contents_atom in T.contents)
 			if(!contents_atom.anchored)
@@ -323,12 +323,6 @@ Timer Delayed/Looping Procs
 		for(var/obj/effect/hangar_airlock/height_mask/dropship/qdeling_height_mask as anything in dropship_height_masks)
 			dropship_height_masks -= qdeling_height_mask
 			qdel(qdeling_height_mask)
-		for(var/list in inner_airlock_turf_lists)
-			list = null
-		inner_airlock_turf_lists = null
-		for(var/list in outer_airlock_turf_lists)
-			list = null
-		outer_airlock_turf_lists = null
 		var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = docked_mobile.getControlConsole()
 		if(root_console)
 			root_console.visible_message(message = SPAN_WARNING("DROPSHIP AUTOMATIC EXIT PROCEDURE ACTIVATED. The shuttle will automatically exit in [DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD * 0.1] seconds if still in a lowered position."), max_distance = 3)
@@ -354,12 +348,6 @@ Timer Delayed/Looping Procs
 
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_height_increase()
 	docked_mobile.initiate_docking(src)
-	for(var/list in inner_airlock_turf_lists)
-		list = null
-	inner_airlock_turf_lists = null
-	for(var/list in outer_airlock_turf_lists)
-		list = null
-	outer_airlock_turf_lists = null
 	end_of_interaction()
 
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_disengage_clamps()
@@ -595,6 +583,12 @@ New Backend Procs
 			dropship_part_height_mask.color = "#000000"
 			dropship_height_masks += dropship_part_height_mask
 
+/obj/docking_port/stationary/marine_dropship/airlock/inner/on_departure(obj/docking_port/mobile/departing_shuttle)
+	. = ..()
+	for(var/list/turf_list as anything in inner_airlock_turf_lists)
+		for(var/turf/open/floor/hangar_airlock/airlock_turf as anything in turf_list)
+			airlock_turf.open = open_inner_airlock
+
 /obj/docking_port/stationary/marine_dropship/airlock/outer/Initialize(mapload)
 	. = ..()
 	GLOB.dropship_airlock_docking_ports.Add(src)
@@ -625,11 +619,6 @@ New Backend Procs
 	if(registered)
 		unregister()
 	linked_inner.disengaged_clamps = FALSE
-	if(!linked_inner.lowered_dropship) // if it arrived from outside not from being lowered
-		for(var/list in linked_inner.outer_airlock_turf_lists)
-			list = null
-		linked_inner.outer_airlock_turf_lists = null
-		linked_inner.lowered_dropship = TRUE
 	linked_inner.lowered_dropship = TRUE
 	SSfz_transitions.fire()
 	handle_obscuring_shuttle_turfs()
@@ -643,6 +632,12 @@ New Backend Procs
 		if(root_console)
 			root_console.visible_message(message = SPAN_WARNING("DROPSHIP AUTOMATIC RETURN PROCEDURE ACTIVATED. The shuttle will automatically return to the top of the airlock in [DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD * 0.1] seconds if still in a lowered position."), max_distance = 3)
 		addtimer(CALLBACK(linked_inner, TYPE_PROC_REF(/obj/docking_port/stationary/marine_dropship/airlock/inner, end_outer_airlock_access), FALSE), DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD)
+
+/obj/docking_port/stationary/marine_dropship/airlock/outer/on_departure(obj/docking_port/mobile/departing_shuttle)
+	. = ..()
+	for(var/list/turf_list as anything in linked_inner.outer_airlock_turf_lists)
+		for(var/turf/open/floor/hangar_airlock/airlock_turf as anything in turf_list)
+			airlock_turf.open = linked_inner.open_inner_airlock
 
 /*#############################################################################
 Airlock Appearance Effects
