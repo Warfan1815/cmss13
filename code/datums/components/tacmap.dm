@@ -34,6 +34,7 @@
 		return COMPONENT_INCOMPATIBLE
 	src.minimap_flag = minimap_flag
 	src.drawing = drawing
+	drawing_tools += list(/atom/movable/screen/minimap_tool/up, /atom/movable/screen/minimap_tool/down)
 
 	if(has_drawing_tools)
 		drawing_tools += list(
@@ -46,8 +47,6 @@
 			/atom/movable/screen/minimap_tool/draw_tool/erase,
 			/atom/movable/screen/minimap_tool/label,
 			/atom/movable/screen/minimap_tool/clear,
-			/atom/movable/screen/minimap_tool/up,
-			/atom/movable/screen/minimap_tool/down,
 			/atom/movable/screen/minimap_tool/popout,
 		)
 
@@ -108,9 +107,10 @@
 			ceiling_action.hidden = TRUE
 			user.update_action_buttons()
 
-		// Clean up drawing tool references
+		// Clean up drawing tool references and mark CIC minimap inactive
 		var/atom/movable/screen/minimap/user_map = user_objects["map"]
 		user_map?.active_draw_tool = null
+		user_map?.is_cic_minimap = FALSE
 
 	interactees -= user
 	user.client.mouse_pointer_icon = null
