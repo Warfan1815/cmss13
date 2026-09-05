@@ -278,9 +278,9 @@
 				log_ares_flight("Unknown", "Safety override exit signal for [inner_airlock.name] received. Authentication garbled.")
 				log_ares_security("Security Alert", "Safety override exit signal for [inner_airlock.name] received. Authentication garbled.")
 				to_chat(xeno, "You command-override the airlock to begin exiting the shuttle with all speed. The screen reads T-[time_to_airlock_process * 0.1]...")
-				addtimer(CALLBACK(src, PROC_REF(alien_call_dropship), xeno, shuttle, inner_airlock), time_to_airlock_process + DROPSHIP_AIRLOCK_MAX_THEORETICAL_UPDATE_PERIOD)
+				addtimer(CALLBACK(src, PROC_REF(alien_call_dropship), xeno, shuttle, landing_zone, inner_airlock), time_to_airlock_process + DROPSHIP_AIRLOCK_MAX_THEORETICAL_UPDATE_PERIOD)
 			else
-				alien_call_dropship(xeno, shuttle)
+				alien_call_dropship(xeno, shuttle, landing_zone)
 		if(shuttle.destination && shuttle.destination.id != linked_lz)
 			to_chat(xeno, "The shuttle is not ready. The screen reads T-[shuttle.timeLeft(10)]. Have patience.")
 			return
@@ -294,7 +294,7 @@
 			to_chat(xeno, "The shuttle is launching.")
 			return
 
-/obj/structure/machinery/computer/shuttle/dropship/flight/proc/alien_call_dropship(mob/living/carbon/xenomorph/xeno, obj/docking_port/mobile/shuttle, obj/docking_port/stationary/marine_dropship/airlock/inner/inner_airlock)
+/obj/structure/machinery/computer/shuttle/dropship/flight/proc/alien_call_dropship(mob/living/carbon/xenomorph/xeno, obj/docking_port/mobile/shuttle, obj/docking_port/stationary/landing_zone, obj/docking_port/stationary/marine_dropship/airlock/inner/inner_airlock)
 	var/result = SSshuttle.moveShuttle(shuttleId, linked_lz, TRUE)
 	if(result != DOCKING_SUCCESS)
 		to_chat(xeno, SPAN_WARNING("The metal bird can not land here. It might be currently occupied!"))

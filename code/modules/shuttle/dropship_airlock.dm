@@ -728,6 +728,8 @@ Airlock Turf Interactability Procs
 #############################################################################*/
 
 /turf/open/floor/hangar_airlock/Entered(atom/movable/entered_atom)
+	. = ..()
+
 	if(open)
 		if(!isobserver(entered_atom) && !istype(entered_atom, /obj/docking_port) && !istype(entered_atom, /atom/movable/clone) && !istype(entered_atom, /obj/effect/hangar_airlock))
 			enter_depths(entered_atom)
@@ -736,7 +738,7 @@ Airlock Turf Interactability Procs
 	return
 
 /turf/open/floor/hangar_airlock/inner/enter_depths(atom/movable/entered_atom)
-	if(entered_atom.throwing == 0)
+	if(HAS_TRAIT(entered_atom, TRAIT_LAUNCHED))
 		entered_atom.visible_message(SPAN_WARNING("[entered_atom] falls into the depths!"), SPAN_WARNING("You fall into the depths!"))
 		for(var/contents_atom in src.contents)
 			if(istype(contents_atom, /atom/movable/clone))
@@ -771,7 +773,7 @@ Airlock Turf Interactability Procs
 	qdel(entered_atom)
 
 /turf/open/floor/hangar_airlock/outer/enter_depths(atom/movable/entered_atom)
-	if(entered_atom.throwing == 0 && istype(get_turf(entered_atom), /turf/open/floor/hangar_airlock))
+	if(HAS_TRAIT(entered_atom, TRAIT_LAUNCHED) && istype(get_turf(entered_atom), /turf/open/floor/hangar_airlock))
 		entered_atom.visible_message(SPAN_WARNING("There is an onrush of air. [entered_atom] falls into space!"), SPAN_WARNING("There is an onrush of air. You fall into space!"))
 		qdel(entered_atom)
 
