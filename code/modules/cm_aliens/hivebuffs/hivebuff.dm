@@ -488,13 +488,12 @@
 	radial_icon = "shield_m"
 
 /datum/hivebuff/adaptability/apply_buff_effects(mob/living/carbon/xenomorph/xeno)
-	if(xeno.caste.tier > 3)
+	if(xeno.caste.tier < 1 || xeno.caste.tier > 3)
 		return
 
 	if(get_action(xeno, /datum/action/xeno_action/onclick/transmute))
 		return
 
-	add_verb(xeno, /mob/living/carbon/xenomorph/proc/transmute_verb)
 	var/datum/action/xeno_action/onclick/transmute/transmute_action = new()
 	transmute_action.give_to(xeno)
 
@@ -538,7 +537,7 @@
 
 /datum/hivebuff/boost_structure
 	name = "Boon of Fortification"
-	desc = "Gives buffs out to all the sturctures, not only do structures regenerate their own health slowly any recovery nodes of all sorts work twice as fast."
+	desc = "Gives buffs out to all the structures, not only do structures regenerate their own health slowly any recovery nodes of all sorts work twice as fast."
 	tier = HIVEBUFF_TIER_MINOR
 
 	engage_flavourmessage = "The resin starts moving and shifting..."

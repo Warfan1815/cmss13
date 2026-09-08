@@ -503,7 +503,7 @@
 	unacidable = TRUE
 	window_type = /obj/structure/window/framed/hybrisa/research/hull
 
-// Marshalls
+// Marshals
 /obj/structure/window_frame/hybrisa/marshalls
 	icon = 'icons/turf/walls/hybrisa_marshalls_windows.dmi'
 	icon_state = "prison_rwindow0_frame"

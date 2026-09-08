@@ -32,6 +32,7 @@ const KEY_CODE_TO_BYOND = {
   PAGEDOWN: 'Southeast',
   PAGEUP: 'Northeast',
   RIGHT: 'East',
+  TAB: 'Tab',
   ' ': 'Space',
   UP: 'North',
 };
@@ -62,10 +63,14 @@ type Data = {
 
 type CustomKeybind = {
   keybinding?: string;
+  key?: string;
+  key_mods?: string;
   type?: string;
   contents?: string | string[];
   when_xeno?: boolean;
   when_human?: boolean;
+  when_yautja?: boolean;
+  when_synth?: boolean;
 };
 
 export const KeyBinds = (props) => {
@@ -500,12 +505,16 @@ const CustomKeybinds = (props: {
                   return {
                     ...keybind,
                     keybinding: kb,
+                    key: keys[0],
+                    key_mods: mods,
                   };
                 }
 
                 return {
                   ...pending,
                   keybinding: kb,
+                  key: keys[0],
+                  key_mods: mods,
                 };
               });
             }}
@@ -561,6 +570,54 @@ const CustomKeybinds = (props: {
             Humans
           </Button.Checkbox>
         </Flex.Item>
+        <Flex.Item ml={1} grow>
+          <Button.Checkbox
+            checked={pendingKeybind?.when_yautja ?? keybind?.when_yautja}
+            fluid
+            onClick={() => {
+              setPendingKeybind((pending) => {
+                const currentValue =
+                  pending?.when_yautja ?? keybind?.when_yautja ?? false;
+                if (!pending) {
+                  return {
+                    ...keybind,
+                    when_yautja: !currentValue,
+                  };
+                }
+                return {
+                  ...pending,
+                  when_yautja: !currentValue,
+                };
+              });
+            }}
+          >
+            Yautjas
+          </Button.Checkbox>
+        </Flex.Item>
+        <Flex.Item ml={1} grow>
+          <Button.Checkbox
+            checked={pendingKeybind?.when_synth ?? keybind?.when_synth}
+            fluid
+            onClick={() => {
+              setPendingKeybind((pending) => {
+                const currentValue =
+                  pending?.when_synth ?? keybind?.when_synth ?? false;
+                if (!pending) {
+                  return {
+                    ...keybind,
+                    when_synth: !currentValue,
+                  };
+                }
+                return {
+                  ...pending,
+                  when_synth: !currentValue,
+                };
+              });
+            }}
+          >
+            Synths
+          </Button.Checkbox>
+        </Flex.Item>
       </Flex>
       {pendingKeybind && (
         <Flex align="center" mt={1}>
@@ -580,10 +637,14 @@ const CustomKeybinds = (props: {
                 act('set_custom_keybinds', {
                   index: index + 1,
                   keybind: pendingKeybind.keybinding,
+                  key: pendingKeybind.key,
+                  key_mods: pendingKeybind.key_mods,
                   keybind_type: pendingKeybind.type?.toLowerCase(),
                   contents: pendingKeybind.contents,
                   when_xeno: pendingKeybind.when_xeno ?? false,
                   when_human: pendingKeybind.when_human ?? false,
+                  when_yautja: pendingKeybind.when_yautja ?? false,
+                  when_synth: pendingKeybind.when_synth ?? false,
                 });
                 setPendingKeybind(undefined);
               }}
