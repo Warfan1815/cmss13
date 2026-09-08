@@ -168,7 +168,7 @@
 
 /obj/structure/machinery/light/almayer
 	name = "almayer light fixture"
-	light_power = 0.7
+	light_power = 0.8
 
 /obj/structure/machinery/light/containment/attack_alien(mob/living/carbon/xenomorph/M)
 	return
@@ -182,11 +182,19 @@
 	desc = "A lighting fixture. Its glass covering is a bright, fluorescent blue."
 	light_color = LIGHT_COLOR_XENON
 
+/obj/structure/machinery/light/blue/almayer
+	name = "almayer light fixture"
+	light_power = 0.8
+
 /obj/structure/machinery/light/red
 	icon_state = "rtube1"
 	base_state = "rtube"
 	desc = "A lighting fixture. Its glass covering is a bright, fluorescent red."
 	brightness = 4
+
+/obj/structure/machinery/light/red/almayer
+	name = "almayer light fixture"
+	light_power = 0.8
 
 // the smaller bulb light fixture
 
@@ -200,7 +208,7 @@
 
 /obj/structure/machinery/light/small/almayer
 	name = "almayer light fixture"
-	light_power = 0.7
+	light_power = 0.8
 
 /obj/structure/machinery/light/small/blue
 	icon_state = "bbulb1"
@@ -210,6 +218,10 @@
 	desc = "A small lighting fixture. Its glass covering is a bright, fluorescent blue."
 	light_type = /obj/item/light_bulb/bulb
 	light_color = LIGHT_COLOR_XENON
+
+/obj/structure/machinery/light/small/blue/almayer
+	name = "almayer light fixture"
+	light_power = 0.8
 
 /obj/structure/machinery/light/double
 	icon_state = "ptube1"
