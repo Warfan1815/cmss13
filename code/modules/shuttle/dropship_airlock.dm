@@ -33,9 +33,11 @@ Docking Port Definitions
 	/// The other, mostly normal, dock port. needs to be spawned manually and given the same dropship_airlock_id
 	var/obj/docking_port/stationary/marine_dropship/airlock/outer/linked_outer
 	/// The actual effect itself, contains the icon_state for the inner airlock, generated on late initialize
-	var/obj/effect/hangar_airlock/inner/inner_airlock_effect
+	// var/obj/effect/hangar_airlock/inner/inner_airlock_effect
+	var/list/inner_airlock_effects
 	/// The actual effect itself, contains the icon_state for the outer airlock, generated on late initialize
-	var/obj/effect/hangar_airlock/outer/outer_airlock_effect
+	// var/obj/effect/hangar_airlock/outer/outer_airlock_effect
+	var/list/outer_airlock_effects
 
 	/// All height masks that may need to be deleted/changed with the altitude of the dropship, generated on inner on_arrival()
 	var/list/dropship_height_masks = null
@@ -90,7 +92,7 @@ Docking Port Definitions
 	dropship_airlock_id = ALMAYER_HANGAR_AIRLOCK_TWO
 
 /*#############################################################################
-Player Interactablility Procs
+Stage Procs (chronologically called to exit, see New Backend Procs for exceptions)
 #############################################################################*/
 
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/update_airlock_alarm(play = playing_airlock_alarm, forced = FALSE)
@@ -125,6 +127,29 @@ Player Interactablility Procs
 	playing_airlock_alarm = play
 	.["successful"] = TRUE
 
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_airlock_alarm()
+	docked_mobile = get_docked()
+	docked_mobile?.door_control?.control_doors(playing_airlock_alarm ? "lock" : "unlock", "all") // the only time you want it controlling doors is when there is a dropship docked on the inner port. This is a neat-ish way of doing that.
+	if(!docked_mobile)
+		docked_mobile = linked_outer.get_docked()
+
+	if(docked_mobile)
+		if(playing_airlock_alarm)
+			docked_mobile.alarm_sound_loop.start()
+			docked_mobile.playing_launch_announcement_alarm = TRUE
+		else
+			docked_mobile.alarm_sound_loop.stop()
+			docked_mobile.playing_launch_announcement_alarm = FALSE
+
+	var/obj/structure/machinery/door/poddoor/railing/airlock_railing
+	if(playing_airlock_alarm)
+		for(airlock_railing as anything in railings)
+			airlock_railing.close(TRUE)
+	else
+		for(airlock_railing as anything in railings)
+			airlock_railing.open(TRUE)
+	end_of_interaction()
+
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/update_inner_airlock(open = open_inner_airlock, forced = FALSE)
 	. = list("successful" = FALSE, "to_chat" = "ERROR. DROPSHIP AIRLOCK INNER NOT FUNCTIONING. FILE A BUG REPORT.")
 	if(open == open_inner_airlock)
@@ -146,14 +171,11 @@ Player Interactablility Procs
 	if(!inner_airlock_turf_lists)
 		get_inner_airlock_turf_lists()
 	if(open)
-		SSfz_transitions.toggle_selective_update(open, dropship_airlock_id) // start updating the projectors
 		linked_outer.handle_obscuring_shuttle_turfs()
-		omnibus_airlock_transition("inner", TRUE, inner_airlock_turf_lists, inner_airlock_effect, DROPSHIP_AIRLOCK_DOOR_PERIOD)
+		omnibus_airlock_transition("inner", TRUE, inner_airlock_turf_lists, inner_airlock_effects, DROPSHIP_AIRLOCK_DOOR_PERIOD)
 		.["to_chat"] = "Opening inner airlock."
 	else
-		omnibus_airlock_transition("inner", FALSE, inner_airlock_turf_lists, inner_airlock_effect, DROPSHIP_AIRLOCK_DOOR_PERIOD)
-		addtimer(CALLBACK(SSfz_transitions, TYPE_PROC_REF(/datum/controller/subsystem/fz_transitions, toggle_selective_update), open, dropship_airlock_id), DROPSHIP_AIRLOCK_DOOR_PERIOD)
-		SSfz_transitions.toggle_selective_update(!open_inner_airlock, dropship_airlock_id) // stop updating the projectors
+		omnibus_airlock_transition("inner", FALSE, inner_airlock_turf_lists, inner_airlock_effects, DROPSHIP_AIRLOCK_DOOR_PERIOD)
 		.["to_chat"] = "Closing inner airlock."
 	open_inner_airlock = open
 	.["successful"] = TRUE
@@ -202,6 +224,28 @@ Player Interactablility Procs
 	lowered_dropship = lower
 	.["successful"] = TRUE
 
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_height_decrease()
+	if(COOLDOWN_FINISHED(src, dropship_airlock_cooldown))
+		docked_mobile.initiate_docking(linked_outer)
+		for(var/obj/effect/hangar_airlock/height_mask/dropship/qdeling_height_mask as anything in dropship_height_masks)
+			dropship_height_masks -= qdeling_height_mask
+			qdel(qdeling_height_mask)
+		var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = docked_mobile.getControlConsole()
+		if(root_console)
+			root_console.visible_message(message = SPAN_WARNING("DROPSHIP AUTOMATIC EXIT PROCEDURE ACTIVATED. The shuttle will automatically exit in [DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD * 0.1] seconds if still in a lowered position."), max_distance = 3)
+		addtimer(CALLBACK(src, PROC_REF(end_outer_airlock_access), TRUE), DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD)
+		end_of_interaction()
+		return
+
+	var/alpha_reiteration = (DROPSHIP_AIRLOCK_HEIGHT_TRANSITION - COOLDOWN_TIMELEFT(src, dropship_airlock_cooldown)) * 2
+	for(var/obj/effect/hangar_airlock/height_mask/dropship/transitioning_height_mask as anything in dropship_height_masks)
+		transitioning_height_mask.alpha = alpha_reiteration
+	INVOKE_NEXT_TICK(src, PROC_REF(delayed_height_decrease))
+
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_height_increase()
+	docked_mobile.initiate_docking(src)
+	end_of_interaction()
+
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/update_outer_airlock(open = open_outer_airlock, forced = FALSE)
 	. = list("successful" = FALSE, "to_chat" = "ERROR. DROPSHIP AIRLOCK OUTER NOT FUNCTIONING. FILE A BUG REPORT.")
 	if(open == open_outer_airlock)
@@ -228,10 +272,10 @@ Player Interactablility Procs
 	if(open)
 		for(var/obj/structure/machinery/door/poddoor/almayer/airlock/poddoor as anything in poddoors)
 			poddoor.close()
-		omnibus_airlock_transition("outer", TRUE, outer_airlock_turf_lists, outer_airlock_effect, DROPSHIP_AIRLOCK_DOOR_PERIOD)
+		omnibus_airlock_transition("outer", TRUE, outer_airlock_turf_lists, outer_airlock_effects, DROPSHIP_AIRLOCK_DOOR_PERIOD)
 		.["to_chat"] = "Opening outer airlock."
 	else
-		omnibus_airlock_transition("outer", FALSE, outer_airlock_turf_lists, outer_airlock_effect, DROPSHIP_AIRLOCK_DOOR_PERIOD)
+		omnibus_airlock_transition("outer", FALSE, outer_airlock_turf_lists, outer_airlock_effects, DROPSHIP_AIRLOCK_DOOR_PERIOD)
 		if(registered)
 			linked_outer.unregister()
 		.["to_chat"] = "Closing outer airlock."
@@ -272,84 +316,6 @@ Player Interactablility Procs
 	disengaged_clamps = disengage
 	.["successful"] = TRUE
 
-/*#############################################################################
-Timer Delayed/Looping Procs
-#############################################################################*/
-
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_airlock_alarm()
-	docked_mobile = get_docked()
-	docked_mobile?.door_control?.control_doors(playing_airlock_alarm ? "lock" : "unlock", "all") // the only time you want it controlling doors is when there is a dropship docked on the inner port. This is a neat-ish way of doing that.
-	if(!docked_mobile)
-		docked_mobile = linked_outer.get_docked()
-
-	if(docked_mobile)
-		if(playing_airlock_alarm)
-			docked_mobile.alarm_sound_loop.start()
-			docked_mobile.playing_launch_announcement_alarm = TRUE
-		else
-			docked_mobile.alarm_sound_loop.stop()
-			docked_mobile.playing_launch_announcement_alarm = FALSE
-
-	var/obj/structure/machinery/door/poddoor/railing/airlock_railing
-	if(playing_airlock_alarm)
-		for(airlock_railing as anything in railings)
-			airlock_railing.close(TRUE)
-	else
-		for(airlock_railing as anything in railings)
-			airlock_railing.open(TRUE)
-	end_of_interaction()
-
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_airlock_transition(airlock_type, open, airlock_turf_lists, obj/effect/hangar_airlock/airlock, end_decisecond, transition)
-	if(COOLDOWN_FINISHED(src, dropship_airlock_cooldown))
-		airlock.icon_state = "[transition]"
-		end_of_interaction()
-		return
-	var/decisecond = (end_decisecond - COOLDOWN_TIMELEFT(src, dropship_airlock_cooldown))
-	if(!(decisecond % 10))
-		if(decisecond != end_decisecond)
-			airlock.icon_state = "[transition]_[decisecond * 0.1]s"
-	for(var/turf/open/floor/hangar_airlock/T in airlock_turf_lists["[decisecond]"]) // due to dropship turf swapping shenaningans this cannot be as anything
-		T.open = open
-		for(var/atom/movable/contents_atom in T.contents)
-			if(!contents_atom.anchored)
-				T.Entered(contents_atom)
-		T.clean_cleanables()
-		T.can_bloody = !open
-	INVOKE_NEXT_TICK(src, PROC_REF(delayed_airlock_transition), airlock_type, open, airlock_turf_lists, airlock, end_decisecond, transition)
-
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_height_decrease()
-	if(COOLDOWN_FINISHED(src, dropship_airlock_cooldown))
-		docked_mobile.initiate_docking(linked_outer)
-		for(var/obj/effect/hangar_airlock/height_mask/dropship/qdeling_height_mask as anything in dropship_height_masks)
-			dropship_height_masks -= qdeling_height_mask
-			qdel(qdeling_height_mask)
-		var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = docked_mobile.getControlConsole()
-		if(root_console)
-			root_console.visible_message(message = SPAN_WARNING("DROPSHIP AUTOMATIC EXIT PROCEDURE ACTIVATED. The shuttle will automatically exit in [DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD * 0.1] seconds if still in a lowered position."), max_distance = 3)
-		addtimer(CALLBACK(src, PROC_REF(end_outer_airlock_access), TRUE), DROPSHIP_AIRLOCK_OUTER_AIRLOCK_ACCESS_GRACE_PERIOD)
-		end_of_interaction()
-		return
-	var/alpha_reiteration = (DROPSHIP_AIRLOCK_HEIGHT_TRANSITION - COOLDOWN_TIMELEFT(src, dropship_airlock_cooldown)) * 2
-	for(var/obj/effect/hangar_airlock/height_mask/dropship/transitioning_height_mask as anything in dropship_height_masks)
-		transitioning_height_mask.alpha = alpha_reiteration
-	INVOKE_NEXT_TICK(src, PROC_REF(delayed_height_decrease))
-
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/end_outer_airlock_access(go_down = TRUE) // intended to be called exclusively by delayed_height_decrease & outer on_arrival
-	if(automatic_process_stage) // it is already an automated system, no need to force it.
-		return
-	if(!test_conditions(null, null, TRUE, null, FALSE))
-		return
-
-	var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = docked_mobile?.getControlConsole()
-	if(root_console)
-		root_console.visible_message(message = go_down ? SPAN_WARNING("MANUAL PROCEDURE TIMEOUT. The dropship is beginning to automatically depart. Please prepare for freefall.") : SPAN_WARNING("MANUAL PROCEDURE TIMEOUT. The dropship is beginning to be automatically raised up."), max_distance = 3)
-	allow_processing_to_end = FALSE
-	force_process(go_down ? DROPSHIP_AIRLOCK_GO_DOWN : DROPSHIP_AIRLOCK_GO_UP)
-
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_height_increase()
-	docked_mobile.initiate_docking(src)
-	end_of_interaction()
-
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_disengage_clamps()
 	if(!docked_mobile.assigned_transit)
 		SSshuttle.generate_transit_dock(docked_mobile)
@@ -372,26 +338,45 @@ New Backend Procs
 	for(var/turf/turf as anything in block(DROPSHIP_AIRLOCK_BOUNDS))
 		if(istype(turf.loc, /area/shuttle))
 			inner_airlock_turf_lists["shuttle"] += turf
-			if(locate(/obj/effect/hangar_airlock/height_mask/static_alpha) in turf.contents)
-				continue
-			new /obj/effect/hangar_airlock/height_mask/static_alpha(turf)
 		if(istype(turf, /turf/open/floor/hangar_airlock/inner))
 			var/turf/open/floor/hangar_airlock/inner/openable_turf = turf
 			if(!inner_airlock_turf_lists?["[openable_turf.frame_threshold]"])
 				inner_airlock_turf_lists["[openable_turf.frame_threshold]"] = list()
 			inner_airlock_turf_lists["[openable_turf.frame_threshold]"] += openable_turf
-			if(locate(/obj/effect/hangar_airlock/height_mask/static_alpha) in turf.contents)
-				continue
-			new /obj/effect/hangar_airlock/height_mask/static_alpha(turf)
 
-/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/omnibus_airlock_transition(airlock_type, open, airlock_turf_lists, obj/effect/hangar_airlock/airlock, end_decisecond)
-	var/transition = open ? "open" : "close"
-	airlock.icon_state = "[transition]_0s"
-
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/omnibus_airlock_transition(airlock_type, open, airlock_turf_lists, airlock_effects, end_decisecond)
 	omnibus_sound_play('sound/machines/centrifuge.ogg')
 
+	for(var/obj/effect/hangar_airlock/door/airlock_effect as anything in airlock_effects)
+		if(open)
+			if(airlock_effect.transitions_by_x)
+				animate(airlock_effect, end_decisecond, pixel_x = (airlock_effect.pixel_x + airlock_effect.transition_range))
+			else
+				animate(airlock_effect, end_decisecond, pixel_y = (airlock_effect.pixel_y + airlock_effect.transition_range))
+		else
+			if(airlock_effect.transitions_by_x)
+				animate(airlock_effect, end_decisecond, pixel_x = (airlock_effect.pixel_x - airlock_effect.transition_range))
+			else
+				animate(airlock_effect, end_decisecond, pixel_y = (airlock_effect.pixel_y - airlock_effect.transition_range))
+
 	COOLDOWN_START(src, dropship_airlock_cooldown, end_decisecond)
-	INVOKE_NEXT_TICK(src, PROC_REF(delayed_airlock_transition), airlock_type, open, airlock_turf_lists, airlock, end_decisecond, transition)
+	INVOKE_NEXT_TICK(src, PROC_REF(delayed_airlock_transition), airlock_type, open, airlock_turf_lists, airlock_effects, end_decisecond)
+
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/delayed_airlock_transition(airlock_type, open, airlock_turf_lists, airlock_effects, end_decisecond)
+	if(COOLDOWN_FINISHED(src, dropship_airlock_cooldown))
+		end_of_interaction()
+		return
+	var/decisecond = (end_decisecond - COOLDOWN_TIMELEFT(src, dropship_airlock_cooldown))
+
+	for(var/turf/open/floor/hangar_airlock/T in airlock_turf_lists["[decisecond]"]) // due to dropship turf swapping shenaningans this cannot be as anything
+		T.open = open
+		for(var/atom/movable/contents_atom in T.contents)
+			if(!contents_atom.anchored)
+				T.Entered(contents_atom)
+		T.clean_cleanables()
+		T.can_bloody = !open
+
+	INVOKE_NEXT_TICK(src, PROC_REF(delayed_airlock_transition), airlock_type, open, airlock_turf_lists, airlock_effects, end_decisecond)
 
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/omnibus_sound_play(sound_effect)
 	playsound(src, sound_effect, 100, vol_cat = VOLUME_AMB)
@@ -404,6 +389,18 @@ New Backend Procs
 		return
 	if(allow_processing_to_end)
 		processing = FALSE
+
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/end_outer_airlock_access(go_down = TRUE) // intended to be called exclusively by delayed_height_decrease & outer on_arrival
+	if(automatic_process_stage) // it is already an automated system, no need to force it.
+		return
+	if(!test_conditions(null, null, TRUE, null, FALSE))
+		return
+
+	var/obj/structure/machinery/computer/shuttle/dropship/flight/root_console = docked_mobile?.getControlConsole()
+	if(root_console)
+		root_console.visible_message(message = go_down ? SPAN_WARNING("MANUAL PROCEDURE TIMEOUT. The dropship is beginning to automatically depart. Please prepare for freefall.") : SPAN_WARNING("MANUAL PROCEDURE TIMEOUT. The dropship is beginning to be automatically raised up."), max_distance = 3)
+	allow_processing_to_end = FALSE
+	force_process(go_down ? DROPSHIP_AIRLOCK_GO_DOWN : DROPSHIP_AIRLOCK_GO_UP)
 
 /obj/docking_port/stationary/marine_dropship/airlock/inner/proc/test_conditions(test_playing_alarm = null, test_open_inner = null, test_lowered_dropship = null, test_open_outer = null, test_disengaged_clamps = null)
 	if(test_playing_alarm != null && test_playing_alarm != playing_airlock_alarm)
@@ -523,6 +520,39 @@ New Backend Procs
 	allow_processing_to_end = TRUE
 	processing = FALSE
 
+/obj/docking_port/stationary/marine_dropship/airlock/inner/proc/populate_airlock_effects()
+	inner_airlock_effects = list()
+	outer_airlock_effects = list()
+	var/list/column_of_effects_tiles = list()
+	column_of_effects_tiles["-1"] = locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECTS_TILE, z - 1)
+	column_of_effects_tiles["0"] = locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECTS_TILE, z)
+	new /obj/effect/hangar_airlock/outline(column_of_effects_tiles["0"])
+	inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/vertical/north(column_of_effects_tiles["0"])
+	inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/horizontal/west(column_of_effects_tiles["0"])
+	inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/horizontal/east(column_of_effects_tiles["0"])
+	inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/vertical/south(column_of_effects_tiles["0"])
+	outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/west(column_of_effects_tiles["0"], OPEN_SPACE_PLANE_START)
+	outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/east(column_of_effects_tiles["0"], OPEN_SPACE_PLANE_START)
+	outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/west(column_of_effects_tiles["-1"])
+	outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/east(column_of_effects_tiles["-1"])
+
+	var/continue_upward = TRUE
+	for(var/increment_z = 1, continue_upward, increment_z++)
+		continue_upward = FALSE
+		for(var/turf/turf_above_airlock in block(locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECTS_TILE, z + increment_z), locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_NE_BOUND, z + increment_z)))
+			if(!istype(turf_above_airlock, /turf/open_space) && !istype(turf_above_airlock, /turf/solid_open_space))
+				continue
+			column_of_effects_tiles["[increment_z]"] = locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECTS_TILE, z + increment_z)
+			new /obj/effect/hangar_airlock/outline(column_of_effects_tiles["[increment_z]"], (OPENSPACE_BACKDROP_PLANE - increment_z))
+			inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/vertical/north(column_of_effects_tiles["[increment_z]"], (OPENSPACE_BACKDROP_PLANE - increment_z))
+			inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/horizontal/west(column_of_effects_tiles["[increment_z]"], (OPENSPACE_BACKDROP_PLANE - increment_z))
+			inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/horizontal/east(column_of_effects_tiles["[increment_z]"], (OPENSPACE_BACKDROP_PLANE - increment_z))
+			inner_airlock_effects += new /obj/effect/hangar_airlock/door/inner/vertical/south(column_of_effects_tiles["[increment_z]"], (OPENSPACE_BACKDROP_PLANE - increment_z))
+			outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/west(column_of_effects_tiles["[increment_z]"], (OPEN_SPACE_PLANE_START - increment_z))
+			outer_airlock_effects += new /obj/effect/hangar_airlock/door/outer/east(column_of_effects_tiles["[increment_z]"], (OPEN_SPACE_PLANE_START - increment_z))
+			continue_upward = TRUE
+			break
+
 /obj/docking_port/stationary/marine_dropship/airlock/outer/proc/handle_obscuring_shuttle_turfs()
 	for(var/turf/open/open_turf in block(DROPSHIP_AIRLOCK_BOUNDS))
 		if(istype(open_turf, /turf/open/floor/hangar_airlock/outer))
@@ -533,17 +563,10 @@ New Backend Procs
 
 /obj/docking_port/stationary/marine_dropship/airlock/outer/proc/get_outer_airlock_turf_lists()
 	linked_inner.outer_airlock_turf_lists = list()
-	var/list/offset_to_inner_coordinates = list("x" = (linked_inner.x - src.x), "y" = (linked_inner.y - src.y), "z" = (linked_inner.z - src.z))
 	for(var/turf/turf as anything in block(DROPSHIP_AIRLOCK_BOUNDS))
 		if(!istype(turf, /turf/open/floor/hangar_airlock/outer) && !istype(turf.loc, /area/shuttle))
 			continue
 		linked_inner.outer_airlock_turf_lists += turf
-		if(locate(/obj/effect/projector/airlock) in turf.contents)
-			continue
-		var/obj/effect/projector/airlock/new_projector = new /obj/effect/projector/airlock(turf)
-		new_projector.firing_id = dropship_airlock_id
-		new_projector.vector_x = offset_to_inner_coordinates["x"]
-		new_projector.vector_y = offset_to_inner_coordinates["y"]
 
 /*#############################################################################
 . = ..() Backend Procs
@@ -557,8 +580,7 @@ New Backend Procs
 	door_controls = list()
 	poddoors = list()
 	railings = list()
-	inner_airlock_effect = new /obj/effect/hangar_airlock/inner(locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECT))
-	new /obj/effect/hangar_airlock/outline(locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECT))
+	populate_airlock_effects()
 	if(!roundstart_template)
 		unregister()
 
@@ -603,12 +625,6 @@ New Backend Procs
 		WARNING("[name] could not link to its inner counterpart. THE AIRLOCK WILL NOT WORK.")
 		return
 	linked_inner.linked_outer = src
-	var/turf/airlock_effect_turf = locate(DROPSHIP_AIRLOCK_FROM_DOCKPORT_TO_EFFECT)
-	linked_inner.outer_airlock_effect = new /obj/effect/hangar_airlock/outer(airlock_effect_turf)
-	var/obj/effect/projector/airlock/new_projector = new /obj/effect/projector/airlock(airlock_effect_turf)
-	new_projector.firing_id = dropship_airlock_id
-	new_projector.vector_x = linked_inner.x - src.x
-	new_projector.vector_y = linked_inner.y - src.y
 	if(linked_inner.roundstart_template)
 		unregister()
 	else
@@ -650,23 +666,74 @@ Airlock Appearance Effects
 	mouse_opacity = FALSE
 	anchored = TRUE
 
+/obj/effect/hangar_airlock/Initialize(mapload, depth_plane = plane, ...)
+	. = ..()
+	plane = depth_plane
+
 // we typically don't want them moving
 /obj/effect/hangar_airlock/onShuttleMove(turf/newT, turf/oldT, list/movement_force, move_dir, obj/docking_port/stationary/old_dock, obj/docking_port/mobile/moving_dock)
 	if(!anchored)
 		. = ..()
 	return TRUE
 
-/obj/effect/hangar_airlock/inner
-	name = "hangar inner airlock"
-	icon = 'icons/effects/airlock_inner.dmi'
-	icon_state = "close"
+/obj/effect/hangar_airlock/door
+	var/transitions_by_x = TRUE
+	var/transition_range = 0
 	layer = 1.95
 
-/obj/effect/hangar_airlock/outer
+/obj/effect/hangar_airlock/door/inner
+	name = "hangar inner airlock"
+
+/obj/effect/hangar_airlock/door/inner/horizontal
+	icon = 'icons/effects/airlock_inner_horizontal.dmi'
+
+/obj/effect/hangar_airlock/door/inner/horizontal/west
+	icon_state = "west"
+	pixel_x = 32
+	pixel_y = 128
+	layer = 1.96
+	transition_range = -268
+
+/obj/effect/hangar_airlock/door/inner/horizontal/east
+	icon_state = "east"
+	pixel_x = 288
+	pixel_y = 128
+	layer = 1.97
+	transition_range = 269
+
+/obj/effect/hangar_airlock/door/inner/vertical
+	transitions_by_x = FALSE
+	icon = 'icons/effects/airlock_inner_vertical.dmi'
+
+/obj/effect/hangar_airlock/door/inner/vertical/north
+	icon_state = "north"
+	pixel_x = 32
+	pixel_y = 704
+	transition_range = 192
+
+/obj/effect/hangar_airlock/door/inner/vertical/south
+	icon_state = "south"
+	pixel_x = 32
+	pixel_y = 32
+	transition_range = -192
+	layer = 1.98
+
+/obj/effect/hangar_airlock/door/outer
 	name = "hangar outer airlock"
 	icon = 'icons/effects/airlock_outer.dmi'
-	icon_state = "close"
-	layer = 1.95
+
+/obj/effect/hangar_airlock/door/outer/west
+	icon_state = "west"
+	pixel_x = 32
+	pixel_y = 32
+	transition_range = -272
+
+/obj/effect/hangar_airlock/door/outer/east
+	icon_state = "east"
+	pixel_x = 288
+	pixel_y = 32
+	transition_range = 272
+	layer = 1.96
 
 /obj/effect/hangar_airlock/outline
 	icon = 'icons/effects/airlock_outline.dmi'
@@ -688,9 +755,6 @@ Airlock Appearance Effects
 	layer = 5.01
 	alpha = 0
 	plane = -6
-
-/obj/effect/hangar_airlock/height_mask/static_alpha
-	name = "static alpha height mask" // a specific type to distinctify it from transitionary masks (in the code and generally)
 
 /*#############################################################################
 Airlock Turfs Definitions
